@@ -18,20 +18,31 @@
           <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
             <div class="card-header pb-1">
               <div class="card-title">
-                <h4 class="text-center mb-2">Sign Up</h4>
+                <h4 class="text-center mb-2">Inscription</h4>
               </div>
             </div>
             <div class="text-center">
-              <p> <small> Please enter your details to sign up and be part of our great community</small>
+              <p> <small> S'il vous plait entrez vos données pour créer un compte</small>
               </p>
             </div>
             <div class="card-content">
               <div class="card-body">
                 <form method="POST" action="{{ route('register') }}">
                   @csrf
+                  {{-- Familyname of the user--}}
                   <div class="form-group mb-50">
-                    <label class="text-bold-600" for="name">Name</label>
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Full Name">
+                    <label class="text-bold-600" for="name">Nom</label>
+                    <input id="familyname" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nom de famille">
+                    @error('name')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                  {{-- Givenname of the user--}}
+                  <div class="form-group mb-50">
+                    <label class="text-bold-600" for="name">Prenoms</label>
+                    <input id="givenname" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Prenoms">
                     @error('name')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -40,7 +51,7 @@
                   </div>
                   <div class="form-group mb-50">
                     <label class="text-bold-600" for="email">Email address</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email address">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Adresse email">
                     @error('email')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -49,7 +60,7 @@
                   </div>
                   <div class="form-group mb-2">
                     <label class="text-bold-600" for="password">Password</label>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Mot de passe">
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -57,15 +68,15 @@
                     @enderror
                   </div>
                   <div class="form-group mb-2">
-                    <label class="text-bold-600" for="password-confirm">Confirm Password</label>
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                    <label class="text-bold-600" for="password-confirm">Confirm mot de passe</label>
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmer mot de passe">
                   </div>
-                  <button type="submit" class="btn btn-primary glow position-relative w-100">SIGN UP<i
+                  <button type="submit" class="btn btn-primary glow position-relative w-100">CREER UN COMPTE<i
                     id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
                 </form>
                 <hr>
-                <div class="text-center"><small class="mr-25">Already have an account?</small>
-                  <a href="{{asset('login')}}"><small>Sign in</small> </a>
+                <div class="text-center"><small class="mr-25">Vous avez dejà un compte?</small>
+                  <a href="{{asset('login')}}"><small>Connectez-vous</small> </a>
                 </div>
               </div>
             </div>
