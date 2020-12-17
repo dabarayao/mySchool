@@ -79,8 +79,8 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-    
-    'locale' => "en",
+
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -175,7 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\MenuServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
     ],
 
@@ -229,5 +228,4 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Helper::class,
     ],
-
 ];

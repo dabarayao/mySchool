@@ -1,3 +1,4 @@
+// input field size mixin
 @mixin input-field-size($input-height, $padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
   height: $input-height;
   padding: $padding-vertical $padding-horizontal;

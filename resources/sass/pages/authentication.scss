@@ -2,7 +2,8 @@
 // 	File Name: authentication.scss
 // 	Description: Page content different authentication pages layouts SCSS.
 // 	----------------------------------------------------------------------------------------------
-// 	Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+// 	Item Name: Frest HTML Admin Template
+// 	Version: 1.0
 // 	Author: PIXINVENT
 // 	Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
@@ -19,26 +20,44 @@
 // Overrides user variable
 @import "../core/variables/components-variables";
 
+/* Authentication page css */
+/*-------------------------*/
+
 // authentication pages background
 .bg-authentication{
-  background-color: $blank-bg-color;
-  .login-footer{
-    padding: 0rem 1.5rem 0.5rem;
-    .footer-btn{
-      .btn{
-        padding: 0.9rem 1.2rem !important;
-        margin: 1rem 1rem 1rem 0rem;
-      }
-    }
+  // background color
+  background-color: $body-bg; //single time usage
+  // icon position in button
+  #icon-arrow{
+    position: absolute;
+    top: 11px;
+    right: 15px;
+  }
+
+    // brand-text
+  .brand-text{
+    color: $primary;
+    font-weight: 600;
+    letter-spacing: 0.01rem;
   }
 
 }
 
-// IE Specific CSS
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+// left section border radius responsiveness
+@media only screen and (min-width: 992px){
+  .bg-authentication{
+    //rounded border only at left side
+    .disable-rounded-right{
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+  }
+}
 
-  // Authentication Pages scss
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+/* IE Specific CSS */
   .bg-authentication{
     width: 100%;
+    display: block;
   }
 }

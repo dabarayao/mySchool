@@ -29,24 +29,30 @@ function mixAssetsDir(query, cb) {
   });
 }
 
-const sassOptions = {
-  precision: 5
-};
-
-// plugins Core stylesheets
-mixAssetsDir('sass/plugins/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), sassOptions));
 
 // themes Core stylesheets
-mixAssetsDir('sass/themes/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), sassOptions));
+mixAssetsDir('sass/core/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css')));
 
 // pages Core stylesheets
-mixAssetsDir('sass/pages/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), sassOptions));
+mixAssetsDir('sass/pages/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css')));
+
+// Themescss task
+mixAssetsDir('sass/plugins/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css')));
 
 // Core stylesheets
-mixAssetsDir('sass/core/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), sassOptions));
+mixAssetsDir('sass/themes/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css')));
+
+// custom blank file for users
+mixAssetsDir('assets/scss/**/!(_)*.scss', (src, dest) => mix.sass(src, dest.replace(/(\\|\/)sass(\\|\/)/, '$1css$2').replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css')));
 
 // script js
+mixAssetsDir('js/core/**/*.js', (src, dest) => mix.scripts(src, dest));
+
+// custom script js
 mixAssetsDir('js/scripts/**/*.js', (src, dest) => mix.scripts(src, dest));
+
+// custom script js for users
+mixAssetsDir('assets/js/**/*.js', (src, dest) => mix.scripts(src, dest));
 
 /*
  |--------------------------------------------------------------------------
@@ -54,22 +60,18 @@ mixAssetsDir('js/scripts/**/*.js', (src, dest) => mix.scripts(src, dest));
  |--------------------------------------------------------------------------
  */
 
-mixAssetsDir('vendors/js/**/*.js', (src, dest) => mix.scripts(src, dest));
-mixAssetsDir('vendors/css/**/*.css', (src, dest) => mix.copy(src, dest));
-mixAssetsDir('vendors/css/editors/quill/fonts/', (src, dest) => mix.copy(src, dest));
 mix.copyDirectory('resources/images', 'public/images');
+mix.copyDirectory('resources/vendors', 'public/vendors');
 mix.copyDirectory('resources/fonts', 'public/fonts');
+mix.copyDirectory('resources/data', 'public/data');
 
 
 
-mix.js('resources/js/core/app-menu.js', 'public/js/core')
-  .js('resources/js/core/app.js', 'public/js/core')
+mix.sass('resources/sass/bootstrap-extended.scss', 'public/css')
   .sass('resources/sass/bootstrap.scss', 'public/css')
-  .sass('resources/sass/bootstrap-extended.scss', 'public/css')
   .sass('resources/sass/colors.scss', 'public/css')
   .sass('resources/sass/components.scss', 'public/css')
   .sass('resources/sass/custom-rtl.scss', 'public/css')
-  .sass('resources/sass/custom-laravel.scss', 'public/css');
 
 mix.then(() => {
   if (process.env.MIX_CONTENT_DIRECTION === "rtl") {
@@ -82,14 +84,13 @@ mix.then(() => {
     // exec('./node_modules/rtlcss/bin/rtlcss.js -d -e ".css" ./public/css/ ./public/css/');
   }
 });
-
-
 // if (mix.inProduction()) {
 //   mix.version();
 //   mix.webpackConfig({
 //     output: {
-//       publicPath: '/demo/vuexy-bootstrap-laravel-admin-template/demo-1/'
+//       publicPath: '/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1'
 //     }
 //   });
-//   mix.setResourceRoot("/demo/vuexy-bootstrap-laravel-admin-template/demo-1/");
+//   mix.setResourceRoot("/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1");
 // }
+mix.version();

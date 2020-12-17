@@ -1,30 +1,17 @@
 // ================================================================================================
-//  File Name: custom-rtl.scss
-//  Description: RTL support SCSS file.
+// 	File Name: custom-rtl.scss
+//  Description: Template RTL CSS support.
 //  ----------------------------------------------------------------------------------------------
-//  Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+//  Item Name: Frest HTML Admin Template
+//  Version: 1.0
 //  Author: PIXINVENT
 //  Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
-/*rtl:begin:ignore*/
+/*  Custom CSS RTL */
+/* --------------- */
 
-// Variables
-// ------------------------------
-
-// Core variables and mixins
-@import "bootstrap/functions";
-@import "bootstrap/mixins";
-@import "bootstrap-extended/mixins";
-
-// Core variables and mixins overrides
-@import "core/variables/variables";
-@import "bootstrap/variables";
-
-// Overrides user variable
-@import "core/variables/components-variables";
-
-// Align icons position
+/*  Align icons position */
 .main-menu {
     .navigation li > a > i,
     .dropdown-menu i,
@@ -32,277 +19,197 @@
     .navigation > li > a > i {
         float: right;
     }
-    .navigation > li ul li > a {
-        display: flex;
-        align-items: center;
-    }
+}
+.dropdown-user.nav-item i {
+    float: right;
 }
 
-// Dropdown RTL Changes
-.header-navbar .navbar-container ul.nav li.dropdown{
-    .dropdown-menu{
-        top: 48px !important;
-        &::before{
-            top: 1px;
-        }
-    }
-    &.dropdown-user .dropdown-menu{
-        .dropdown-item{
-            i{
-                float: right;
-            }
+.horizontal-menu {
+    .main-menu-content {
+        #main-menu-navigation > li > a > i {
+            float: right;
         }
     }
 }
 
-.header-navbar{
-    .dropdown,.dropup{
-        .dropdown-menu.dropdown-menu-right::before{
-            right: auto;
-            left: .5rem;
-        }
-    }
-}
-.dropdown,.dropup{
-    .dropdown-menu{
-        right: auto !important;
-        top: 0 !important;
-        left: auto !important;
-        &.dropdown-menu-right{
-            left: 0 !important;
-            &::before{
-                right: 0.6rem;
-                left: auto;
-            }
-        }
-    }
-}
-.dropleft .dropdown-toggle{
-    &::before{
-        content: '\e844' !important;
-    }
-}
-.dropright .dropdown-toggle{
-    &::after{
-        content: '\e843' !important;
-    }
-}
-// Input Group dropdown
-.input-group{
-    .dropdown-menu.show{
-        top: 0 !important;
-        right: auto !important;
-        left: 0px  !important;
-    }
+.menu-expanded .form-group i {
+    float: inherit;
 }
 
-// Chartist
-.chartjs-render-monitor{
-    margin-right: 1rem;
+.form-control-position i {
+    top: 25%;
+    position: absolute;
+    right: 25%;
 }
 
-// Datatable
-div.dataTables_wrapper div.dataTables_filter {
-    text-align: left !important;
+/* Dopzone horizontal scrollbar issue */
+.dz-hidden-input {
+    position: relative !important;
+}
+/* RTL version sticky sidebar float */
+.content-wrapper .sticky-wrapper,
+.content-right-sidebar .sticky-wrapper {
+    float: left;
 }
 
-// Dashboard Style
-#dashboard-analytics{
-    .img-left{
-        left: 0;
-        right: auto !important;
-    }
-    .img-right{
-        right: 0;
-        left: auto;
-    }
+// jquery ui icon position rtl fix TODO:AJ: add rtl support for jQ UI
+.ui-widget-icon-block {
+    right: 50%;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    right: 3rem;
 }
 
-// No UI RTL css
-.square{
-    &.slider-xl{
-        .noUi-handle{
-            &:before{
+.square {
+    &.slider-xl {
+        .noUi-handle {
+            &:before {
                 left: 5px;
             }
 
-            &:after{
+            &:after {
                 left: 10px;
             }
         }
     }
-    .noUi-handle{
-        &:before{
-            left: 2px;
+    .noUi-handle {
+        &:before {
+            left: 0px;
         }
 
-        &:after{
-            left: 7px;
+        &:after {
+            left: 5px;
         }
     }
-}
-
-.noUi-vertical{
-    &.square{
-        .noUi-handle{
-            &:before{
-                left:-1px;
+    &.slider-xs {
+        .noUi-handle {
+            &:before {
+                left: -2px;
             }
-            &:after{
-                left:-1px;
+
+            &:after {
+                left: 1px;
             }
         }
     }
 }
 
-.noUi-horizontal{
-  &.slider-sm{
-    .noUi-handle{
-      left: auto !important;
-      right: -2px !important;
+.noUi-vertical {
+    &.square {
+        .noUi-handle {
+            &:before {
+                left: -1px;
+            }
+            &:after {
+                left: -1px;
+            }
+        }
     }
-  }
-
-  &.slider-xs{
-    .noUi-handle{
-      left: auto !important;
-      right: -2px !important;
-    }
-  }
 }
 
-// Context menu list css
-.context-menu-list{
-    z-index: 1031 !important;
-}
-.context-menu-item>.context-menu-list{
-    right: 100%;
-    margin-right: 0;
-}
-
-// Pagination
-.pagination .page-item.prev-item .page-link:before {
-    content: "\e844";
-    font-family: 'feather';
-}
-.pagination .page-item.next-item .page-link:after {
-    content: "\e843";
-    font-family: 'feather';
-}
-.pagination .page-item.prev .page-link:after,
-.pagination .page-item.previous .page-link:after {
-    content: "\e844";
-    font-family: 'feather';
-}
-.pagination .page-item.prev .page-link:before,
-.pagination .page-item.previous .page-link:before {
-    display: none;
-}
-.pagination .page-item.next .page-link:before {
-    content: "\e843";
-    font-family: 'feather';
-}
-.pagination .page-item.next .page-link:after {
-    display: none;
+.btn i[class^="icon-"],
+.btn i[class*=" icon-"] {
+    line-height: 1.25rem;
 }
 
 code[class*="language-"],
 pre[class*="language-"] {
-  direction: ltr;
+    direction: ltr;
 }
 @media print {
-  code[class*="language-"],
-  pre[class*="language-"] {
-    text-shadow: none;
-  }
+    code[class*="language-"],
+    pre[class*="language-"] {
+        text-shadow: none;
+    }
 }
 
-// Application
-.list-group .list-group-item i{
-    float: right;
-}
-
-// Email Application
+/* Email Application */
 
 .email-application {
     .app-content {
-      .list-group {
-        .list-group-item {
-          i {
-            float: right !important;
-          }
+        .list-group {
+            .list-group-item {
+                i {
+                    float: right !important;
+                }
+            }
         }
-      }
+    }
+}
+/* Perfact scrollbar RTL fix */
+body .ps__rail-y {
+    right: -6px !important;
+}
+/*  calendar app */
+.calendar-application {
+    .content-wrapper {
+        .sidebar {
+            .sidebar-calendars {
+                .tui-full-calendar-checkbox-round {
+                    + span {
+                        margin-left: 8px;
+                    }
+                }
+            }
+        }
     }
 }
 
-// Ecommerce Application
-.ecommerce-application .sidebar-shop .range-slider.noUi-horizontal .noUi-handle{
-    left: 5px !important;
-}
-
-// Calendar
-.fc .fc-header-toolbar .fc-right .fc-button.fc-prev-button .fc-icon{
-    right: 4px !important;
-}
-.fc .fc-header-toolbar .fc-right .fc-button.fc-next-button .fc-icon{
-    left: -3px !important;
-}
-
-// Button with Icons
-.btn{
-    i{
-        float: right;
-        margin-left: .25rem;
-    }
-    &.btn-icon i{
-        margin-left: 0;
+/* Input Group with Dropdown Component */
+.input-group {
+    .input-group-prepend {
+        .dropdown-menu {
+            right: auto;
+        }
     }
 }
 
-// carousel changes
-.carousel-control-next{
-    left: auto;
-    right: 0;
-}
-.carousel-control-prev{
-    left: 0;
-    right: auto;
+/* Right dropdown menu */
+.dropdown-menu.dropdown-menu-right::before {
+    right: 1rem;
 }
 
-// Tooltip
-.bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^='left'] .arrow::before{
-    border-width: 0.4rem 0 0.4rem 0.4rem;
-    border-left-color: $tooltip-bg;
-}
-.bs-tooltip-left .arrow, .bs-tooltip-auto[x-placement^='left'] .arrow {
-    right: 0;
-    left: auto;
-}
-
-.bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^='right'] .arrow::before{
-    border-width: 0.4rem 0.4rem 0.4rem 0;
-    border-right-color: $tooltip-bg;
-}
-.bs-tooltip-right .arrow, .bs-tooltip-auto[x-placement^='right'] .arrow {
-    left: 0;
-    right: auto;
+/* Quill Editor - arrow icons */
+.ql-snow {
+    .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) {
+        svg {
+            right: auto;
+        }
+    }
 }
 
-// Popover Style
-.popover{
-    right: auto !important;
+// popover on rtl
+.popover {
+    left: initial !important;
 }
-
-// Quill Editor
-.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg{
-    right: auto !important;
+.bs-popover-left > .arrow,
+.bs-popover-auto[x-placement^="left"] > .arrow {
+    left: calc((0.5rem + 1px) * -1);
+    right: initial;
+    transform: rotate(180deg);
 }
-
-// Perfact scrollbar RTL fix
-body .ps__rail-y{
-    right: auto !important;
-    left: 1px !important;
+.bs-popover-right > .arrow,
+.bs-popover-auto[x-placement^="right"] > .arrow {
+    right: calc((0.5rem + 1px) * -1);
+    left: initial;
+    transform: rotate(180deg);
 }
-
-/*rtl:end:ignore*/
+// datatable accending and decending order
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc_disabled:before {
+    left: 0.5em;
+}
+// progress bar
+.progress-bar-animated {
+    animation: progress-bar-stripes 40s linear infinite;
+}
+// kanban app
+.kanban-board {
+    float: left !important;
+}
+.kanban-container .kanban-board .kanban-board-header .kanban-title-button {
+    left: 14px;
+}

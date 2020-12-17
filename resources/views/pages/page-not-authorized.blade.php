@@ -1,25 +1,25 @@
-@extends('layouts/fullLayoutMaster')
-
-@section('title', 'Not Authorized')
+@extends('layouts.fullLayoutMaster')
+{{-- page title --}}
+@section('title','Not-authorized')
 
 @section('content')
-<!-- maintenance -->
+<!-- not authorized start -->
 <section class="row flexbox-container">
-  <div class="col-xl-7 col-md-8 col-12 d-flex justify-content-center">
-    <div class="card auth-card bg-transparent shadow-none rounded-0 mb-0 w-100">
+  <div class="col-xl-7 col-md-8 col-12">
+    <div class="card bg-transparent shadow-none">
       <div class="card-content">
-        <div class="card-body text-center">
-          <img src="{{ asset('images/pages/not-authorized.png') }}" class="img-fluid align-self-center" alt="branding logo">
-          <h1 class="font-large-2 my-2">You are not authorized!</h1>
-          <p class="p-2">
-            paraphonic unassessable foramination Caulopteris worral Spirophyton encrimson esparcet aggerate chondrule
-            restate whistler shallopy biosystematy area bertram plotting unstarting quarterstaff.
+        <div class="card-body text-center bg-transparent miscellaneous">
+          <img src="{{asset('images/pages/not-authorized.png')}}" class="img-fluid" alt="not authorized" width="400">
+          <h1 class="my-2 error-title">You are not authorized!</h1>
+          <p>
+              You do not have permission to view this directory or page using 
+              the credentials that you supplied.
           </p>
-          <a class="btn btn-primary btn-lg mt-2" href="dashboard-analytics">Back to Home</a>
+          <a href="{{asset('/')}}" class="btn btn-primary round glow mt-2">BACK TO HOME</a>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- maintenance end -->
+<!-- not authorized end -->
 @endsection

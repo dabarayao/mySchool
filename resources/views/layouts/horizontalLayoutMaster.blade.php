@@ -1,73 +1,82 @@
-<body
-    class="horizontal-layout horizontal-menu {{$configData['horizontalMenuType']}} {{ $configData['blankPageClass'] }} {{ $configData['bodyClass'] }}  {{($configData['theme'] === 'dark') ? 'dark-layout' : 'light' }} {{ $configData['footerType'] }}  footer-light"
-    data-menu="horizontal-menu" data-col="2-columns" data-open="hover" data-layout="{{ $configData['theme'] }}">
+<!-- BEGIN: Body-->
+<body class="horizontal-layout horizontal-menu @if(isset($configData['navbarType']) && ($configData['navbarType'] !== "navbar-hidden") ){{$configData['navbarType']}} @else {{'navbar-sticky'}}@endif 2-columns 
+@if($configData['theme'] === 'dark'){{'dark-layout'}} @elseif($configData['theme'] === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif
+@if($configData['isContentSidebar']=== true) {{'content-left-sidebar'}} @endif 
+@if(isset($configData['footerType'])) {{$configData['footerType']}} @endif {{$configData['bodyCustomClass']}} 
+@if($configData['isCardShadow'] === false){{'no-card-shadow'}}@endif" 
+data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
 
-    {{-- Include Sidebar --}}
-    @include('panels.sidebar')
+  <!-- BEGIN: Header-->
+  @include('panels.horizontal-navbar')
+  <!-- END: Header-->
 
-    <!-- BEGIN: Header-->
-    {{-- Include Navbar --}}
-    @include('panels.navbar')
+  <!-- BEGIN: Main Menu-->
+  @include('panels.sidebar')
+  <!-- END: Main Menu-->
 
-    {{-- Include Sidebar --}}
-    @include('panels.horizontalMenu')
-
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
+  <!-- BEGIN: Content-->
+  <div class="app-content content">
+    {{-- Application page structure --}}
+	@if($configData['isContentSidebar'] === true)
+		<div class="content-area-wrapper">
+			<div class="sidebar-left">
+				<div class="sidebar">
+					@yield('sidebar-content')
+				</div>
+			</div>
+			<div class="content-right">
         <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        @if(($configData['contentLayout']!=='default') && isset($configData['contentLayout']))
-        <div class="content-area-wrapper">
-            <div class="{{ $configData['sidebarPositionClass'] }}">
-                <div class="sidebar">
-                    {{-- Include Sidebar Content --}}
-                    @yield('content-sidebar')
-                </div>
+				<div class="content-wrapper">
+            <div class="content-header row">
             </div>
-            <div class="{{ $configData['contentsidebarClass'] }}">
-                <div class="content-wrapper">
-                    <div class="content-body">
-                        {{-- Include Page Content --}}
-                        @yield('content')
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        @else
-        <div class="content-wrapper">
-            {{-- Include Breadcrumb --}}
-            @if($configData['pageHeader'] == true)
-            @include('panels.breadcrumb')
-            @endif
-
             <div class="content-body">
-
-                {{-- Include Page Content --}}
                 @yield('content')
-
             </div>
         </div>
+			</div>
+		</div>
+	@else
+    {{-- others page structures --}}
+    <div class="content-overlay"></div>
+		<div class="content-wrapper">
+			<div class="content-header row">
+        @if($configData['pageHeader'] === true && isset($breadcrumbs))
+          @include('panels.breadcrumbs')
         @endif
+			</div>
+			<div class="content-body">
+				@yield('content')
+			</div>
+		</div>
+	@endif
+  </div>
+  <!-- END: Content-->
+@if($configData['isCustomizer'] === true && isset($configData['isCustomizer']))
+  <!-- BEGIN: Customizer-->
+  <div class="customizer d-none d-md-block">
+    <a class="customizer-close" href="#"><i class="bx bx-x"></i></a>
+    <a class="customizer-toggle" href="#"><i class="bx bx-cog bx bx-spin white"></i></a>
+    @include('pages.customizer-content')
+  </div>
+  <!-- End: Customizer-->
 
-    </div>
-    <!-- End: Content-->
+  <!-- Buynow Button-->
+  <div class="buy-now">
+    @include('pages.buy-now')
+  </div>
+  @endif
+  <!-- demo chat-->
+  <div class="widget-chat-demo">
+    @include('pages.widget-chat')
+  </div>
 
-    @if($configData['blankPage'] == false && isset($configData['blankPage']))
-    @include('pages/customizer')
+  <div class="sidenav-overlay"></div>
+  <div class="drag-target"></div>
 
-    @include('pages/buy-now')
-    @endif
+  <!-- BEGIN: Footer-->
+  @include('panels.footer')
+  <!-- END: Footer-->
 
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
-
-    {{-- include footer --}}
-    @include('panels/footer')
-
-    {{-- include default scripts --}}
-    @include('panels/scripts')
-
+  @include('panels.scripts')
 </body>
-
-</html>
+<!-- END: Body-->

@@ -1,100 +1,96 @@
 /*=========================================================================================
-    File Name: app-file-manager.js
-    Description: app-file-manager js
+    File Name: app-email.js
+    Description: app-email Javascripts
     ----------------------------------------------------------------------------------------
-    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Frest HTML Admin Template
+   Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-// all the elements references
-var sidebarFileManager = $('.sidebar-file-manager')
-var sidebarToggler = $('.file-manager-toggler');
-var fileManagerOverlay = $('.file-manager-content-overlay');
-var sidebarRight = $('.right-sidebar');
+$(function () {
+  "use strict";
+  // variables
+  var appContent = $(".app-content"),
+    appContentOverlay = $(".app-file-overlay"),
+    sideBarLeft = $(".sidebar-left"),
+    app_file_application = $(".file-manager-application"),
+    sideBarInfo = $(".app-file-sidebar-info"),
+    app_file_content = $(".app-file-content"),
+    app_file_sidebar_left = $(".app-file-sidebar-left"),
+    $primary = "#5A8DEE";
 
-// sidebar file manager list scrollbar
-if ($('.list').length > 0) {
-  var sidebarLeftList = new PerfectScrollbar('.list', {
-    suppressScrollX: true
-  });
-}
+  // To add Perfect Scrollbar
+  // ---------------------------
 
-// right-content-wrapper and rightside bar scrollbar 
-if ($('.file-manager-main-content .right-sidebar').length > 0) {
-  var rightsidebar = new PerfectScrollbar('.file-manager-main-content .right-sidebar .card-body', {
-    suppressScrollX: true,
-    wheelPropagation: false
-  });
-}
-
-if ($('.file-manager-main-content').length > 0) {
-  var rightContentWrapper = new PerfectScrollbar('.file-manager-main-content .bottom-content', {
-    cancelable: true,
-    wheelPropagation: false
-  });
-}
-
-// click event for show sidebar
-sidebarToggler.on("click", function () {
-  sidebarFileManager.toggleClass('show');
-  fileManagerOverlay.toggleClass('show');
-})
-
-// remove sidebar
-$(".file-manager-content-overlay, .sidebar-close-icon").on("click", function () {
-  sidebarFileManager.removeClass("show");
-  fileManagerOverlay.removeClass("show");
-  sidebarRight.removeClass('show')
-})
-
-
-// On click of "app-file-info and files-info" opening right sidebar
-$('.folder-info, .files-info').on('click', function (e) {
-  if (!e.target.classList.contains('icon-more-vertical') && !e.target.classList.contains('media-object')) {
-    sidebarRight.addClass('show');
-    fileManagerOverlay.addClass('show');
+  // App-File Content Area
+  if (app_file_content.length > 0) {
+    var users_list = new PerfectScrollbar(".app-file-content");
   }
-});
 
-// opening right sidebar on click of a table row
-$('#data-list-view tbody > tr').on('click', function (e) {
-  if (!e.target.classList.contains('icon-more-vertical')) {
-    sidebarRight.addClass('show');
-    fileManagerOverlay.addClass('show');
+  // App File Left Sidebar
+  if (app_file_sidebar_left.length > 0) {
+    var app_file_sidebar_content = new PerfectScrollbar(".app-file-sidebar-content");
   }
-});
+
+  // Edit File Sidebar - Right Side
+  if (sideBarInfo.length > 0) {
+    var edit_file_sidebar = new PerfectScrollbar(".app-file-sidebar-info");
+  }
 
 
-// on screen Resize remove .show from overlay and sidebar
-$(window).on('resize', function () {
-  if ($(window).width() > 768) {
-    if (fileManagerOverlay.hasClass('show')) {
-      sidebarFileManager.removeClass('show');
-      fileManagerOverlay.removeClass('show');
-      sidebarRight.removeClass('show');
+  // Sidebar visiblility and content area overlay
+  // ----------------------------------------------
+  $('.menu-toggle, .close-icon, .app-file-overlay').on('click', function (e) {
+    sideBarLeft.removeClass('show');
+    appContentOverlay.removeClass('show');
+    sideBarInfo.removeClass('show');
+  });
+
+  // On click of "app-file-info" class from file-content-area, visible edit sidebar and hide left sidebar
+  $('.app-file-info').on('click', function () {
+    sideBarInfo.addClass('show');
+    appContentOverlay.addClass('show');
+  });
+
+  // Sidebar menu close button on click remove show class form both sidebar-left and App content overlay
+  $(".app-file-sidebar-close").on('click', function () {
+    sideBarLeft.removeClass('show');
+    appContentOverlay.removeClass('show');
+  });
+
+  // on click of Sidebar-toggle, add class show to content overlay and toggle class to app sidebar left
+  $('.sidebar-toggle').on('click', function (e) {
+    e.stopPropagation();
+    sideBarLeft.addClass('show');
+    appContentOverlay.addClass('show');
+  });
+
+  // Add class active on click of sidebar list folder and label
+  var $active_label = $(".app-file-sidebar-content .list-group-messages a,.list-group-labels a");
+  $($active_label).on('click', function () {
+    var $this = $(this);
+      $active_label.removeClass('active');
+      $this.addClass("active");
+      // livicon change color on active state
+      $this.find(".livicon-evo").updateLiviconEvo({
+        strokeColor: $primary
+      });
+      $active_label.not(".active").find(".livicon-evo").updateLiviconEvo({
+        strokeColor: '#475f7b'
+      });
+  });
+
+  // On screen Resize JS
+  // -----------------------------------
+  $(window).on("resize", function () {
+    // remove show classes from sidebar and overlay if size is > 768
+    if ($(window).width() > 768) {
+      if (appContentOverlay.hasClass('show')) {
+        sideBarLeft.removeClass('show');
+        appContentOverlay.removeClass('show');
+        sideBarInfo.removeClass('show');
+      }
     }
-  }
-})
-
-// making active to list item in links on click
-  $(".file-manager-application .sidebar-menu-list .list-group a").on('click', function(){
-    if($('.file-manager-application .sidebar-menu-list .list-group a').hasClass('active')){
-      $('.file-manager-application .sidebar-menu-list .list-group a').removeClass('active');
-    }
-    $(this).addClass("active");
   });
-
-// init list view datatable
-var dataListView = $(".data-list-view").DataTable({
-  responsive: false,
-  scrollCollapse: true,
-  paging: false,
-  searching: false,
-  ordering: false,
-  select: true,
-  info: false,
-  select: {
-    style: 'single'
-  }
 });

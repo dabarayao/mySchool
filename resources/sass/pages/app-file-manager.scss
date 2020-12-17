@@ -1,8 +1,9 @@
 // ================================================================================================
-// 	File Name: file-manager-application.scss
+// 	File Name: email-application.scss
 // 	Description: SCC file for email application page.
 // 	----------------------------------------------------------------------------------------------
-// 	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+// 	Item Name: Frest HTML Admin Template
+// 	Version: 1.0
 // 	Author: PIXINVENT
 // 	Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
@@ -19,239 +20,325 @@
 // Overrides user variable
 @import "../core/variables/components-variables";
 
-// file manager app container
+/* File manager application css */
+/*------------------------------*/
 .file-manager-application {
-  // file manager sidebar styles
-  .sidebar-file-manager {
-    width: $sidebar-width;
-    background-color: $white;
-    border-top-left-radius: $border-radius-sm;
-    border-bottom-left-radius: $border-radius-sm;
-    transition: all 0.3s ease;
-
-    // styles for card-inner
-    .sidebar-inner {
-      height: calc(100vh - 12.9rem);
-      height: calc(var(--vh, 1vh) * 100 - 12.9rem);
-      overflow-y: hidden;
-
-      .sidebar-close-icon {
-        position: absolute;
-        top: 0.25rem;
-        right: 0.25rem;
-        font-size: $font-size-xl;
-        z-index: 5;
-        cursor: pointer;
-      }
-
-      // styles for card inner list
-      .list {
-        height: calc(var(--vh, 1vh) * 100 - 19rem);
-        overflow-y: scroll;
-        position: relative;
-
-        .list-group-item{
-          &:hover {
-            z-index: 0 !important;
-          }
-        }
-        .active {
-          background-color: transparent;
-          color: $cyan;
-        }
-      }
-
-    }
-
-    // show sidebar on click
-    &.show {
-      transition: all 0.25s ease !important;
-      transform: translateX(0) !important;
-      z-index: 10;
-      // border-right: 1px solid $gray-300;
-    }
-  }
-
-  // styles for content area wrapper
   .content-area-wrapper {
-    border: 1px solid $gray-300;
-    border-radius: $border-radius-sm;
-
-    .content-right {
-      .content-wrapper {
-        padding: 0;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    // Content area overlay
+    .app-file-overlay {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      z-index: 7;
+      visibility: hidden;
+      opacity: 0;
+      border-radius: $border-radius;
+      &.show {
+        visibility: visible;
+        transition: all 0.3s ease;
+        opacity: 1;
+        background-color: rgba($black, 0.2);
       }
     }
-
-    // styles for file manger app area
-      .file-manager-main-content {
-        border-left: 1px solid $gray-300;
-
-        // styles for searchbar
-        .file-manager-app-searchbar {
-          padding: 0.35rem 0.1rem;
-          border-bottom: 1px solid $gray-300;
-          background-color: $white;
-          border-top-right-radius: $border-radius;
-
-          .file-manager-toggler {
-            cursor: pointer;
-          }
-
-          input {
-            border-color: transparent;
-            box-shadow: none;
-          }
+    // Sidebar Area Start
+    // -------------------
+    .sidebar {
+      // Left Sidebar area
+      .app-file-sidebar {
+        width: $menu-expanded-width;
+        height: calc(100vh - 9rem);
+        border-right: 1px solid $border-color;
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+        transition: all 0.3s ease;
+        // left side menu close icon for small screen
+        .app-file-sidebar-close {
+          position: absolute;
+          right: 0.25rem;
+          top: 0.25rem;
+          cursor: pointer;
+          font-size: 1.25rem;
+          z-index: 5;
+          visibility: hidden;
         }
-
-        // styles for main content bottom
-        .bottom-content {
-          position: relative;
-          height: calc(100vh - 16.4rem);
-          height: calc(var(--vh, 1vh) * 100 - 16.4rem);
-          overflow: scroll;
-
-          // styles for files area
-          .files {
-            .files-info {
-              cursor: pointer;
-            }
-
-            .content-logo {
-              height: 100px;
-              background-color: $body-bg;
-              border-radius: $border-radius $border-radius 0 0;
-
-              .sidebar-top-icon {
-                position: absolute;
-                top: 1.25rem;
-                right: 1.25rem;
-                font-size: $font-size-xl;
-                cursor: pointer;
+        // left side bar content section
+        .app-file-sidebar-left {
+          width: 100%;
+          z-index: 3;
+          background-color: transparent;
+          // Add File Button
+          .add-new-file {
+            padding: 1px 1.5rem;
+            margin-bottom: 0.8rem;
+          }
+          //left side menu content list
+          .app-file-sidebar-content {
+            padding: 0 1.7rem 1.7rem;
+            position: relative;
+            height: calc(100% - 6.4rem);
+            .file-manager-progress {
+              .progress {
+                background-color: $file-progress-bg;
               }
             }
           }
-
-          // styles for folders area
-          .folders-cards {
-            .folder-info {
-              cursor: pointer;
+          // active menu line indicator
+          .list-group {
+            .list-group-item {
+              padding: 0.6rem 0;
+              font-weight: $font-weight-bold;
+              background-color: transparent;
+              border: none;
+              &.active {
+                color: $primary;
+                &::before {
+                  content: "";
+                  width: 2px;
+                  height: 30px;
+                  background-color: $primary;
+                  position: absolute;
+                  left: -26px;
+                }
+              }
             }
           }
         }
-    }
-  }
-
-  // right-sidebar styles
-  .right-sidebar {
-    box-shadow: $box-shadow;
-    width: 400px;
-    border-radius: 0 $border-radius-sm $border-radius-sm 0;
-    background-color: $white;
-    transform: translateX(120%) translateY(0px);
-    position: fixed;
-    transition: all 0.3s ease;
-    z-index: 8;
-    right: 4.85rem;
-    top: 7.7rem;
-    bottom: 5.1rem;
-    opacity: 0;
-    overflow-x: hidden;
-    .card {
-      overflow: hidden;
-      height: 100%;
-      .card-body {
-        height: calc(100vh - 13.35rem);
-        height: calc(var(--vh, 1vh) * 100 - 13.35rem);
-        position: relative;
-
-        .icon-trash,
-        .icon-x {
-          cursor: pointer;
+      }
+      .app-file-sidebar-info {
+      /* Right Sidebar */
+        box-shadow: -8px 0 18px 0 rgba(25, 42, 70, 0.13);
+        height: calc(100vh - 9rem);
+        width: 357px;
+        border-radius: 0.25rem;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: $white;
+        position: fixed;
+        transform: translateX(110%);
+        transition: all 0.3s ease;
+        z-index: 8;
+        right: 4.4rem;
+        bottom: 4rem;
+        opacity: 0;
+        // Right Sidebar when shown
+        &.show {
+          opacity: 1;
+          transform: translateX(9%) translateY(1px);
+        }
+        .card-header {
+          padding-top: 1.2rem;
+          padding-bottom: 1.2rem;
+        }
+        // Nav Tabs Link
+        .nav-tabs {
+          .nav-link {
+            background-color: transparent !important;
+            box-shadow: none;
+            padding-top: 0.2rem;
+            padding-bottom: 0.2rem;
+            &:active,
+            &.active {
+              color: $primary !important;
+            }
+          }
         }
       }
     }
-    &.show {
-      opacity: 1;
-      transform: translateX(9%) translateY(0px);
-    }
-  }
 
-  // show overlay on file manager
-  .file-manager-content-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    z-index: 7;
-    visibility: hidden;
-    opacity: 0;
-    background: rgba($pure-black, 0.2);
-    transition: all 0.3s ease;
-
-    &.show {
-      visibility: visible;
-      opacity: 1;
-      z-index: 1;
-    }
-  }
-}
-
-// media query for max-width of 1200px
-@media screen and (max-width: 1200px) {
-  body .content-right {
-    width: 100%;
-  }
-  .content-body {
-    margin-left: 0 !important;
-  }
-
-  .sidebar-left {
-    .sidebar {
-      z-index: 10;
-
-      .sidebar-file-manager {
-        transform: translateX(-112%);
-        transition: all 0.25s ease;
-        position: absolute;
+    // Content Area Start
+    // -------------------
+    .content-right {
+      width: calc(100% - #{$menu-expanded-width});
+      background-color: $white;
+      .content-wrapper {
+        padding: 0;
       }
-    }
-  }
-}
-
-// media query for greater than 1200px
-@media screen and (min-width: 1200px) {
-  .horizontal-layout.file-manager-application {
-    .content-area-wrapper {
-      .sidebar-inner {
-        height: calc(100vh - 18.9rem) !important;
-        height: calc(var(--vh, 1vh) * 100 - 15.9rem) !important;
-  
-        .list {
-          height: calc(var(--vh, 1vh) * 100 - 22rem) !important;
-          overflow-y: scroll;
+      .app-file-area {
+        // content area header
+        .app-file-header {
+          padding: 0.6rem 1.5rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid $border-color;
+          // Toggle Icon
+          .sidebar-toggle {
+            cursor: pointer;
+            position: relative;
+            top: 6px;
+            float: left;
+            i {
+              font-size: 1.75rem;
+            }
+          }
+        }
+        .app-file-content {
+          height: calc(100vh - 12.85rem);
           position: relative;
+          .app-file-content-logo {
+            padding: 10px 6px;
+            border-bottom: 1px solid $border-color;
+            background-color: $body-bg;
+            img {
+              margin: 25px 0;
+            }
+          }
+          // File and Folder Name
+          .app-file-name,
+          .app-file-folder-name {
+            color: $gray-600;
+            margin-bottom: 0.1rem;
+          }
+          // Folder Icon Color
+          .app-file-folder {
+            .app-file-folder-logo {
+              i {
+                color: $folder-icon-color;
+              }
+            }
+          }
+          // area for each card in content area
+          .app-file-info {
+            cursor: pointer;
+            // vertical ellipsis
+            .app-file-edit-icon {
+              color: $file-label-color;
+            }
+          }
         }
       }
+    }
+    .app-file-label {
+    /* app file labels */
+      font-family: $font-family-monospace;
+      letter-spacing: 1px;
+      margin: 1.2rem 0 0.5rem 0;
+      color: $file-label-color;
+    }
+  }
+}
 
-      .bottom-content {
-        height: calc(100vh - 19.4rem) !important;
-        height: calc(var(--vh, 1vh) * 100 - 19.4rem) !important;
-      }
+// Sidebar timeline
+// ----------------
+.app-file-sidebar-info {
+  .widget-timeline {
+    // timeline content visual
+    .timeline-content {
+      font-weight: $font-weight-bold;
+      font-size: 13px;
+      color: $timeline-content-color;
+    }
+    // timeline time typograpgy
+    .timeline-time {
+      font-size: 0.8rem;
+    }
+    // timeline text typograpgy
+    .timeline-text {
+      font-size: 0.8rem;
+      color: $gray-200;
+    }
+  }
+}
 
-      .right-sidebar {
-        height: calc(100vh - 15.85rem) !important;
-        height: calc(var(--vh, 1vh) * 100 - 15.85rem) !important;
-        top: 12rem !important;
+@include media-breakpoint-down(md) {
+  .file-manager-application {
+    .app-content {
+      .content-area-wrapper {
+        // left side menu
+        .sidebar-left {
+          position: relative;
+          .app-file-sidebar {
+            width: auto;
+          }
+          // side bar close button
+          .app-file-sidebar-left {
+            background-color: $left-sidebar-bg;
+            width: $menu-expanded-width;
+            height: calc(100vh - 8.9rem);
+            transform: translateX(-110%);
+            transition: transform 0.25s;
+            position: fixed;
+            z-index: 8;
+            left: -2px;
+            .app-file-sidebar-close {
+              visibility: visible;
+            }
+          }
+          &.show {
+            .app-file-sidebar-left {
+              transform: translateX(13%) translateY(-1px);
+            }
+          }
+          // Right Sidebar height in md screen
+          .app-file-sidebar-info {
+            height: calc(100vh - 9rem);
+          }
+        }
+        // right side content
+        .content-right {
+          width: 100%;
+          // email app details view
+          .app-file-area {
+            width: 100%;
+            border-radius: $border-radius;
+          }
+        }
       }
     }
   }
 }
-// media query for max-width of 576px
-@media screen and (max-width: 576px) {
-  .right-sidebar {
-    right: 2.9rem !important;
-    width: 260px !important;
+// Right Sidebar width for sm
+@include media-breakpoint-down(sm) {
+  .file-manager-application {
+    .content-area-wrapper {
+      .sidebar {
+        .app-file-sidebar-info {
+          width: auto;
+          right: 3.95rem;
+        }
+      }
+    }
   }
 }
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .file-manager-application {
+    .content-area-wrapper {
+      .sidebar-left {
+        .app-file-sidebar-left {
+          left: -15px !important;
+        }
+        .app-file-sidebar-info {
+          &.show {
+            transform: translateX(14.5%);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 422px) {
+  .file-manager-application {
+    .content-area-wrapper {
+      .content-right{
+        .app-file-area {
+          .app-file-content {
+            height: calc(100vh - 13.3rem);
+          }
+        }
+      }
+    }
+    .app-file-header{
+      .app-file-header-icons{
+        display: none;
+      }
+    }
+  }
+}
+
+

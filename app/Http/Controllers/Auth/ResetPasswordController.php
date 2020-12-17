@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ResetPasswordController extends Controller
 {
@@ -27,26 +26,15 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    // protected $redirectTo = RouteServiceProvider::HOME;
+        protected $redirectTo = '/';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-    public function showResetForm(Request $request, $token = null)
-    {
-      $pageConfigs = [
-        'bodyClass' => "bg-full-screen-image",
-        'blankPage' => true
-      ];
-      return view('auth.passwords.reset')->with(
-          ['token' => $token, 'email' => $request->email, 'pageConfigs' => $pageConfigs]
-      );
-    }
+      public function showResetForm(Request $request, $token = null)
+      {
+        $pageConfigs = ['bodyCustomClass' => 'bg-full-screen-image'];
+        
+        return view('auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email, 'pageConfigs' => $pageConfigs]
+        );
+      }
 }

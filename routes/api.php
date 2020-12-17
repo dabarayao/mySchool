@@ -30,4 +30,3 @@ Route::group([
       Route::get('user', 'AuthController@user');
   });
 });
-

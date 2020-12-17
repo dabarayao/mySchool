@@ -2,27 +2,22 @@
     File Name: chart-apex.js
     Description: Apexchart Examples
     ----------------------------------------------------------------------------------------
-    Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Frest HTML Admin Template
+    Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
 $(document).ready(function () {
 
-  var $primary = '#7367F0',
-    $success = '#28C76F',
-    $danger = '#EA5455',
-    $warning = '#FF9F43',
-    $info = '#00cfe8',
-    $label_color_light = '#dae1e7';
+  var $primary = '#5A8DEE',
+    $success = '#39DA8A',
+    $danger = '#FF5B5C',
+    $warning = '#FDAC41',
+    $info = '#00CFDD',
+    $label_color_light = '#E6EAEE';
 
-  var themeColors = [$primary, $success, $danger, $warning, $info];
-
-  // RTL Support
-  var yaxis_opposite = false;
-  if($('html').data('textdirection') == 'rtl'){
-    yaxis_opposite = true;
-  }
+  var themeColors = [$primary, $warning, $danger, $success, $info];
 
   // Line Chart
   // ----------------------------------
@@ -60,7 +55,6 @@ $(document).ready(function () {
     },
     yaxis: {
       tickAmount: 5,
-      opposite: yaxis_opposite
     }
   }
   var lineChart = new ApexCharts(
@@ -99,9 +93,6 @@ $(document).ready(function () {
         "2019-09-18T03:00:00", "2019-09-18T04:00:00", "2019-09-18T05:00:00",
         "2019-09-18T06:00:00"
       ],
-    },
-    yaxis: {
-      opposite: yaxis_opposite
     },
     tooltip: {
       x: {
@@ -157,8 +148,7 @@ $(document).ready(function () {
     yaxis: {
       title: {
         text: '$ (thousands)'
-      },
-      opposite: yaxis_opposite
+      }
     },
     fill: {
       opacity: 1
@@ -201,9 +191,6 @@ $(document).ready(function () {
     xaxis: {
       categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan', 'United States', 'China', 'Germany'],
       tickAmount: 5
-    },
-    yaxis: {
-      opposite: yaxis_opposite
     }
   }
   var barChart = new ApexCharts(
@@ -231,7 +218,6 @@ $(document).ready(function () {
         columnWidth: '50%'
       }
     },
-    // colors: ['#3A5794', '#A5C351', '#E14A84'],
     series: [{
       name: 'TEAM A',
       type: 'column',
@@ -271,8 +257,7 @@ $(document).ready(function () {
       tickAmount: 5,
       title: {
         text: 'Points'
-      },
-      opposite: yaxis_opposite
+      }
     },
     tooltip: {
       shared: true,
@@ -552,8 +537,7 @@ $(document).ready(function () {
       tickAmount: 5,
       tooltip: {
         enabled: true
-      },
-      opposite: yaxis_opposite
+      }
     }
   }
   var candleStickChart = new ApexCharts(
@@ -634,7 +618,6 @@ $(document).ready(function () {
     yaxis: {
       max: 70,
       tickAmount: 5,
-      opposite: yaxis_opposite
     },
     theme: {
       palette: 'palette2'
@@ -772,8 +755,7 @@ $(document).ready(function () {
       tickAmount: 10
     },
     yaxis: {
-      tickAmount: 7,
-      opposite: yaxis_opposite
+      tickAmount: 7
     }
   }
   var scatterChart = new ApexCharts(
@@ -787,7 +769,7 @@ $(document).ready(function () {
   var pieChartOptions = {
     chart: {
       type: 'pie',
-      height: 350
+      height: 320
     },
     colors: themeColors,
     labels: ['Team A', 'Team B', 'Team C', 'Team D'],
@@ -798,10 +780,10 @@ $(document).ready(function () {
       },
     },
     responsive: [{
-      breakpoint: 480,
+      breakpoint: 576,
       options: {
         chart: {
-          width: 350
+          width: 300
         },
         legend: {
           position: 'bottom'
@@ -820,7 +802,7 @@ $(document).ready(function () {
   var donutChartOptions = {
     chart: {
       type: 'donut',
-      height: 350
+      height: 320
     },
     colors: themeColors,
     series: [44, 55, 41, 17],
@@ -830,10 +812,10 @@ $(document).ready(function () {
       },
     },
     responsive: [{
-      breakpoint: 480,
+      breakpoint: 576,
       options: {
         chart: {
-          width: 350
+          width: 300
         },
         legend: {
           position: 'bottom'
@@ -998,9 +980,6 @@ $(document).ready(function () {
       })
     }
     ],
-    yaxis: {
-      opposite: yaxis_opposite
-    }
   }
   var heatChart = new ApexCharts(
     document.querySelector("#heat-map-chart"),

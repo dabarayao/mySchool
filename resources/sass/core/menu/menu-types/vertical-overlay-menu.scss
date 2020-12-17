@@ -4,7 +4,8 @@
     light & dark version, filpped layout, right side icons, native scroll and borders menu
     item seperation.
     ----------------------------------------------------------------------------------------
-    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Frest HTML Admin Template
+    Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
@@ -36,10 +37,35 @@
         .navbar-header{
             @include menu-navbar-width($menu-expanded-width);
         }
-        &.header-navbar{
-            &.floating-nav{
-                width: calc(100vw - (100vw - 100%) - calc(#{$content-padding} * 2));
+        // Navbar- Brand Center - Logo
+        &[data-nav="brand-center"] {
+          .navbar-header {
+            padding: 0;
+            .navbar-brand  {
+              display: flex;
+              align-items: center;
+              margin-right: 0;
+              // Brand Logo Scss
+              .brand-logo {
+                height: 27px;
+                width: 35px;
+                .logo{
+                  height: 27px;
+                  display: flex;
+                  position: relative;
+                  left: 6px;
+                }
+              }
+
+              // Brand Text Scss
+              .brand-text {
+                color: $white;
+                padding-left: 1rem;
+                letter-spacing: 0.01rem;
+                font-size: 1.57rem;
+              }
             }
+          }
         }
     }
     // Main menu expanded
@@ -51,35 +77,37 @@
         left: -($menu-expanded-width);
 
         .navigation{
-            .navigation-header{
-                .icon-minus{
-                    display: none;
-                }
-            }
             > li{
                 > a {
+                    > span.badge{
+                      position: absolute;
+                      right: 20px;
+                    }
                     > i {
-                        margin-right: 14px;
-                        float:left;
-                        &:before{
-                          transition: 200ms ease all;
-                          font-size: 1.429rem;
-                        }
+                      margin-right: 14px;
+                      float:left;
+                      width: 1.6rem !important; // give important bcz it takes default 60px from it's vendor js
                     }
                 }
+              ul{
+                li{
+                  >a{
+                    transition: all .35s ease !important;
+                    >i{
+                      margin-right: 1.25rem;
+                    }
+                  }
+                  &:hover{
+                    a{
+                      padding-left: 35px;
+                    }
+                  }
+                }
+              }
             }
             li{
-                @include vertical-menu-has-sub-arrow(1rem);
-                a i{
-                   font-size: 1.1rem;
-                }
+                @include vertical-menu-has-sub-arrow(1.2rem);
             }
-        }
-        .main-menu-footer{
-            bottom:55px;
-        }
-        .main-menu-footer {
-            width: $menu-expanded-width;
         }
     }
     &.menu-open {
@@ -87,6 +115,7 @@
             opacity: 1;
             transform: translate3d($menu-expanded-width,0,0);
             transition: width .25s,opacity .25s,transform .25s;
+            top: 0;
         }
     }
     &.menu-hide {
@@ -94,44 +123,15 @@
             @extend  .main-menu;
         }
     }
-
-    // Flipped menu open
-    &.menu-flipped{
-        // Main menu hidden on flipped
-        .main-menu{
-            right: -($menu-expanded-width);
-            left: inherit;
-        }
-        //Navbar flipped
-        .navbar{
-            .navbar-container{
-                @include vertical-flipped-menu($menu-expanded-width);
-            }
-            .navbar-header{
-                float: right;
-            }
-        }
-        &.menu-open {
-            .main-menu{
-                transform: translate3d(-$menu-expanded-width,0,0);
-            }
-        }
-    }
 }
-// @include media-breakpoint-down(lg) {
-//     .vertical-overlay-menu {
-//         .header-navbar{
-//             background: $white;
-//             box-shadow: 0 4px 20px 0 rgba($black, 0.05);
-//         }
-//     }
-// }
-@include media-breakpoint-down(md) {
-    .vertical-overlay-menu {
-        .main-menu{
-            .main-menu-footer{
-                bottom:0px;
-            }
+@include media-breakpoint-down(lg) {
+  .horizontal-layout{
+    &.vertical-overlay-menu {
+      .app-content{
+        .content-wrapper{
+          margin-top: 3.5rem;
         }
+      }
     }
+  }
 }

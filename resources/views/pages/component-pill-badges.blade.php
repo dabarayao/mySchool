@@ -1,276 +1,398 @@
-@extends('layouts/contentLayoutMaster')
-
-@section('title', 'Pill Badges')
+@extends('layouts.contentLayoutMaster')
+{{-- title --}}
+@section('title','Pill Badges')
 
 @section('content')
-{{-- Basic Pill Badges start--}}
+<!-- Default Pill Badges start -->
 <section id="basic-pill-badges">
-    <div class="row match-height">
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title text-center">Secondary Pill Badges</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body text-center">
-              <p>Use the <code>.badge</code> class, followed by<code>.badge-pill</code> with
-                <code>.badge-secondary</code>class within element to create default pill badge.</p>
-              <div class="badge badge-pill badge-secondary">Secondary</div>
-            </div>
-          </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Basic Pill Badges</h4>
         </div>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title text-center">Primary Pill Badges</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body text-center">
-              <p>Use the <code>.badge</code> class, followed by<code>.badge-pill</code> with
-                <code>.badge-primary</code>class within element to create primary pill badge.</p>
-              <div class="badge badge-pill badge-primary">Primary</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title text-center">Success Pill Badges</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body text-center">
-              <p>Use the <code>.badge</code> class, followed by<code>.badge-pill</code> with
-                <code>.badge-success</code>class within element to create success pill badge.</p>
-              <div class="badge badge-pill badge-success">Success</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title text-center">Danger Pill Badges</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body text-center">
-              <p>Use the <code>.badge</code> class, followed by <code>.badge-pill</code> with
-                <code>.badge-danger</code>class within element to create danger pill badge.</p>
-              <div class="badge badge-pill badge-danger">Danger</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title text-center">Info Pill Badges</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body text-center">
-              <p>Use the <code>.badge</code> class, followed by <code>.badge-pill</code> with
-                <code>.badge-info</code>class within element to create info pill badge.</p>
-              <div class="badge badge-pill badge-info">Info</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title text-center">Warning Pill Badges</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body text-center">
-              <p>Use the <code>.badge</code> class, followed by <code>.badge-pill</code> with
-                <code>.badge-warning</code>class within element to create warning pill badge.</p>
-              <div class="badge badge-pill badge-warning">Warning</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  {{-- Basic Pill Badges end --}}
-
-  {{-- Badge Pill Glow Starts --}}
-  <section id="badge-pill-glow">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Glow Badges</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body">
-              <p>
-                Use class <code>.badge-glow</code> to add glow effect to your badge
-              </p>
-              <div class="badge badge-pill badge-glow badge-primary mr-1 mb-1">Primary</div>
-              <div class="badge badge-pill badge-glow badge-success mr-1 mb-1">Success</div>
-              <div class="badge badge-pill badge-glow badge-danger mr-1 mb-1">Danger</div>
-              <div class="badge badge-pill badge-glow badge-info mr-1 mb-1">Info</div>
-              <div class="badge badge-pill badge-glow badge-warning mr-1 mb-1">Warning</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  {{-- Badge Pill Glow Ends --}}
-
-  {{-- Badge Pill With Icons Starts --}}
-  <section id="badge-pill-icons">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Badge Pills With Icons</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body">
-              <div class="badge badge-pill badge-primary mr-1 mb-1">
-                <i class="feather icon-facebook"></i>
-              </div>
-              <div class="badge badge-pill badge-success mr-1 mb-1">
-                <i class="feather icon-instagram"></i>
-              </div>
-              <div class="badge badge-pill badge-danger mr-1 mb-1">
-                <i class="feather icon-github"></i>
-              </div>
-              <div class="badge badge-pill badge-info mr-1 mb-1">
-                <i class="feather icon-twitter"></i>
-              </div>
-              <div class="badge badge-pill badge-warning mr-1 mb-1">
-                <i class="feather icon-sun"></i>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <p>Use the <code>.badge-pill</code> modifier class to make badges more rounded (with a larger
+                  border-radius and additional horizontal padding). </p>
+                <!-- basic Badges Pill -->
+                <div class="badge badge-pill badge-primary mr-1 mb-1">Primary</div>
+                <div class="badge badge-pill badge-secondary mr-1 mb-1">Secondary</div>
+                <div class="badge badge-pill badge-success mr-1 mb-1">Success</div>
+                <div class="badge badge-pill badge-info mr-1 mb-1">Info</div>
+                <div class="badge badge-pill badge-warning mr-1 mb-1">Warning</div>
+                <div class="badge badge-pill badge-danger mb-1">Danger</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  {{-- Badge Pill With Icons Ends --}}
+  </div>
+</section>
+<!-- Default Pill Badges end -->
 
-  {{-- Pill Badges as Notification start--}}
-  <section id="pill-badges-as-notification">
-    <div class="row">
-      <div class="col-12 mt-3 mb-1">
-        <h4 class="text-uppercase">Pill Badges as Notification</h4>
-        <p>Use <code>.badge-up</code> to set pill badge to higher than other text. So that it can work with notifications
-          also.</p>
-      </div>
-    </div>
-    <div class="row match-height">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title text-center">Icon Pill with Color Variations</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body">
-              <div class="position-relative d-inline-block mr-2">
-                <i class="feather icon-facebook font-medium-5 text-primary"></i>
-                <span class="badge badge-pill badge-primary badge-up">4</span>
-              </div>
-              <div class="position-relative d-inline-block mr-2">
-                <i class="feather icon-twitter font-medium-5 text-info"></i>
-                <span class="badge badge-pill badge-info badge-up">5</span>
-              </div>
-              <div class="position-relative d-inline-block">
-                <i class="feather icon-instagram font-medium-5 text-danger"></i>
-                <span class="badge badge-pill badge-danger badge-glow badge-up">6</span>
+<!-- Pill Badges Light start -->
+<section id="pill-badges-light">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Pill Badges Light</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <p>Use the <code>.badge-pill</code> class with <code>.badge.badge-light-{colorName}</code> class to
+                  create pill badges with light colored background options.</p>
+                <!-- Light Badges Pill -->
+                <div class="badge badge-pill badge-light-primary mr-1 mb-1">Primary</div>
+                <div class="badge badge-pill badge-light-secondary mr-1 mb-1">Secondary</div>
+                <div class="badge badge-pill badge-light-success mr-1 mb-1">Success</div>
+                <div class="badge badge-pill badge-light-info mr-1 mb-1">Info</div>
+                <div class="badge badge-pill badge-light-warning mr-1 mb-1">Warning</div>
+                <div class="badge badge-pill badge-light-danger mb-1">Danger</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  {{-- Pill Badges as Notification end --}}
+  </div>
+</section>
+<!-- Pill Badges Light end -->
 
-
-  {{-- Badge Pill Options Starts --}}
-  <section id="badge-pill-options">
-    <div class="row">
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Badge Pill Link</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body text-center">
-              <p>Use class <code>.badge.badge-pill</code> with <code>&lt;a&gt;</code> tag to make your badge a link</p>
-              <a class="badge badge-pill badge-primary" href="https://pixinvent.com" target="_blank">Primary</a>
+<!-- Glow Badges start -->
+<section id="badges-glow">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Glow Badges</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <p>Use class <code>.badge-glow</code> to add glow effect with badges.</p>
+                <!-- basic Badges Pill -->
+                <div class="badge badge-pill badge-glow badge-primary mr-1 mb-1">Primary</div>
+                <div class="badge badge-pill badge-glow badge-secondary mr-1 mb-1">Secondary</div>
+                <div class="badge badge-pill badge-glow badge-success mr-1 mb-1">Success</div>
+                <div class="badge badge-pill badge-glow badge-info mr-1 mb-1">Info</div>
+                <div class="badge badge-pill badge-glow badge-warning mr-1 mb-1">Warning</div>
+                <div class="badge badge-pill badge-glow badge-danger mb-1">Danger</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Badge Pill Dropup</h4>
+    </div>
+  </div>
+</section>
+<!-- Glow Badges end -->
+
+<!-- Pill-Badges With Icons Starts -->
+<section id="pill-badges-with-icons">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Pill Badges With Icons</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="badge badge-pill badge-primary d-inline-flex align-items-center mr-1 mb-1">
+              <i class="bx bxl-facebook font-size-small mr-25"></i>
+              <span>Primary</span>
+            </div>
+            <div class="badge badge-pill badge-secondary d-inline-flex align-items-center mr-1 mb-1">
+              <i class="bx bxl-github font-size-small mr-25"></i>
+              <span>Secondary</span>
+            </div>
+            <div class="badge badge-pill badge-success d-inline-flex align-items-center mr-1 mb-1">
+              <i class="bx bxl-instagram font-size-small mr-25"></i>
+              <span>Success</span>
+            </div>
+            <div class="badge badge-pill badge-danger d-inline-flex align-items-center mr-1 mb-1">
+              <i class="bx bxl-git font-size-small mr-25"></i>
+              <span>Danger</span>
+            </div>
+            <div class="badge badge-pill badge-info d-inline-flex align-items-center mr-1 mb-1">
+              <i class="bx bxl-twitter font-size-small mr-25"></i>
+              <span>Info</span>
+            </div>
+            <div class="badge badge-pill badge-warning d-inline-flex align-items-center mb-1">
+              <i class="bx bx-sun font-size-small mr-25"></i>
+              <span>Warning</span>
+            </div>
           </div>
-          <div class="card-content">
-            <div class="card-body text-center">
-              <p>wrap your <code>.badge</code> with <code>.dropup</code> to make your badge a dropup</p>
-              <div class="btn-group dropup">
-                <div class="badge badge-pill dropdown-toggle badge-success" data-toggle="dropdown">
-                  <i class="feather icon-flag"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Pill Badges With Icons End -->
+
+<!-- Pill-Badge Notification Starts -->
+<section id="pill-badge-notification">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Pill Badges as Notification</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <p>Use class <code>.badge-up</code> within <code>.position-relative</code> class to add badges as
+              notification.</p>
+            <div class="position-relative d-inline-block mr-2">
+              <i class="bx bxl-facebook font-medium-5 text-primary"></i>
+              <span class="badge badge-pill badge-primary badge-up badge-round">4</span>
+            </div>
+            <div class="position-relative d-inline-block mr-2">
+              <i class="bx bxl-twitter font-medium-5 text-info"></i>
+              <span class="badge badge-pill badge-info badge-up badge-round">5</span>
+            </div>
+            <div class="position-relative d-inline-block">
+              <i class="bx bxl-instagram font-medium-5 text-danger"></i>
+              <span class="badge badge-pill badge-danger badge-up badge-round badge-glow">6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Pill-Badge Notification Starts -->
+
+<!-- custom badges -->
+<!-- Badge-circle default size Starts -->
+<section id="badge-circle">
+  <div class="row match-height">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Custom Badge Circle</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <p>Use <code>.badge-circle</code> to add badges with circle and use
+              <code>.badge-circle-{colorName}</code> to create circle badges with colored background
+              options. For different sizing variations, use <code>.badge-circle-{lg/sm}</code> along with <code>.badge-circle</code>.</p>
+            <ul class="list-inline">
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-primary mr-1 mb-1">
+                  <i class="bx bxl-facebook font-large-1"></i>
                 </div>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-secondary mr-1 mb-1">
+                  <i class="bx bxl-github font-large-1"></i>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Block Badge Pill</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body text-center">
-              <p>use <code>.block</code> with <code>.badge-pill</code> to display your badge as block level element</p>
-              <div class="badge badge-pill block badge-danger">
-                <span>Block Badge Pill</span>
-              </div>
-            </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-success mr-1 mb-1">
+                  <i class="bx bxl-instagram font-large-1"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-danger mr-1 mb-1">
+                  <i class="bx bxl-git font-large-1"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-info mr-1 mb-1">
+                  <i class="bx bxl-twitter font-large-1"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-warning mb-1">
+                  <i class="bx bx-sun font-large-1"></i>
+                </div>
+              </li>
+            </ul>
+            <ul class="list-inline">
+              <li>
+                <div class="badge-circle badge-circle-primary mr-1 mb-1">
+                  <i class="bx bxl-facebook"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-secondary mr-1 mb-1">
+                  <i class="bx bxl-github"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-success mr-1 mb-1">
+                  <i class="bx bxl-instagram"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-danger mr-1 mb-1">
+                  <i class="bx bxl-git"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-info mr-1 mb-1">
+                  <i class="bx bxl-twitter"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-warning mb-1">
+                  <i class="bx bx-sun"></i>
+                </div>
+              </li>
+            </ul>
+            <ul class="list-inline mb-0">
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-primary mr-1 mb-1">
+                  <i class="bx bxl-facebook font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-secondary mr-1 mb-1">
+                  <i class="bx bxl-github font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-success mr-1 mb-1">
+                  <i class="bx bxl-instagram font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-danger mr-1 mb-1">
+                  <i class="bx bxl-git font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-info mr-1 mb-1">
+                  <i class="bx bxl-twitter font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-warning mb-1">
+                  <i class="bx bx-sun font-size-base"></i>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  {{-- Badge Pill Options Ends --}}
-
-
-  {{-- Badge Pill Sizes Starts --}}
-  <section id="badge-pill-sizes">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Badge Pill Sizes</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body">
-              <p>Use classes <code>badge-{xl|lg|md|sm}</code> to change size of a badge</p>
-              <div class="badge badge-pill badge-primary badge-xl mr-1 mb-1">Extra Large</div>
-              <div class="badge badge-pill badge-primary badge-lg mr-1 mb-1">Large</div>
-              <div class="badge badge-pill badge-primary badge-md mr-1 mb-1">Medium</div>
-              <div class="badge badge-pill badge-primary badge-sm mr-1 mb-1">Small</div>
-            </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Custom Badge Circle with Light Background</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <p>Use <code>.badge-circle-light-{colorName}</code> along with <code>.badge-circle</code> class to create circle badges with light colored background
+              options.</p>
+            <ul class="list-inline">
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-light-primary mr-1 mb-1">
+                  <i class="bx bxl-facebook font-large-1"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-light-secondary mr-1 mb-1">
+                  <i class="bx bxl-github font-large-1"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-light-success mr-1 mb-1">
+                  <i class="bx bxl-instagram font-large-1"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-light-danger mr-1 mb-1">
+                  <i class="bx bxl-git font-large-1"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-light-info mr-1 mb-1">
+                  <i class="bx bxl-twitter font-large-1"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-lg badge-circle-light-warning mb-1">
+                  <i class="bx bx-sun font-large-1"></i>
+                </div>
+              </li>
+            </ul>
+            <ul class="list-inline">
+              <li>
+                <div class="badge-circle badge-circle-light-primary mr-1 mb-1">
+                  <i class="bx bxl-facebook"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-light-secondary mr-1 mb-1">
+                  <i class="bx bxl-github"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-light-success mr-1 mb-1">
+                  <i class="bx bxl-instagram"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-light-danger mr-1 mb-1">
+                  <i class="bx bxl-git"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-light-info mr-1 mb-1">
+                  <i class="bx bxl-twitter"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-light-warning mb-1">
+                    <i class="bx bx-sun"></i>
+                </div>
+              </li>
+            </ul>
+            <ul class="list-inline mb-0">
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-light-primary mr-1 mb-1">
+                  <i class="bx bxl-facebook font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-light-secondary mr-1 mb-1">
+                  <i class="bx bxl-github font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-light-success mr-1 mb-1">
+                  <i class="bx bxl-instagram font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-light-danger mr-1 mb-1">
+                  <i class="bx bxl-git font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-light-info mr-1 mb-1">
+                  <i class="bx bxl-twitter font-size-base"></i>
+                </div>
+              </li>
+              <li>
+                <div class="badge-circle badge-circle-sm badge-circle-light-warning mb-1">
+                  <i class="bx bx-sun font-size-base"></i>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  </section>
-{{-- Badge Pill Sizes Ends --}}
+  </div>
+</section>
+<!-- Badge-circle default size Starts -->
 @endsection

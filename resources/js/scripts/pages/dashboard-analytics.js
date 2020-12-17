@@ -2,179 +2,683 @@
     File Name: dashboard-analytics.js
     Description: dashboard analytics page content with Apexchart Examples
     ----------------------------------------------------------------------------------------
-    Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Frest HTML Admin Template
+    Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
 $(window).on("load", function () {
 
-  var $primary = '#7367F0';
-  var $danger = '#EA5455';
-  var $warning = '#FF9F43';
-  var $info = '#0DCCE1';
-  var $primary_light = '#8F80F9';
-  var $warning_light = '#FFC085';
-  var $danger_light = '#f29292';
-  var $info_light = '#1edec5';
-  var $strok_color = '#b9c3cd';
-  var $label_color = '#e7eef7';
-  var $white = '#fff';
+  var $primary = '#5A8DEE';
+  var $success = '#39DA8A';
+  var $danger = '#FF5B5C';
+  var $warning = '#FDAC41';
+  var $info = '#00CFDD';
+  var $label_color = '#475f7b';
+  var $primary_light = '#E2ECFF';
+  var $danger_light = '#ffeed9';
+  var $gray_light = '#828D99';
+  var $sub_label_color = "#596778";
+  var $radial_bg = "#e7edf3";
 
 
-  // Subscribers Gained Chart starts //
-  // ----------------------------------
+  // Radial-Success-chart
+  // --------------------------------
+  var radialSuccessoptions = {
+    chart: {
+      height: 40,
+      width: 40,
+      type: "radialBar"
+    },
+    grid: {
+      show: false,
+      padding: {
+        left: -30,
+        right: -30,
+        top: 0,
+      }
+    },
+    series: [30],
+    colors: [$success],
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: "30%"
+        },
+        dataLabels: {
+          showOn: "always",
+          name: {
+            show: false
+          },
+          value: {
+            show: false,
+          }
+        }
+      }
+    },
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: "horizontal",
+        gradientToColors: [$success],
+        opacityFrom: 1,
+        opacityTo: 0.8,
+        stops: [0, 70, 100]
+      }
+    },
+    stroke: {
+      lineCap: "round",
+    }
+  };
+  var radialSuccessChart = new ApexCharts(
+    document.querySelector("#radial-success-chart"),
+    radialSuccessoptions
+  );
 
-  var gainedChartoptions = {
+  radialSuccessChart.render();
+
+  // Radial-Warning-chart
+  // --------------------------------
+  var radialWarningoptions = {
+    chart: {
+      height: 40,
+      width: 40,
+      type: "radialBar"
+    },
+    grid: {
+      show: false,
+      padding: {
+        left: -30,
+        right: -30,
+        top: 0,
+      }
+    },
+    series: [80],
+    colors: [$warning],
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: "30%"
+        },
+        dataLabels: {
+          showOn: "always",
+          name: {
+            show: false
+          },
+          value: {
+            show: false,
+          }
+        }
+      }
+    },
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: "horizontal",
+        gradientToColors: [$warning],
+        opacityFrom: 1,
+        opacityTo: 0.8,
+        stops: [0, 70, 100]
+      }
+    },
+    stroke: {
+      lineCap: "round",
+    }
+  };
+  var radialWarningChart = new ApexCharts(
+    document.querySelector("#radial-warning-chart"),
+    radialWarningoptions
+  );
+
+  radialWarningChart.render();
+
+  // Radial-Danger-chart
+  // --------------------------------
+  var radialDangeroptions = {
+    chart: {
+      height: 40,
+      width: 40,
+      type: "radialBar",
+    },
+    grid: {
+      show: false,
+      padding: {
+        left: -30,
+        right: -30,
+        top: 0,
+      }
+    },
+    series: [50],
+    colors: [$danger],
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: "30%"
+        },
+        dataLabels: {
+          showOn: "always",
+          name: {
+            show: false
+          },
+          value: {
+            show: false,
+          }
+        }
+      }
+    },
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: "horizontal",
+        gradientToColors: [$danger],
+        opacityFrom: 1,
+        opacityTo: 0.8,
+        stops: [0, 70, 100]
+      }
+    },
+    stroke: {
+      lineCap: "round",
+    }
+  };
+  var radialDangerChart = new ApexCharts(
+    document.querySelector("#radial-danger-chart"),
+    radialDangeroptions
+  );
+
+  radialDangerChart.render();
+
+  // Bar Chart
+  // ---------
+  var analyticsBarChartOptions = {
+    chart: {
+      height: 260,
+      type: 'bar',
+      toolbar: {
+        show: false
+      }
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        columnWidth: '20%',
+        endingShape: 'rounded'
+      },
+    },
+    legend: {
+      horizontalAlign: 'right',
+      offsetY: -10,
+      markers: {
+        radius: 50,
+        height: 8,
+        width: 8
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    colors: [$primary, $primary_light],
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: "vertical",
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 70, 100]
+      },
+    },
+    series: [{
+      name: '2019',
+      data: [80, 95, 150, 210, 140, 230, 300, 280, 130]
+    }, {
+      name: '2018',
+      data: [50, 70, 130, 180, 90, 180, 270, 220, 110]
+    }],
+    xaxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      axisBorder: {
+        show: false
+      },
+      axisTicks: {
+        show: false
+      },
+      labels: {
+        style: {
+          colors: $gray_light
+        }
+      }
+    },
+    yaxis: {
+      min: 0,
+      max: 300,
+      tickAmount: 3,
+      labels: {
+        style: {
+          color: $gray_light
+        }
+      }
+    },
+    legend: {
+      show: false
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return "$ " + val + " thousands"
+        }
+      }
+    }
+  }
+
+  var analyticsBarChart = new ApexCharts(
+    document.querySelector("#analytics-bar-chart"),
+    analyticsBarChartOptions
+  );
+
+  analyticsBarChart.render();
+
+  // Success Line Chart
+  // -----------------------------
+  var successLineChartOption = {
     chart: {
       height: 100,
-      type: 'area',
+      type: 'line',
       toolbar: {
-        show: false,
+        show: false
+      }
+    },
+    grid: {
+      show: false,
+      padding: {
+        bottom: -20,
+      }
+    },
+    colors: [$success],
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      width: 3,
+      curve: 'smooth'
+    },
+    series: [{
+      data: [50, 0, 50, 40, 90, 0, 40, 25, 80, 40, 45]
+    }],
+    xaxis: {
+      show: false,
+      labels: {
+        show: false
+      },
+      axisBorder: {
+        show: false
+      }
+    },
+    yaxis: {
+      show: false
+    },
+  }
+
+  var successLineChart = new ApexCharts(
+    document.querySelector("#success-line-chart"),
+    successLineChartOption
+  );
+  successLineChart.render();
+
+  // Donut Chart
+  // ---------------------
+  var donutChartOption = {
+    chart: {
+      width: 200,
+      type: 'donut',
+    },
+    dataLabels: {
+      enabled: false
+    },
+    series: [80, 30, 60],
+    labels: ["Social", "Email", "Search"],
+    stroke: {
+      width: 0,
+      lineCap: 'round',
+    },
+    colors: [$primary, $info, $warning],
+    plotOptions: {
+      pie: {
+        donut: {
+          size: '90%',
+          labels: {
+            show: true,
+            name: {
+              show: true,
+              fontSize: '15px',
+              colors: $sub_label_color,
+              offsetY: 20,
+              fontFamily: 'IBM Plex Sans',
+            },
+            value: {
+              show: true,
+              fontSize: '26px',
+              fontFamily: 'Rubik',
+              color: $label_color,
+              offsetY: -20,
+              formatter: function (val) {
+                return val
+              }
+            },
+            total: {
+              show: true,
+              label: 'Impression',
+              color: $gray_light,
+              formatter: function (w) {
+                return w.globals.seriesTotals.reduce(function (a, b) {
+                  return a + b
+                }, 0)
+              }
+            }
+          }
+        }
+      }
+    },
+    legend: {
+      show: false
+    }
+  }
+
+  var donutChart = new ApexCharts(
+    document.querySelector("#donut-chart"),
+    donutChartOption
+  );
+
+  donutChart.render();
+
+  // Stacked Bar Nagetive Chart
+  // ----------------------------------
+  var barNegativeChartoptions = {
+    chart: {
+      height: 110,
+      stacked: true,
+      type: 'bar',
+      toolbar: { show: false },
+      sparkline: {
+        enabled: true,
+      },
+    },
+    plotOptions: {
+      bar: {
+        columnWidth: '20%',
+        endingShape: 'rounded',
+      },
+      distributed: true,
+    },
+    colors: [$primary, $warning],
+    series: [{
+      name: 'New Clients',
+      data: [75, 150, 225, 200, 35, 50, 150, 180, 50, 150, 240, 140, 75, 35, 60, 120]
+    }, {
+      name: 'Retained Clients',
+      data: [-100, -55, -40, -120, -70, -40, -60, -50, -70, -30, -60, -40, -50, -70, -40, -50],
+    }],
+    grid: {
+      show: false,
+    },
+    legend: {
+      show: false,
+    },
+    dataLabels: {
+      enabled: false
+    },
+    tooltip: {
+      x: { show: false }
+    },
+  }
+
+  var barNegativeChart = new ApexCharts(
+    document.querySelector("#bar-negative-chart"),
+    barNegativeChartoptions
+  );
+
+  barNegativeChart.render();
+
+  // Primary Line Chart
+  // -----------------------------
+  var primaryLineChartOption = {
+    chart: {
+      height: 40,
+      // width: 180,
+      type: 'line',
+      toolbar: {
+        show: false
       },
       sparkline: {
-        enabled: true
+        enabled: true,
       },
-      grid: {
-        show: false,
-        padding: {
-          left: 0,
-          right: 0
-        }
-      },
+    },
+    grid: {
+      show: false,
+      padding: {
+        bottom: 5,
+        top: 5,
+        left: 10,
+        right: 0
+      }
     },
     colors: [$primary],
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     stroke: {
-      curve: 'smooth',
-      width: 2.5
+      width: 3,
+      curve: 'smooth'
     },
+    series: [{
+      data: [50, 100, 0, 60, 20, 30]
+    }],
     fill: {
       type: 'gradient',
       gradient: {
-        shadeIntensity: 0.9,
-        opacityFrom: 0.7,
-        opacityTo: 0.5,
-        stops: [0, 80, 100]
+        shade: 'dark',
+        type: "horizontal",
+        gradientToColors: [$primary],
+        opacityFrom: 0,
+        opacityTo: 0.9,
+        stops: [0, 30, 70, 100]
       }
     },
-    series: [{
-      name: 'Subscribers',
-      data: [28, 40, 36, 52, 38, 60, 55]
-    }],
-
     xaxis: {
+      show: false,
       labels: {
-        show: false,
+        show: false
       },
       axisBorder: {
-        show: false,
+        show: false
       }
     },
-    yaxis: [{
-      y: 0,
-      offsetX: 0,
-      offsetY: 0,
-      padding: { left: 0, right: 0 },
-    }],
-    tooltip: {
-      x: { show: false }
+    yaxis: {
+      show: false
     },
   }
 
-  var gainedChart = new ApexCharts(
-    document.querySelector("#subscribe-gain-chart"),
-    gainedChartoptions
+  var primaryLineChart = new ApexCharts(
+    document.querySelector("#primary-line-chart"),
+    primaryLineChartOption
   );
+  primaryLineChart.render();
 
-  gainedChart.render();
-
-  // Subscribers Gained Chart ends //
-
-
-
-  // Orders Received Chart starts //
-  // ----------------------------------
-
-  var orderChartoptions = {
+  // Warning Line Chart
+  // -----------------------------
+  var warningLineChartOption = {
     chart: {
-      height: 100,
-      type: 'area',
+      height: 40,
+      // width: 90,
+      type: 'line',
       toolbar: {
-        show: false,
+        show: false
       },
       sparkline: {
-        enabled: true
+        enabled: true,
       },
-      grid: {
-        show: false,
-        padding: {
-          left: 0,
-          right: 0
-        }
-      },
+    },
+    grid: {
+      show: false,
+      padding: {
+        bottom: 5,
+        top: 5,
+        left: 10,
+        right: 0
+      }
     },
     colors: [$warning],
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     stroke: {
-      curve: 'smooth',
-      width: 2.5
+      width: 3,
+      curve: 'smooth'
     },
+    series: [{
+      data: [30, 60, 30, 80, 20, 70]
+    }],
     fill: {
       type: 'gradient',
       gradient: {
-        shadeIntensity: 0.9,
-        opacityFrom: 0.7,
-        opacityTo: 0.5,
-        stops: [0, 80, 100]
+        shade: 'dark',
+        type: "horizontal",
+        gradientToColors: [$warning],
+        opacityFrom: 0,
+        opacityTo: 0.9,
+        stops: [0, 30, 70, 100]
       }
     },
-    series: [{
-      name: 'Orders',
-      data: [10, 15, 8, 15, 7, 12, 8]
-    }],
-
     xaxis: {
+      show: false,
       labels: {
-        show: false,
+        show: false
       },
       axisBorder: {
-        show: false,
+        show: false
       }
     },
-    yaxis: [{
-      y: 0,
-      offsetX: 0,
-      offsetY: 0,
-      padding: { left: 0, right: 0 },
-    }],
-    tooltip: {
-      x: { show: false }
+    yaxis: {
+      show: false
     },
   }
 
-  var orderChart = new ApexCharts(
-    document.querySelector("#orders-received-chart"),
-    orderChartoptions
+  var warningLineChart = new ApexCharts(
+    document.querySelector("#warning-line-chart"),
+    warningLineChartOption
+  );
+  warningLineChart.render();
+
+  // Profit Primary Chart
+  // --------------------------------
+  var profitPrimaryOptions = {
+    chart: {
+      height: 40,
+      width: 40,
+      type: "radialBar",
+      sparkline: {
+        show: true
+      }
+    },
+    grid: {
+      show: false,
+      padding: {
+        left: -30,
+        right: -30,
+        top: 0,
+        bottom: -70
+      }
+    },
+    series: [50],
+    colors: [$primary],
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: "30%"
+        },
+        dataLabels: {
+          showOn: "always",
+          name: {
+            show: false
+          },
+          value: {
+            show: false,
+          }
+        }
+      }
+    },
+    stroke: {
+      lineCap: "round",
+    }
+  };
+  var profitPrimaryChart = new ApexCharts(
+    document.querySelector("#profit-primary-chart"),
+    profitPrimaryOptions
   );
 
-  orderChart.render();
-
-  // Orders Received Chart ends //
+  profitPrimaryChart.render();
 
 
+  // Profit Info Chart
+  // --------------------------------
+  var profitInfoOptions = {
+    chart: {
+      height: 40,
+      width: 40,
+      type: "radialBar",
+      sparkline: {
+        show: true
+      }
+    },
+    grid: {
+      show: false,
+      padding: {
+        left: -30,
+        right: -30,
+        top: 0,
+        bottom: -70
+      }
+    },
+    series: [70],
+    colors: [$info],
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: "30%"
+        },
+        dataLabels: {
+          showOn: "always",
+          name: {
+            show: false
+          },
+          value: {
+            show: false,
+          }
+        }
+      }
+    },
+    stroke: {
+      lineCap: "round",
+    }
+  };
+  var profitInfoChart = new ApexCharts(
+    document.querySelector("#profit-info-chart"),
+    profitInfoOptions
+  );
 
-  // Avg Session Chart Starts
-  // ----------------------------------
+  profitInfoChart.render();
 
-  var sessionChartoptions = {
+  // Registration Chart
+  // -------------------
+  var registrationChartoptions = {
     chart: {
       type: 'bar',
-      height: 200,
+      height: 60,
+      width: 120,
       sparkline: { enabled: true },
       toolbar: { show: false },
     },
@@ -183,10 +687,10 @@ $(window).on("load", function () {
         filter: 'none'
       }
     },
-    colors: [$label_color, $label_color, $primary, $label_color, $label_color, $label_color],
+    colors: [$danger_light, $danger_light, $danger_light, $danger_light, $warning, $danger_light],
     series: [{
       name: 'Sessions',
-      data: [75, 125, 225, 175, 125, 75, 25]
+      data: [3, 7, 5, 15, 9, 8, 12]
     }],
     grid: {
       show: false,
@@ -198,9 +702,8 @@ $(window).on("load", function () {
 
     plotOptions: {
       bar: {
-        columnWidth: '45%',
+        columnWidth: '80%',
         distributed: true,
-        endingShape: 'rounded'
       }
     },
     tooltip: {
@@ -211,44 +714,124 @@ $(window).on("load", function () {
     }
   }
 
-  var sessionChart = new ApexCharts(
-    document.querySelector("#avg-session-chart"),
-    sessionChartoptions
+  var registrationChart = new ApexCharts(
+    document.querySelector("#registration-chart"),
+    registrationChartoptions
   );
 
-  sessionChart.render();
+  registrationChart.render();
 
-  // Avg Session Chart ends //
-
-
-  // Support Tracker Chart starts
-  // -----------------------------
-
-  var supportChartoptions = {
+  // Sales Chart
+  // ---------------------
+  var salesChartOptions = {
     chart: {
-      height: 270,
+      height: 100,
+      type: 'bar',
+      stacked: true,
+      toolbar: {
+        show: false
+      }
+    },
+    grid: {
+      show: false,
+      padding: {
+        left: 0,
+        right: 0,
+        top: -20,
+        bottom: -15
+      }
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        columnWidth: '20%',
+        endingShape: 'rounded'
+      },
+    },
+    legend: {
+      show: false
+    },
+    dataLabels: {
+      enabled: false
+    },
+    colors: [$primary, $primary_light],
+    series: [{
+      name: '2019',
+      data: [80, 40, 30, 90, 20, 50, 95]
+    }, {
+      name: '2018',
+      data: [20, 60, 70, 10, 80, 50, 5]
+    }],
+    xaxis: {
+      categories: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+      axisBorder: {
+        show: false
+      },
+      axisTicks: {
+        show: false
+      },
+      labels: {
+        style: {
+          colors: $gray_light
+        },
+        offsetY: -5
+      }
+    },
+    yaxis: {
+      show: false,
+      floating: true,
+    },
+    tooltip: {
+      x: {
+        show: false,
+      },
+    }
+  }
+
+  var salesChart = new ApexCharts(
+    document.querySelector("#sales-chart"),
+    salesChartOptions
+  );
+
+  salesChart.render();
+
+  // Growth Radial Chart
+  // --------------------
+  var growthChartOptions = {
+    chart: {
+      height: 200,
       type: 'radialBar',
+      sparkline: {
+        show: true
+      }
+    },
+    grid: {
+      show: false,
     },
     plotOptions: {
       radialBar: {
-        size: 150,
-        startAngle: -150,
-        endAngle: 150,
-        offsetY: 20,
+        size: 100,
+        startAngle: -135,
+        endAngle: 135,
+        offsetY: 40,
         hollow: {
-          size: '65%',
+          size: '60%',
         },
         track: {
-          background: $white,
-          strokeWidth: '100%',
-
+          strokeWidth: '90%',
+          background: '#fff'
         },
         dataLabels: {
           value: {
-            offsetY: 30,
-            color: '#99a2ac',
-            fontSize: '2rem'
-          }
+            offsetY: -10,
+            color: '#475f7b',
+            fontSize: '26px'
+          },
+          name: {
+            fontSize: '15px',
+            color: "#596778",
+            offsetY: 30
+          },
         }
       },
     },
@@ -256,7 +839,6 @@ $(window).on("load", function () {
     fill: {
       type: 'gradient',
       gradient: {
-        // enabled: true,
         shade: 'dark',
         type: 'horizontal',
         shadeIntensity: 0.5,
@@ -268,294 +850,32 @@ $(window).on("load", function () {
       },
     },
     stroke: {
-      dashArray: 8
+      dashArray: 3
     },
-    series: [83],
-    labels: ['Completed Tickets'],
-
+    series: [78],
+    labels: ['Growth'],
   }
 
-  var supportChart = new ApexCharts(
-    document.querySelector("#support-tracker-chart"),
-    supportChartoptions
+  var growthChart = new ApexCharts(
+    document.querySelector("#growth-Chart"),
+    growthChartOptions
   );
 
-  supportChart.render();
-
-  // Support Tracker Chart ends
+  growthChart.render();
 
 
-  // Product Order Chart starts
-  // -----------------------------
-
-  var productChartoptions = {
-    chart: {
-      height: 325,
-      type: 'radialBar',
-    },
-    colors: [$primary, $warning, $danger],
-    fill: {
-      type: 'gradient',
-      gradient: {
-        // enabled: true,
-        shade: 'dark',
-        type: 'vertical',
-        shadeIntensity: 0.5,
-        gradientToColors: [$primary_light, $warning_light, $danger_light],
-        inverseColors: false,
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100]
-      },
-    },
-    stroke: {
-      lineCap: 'round'
-    },
-    plotOptions: {
-      radialBar: {
-        size: 165,
-        hollow: {
-          size: '20%'
-        },
-        track: {
-          strokeWidth: '100%',
-          margin: 15,
-        },
-        dataLabels: {
-          name: {
-            fontSize: '18px',
-          },
-          value: {
-            fontSize: '16px',
-          },
-          total: {
-            show: true,
-            label: 'Total',
-
-            formatter: function (w) {
-              // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-              return 42459
-            }
-          }
-        }
-      }
-    },
-    series: [70, 52, 26],
-    labels: ['Finished', 'Pending', 'Rejected'],
-
-  }
-
-  var productChart = new ApexCharts(
-    document.querySelector("#product-order-chart"),
-    productChartoptions
-  );
-
-  productChart.render();
-
-  // Product Order Chart ends //
-
-
-  // Sales Chart starts
-  // -----------------------------
-
-  var salesChartoptions = {
-    chart: {
-      height: 400,
-      type: 'radar',
-      dropShadow: {
-        enabled: true,
-        blur: 8,
-        left: 1,
-        top: 1,
-        opacity: 0.2
-      },
-      toolbar: {
-        show: false
-      },
-    },
-    toolbar: { show: false },
-    series: [{
-      name: 'Sales',
-      data: [90, 50, 86, 40, 100, 20],
-    }, {
-      name: 'Visit',
-      data: [70, 75, 70, 76, 20, 85],
-    }],
-    stroke: {
-      width: 0
-    },
-    colors: [$primary, $info],
-    plotOptions: {
-      radar: {
-        polygons: {
-          strokeColors: ['#e8e8e8', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent'],
-          connectorColors: 'transparent'
-        }
-      }
-    },
-    fill: {
-      type: 'gradient',
-      gradient: {
-        shade: 'dark',
-        gradientToColors: ['#9f8ed7', $info_light],
-        shadeIntensity: 1,
-        type: 'horizontal',
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100, 100, 100]
-      },
-    },
-    markers: {
-      size: 0,
-    },
-    legend: {
-      show: true,
-      position: 'top',
-      horizontalAlign: 'left',
-      fontSize: '16px',
-      markers: {
-        width: 10,
-        height: 10,
-      }
-    },
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-    dataLabels: {
-      style: {
-        colors: [$strok_color, $strok_color, $strok_color, $strok_color, $strok_color, $strok_color]
-      }
-    },
-    yaxis: {
-      show: false,
-    },
-    grid: {
-      show: false,
-    },
-
-  }
-
-  var salesChart = new ApexCharts(
-    document.querySelector("#sales-chart"),
-    salesChartoptions
-  );
-
-  salesChart.render();
-
-  // Sales Chart ends //
-
-  /***** TOUR ******/
-  var tour = new Shepherd.Tour({
-    classes: 'shadow-md bg-purple-dark',
-    scrollTo: true
-  })
-
-  // tour steps
-  tour.addStep('step-1', {
-    text: 'Toggle Collapse Sidebar.',
-    attachTo: '.modern-nav-toggle .collapse-toggle-icon bottom',
-    buttons: [
-
-      {
-        text: "Skip",
-        action: tour.complete
-      },
-      {
-        text: 'Next',
-        action: tour.next
-      },
-    ]
+  // Widget Todo List
+  // ------------------
+  // Task List Widget - for completed todo item
+  $(document).on('click', '.widget-todo-item input', function () {
+    $(this).closest('.widget-todo-item').toggleClass("completed");
   });
 
-  tour.addStep('step-2', {
-    text: 'Create your own bookmarks. You can also re-arrange them using drag & drop.',
-    attachTo: '.bookmark-icons .icon-mail bottom',
-    buttons: [
-
-      {
-        text: "Skip",
-        action: tour.complete
-      },
-
-      {
-        text: "previous",
-        action: tour.back
-      },
-      {
-        text: 'Next',
-        action: tour.next
-      },
-    ]
+  // Drag the task
+  dragula([document.getElementById("widget-todo-list")], {
+    moves: function(el, container, handle) {
+      return handle.classList.contains("cursor-move");
+    }
   });
-
-  tour.addStep('step-3', {
-    text: 'You can change language from here.',
-    attachTo: '.dropdown-language .flag-icon bottom',
-    buttons: [
-
-      {
-        text: "Skip",
-        action: tour.complete
-      },
-
-      {
-        text: "previous",
-        action: tour.back
-      },
-      {
-        text: 'Next',
-        action: tour.next
-      },
-    ]
-  });
-
-  tour.addStep('step-4', {
-    text: 'Try fuzzy search to visit pages in flash.',
-    attachTo: '.nav-link-search .icon-search bottom',
-    buttons: [
-
-      {
-        text: "Skip",
-        action: tour.complete
-      },
-
-      {
-        text: "previous",
-        action: tour.back
-      },
-      {
-        text: 'Next',
-        action: tour.next
-      },
-    ]
-  });
-
-  tour.addStep('step-5', {
-    text: 'Buy this awesomeness at affordable price!',
-    attachTo: '.buy-now bottom',
-    buttons: [
-
-      {
-        text: "previous",
-        action: tour.back
-      },
-
-      {
-        text: "Finish",
-        action: tour.complete
-      },
-    ]
-  });
-
-  if ($(window).width() > 1200 && !$("body").hasClass("menu-collapsed")) {
-    tour.start()
-  }
-  else {
-    tour.cancel()
-  }
-  if($("body").hasClass("horizontal-menu")){
-    tour.cancel()
-  }
-  $(window).on("resize", function () {
-    tour.cancel()
-  })
 
 });

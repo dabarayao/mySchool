@@ -1,12 +1,13 @@
-@extends('layouts/contentLayoutMaster')
+@extends('layouts.contentLayoutMaster')
 
-@section('title', 'Sweet Alert')
-
-@section('vendor-style')
-        <!-- vendor css files -->
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
+{{-- page title --}}
+@section('title','Sweet Alerts')
+{{-- vendor styles --}}
+@section('vendor-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/animate/animate.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/extensions/sweetalert2.min.css')}}">
 @endsection
+
 @section('content')
 <!-- Basic example section start -->
 <section id="basic-examples">
@@ -40,7 +41,7 @@
           <div class="card-body">
             <p>
               You can specify position of your alert with
-              <code>{position : top-start | top-end | bottom-start | bottom-end }</code> in js
+              <code>position : { top-start | top-end | bottom-start | bottom-end }</code> in js.
             </p>
             <button class="btn btn-outline-success mr-1 mb-1" id="position-top-start">Top Start</button>
             <button class="btn btn-outline-success mr-1 mb-1" id="position-top-end">Top End</button>
@@ -88,8 +89,7 @@
       <div class="card-body">
         <p>The type of the modal. SweetAlert comes with 4 built-in types which will show a corresponding icon animation:
           "warning", "error", "success" and "info". You can also set it as "input" to get a prompt modal. It can either
-          be
-          put in the object under the key "icon" or passed as the third parameter of the function.</p>
+          be put in the object under the key "icon" or passed as the third parameter of the function.</p>
         <button type="button" class="btn btn-outline-success mr-1 mb-1" id="type-success">Success</button>
         <button type="button" class="btn btn-outline-info mr-1 mb-1" id="type-info">Info</button>
         <button type="button" class="btn btn-outline-warning mr-1 mb-1" id="type-warning">Warning</button>
@@ -130,14 +130,16 @@
         <div class="row mt-1">
           <div class="col-md-6 col-sm-12">
             <h5>Confirm Button Text</h5>
-            <p>Use this to change the text on the "Confirm"-button. If <code>showCancelButton</code> is set as
-              <code>true</code>, the confirm button will automatically show "Confirm" instead of "OK".</p>
+            <p>Use <code>confirmButtonText: "Your text here!"</code> option to change the text of the
+              "Confirm" button.
+            </p>
             <button type="button" class="btn btn-outline-primary mb-2" id="confirm-text">Confirm
               Text</button>
           </div>
           <div class="col-md-6 col-sm-12">
             <h5>Confirm Button Color</h5>
-            <p>Use <code>className: "btn-warning"</code> option to change the background color of the "Confirm"-button.
+            <p>Use <code>confirmButtonClass: "btn btn-{colorName}"</code> option to change the color of the
+              "Confirm" button.
             </p>
             <button type="button" class="btn btn-outline-primary mb-2" id="confirm-color">Confirm
               Button Color</button>
@@ -150,12 +152,12 @@
 <!-- // Confirm option section end -->
 @endsection
 
-@section('vendor-script')
-        <!-- vendor files -->
-        <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
-        <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
+{{-- vendor scripts --}}
+@section('vendor-scripts')
+<script src="{{asset('vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+<script src="{{asset('vendors/js/extensions/polyfill.min.js')}}"></script>
 @endsection
-@section('page-script')
-        <!-- Page js files -->
-        <script src="{{ asset(mix('js/scripts/extensions/sweet-alerts.js')) }}"></script>
+{{-- page scripts --}}
+@section('page-scripts')
+<script src="{{asset('js/scripts/extensions/sweet-alerts.js')}}"></script>
 @endsection

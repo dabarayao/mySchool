@@ -2,7 +2,8 @@
 	File Name: sweet-alerts.js
 	Description: A beautiful replacement for javascript alerts
 	----------------------------------------------------------------------------------------
-	Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+	Item Name: Frest HTML Admin Template
+	Version: 1.0
 	Author: Pixinvent
 	Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
@@ -51,10 +52,10 @@ $(document).ready(function () {
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText:
-        '<i class="fa fa-thumbs-up"></i> Great!',
+        '<i class="bx bx-like"></i> Great!',
       confirmButtonAriaLabel: 'Thumbs up, great!',
       cancelButtonText:
-        '<i class="fa fa-thumbs-down"></i>',
+        '<i class="bx bx-dislike"></i>',
       cancelButtonAriaLabel: 'Thumbs down',
       confirmButtonClass: 'btn btn-primary',
       buttonsStyling: false,
@@ -337,7 +338,7 @@ $(document).ready(function () {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Your text here!',
       confirmButtonClass: 'btn btn-primary',
       cancelButtonClass: 'btn btn-danger ml-1',
       buttonsStyling: false,
@@ -364,7 +365,7 @@ $(document).ready(function () {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
-      confirmButtonClass: 'btn btn-primary',
+      confirmButtonClass: 'btn btn-warning',
       cancelButtonClass: 'btn btn-danger ml-1',
       buttonsStyling: false,
     }).then(function (result) {

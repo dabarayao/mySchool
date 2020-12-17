@@ -1,17 +1,17 @@
-@extends('layouts/contentLayoutMaster')
+@extends('layouts.contentLayoutMaster')
 
-@section('title', 'Tour')
+{{-- page title --}}
+@section('title','Tour')
+{{-- vendor styles --}}
+@section('vendor-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/extensions/shepherd-theme-default.css')}}">
+@endsection
 
-@section('vendor-style')
-        <!-- vendor css files -->
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/tether-theme-arrows.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/tether.min.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/shepherd-theme-default.css')) }}">
+{{-- page styles --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/plugins/tour/tour.css')}}">
 @endsection
-@section('page-style')
-        <!-- Page css files -->
-        <link rel="stylesheet" href="{{ asset(mix('css/plugins/tour/tour.css')) }}">
-@endsection
+
 @section('content')
 <!-- Basic tour Starts -->
 <section id="basic-tour">
@@ -26,18 +26,17 @@
             <div class="btn btn-outline-primary" id="tour">Start Tour</div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </section>
 <!-- Basic tour Ends -->
 @endsection
-
-@section('vendor-script')
-        <!-- vendor files -->
-        <script src="{{ asset(mix('vendors/js/extensions/tether.min.js')) }}"></script>
-        <script src="{{ asset(mix('vendors/js/extensions/shepherd.min.js')) }}"></script>
+{{-- vendor scripts --}}
+@section('vendor-scripts')
+<script src="{{asset('vendors/js/extensions/shepherd.min.js')}}"></script>
 @endsection
-@section('page-script')
-        <!-- Page js files -->
-        <script src="{{ asset(mix('js/scripts/extensions/tour.js')) }}"></script>
+{{-- page scripts --}}
+@section('page-scripts')
+<script src="{{asset('js/scripts/extensions/tour.js')}}"></script>
 @endsection

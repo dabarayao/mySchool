@@ -1,21 +1,49 @@
 // ================================================================================================
-//   File Name: pallette.scss
+//   File Name: palette.scss
 //   Description: Custom color system styles, includes background, border and text colors
 //   ----------------------------------------------------------------------------------------------
-//   Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+//   Item Name: Frest HTML Admin Template
+//   Version: 1.0
 //   Author: PIXINVENT
 //   Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 //  ================================================================================================
 //  WARNING: PLEASE DO NOT CHANGE THIS VARIABLE FILE.
-//  THIS FILE WILL GET OVERWRITTEN WITH EACH VUEXY HTML TEMPLATE RELEASE.
+//  THIS FILE WILL GET OVERWRITTEN WITH EACH Frest HTML TEMPLATE RELEASE.
 //  TIP:
 //  We suggest you to use this (assets/scss/colors/palette.scss) file for overriding color variables.
 //  ================================================================================================
 
 // usage: theme-color("name_of_color", "type_of_color")
 // to avoid to repeating map-get($colors, ...)
+
+
+/* Colors CSS */
+/* --------- */
+
+/*------------------------------------------------------------------
+[Table of contents for each color options]
+
+- Text Color
+- Background Color
+- Alert
+- Border
+- Badges
+- Buttons
+- Dropdowns
+- Bullet
+- Pagination
+- Progress bars
+- Chips
+- Divider
+- Timeline
+- Checkboxes & Radio
+- Custom Switches
+- Touchspin
+- Scrumboard
+- Select2
+-------------------------------------------------------------------*/
 
 @function color-function($color, $type) {
   @if map-has-key($colors, $color) {
@@ -48,11 +76,22 @@ $color in $colors {
   @each $color_type,
   $color_value in $color {
     @if $color_type=="base" {
+      /* #{$color_name} Color Style */
+      /* ----------------------- */
+
+      /* Text color */
+      /* ---------- */
       .#{$color_name} {
         color: $color_value !important;
       }
 
-      // background color
+      /* text with light #{$color_name} */
+      .text-light-#{$color_name} {
+        color: rgba($color_value, 0.20) !important;
+      }
+
+      /* Background color */
+      /* ---------------- */
       .bg-#{$color_name} {
         background-color: $color_value !important;
 
@@ -62,28 +101,55 @@ $color in $colors {
         }
       }
 
-      // Alert
-      .alert-#{$color_name} {
-        background: rgba($color_value, 0.2) !important;
-        color: $color_value !important;
-
-        .alert-heading {
-          @include alert-heading-bs($color_value);
-        }
-
-        .alert-link {
-          color: darken($color_value, 5%) !important;
-        }
-      }
-
-      // bg color lighten for rgba - opacity set
+      /* bg color lighten for rgba - opacity set */
       .bg-rgba-#{$color_name} {
-        background: rgba($color_value, 0.15) !important;
+        background: rgba($color_value, 0.20) !important;
+        // alert with light backgound color 
+        &.alert{
+          color: $color_value;
+          &.alert-dismissible {
+            .close {
+              color: $color_value;
+            }
+          }
+        }
       }
 
-      // Border colors
+      /* Alert #{$color_name} */
+      /* ---------------- */
+      .alert{
+        &.alert-#{$color_name} {
+          background: $color_value !important;
+          color: #fff !important;
+          box-shadow: 0 3px 8px 0 rgba($color-value, 0.4);
+          border: none;
+        }
+      }
+
+
+      /* Border #{$color_name} */
+      /* ---------------- */
       .border-#{$color_name} {
         border: 1px solid $color_value !important;
+
+        // select2 - arrow border color according to bg color
+        @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+          .select2-selection__arrow{
+            b{
+              border-color: color-function($color_name, "darken-2") !important;
+            }
+          }
+        }
+
+        // alert icon color with bordered alert
+        &.alert{
+          color: $color_value;
+          &.alert-dismissible {
+            .close {
+              color: $color_value;
+            }
+          }
+        }
       }
 
       .border-top-#{$color_name} {
@@ -101,22 +167,45 @@ $color in $colors {
       .border-right-#{$color_name} {
         border-right: 1px solid $color_value;
       }
-
-      // bagde glow colors
-      .bg-#{$color_name},
-      .border-#{$color_name},
-      .badge-#{$color-name} {
-        &.badge-glow {
-          box-shadow: 0px 0px 10px $color_value;
+      /* Navbar icon stroke color according to bg color */
+      .header-navbar{
+        &.bg-#{$color_name}{
+          .navbar-nav .nav-item > a i{
+            -webkit-text-stroke: 0.2px $color_value !important;
+          }
         }
       }
 
-      // Badge Background Color
+      /* Badges */
+      /* ------ */
       .badge{
         // Badge Background Color
         &.badge-#{$color_name} {
           background-color: $color-value;
         }
+
+        // Badge Light Background
+        &.badge-light-#{$color_name} {
+          background-color: color-function($color_name, "light");
+          color: $color_value !important;
+        }
+        // bagde glow colors
+        &.bg-#{$color_name},
+        &.border-#{$color_name},
+        &.badge-#{$color-name} {
+          &.badge-glow {
+            box-shadow: 0px 0px 10px $color_value;
+          }
+        }
+      }
+      // Badge circle Background Color
+      .badge-circle-#{$color_name}{
+        background-color: $color-value;
+      }
+      // Badge circle Light Background & text color
+      .badge-circle-light-#{$color_name}{
+        background-color: color-function($color_name, "light");
+        color: $color_value;
       }
 
       // Overlay colors
@@ -124,76 +213,91 @@ $color in $colors {
         @include bg-opacity($color_value, 0.6);
       }
 
-      // Basic buttons
+      /* Basic buttons */
+      /* ------------- */
       .btn-#{$color_name} {
-        border-color: color-function($color_name, "darken-2") !important;
+        @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+          border-color: color-function($color_name, "darken-2") !important;
+        }
         background-color: $color_value !important;
         color: #fff;
 
-        &:hover {
-          border-color: color-function($color_name, "darken-1") !important;
-          color: #fff !important;
-          box-shadow: 0 8px 25px -8px rgba($color-value, 1);
+        &:hover,
+        &.hover {
+          @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+            background-color: color-function($color_name, "lighten-1") !important;
+          }
+          color: #fff;
+          &.glow{
+            box-shadow: 0 4px 12px 0 rgba($color_value, 0.6) !important;
+          }
         }
 
         &:focus,
-        &:active {
+        &:active,
+        &.active {
+          @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+            background-color: color-function($color_name, "darken-1") !important;
+          }
+          color: #fff !important;
+        }
+
+        &.glow{
+          box-shadow: 0 2px 4px 0 rgba($color_value, 0.5) !important;
+        }
+
+        &:disabled, &.disabled{
+          color: #fff !important;
+        }
+      }
+      // Buttons Light
+      .btn-light-#{$color_name} {
+        @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+          background-color: color-function($color_name, "light");
+        }
+        color: $color_value !important;
+
+        &:hover,
+        &.hover {
+          @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+            background-color: color-function($color_name, "lighten-1") !important;
+          }
+          color: #fff !important;
+        }
+        &:active,
+        &.active {
+          @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+            background-color: color-function($color_name, "darken-1") !important;
+          }
           color: #fff !important;
         }
       }
 
-      // For Btn Flat
-      .btn-flat-#{$color-name} {
-        background-color: transparent;
-        color: $color-value;
-
-        &:hover {
-          color: $color-value;
-          background-color: rgba($color-value, 0.1);
-        }
-
-        &:active,
-        &:focus {
-          background-color: $color-value;
-          color: #fff !important;
-        }
-      }
-
-      // For Btn Relief
-      .btn-relief-#{$color-name} {
-        background-color: $color-value;
-        box-shadow: inset 0 -3px 0 0 rgba(0, 0, 0, .2);
-        color: #fff;
-
-        &:hover {
-          color: #fff;
-        }
-
-        &:active,
-        &:focus {
-          outline: none;
-          transform: translateY(3px);
-        }
-      }
-
-      // Outline buttons
+      /* Outline buttons */
       .btn-outline-#{$color_name} {
         border: 1px solid $color_value;
         background-color: transparent;
-        color: $color_value;
+        color: $color_value !important;
 
-        &:hover {
-          background-color: rgba($color: $color_value, $alpha: .08);
-          color: $color_value;
+        &:hover,
+        &.hover {
+          @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+            background-color: color-function($color_name, "lighten-1") !important;
+          }
+          color: #fff !important;
         }
-        &:active {
+        &:active,
+        &.active {
+          @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+            background-color: color-function($color_name, "darken-1") !important;
+          }
           color: #fff !important;
         }
       }
 
-      // Dropdowns
-
-      .btn-#{$color_name},.btn-outline-#{$color_name},.btn-flat-#{$color-name}{
+      /* Dropdowns */
+      /* --------- */
+      .btn-#{$color_name},.btn-outline-#{$color_name}{
         &~.dropdown-menu{
             .dropdown-item{
               &.active{
@@ -201,12 +305,6 @@ $color in $colors {
                 color: #fff;
                 &:hover{
                   color: #fff;
-                }
-              }
-
-              &:not(.active):not(:active){
-                &:hover{
-                  color: $color_value;
                 }
               }
           }
@@ -218,18 +316,18 @@ $color in $colors {
       .dropright,
       .dropleft{
         &.dropdown-icon-wrapper{
-          .btn-#{$color_name},.btn-outline-#{$color_name},.btn-flat-#{$color-name}{
+          .btn-#{$color_name},.btn-outline-#{$color_name}{ //,.btn-flat-#{$color-name}{
             &~.dropdown-menu{
               .dropdown-item{
                   &:hover{
-                   i{
-                    color: $color_value;
-                   }
+                    i{
+                      color: $color_value;
+                    }
                 }
                 &:active{
-                    i{
-                      color: #fff;
-                    }
+                  i{
+                    color: #fff;
+                  }
                 }
               }
             }
@@ -237,71 +335,56 @@ $color in $colors {
         }
       }
 
-      // Bullet colors for email app
+      /* Bullet #{$color_name} */
       .bullet{
         &.bullet-#{$color_name}{
           background-color: $color_value;
         }
       }
 
-      // For Pagination
-
+      /* For Pagination */
+      /* -------------- */
       .pagination-#{$color-name} {
+        // Active page-item
         .page-item {
-          &.active {
+          &.active{
+            .page-link, .page-link:hover {
+              background: $color_value !important;
+              color: #fff;
+            }
+          }
+          // page-Link hover Color
+          @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
             .page-link {
-              background: $color-value;
-              color: #fff;
-
               &:hover {
-                color: #fff;
+                background-color: color-function($color_name, "light") !important;
               }
-
             }
           }
-
-          .page-link {
-            &:hover {
+          // prev - next buttons in page-item
+          &.previous,
+          &.next {
+            .page-link{
               color: $color_value;
-            }
-          }
-
-          &.prev-item,
-          &.next-item {
-            .page-link:hover {
-              background: $color_value;
-              color: #fff;
-
+              &:hover {
+                background: $color_value;
+              }
             }
           }
         }
       }
 
-      // For Nav Pills
-
-      .nav-pill-#{$color-name} {
-        .nav-item {
-          .nav-link {
-
-            &.active {
-              color: #fff;
-              background-color: $color_value !important;
-            }
-          }
-        }
-      }
-
-      // Progress Bars
-
+      /* Progress Bars #{$color-name} */
+      /* ---------------------- */
       .progress-bar-#{$color_name} {
-        background-color: rgba($color_value, .1);
-
         .progress-bar {
           background-color: $color-value;
+          box-shadow: 0 2px 6px 0 rgba($color-value, 0.6);
         }
       }
 
-      // Chips
+      /* Chips #{$color-name} */
+      /* ---------------- */
 
       .chip-#{$color-name}{
         background-color: $color_value !important;
@@ -310,72 +393,166 @@ $color in $colors {
         }
       }
 
-      // Divider
+      /* Divider #{$color-name} */
+      /* ---------------*/
 
       .divider.divider-#{$color-name}{
         .divider-text{
-          &:before,&:after{
+          &:before,
+          &:after{
             border-color: $color-value !important;
           }
         }
       }
 
-      // Form Input Elements
-      // Checkbox & Radio
-      input {
+      /* timeline */
+      .widget-timeline{
+        li{
+          &.timeline-items{
+            &.timeline-icon-#{$color-name}{
+              &:before{
+                background: $color_value !important;
+              }
+            }
+          }
+        }
+      }
 
+
+      /* Custom Checkbox & Radio - Colored */
+      /* --------------------------------- */
+      input {
         &[type="checkbox"].bg-#{$color_name},
         &[type="radio"].bg-#{$color_name} {
           +.custom-control-label {
             &:before {
               background-color: $color_value !important;
+              @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+                border-color: color-function($color_name, "darken-2") !important;
+              }
             }
           }
         }
       }
 
-      input:focus~.bg-#{$color_name} {
-        box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.21rem $color_value !important;
-      }
-
-      // Vuexy Custom Checkbox
-      .vs-checkbox-#{$color_name} {
-        input{
-          &:checked~.vs-checkbox{
-            border-color: $color_value !important;
-            .vs-checkbox--check{
-              background-color: $color_value !important;
+      // bootstrap Checkboxes and Radio Buttons with color option
+      .checkbox, .radio{
+        &.checkbox-#{$color_name}, &.radio-#{$color_name} {
+          input{
+            &:checked~label::before{
+              background-color: $color_value;
+              border-color: $color_value;
+            }
+            &:checked~label::after{
+              border-color: #fff;
             }
           }
-          &:active:checked+.vs-checkbox .vs-checkbox--check{
-            background-color: $color_value !important;
+          // Checkbox / Radio with glow
+          &.checkbox-glow, &.radio-glow{
+            input{
+              &:checked~label::before{
+                box-shadow: 0 0 6px 0 rgba($color_value,.7);
+              }
+            }
+          }
+          // Checkbox with icons
+          &.checkbox-icon{
+            label{
+              i{
+                color: #fff;
+              }
+            }
           }
         }
       }
 
-      // Bootstrap Custom Switches
+      // Colored Checkbox Animation
+      .checkbox{
+        &.checkbox-#{$color_name}{
+          label:after {
+            transition: 250ms ease-in-out;
+          }
+        }
+      }
 
+      // Colored Radio Buttons Bg Color for after
+      .radio{
+        &.radio-#{$color_name} {
+          input{
+            &:checked~label::after{
+              background-color: #fff;
+              transition : all .15s cubic-bezier(.35,.9,.4,.9);
+            }
+          }
+        }
+      }
+
+      /* Bootstrap Custom Switches */
+      /* ------------------------- */
       .custom-switch-#{$color-name}{
         .custom-control-input:checked ~ .custom-control-label::before{
           background-color: $color_value !important;
           color: #fff;
           transition:all .2s ease-out;
         }
+
+        // Custom Switches with Glow
+        &.custom-switch-glow{
+          .custom-control-input:not(:disabled):checked ~ .custom-control-label::before{
+            box-shadow: 0 0 8px 0 rgba($color_value,.8) !important;
+          }
+        }
       }
 
-      // Vuexy Custom Checkbox
-      .vs-radio-#{$color_name} {
-        input{
-          &:checked~.vs-radio{
-            .vs-radio--circle{
-                background: rgba($color_value,1) !important;
-                box-shadow: 0 3px 12px 0 rgba($color_value,.4) !important;
+      /* Touchspin Glow */
+      /* -------------- */
+      .input-group.touchspin-glow{
+        .bootstrap-touchspin-down, .bootstrap-touchspin-up{
+          &.btn-#{$color_name}{
+            box-shadow: 0 0 8px 0 rgba($color_value, 0.8);
+          }
+        }
+      }
+
+      /* Scrumboard Application - kanban-item with coloured border */
+      /* --------------------------------------------------------- */
+      .kanban-container{
+        .kanban-board{
+          .kanban-item{
+            &[data-border=#{$color_name}]{
+              &:before{
+                background-color: $color_value;
+              }
+            }
+          }
+        }
+      }
+      .edit-kanban-item{
+        select{
+          option{
+            &.bg-#{color_name}{
+              background-color: $color_value;
             }
           }
         }
       }
 
-
+      /* Select2 #{$color-name} */
+      /* ---------------*/
+      select{
+        &.select-light-#{$color-name}{
+          ~.select2-container{
+            .select2-selection--multiple .select2-selection__rendered {
+              .select2-selection__choice, .select2-selection__choice__remove{
+                @if (($color-name != "white") and ($color-name != "black") and ($color-name != "dark") and ($color-name != "light")) {
+                  background-color: color-function($color_name, "light") !important;
+                }
+                color: $color_value !important;
+              }
+            }
+          }
+        }
+      }
     }
 
     @else {

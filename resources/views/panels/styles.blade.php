@@ -1,39 +1,40 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600">
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors.min.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/ui/prism.min.css')) }}">
-{{-- Vendor Styles --}}
-@yield('vendor-style')
-{{-- Theme Styles --}}
-<link rel="stylesheet" href="{{ asset(mix('css/bootstrap.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/bootstrap-extended.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/colors.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/components.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/themes/dark-layout.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/themes/semi-dark-layout.css')) }}">
-{{-- {!! Helper::applClasses() !!} --}}
-@php
-$configData = Helper::applClasses();
-@endphp
+{{-- style blade file --}}
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
 
-{{-- Layout Styles works when don't use customizer --}}
+    <!-- BEGIN: Vendor CSS-->
+    @if($configData['direction'] === 'ltr')
+    <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/vendors.min.css')}}">
+    @else
+    <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/vendors-rtl.min.css')}}">
+    @endif
+    @yield('vendor-styles')
+    <!-- END: Vendor CSS-->
 
-{{-- @if($configData['theme'] == 'dark-layout')
-        <link rel="stylesheet" href="{{ asset(mix('css/themes/dark-layout.css')) }}">
-@endif
-@if($configData['theme'] == 'semi-dark-layout')
-<link rel="stylesheet" href="{{ asset(mix('css/themes/semi-dark-layout.css')) }}">
-@endif --}}
-{{-- Page Styles --}}
-@if($configData['mainLayoutType'] === 'horizontal')
-<link rel="stylesheet" href="{{ asset(mix('css/core/menu/menu-types/horizontal-menu.css')) }}">
-@endif
-<link rel="stylesheet" href="{{ asset(mix('css/core/menu/menu-types/vertical-menu.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/core/colors/palette-gradient.css')) }}">
-{{-- Page Styles --}}
-@yield('page-style')
-{{-- Laravel Style --}}
-<link rel="stylesheet" href="{{ asset(mix('css/custom-laravel.css')) }}">
-{{-- Custom RTL Styles --}}
-@if($configData['direction'] === 'rtl' && isset($configData['direction']))
-<link rel="stylesheet" href="{{ asset(mix('css/custom-rtl.css')) }}">
-@endif
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-extended.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/colors.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/themes/dark-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/themes/semi-dark-layout.css')}}">
+    @if($configData['direction'] === 'rtl')
+    <link rel="stylesheet" type="text/css" href="{{asset('css/custom-rtl.css')}}">
+    @endif
+    <!-- END: Theme CSS-->
+
+    <!-- BEGIN: Page CSS-->
+    @if($configData['mainLayoutType'] == 'horizontal-menu')
+    <link rel="stylesheet" type="text/css" href="{{asset('css/core/menu/menu-types/horizontal-menu.css')}}">
+    @else
+    <link rel="stylesheet" type="text/css" href="{{asset('css/core/menu/menu-types/vertical-menu.css')}}">
+    @endif
+    @yield('page-styles')
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    @if($configData['direction'] === 'ltr')
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+    @else
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style-rtl.css')}}">
+    @endif
+    <!-- END: Custom CSS-->

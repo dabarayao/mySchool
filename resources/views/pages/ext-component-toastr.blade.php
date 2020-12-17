@@ -1,15 +1,17 @@
-@extends('layouts/contentLayoutMaster')
+@extends('layouts.contentLayoutMaster')
 
-@section('title', 'Toastr')
+{{-- page title --}}
+@section('title','Toastr')
+{{-- vendor styles --}}
+@section('vendor-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/extensions/toastr.css')}}">
+@endsection
 
-@section('vendor-style')
-        <!-- vendor css files -->
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
+{{-- page styles --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/plugins/extensions/toastr.css')}}">
 @endsection
-@section('page-style')
-        <!-- Page css files -->
-        <link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/toastr.css')) }}">
-@endsection
+
 @section('content')
 <!-- Types section start -->
 <section id="types">
@@ -160,11 +162,11 @@
 <!-- // Animation section end -->
 @endsection
 
-@section('vendor-script')
-        <!-- vendor files -->
-        <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+{{-- vendor scripts --}}
+@section('vendor-scripts')
+<script src="{{asset('vendors/js/extensions/toastr.min.js')}}"></script>
 @endsection
-@section('page-script')
-        <!-- Page js files -->
-        <script src="{{ asset(mix('js/scripts/extensions/toastr.js')) }}"></script>
+{{-- page scripts --}}
+@section('page-scripts')
+<script src="{{asset('js/scripts/extensions/toastr.js')}}"></script>
 @endsection

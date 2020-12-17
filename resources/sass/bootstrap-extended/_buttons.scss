@@ -1,158 +1,51 @@
-// var for boxshadow of gradient buttons
-// Buttons
+/*    Buttons css   */
+/*-----------------*/
 .btn {
-  // to change cursor of disabled button
-  &:disabled{
-    cursor: default;
-  }
-  // for white button
-  &.btn-white{
-    color: $body-color;
-    &:hover,&:focus,&:active{
-      color: $body-color !important;
-    }
-  }
-
-  // box shadow for gradient colors
-  &[class*="bg-gradient-"]:hover{
-    box-shadow: $gradient-button-bs;
-  }
-
-  // For Boxshadow on hover of normal light, dark and secondary btn
-  &.btn-secondary {
-    color: $white;
-    &:hover {
-      box-shadow: 0 8px 25px -8px rgba($secondary, 1);
-    }
-  }
-  &.btn-dark {
-    &:hover {
-      box-shadow: 0 8px 25px -8px rgba($dark, 1);
-    }
-  }
-  &.btn-light {
-    &:hover {
-      box-shadow: 0 8px 25px -8px rgba($light, 1);
-    }
-  }
-
-  // For Light,dark and secondary outline btns
-  &.btn-outline-secondary,
-  &.btn-outline-dark,
-  &.btn-outline-light {
-    border: 1px solid;
-  }
-
-  // Flat Secondary, Light and Dark
-  &.btn-flat-secondary {
-    &:hover {
-      background-color: rgba($secondary, 0.1);
-    }
-    &:active,
-    &:focus {
-      background: $secondary
-    }
-  }
-
-  &.btn-flat-dark {
-    &:hover {
-      background-color: rgba($dark, 0.1);
-    }
-    &:active,
-    &:focus {
-      background: $dark;
-      color: $white;
-    }
-  }
-
-  &.btn-flat-light {
-    &:hover {
-      background-color: rgba($light, 0.1);
-    }
-    &:active,
-    &:focus {
-      background: $light;
-    }
-  }
-
   // to remove extra spacing because of border in btn outline
   &[class*="btn-outline-"]{
     padding-top: calc(#{$btn-padding-y} - 1px);
     padding-bottom: calc(#{$btn-padding-y} - 1px);
+    // btn-lg padding from top-bottom
+    &.btn-lg{
+      padding-top: calc(#{$btn-padding-y-lg} - 1px);
+      padding-bottom: calc(#{$btn-padding-y-lg} - 1px);
+    }
+    // btn-sm padding from top-bottom
     &.btn-sm{
-      padding-top: calc(0.5rem - 1px);
-      padding-bottom: calc(0.5rem - 1px);
+      padding-top: calc(#{$btn-padding-y-sm} - 1px);
+      padding-bottom: calc(#{$btn-padding-y-sm} - 1px);
     }
   }
-
-  // Relief Buttons Secondary, Light and Dark
-  &.btn-relief-secondary {
-    background-color: $secondary;
-    box-shadow: inset 0 -3px 0 0 rgba($pure-black, .2);
-    color: $white;
-
-    &:hover {
-      color: $white;
-    }
-
-    &:active,
-    &:focus {
-      outline: none;
-      transform: translateY(3px);
+  i{
+    /* Button with icons - make it in center */
+    position: relative;
+    top: 3px;
+  }
+  &.btn-white, &.btn-white:active, &.btn-white:hover, &.btn-white:focus{
+    /* btn-white - color on different states */
+    color: inherit !important;
+  }
+  // For btn shadow on hover
+  &.shadow{
+    &:hover, &.hover {
+      box-shadow: 0 4px 12px 0 rgba($black, 0.2) !important;
     }
   }
-  &.btn-relief-light {
-    box-shadow: inset 0 -3px 0 0 rgba(0, 0, 0, .2);
-    color: $white;
-
-    &:hover {
-      color: $white;
-    }
-
-    &:active,
-    &:focus {
-      outline: none;
-      transform: translateY(3px);
-    }
-  }
-  &.btn-relief-dark {
-    background-color: $dark;
-    box-shadow: inset 0 -3px 0 0 rgba(255, 255, 255, .1);
-    color: $white;
-
-    &:hover {
-      color: $white;
-    }
-
-    &:active,
-    &:focus {
-      outline: none;
-      transform: translateY(3px);
-    }
-  }
-
-  // For btn-icon
   &.btn-icon {
-    padding: .715rem .736rem;
+    /* For btn-icon */
+    padding: 0.4rem 0.6rem;
   }
+  // For btn-icon in btn-sm
   &.btn-sm{
     &.btn-icon{
       padding: .5rem;
     }
   }
+  // For btn-icon in btn-lg
   &.btn-lg{
     &.btn-icon{
       padding: 1rem;
     }
-  }
-
-  // Remove focus/active focus outline
-  &.btn-square {
-    @include button-square-variant(0);
-  }
-
-  &.btn-round {
-    @include button-round-variant(2rem);
   }
 
   &:focus,
@@ -162,49 +55,20 @@
     outline: none;
     box-shadow: none !important;
   }
-  &.btn-icon {
-    i {
-      font-size: 1.1rem;
+}
+
+/*   Button Group  */
+/*----------------*/
+.btn-group:not(.dropdown){
+  > .btn{
+    border: 1px solid $border-color;
+    &:not(:last-child){
+      border-right-width: 0;
     }
-
-  }
-}
-
-// For White Btn
-.btn.btn-outline-white,
-.btn-white{
-  &:hover{
-    color: $black !important;
-  }
-
-}
-
-// Added cursor pointer as in latest bootstrap do not have this
-button,
-html [type="button"],
-[type="reset"],
-[type="submit"] {
-  cursor: pointer;
-}
-
-
-// For Waves Input Padding
-.btn.waves-input-wrapper{
-  padding: 0;
-
-  input{
-    padding: $btn-padding-y $btn-padding-x;
-  }
-
-  &.btn-lg {
-    input{
-      padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
-    }
-  }
-
-  &.btn-sm {
-    input{
-      padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
+    &:active,&.active,&:hover,&:focus{
+      background-color: $primary;
+      color: $white;
+      border-color: $primary;
     }
   }
 }

@@ -4,7 +4,8 @@
 	It support light & dark version, filpped layout, right side icons, borders menu for
 	item seperation.
 	----------------------------------------------------------------------------------------
-	Item Name:  Vusax - Vuejs, HTML & Laravel Admin Dashboard Template
+	Item Name: Stack - Responsive Admin Theme
+	Version: 3.2
 	Author: PIXINVENT
 	Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
@@ -24,170 +25,115 @@
 // Import first main menu mixin
 @import "../../mixins/main-menu-mixin";
 
+
 // Horizontal Menu
 //=========================
 .horizontal-menu{
+  // When page Scroll down
+  .is-sticky{
+    .header-navbar{
+      box-shadow: 0px 4px 12px 0 rgba(25, 42, 70, 0.13);
+    }
+  }
+  &.navbar-sticky {
+    top: 0;
+    .header-navbar{
+      position: fixed;
+      width: 100%;
+    }
+    .content{
+      > .content-wrapper{
+        margin-top: 8.75rem !important;
+      }
+    }
+  }
+  &.navbar-static{
+    .header-navbar.navbar-sticky{
+      position: sticky;
+      top: 0;
+    }
+    .content{
+      > .content-wrapper{
+        margin-top: 0;
+      }
+    }
+    &.navbar-scrolled  {
+      .header-navbar.navbar-sticky{
+        position: fixed;
+      }
+    }
+  }
+
   //-------------------//
   // Content Area margin
   //-------------------//
   .content{
     margin-left: 0;
-    .content-wrapper{
-      margin-top: 0 !important;
-    }
-  }
-  footer{
-    position: static;
-  }
-
-  &.navbar-floating{
-    &:not(.blank-page){
-      .app-content{
-        padding-top: 9.75rem;
-      }
-    }
-    .horizontal-menu-wrapper{
-      background: linear-gradient(to bottom, rgba(248, 248, 248, 0.95) 44%, rgba(248, 248, 248, 0.46) 73%, rgba(255, 255, 255, 0) 100%);
-      background-repeat: repeat-x;
-      .navbar-horizontal.floating-nav{
-        margin: 1.3rem 2.2rem 0;
-      }
-    }
-  }
-  &.dark-layout{
-    .header-navbar{
-      background: inherit !important;
-    }
-    .horizontal-menu-wrapper{
-      background: linear-gradient(to bottom, rgba(37, 43, 71, 0.76) 44%, rgba(56, 53, 53, 0.46) 73%, rgba(255, 255, 255, 0) 100%);
-      .header-navbar{
-        background: $menu-dark-bg-color !important;
-        &.navbar-horizontal{
-          ul#main-menu-navigation > li:hover:not(.active) > a{
-            background: $content-dark-bg;
-          }
-        }
-      }
-    }
-  }
-  &.semi-dark-layout{
-    .header-navbar{
-      background: linear-gradient(to bottom, rgba(37, 43, 71, 0.76) 44%, rgba(56, 53, 53, 0.46) 73%, rgba(255, 255, 255, 0) 100% );
-    }
-    .horizontal-menu-wrapper{
-      .header-navbar{
-        background: $menu-dark-bg-color !important;
-        &.navbar-horizontal{
-          ul#main-menu-navigation > li:hover > a{
-            background: $content-dark-bg;
-          }
-        }
-        i,span,.nav-link{
-          color: $theme-dark-text-color;
-        }
-      }
-      .dropdown-menu{
-        background-color: $content-dark-bg;
-      }
-    }
-  }
-  &.navbar-sticky{
-    .app-content{
-      padding-top: 8.5rem;
-    }
-    .header-navbar{
-      background-color: $body-bg;
-    }
-    .horizontal-menu-wrapper{
-      .navbar-horizontal.header-navbar.fixed-top{
-        left: 0;
-        top: 62px;
-        background-color: $white;
-      }
-    }
-  }
-  &.navbar-static{
-    .app-content{
-      padding-top: 2.5rem !important;
-    }
-    .header-navbar{
-      background-color: $body-bg;
-      .navbar-wrapper{
-        width: 100%;
-      }
-    }
-    .horizontal-menu-wrapper{
-      position: relative;
-      .navbar-horizontal.header-navbar{
-        background: $white;
-        &.navbar-static-top{
-          position: static;
-          background: $white;
-          left: 0;
-        }
-      }
-    }
   }
   //---------------//
   // Navbar Header //
   //---------------//
-  .horizontal-menu-wrapper{
-    position: fixed;
-    top: 62px;
-    z-index: 990;
-    width: 100%;
-    height: 99px;
-    .header-navbar{
-      .navbar-container{
-        padding-left: 1rem;
-        padding-right: 1rem;
-        width: 100%;
-      }
-      .navbar-header{
-        display: none;
-      }
-    }
-  }
   .header-navbar{
-    background: $white;
+    background-color: $body-bg;
+    border-bottom : 1px solid $border-color;
     z-index: 999 !important;
-    line-height: 1;
-    min-height: auto;
-    // Navbar- Brand Center - Logo
-    &.navbar-horizontal.floating-nav{
-      width: calc(100vw - (100vw - 100%) - calc(#{$content-padding} * 2));
-      background: $white;
+    left: 0 !important;
+    // navbar-container
+    .navbar-container {
+      padding-left: 1.5rem !important;
+      padding-right: 1.3rem !important;
+      .bookmark-wrapper{
+        .menu-toggle{
+          top: 2px;
+        }
+      }
+      a.nav-link-expand {
+        padding: 1.2rem 0.75rem 1.15rem 0.75rem !important;
+      }
     }
-    .navbar-container{
-      padding-left: #{$content-padding};
-      padding-right: calc(#{$content-padding} - 1rem);
-      border-radius: $border-radius;
+    // navbar-wrapper
+    .navbar-wrapper{
+      margin-left: 0 !important;
+      .nav-search{
+        .search-input{
+          input{
+            padding: 1.7rem 3.6rem !important;
+          }
+        }
+      }
     }
-    &.navbar-fixed{
+    &.navbar-horizontal{
+      top: 68px;
       position: fixed;
       width: 100%;
+      z-index: 99 !important;
+      &.navbar-static-top{
+        position: absolute !important;
+      }
     }
-    &.navbar-brand-center{
-      .navbar-header{
+    // Navbar- Brand Center - Logo
+    &.navbar-brand-center {
+      .navbar-header {
         position: absolute;
         left: 50%;
         margin-left: -65px;
         padding: 0;
         z-index: 1000;
-        .navbar-brand{
+        .navbar-brand  {
           display: flex;
           align-items: center;
           margin-right: 0;
           // Brand Logo Scss
-          .brand-logo{
-            background: url("../images/logo/vuexy-logo.png") no-repeat;
-            background-position: -65px -54px;
-            height: 24px;
-            width: 35px;
+          .brand-logo {
+            height: 30px;
+            width: 30px;
+            .logo{
+              height: 30px;
+            }
           }
 
           // Brand Text Scss
-          .brand-text{
+          .brand-text {
             color: $white;
             padding-left: 1rem;
             letter-spacing: 0.01rem;
@@ -198,194 +144,382 @@
     }
 
     &.navbar-horizontal{
-      .nav-link{
-        &.dropdown-toggle::after{
-          left: 0.4rem;
-        }
-      }
-      .dropdown-menu::before{
-        display: none;
-      }
       .dropdown-menu{
-        min-width: 215px;
-        border: none;
-        margin-top: 0;
-        min-height: 52px;
-        .disabled{
-          pointer-events: none !important;
-          a{
-            color: $gray-600;
+        .dropdown-submenu{
+					position: relative;
+					&.openLeft{
+						.dropdown-menu{
+							left: auto !important;
+							right: 100%;
+						}
           }
         }
-        .dropdown-toggle::after{
-          left: auto;
-          position: absolute;
-          top: 50%;
-          margin-top: -7px;
-          right: 1rem;
-          content: "\e844" !important;
+      }
+    }
+  }
+  //---------------------------------//
+  // Header Navbar Dropdown z-index //
+  //--------------------------------//
+  .navbar-expand-lg {
+    .navbar-nav {
+      .dropdown-menu{
+        z-index: 100;
+      }
+    }
+  }
+
+  //-------------------------//
+  // Main Menu Header Navbar //
+  //-------------------------//
+  .navbar-expand-sm {
+    .navbar-nav {
+      // icon scss for each li
+      .dropdown-menu{
+        li {
+          a {
+            transition: all .35s ease !important;
+            i{
+              margin-right: 0.2rem;
+              font-size: 1rem;
+            }
+          }
+          &:hover{
+            >a{
+              padding-left: 25px;
+            }
+          }
+          // disabled menu item
+          &.disabled{
+            a{
+              cursor: not-allowed;
+            }
+          }
         }
-        .dropdown-item{
-          font-size: 1rem;
-          padding: 0.965rem 1.428rem;
+      }
+      li{
+        // li icon scss
+        i{
+          width: 1.6rem !important;
+          margin-right: 0.4rem;
+        }
+      }
+      // First li spicific scss
+      >li{
+        padding: 10px 0;
+        // li active scss
+        &.active, &.sidebar-group-active{
+          >a{
+            background-color: #e9ecec;
+            border-radius: 4px;
+          }
+        }
+        // li text scss
+        .nav-link{
+          padding-right: .85rem;
+          padding-left: .85rem;
           display: flex;
           align-items: center;
-        }
-        .dropdown-submenu{
-          position: relative;
-          &.openLeft{
-            .dropdown-menu{
-              left: auto;
-              right: 100%;
-            }
-          }
-          &.show{
-            background: $body-bg;
-          }
-          & > .dropdown-menu{
-            position: absolute;
-            top: 0 !important;
-            left: 100% !important;
-            i{
-              font-size: 0.75rem !important;
-            }
+          &:after{
+            left: 0.5rem;
           }
         }
-      }
-      ul#main-menu-navigation > li{
-        padding-top: 0.965rem;
-        padding-bottom: 0.965rem;
-
-        > .dropdown-menu{
-          margin-top: 0.75rem;
-          a{
-            transition: padding 0.35s ease 0s !important;
-            &:hover{
-              padding-left: 25px;
-              transition: padding 0.35s ease 0s !important;
-              background-color: transparent;
-              color: $body-color;
-            }
-          }
-          .active > a{
-            background: $body-bg;
-            color: $primary;
-            font-weight: 500;
-          }
-          .open{
+        // If sub-item of main-menu item is active (Not have sub-menu)
+        li{
+          &:not(.sidebar-group-active){
             &.active{
-              > a{
-                color: $body-color;
-                font-weight: normal;
+              a{
+                background: rgba($primary,.2) !important;
+                color:$primary !important;
+                border-left: 4px solid $primary;
+                padding-left: 1rem !important;
+                i{
+                  color: $primary;
+                }
+              }
+            }
+          }
+          // If sub-item of main-menu item is active (It has sub-menu)
+          &.sidebar-group-active{
+            background-color: #f2f4f4;
+            >a{
+              >i{
+                color: $primary !important;
+              }
+            }
+            .dropdown-menu{
+              // active menu-item of of Sub-menu
+              li{
+                &:not(.sidebar-group-active){
+                  &.active{
+                    a{
+                      background: rgba($primary,.2);
+                      color:$primary;
+                      border-left: 4px solid $primary;
+                      padding-left: 1.4rem;
+                      i{
+                        color: $primary;
+                      }
+                    }
+                  }
+                }
               }
             }
           }
         }
-        i{
-          font-size: 1.11rem;
-          margin-right: 0.75rem;
-        }
-        > a{
-          padding: 0.75rem 1.25rem 0.75rem 1.25rem;
-          display: flex;
-          margin-right: 0.5rem;
-        }
-        &:hover{
-          > a{
-            background: $body-bg;
-            border-radius: 4px;
+      }
+      // Menu Dropdown scss
+      .dropdown{
+        &.show{
+          // first dropdown display block with animation
+          >.dropdown-menu {
+            animation: 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
           }
         }
-        &.active{
-          > a{
-            background: linear-gradient(118deg, rgba($primary, 1), rgba($primary, 0.7));
-            box-shadow: 0px 0px 6px 1px rgba($primary, 0.6);
-            color: $white;
-            border-radius: 4px;
+        // dropdown menu
+        .dropdown-menu {
+          min-width: 270px;
+          border: 1px solid $border-color;
+          padding: 0.7rem 0;
+          // dropdown menu - default up arrow display none
+          &:before{
+            border: none;
+            background-color: transparent;
+          }
+          // dropdown submenu display block with animation
+          .dropdown-submenu{
+            &.show{
+              >.dropdown-menu{
+                display: block;
+                top: 0 !important;
+                left: 100%;
+                margin-top: 4px;
+                margin-left: 1px;
+                animation: 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadeout;
+              }
+            }
+            // dropdown submenu - right arrow
+            .dropdown-toggle{
+              &:after{
+                content: "\ea1d" !important;
+                font-family: 'boxicons';
+                font-size: 1rem;
+                color: #8494a7;
+                display: inline-block;
+                right: 18px;
+                top: 11px;
+                left: auto;
+                position: absolute;
+              }
+            }
+            // Next dropdown Submenu of dropdown-submenu
+            ul{
+              li{
+                a{
+                  i{
+                    margin-right: 0;
+                    font-size: 1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+        // Dropdown Item
+        .dropdown-item{
+          text-transform: capitalize;
+          font-size: 1rem;
+          padding: 0.7rem 1.3rem;
+          // remove default bg-color and color from all dropdown item
+          &:active, &:focus, &:hover{
+            background-color: transparent;
+            color: inherit;
+            i{
+              color: inherit;
+            }
+          }
+        }
+        // dropdown down arrow - For Main Menu Items
+        .dropdown-toggle{
+          &:after{
+            content: "\ea17";
+            font-family: 'boxicons';
+            font-size: 1.2rem;
+            color: #8494a7;
+            display: inline-block;
+            right: 15px;
           }
         }
       }
     }
   }
-  &.menu-collapsed{
-    #main-menu-navigation{
-      .nav-item{
-        > a span{
-          display: none;
+  // Main-menu scss when horizontal menu-collapsed
+	&.menu-collapsed{
+		#main-menu-navigation{
+			>li{
+				.nav-link {
+          padding-top: 0.6rem;
+          padding-bottom: 0.6rem;
+          span, &:after{
+            display: none;
+          }
+          i{
+            margin-right: 0;
+          }
         }
+			}
+		}
+  }
+  &.email-application,
+  &.chat-application,
+  &.todo-application,
+  &.file-manager-application{
+    .content{
+      .content-wrapper{
+        height: calc(100vh - 15rem) !important;
       }
     }
   }
-  .navigation-header{
-    font-family: inherit;
-    color: #929292;
-    padding: 8px 20px;
-    font-size: 1rem;
-    text-transform: uppercase;
+  &.navbar-sticky{
+    .content{
+      .content-area-wrapper{
+        padding-top: 0;
+        margin-top: 10rem !important;
+      }
+    }
+  }
+  // Email Application
+  &.email-application .content-area-wrapper {
+    .content-right .email-app-list-wrapper .email-app-list .email-user-list{
+      height: calc(100vh - 19.67rem);
+    }
+    .email-app-sidebar .email-app-menu .form-group-compose{
+      margin-bottom:0 !important;
+    }
+    .sidebar .email-app-sidebar{
+      height: calc(100vh - 15rem);
+      .email-app-menu .sidebar-menu-list{
+        height: calc(100% - 6.4rem);
+      }
+    }
+    .sidebar .compose-new-mail-sidebar{
+      height: calc(100vh - 15rem);
+    }
+    .content-right .email-app-details .email-scroll-area .email-detail-head .collapse-header .card-header .information .dropdown-menu{
+      transform: translate3d(11px, 1px, 0px) !important;
+    }
   }
 
-  .navbar-dark{
-    .nav-item{
-      &.active > a{
-        border-bottom: 2px solid $primary;
-        background-color: #313c50;
+  // Chat Application
+  &.chat-application {
+    .chat-user-profile,
+    .chat-profile,
+    .chat-sidebar{
+      height: calc(100vh - 15rem);
+      .chat-user-profile-scroll, .chat-profile-content{
+        height: calc(100vh - 28.5rem) !important;
+      }
+    }
+    .chat-profile{
+          bottom: 5rem;
+    }
+    .chat-window-wrapper{
+      .chat-container{
+        height: calc(100vh - 23.6rem);
+      }
+      .chat-start{
+        height: calc(100vh - 15rem);
       }
     }
   }
-  // App related CSS for Horizontal
-	.content.app-content .content-area-wrapper{
-		margin-top: 2.2rem;
-		.content-wrapper{
-      height: calc(100vh - 16rem);
-      height: calc(var(--vh, 1vh) * 100 - 16rem);
-		}
-	}
-  &.chat-application .sidebar-content,
-  &.email-application .content-area-wrapper .sidebar .email-app-sidebar,
-  &.todo-application .content-area-wrapper .sidebar .todo-sidebar{
-		height: calc(100vh - 16rem);
-    height: calc(var(--vh, 1vh) * 100 - 16rem);
-  }
-  &.todo-application .content-area-wrapper .content-right .todo-task-list{
-		height: calc(100vh - 19.5rem);
-    height: calc(var(--vh, 1vh) * 100 - 19.5rem);
-  }
-  &.email-application .app-content .content-area-wrapper .email-user-list{
-		height: calc(100vh - 23.3rem);
-    height: calc(var(--vh, 1vh) * 100 - 23.3rem);
-  }
-  &.chat-application{
-    .user-profile-sidebar{
-      height: calc(100vh - 16.1rem);
-      height: calc(var(--vh, 1vh) * 100 - 16.1rem);
-      bottom: 4.1rem;
+
+  // Todo Application
+  &.todo-application .content-area-wrapper {
+    .todo-new-task-sidebar{
+      height: calc(100vh - 15rem);
+      bottom: 5rem;
     }
-    .chat-profile-sidebar{
-      height: calc(100vh - 16rem);
-      height: calc(var(--vh, 1vh) * 100 - 16rem);
+    .sidebar .todo-sidebar{
+      height: calc(100vh - 15rem);
     }
-    .chat-app-window .user-chats{
-      height: calc(100vh - 26.5rem);
-      height: calc(var(--vh, 1vh) * 100 - 26.5rem);
+    .content-right .todo-app-list-wrapper .todo-app-list .todo-task-list{
+      height: calc(100vh - 18.7rem);
+    }
+  }
+
+  // File Manager
+  &.file-manager-application .content-area-wrapper{
+    .sidebar .app-file-sidebar{
+      height: calc(100vh - 14rem);
+    }
+    .content-right .app-file-area .app-file-content{
+      height: calc(100vh - 17.85rem);
+    }
+    .sidebar .app-file-sidebar-info{
+      height: calc(100vh - 14rem);
+      bottom: 4rem;
     }
   }
 }
 
-// Initially menu & content width for md and down screen
-@include media-breakpoint-down(lg){
-  body.horizontal-layout{
-    &.horizontal-menu{
-      .horizontal-menu-wrapper{
-        .header-navbar{
-          display: none;
+@keyframes fadein {
+  from {
+    transform: translate3d(0,6px,0);
+    opacity: 0
+  }
+  to {
+    transform: translate3d(0,0,0);
+    opacity: 1
+  }
+}
+@keyframes fadeout {
+  from {
+    transform: translate3d(0,-6px,0);
+    opacity: 0
+  }
+  to {
+    transform: translate3d(0,0,0);
+    opacity: 1
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .horizontal-layout{
+    .header-navbar{
+      // navbar-wrapper
+      .navbar-container {
+        padding-left: 1.5rem !important;
+        padding-right: 1rem !important;
+        .bookmark-wrapper{
+          .menu-toggle{
+            top: 2px;
+          }
+        }
+        a.nav-link-expand {
+          padding: 1.2rem 0.75rem 1.15rem 0.75rem !important;
         }
       }
     }
-		.header-navbar{
-			background: $white;
-		}
-    .content .content-wrapper{
-      margin-top: 5rem;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .horizontal-layout{
+    .header-navbar{
+      // navbar-wrapper
+      .navbar-container {
+        padding-left: 1.8rem !important;
+      }
+    }
+  }
+}
+@media (max-width: 576px){
+  .horizontal-layout{
+    .header-navbar{
+      // navbar-wrapper
+      .navbar-container {
+        padding-left: 1rem !important;
+        padding-right: 0.2rem !important;
+      }
     }
   }
 }

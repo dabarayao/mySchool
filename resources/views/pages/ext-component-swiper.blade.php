@@ -1,14 +1,15 @@
-@extends('layouts/contentLayoutMaster')
+@extends('layouts.contentLayoutMaster')
 
-@section('title', 'swiper')
-
-@section('vendor-style')
-        <!-- vendor css files -->
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/swiper.min.css')) }}">
+{{-- page title --}}
+@section('title','Swiper')
+{{-- vendor styles --}}
+@section('vendor-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/extensions/swiper.min.css')}}">
 @endsection
-@section('page-style')
-        <!-- Page css files -->
-        <link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/swiper.css')) }}">
+
+{{-- page styles --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/plugins/extensions/swiper.css')}}">
 @endsection
 
 @section('content')
@@ -22,20 +23,16 @@
       <div class="card-body">
         <div class="swiper-default swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-1.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> 
+              <img class="img-fluid" src="{{asset('images/banner/banner-1.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-2.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-2.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-4.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-4.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-13.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-13.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-7.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-7.jpg')}}" alt="banner">
             </div>
           </div>
         </div>
@@ -55,20 +52,15 @@
       <div class="card-body">
         <div class="swiper-navigations swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-7.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-7.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-4.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-4.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-14.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-14.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-3.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-3.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-2.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-2.jpg')}}" alt="banner">
             </div>
           </div>
           <!-- Add Arrows -->
@@ -77,7 +69,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 </section>
 <!-- navigations swiper ends -->
 
@@ -91,20 +83,15 @@
       <div class="card-body">
         <div class="swiper-paginations swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-12.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-12.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-9.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-9.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-8.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-8.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-7.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-7.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-20.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-20.jpg')}}" alt="banner">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -126,20 +113,15 @@
       <div class="card-body">
         <div class="swiper-progress swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-8.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-8.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-7.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-7.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-20.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-20.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-5.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-5.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-4.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-4.jpg')}}" alt="banner">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -164,20 +146,15 @@
       <div class="card-body">
         <div class="swiper-multiple swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-31.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-31.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-32.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-32.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-33.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-33.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-34.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-34.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-35.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-35.jpg')}}" alt="banner">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -199,36 +176,26 @@
       <div class="card-body">
         <div class="swiper-multi-row swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-26.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-39.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-28.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-29.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-30.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-31.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-32.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-33.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-34.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-35.jpg') }}"
-                alt="banner">
-            </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-26.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-39.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-28.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-29.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-30.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-31.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-32.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-33.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-34.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-35.jpg')}}" alt="banner">
+              </div>
           </div>
           <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
@@ -249,19 +216,19 @@
       <div class="card-body">
         <div class="swiper-centered-slides swiper-container p-1">
           <div class="swiper-wrapper">
-            <div class="swiper-slide rounded swiper-shadow"> <i class="feather icon-gitlab font-large-1"></i>
+            <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-google font-large-1"></i>
               <div class="swiper-text pt-md-1 pt-sm-50">Getting Started</div>
             </div>
-            <div class="swiper-slide rounded swiper-shadow"> <i class="feather icon-facebook font-large-1"></i>
+            <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-facebook font-large-1"></i>
               <div class="swiper-text pt-md-1 pt-sm-50">Pricing & Plans</div>
             </div>
-            <div class="swiper-slide rounded swiper-shadow"> <i class="feather icon-twitter font-large-1"></i>
+            <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-twitter font-large-1"></i>
               <div class="swiper-text pt-md-1 pt-sm-50">Sales Question</div>
             </div>
-            <div class="swiper-slide rounded swiper-shadow"> <i class="feather icon-instagram font-large-1"></i>
+            <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-instagram font-large-1"></i>
               <div class="swiper-text pt-md-1 pt-sm-50">Usage Guides</div>
             </div>
-            <div class="swiper-slide rounded swiper-shadow"> <i class="feather icon-github font-large-1"></i>
+            <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-google font-large-1"></i>
               <div class="swiper-text pt-md-1 pt-sm-50">General Guide</div>
             </div>
           </div>
@@ -286,23 +253,23 @@
         <div class="swiper-centered-slides-2 swiper-container p-1">
           <div class="swiper-wrapper">
             <div class="swiper-slide rounded swiper-shadow py-1 px-3 d-flex">
-              <i class="feather icon-twitter mr-50 font-medium-3"></i>
+              <i class="bx bxl-google mr-50 font-medium-3"></i>
               <div class="swiper-text">Getting Started</div>
             </div>
             <div class="swiper-slide rounded swiper-shadow py-1 px-3 d-flex">
-              <i class="feather icon-facebook mr-50 font-medium-3"></i>
+              <i class="bx bxl-facebook mr-50 font-medium-3"></i>
               <div class="swiper-text">Pricing & Plans</div>
             </div>
             <div class="swiper-slide rounded swiper-shadow py-1 px-3 d-flex">
-              <i class="feather icon-gitlab mr-50 font-medium-3"></i>
+              <i class="bx bxl-twitter mr-50 font-medium-3"></i>
               <div class="swiper-text">Sales Question</div>
             </div>
             <div class="swiper-slide rounded swiper-shadow py-1 px-3 d-flex">
-              <i class="feather icon-instagram mr-50 font-medium-3"></i>
+              <i class="bx bxl-instagram mr-50 font-medium-3"></i>
               <div class="swiper-text">Usage Guides</div>
             </div>
             <div class="swiper-slide rounded swiper-shadow py-1 px-3 d-flex">
-              <i class="feather icon-github mr-50 font-medium-3"></i>
+              <i class="bx bxl-google mr-50 font-medium-3"></i>
               <div class="swiper-text">General Guide</div>
             </div>
           </div>
@@ -323,20 +290,20 @@
       <div class="card-body">
         <div class="swiper-fade-effect swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-20.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid"
+                    src="{{asset('images/banner/banner-20.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-19.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid"
+                    src="{{asset('images/banner/banner-19.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-18.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid"
+                    src="{{asset('images/banner/banner-18.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-17.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid"
+                    src="{{asset('images/banner/banner-17.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-16.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid"
+                    src="{{asset('images/banner/banner-16.jpg')}}" alt="banner">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -361,17 +328,13 @@
       <div class="card-body">
         <div class="swiper-cube-effect swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-21.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-21.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-22.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-22.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-23.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-23.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-24.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-24.jpg')}}" alt="banner">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -393,32 +356,23 @@
       <div class="card-body">
         <div class="swiper-coverflow swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-35.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-35.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-39.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-39.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-38.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-38.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-37.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-37.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-36.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-36.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-34.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-34.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-33.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-33.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-32.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-32.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-31.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-31.jpg')}}" alt="banner">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -440,23 +394,17 @@
       <div class="card-body">
         <div class="swiper-autoplay swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-20.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-20.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-7.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-7.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-8.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-8.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-9.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-9.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-10.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-10.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-11.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-11.jpg')}}" alt="banner">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -478,49 +426,39 @@
       <h4 class="card-title">Gallery</h4>
     </div>
     <div class="card-content">
-      <div class="card-body">
-        <div class="swiper-gallery swiper-container gallery-top">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-11.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-12.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-13.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-14.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-15.jpg') }}"
-                alt="banner">
-            </div>
+        <div class="card-body">
+          <div class="swiper-gallery swiper-container gallery-top">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-11.jpg')}}" alt="banner">
+                </div>
+                <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-12.jpg')}}" alt="banner">
+                </div>
+                <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-13.jpg')}}" alt="banner">
+                </div>
+                <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-14.jpg')}}" alt="banner">
+                </div>
+                <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-15.jpg')}}" alt="banner">
+                </div>
+              </div>
+              <!-- Add Arrows -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
           </div>
-          <!-- Add Arrows -->
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-        <div class="swiper-container gallery-thumbs">
-          <div class="swiper-wrapper mt-25">
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-11.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-12.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-13.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-14.jpg') }}"
-                alt="banner">
-            </div>
-            <div class="swiper-slide"> <img class="img-fluid" src="{{ asset('images/banner/banner-15.jpg') }}"
-                alt="banner">
+          <div class="swiper-container gallery-thumbs">
+            <div class="swiper-wrapper mt-25">
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-11.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-12.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-13.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-14.jpg')}}" alt="banner">
+              </div>
+              <div class="swiper-slide"> <img class="img-fluid" src="{{asset('images/banner/banner-15.jpg')}}" alt="banner">
+              </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </section>
@@ -536,48 +474,41 @@
       <div class="card-body">
         <!-- Swiper -->
         <div class="swiper-parallax swiper-container">
-          <div class="parallax-bg" data-swiper-parallax="-23%"><img class="img-fluid"
-              src="{{ asset('images/banner/parallax-4.jpg" alt="banner"> </div') }}>
+          <div class="parallax-bg" data-swiper-parallax="-23%"><img class="img-fluid" src="{{asset('images/banner/parallax-4.jpg')}}" alt="banner"> </div>
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="title" data-swiper-parallax="-300">Slide 1</div>
               <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
               <div class="text" data-swiper-parallax="-100">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit,
-                  sit
-                  amet faucibus felis iaculis nec. Nulla laoreet Lorem, ipsum dolor sit amet
-                  consectetur..</p>
+                  sit amet faucibus felis iaculis nec. Nulla laoreet Lorem, ipsum dolor sit amet consectetur..</p>
               </div>
             </div>
             <div class="swiper-slide">
-              <div class="title" data-swiper-parallax="-300" data-swiper-parallax-opacity="0">Slide 2
+                <div class="title" data-swiper-parallax="-300" data-swiper-parallax-opacity="0">Slide 2
               </div>
               <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
               <div class="text" data-swiper-parallax="-100">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit,
-                  sit
-                  amet faucibus felis iaculis nec. Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Veniam reiciendis provident atque quod obcaecati voluptatibus ex qui
-                  repudiandae
-                  sunt dolores. Nulla laoreet justo vitae porttitor porttitor.
-                  Suspendisse in sem justo. Integeo. Aenean feugiat non
-                  eros quis feugiat.</p>
+                    sit amet faucibus felis iaculis nec. Lorem ipsum dolor sit amet consectetur adipisicing
+                    elit. Veniam reiciendis provident atque quod obcaecati voluptatibus ex qui
+                    repudiandae sunt dolores. Nulla laoreet justo vitae porttitor porttitor.
+                    Suspendisse in sem justo. Integeo. Aenean feugiat non eros quis feugiat.
+                </p>
               </div>
             </div>
             <div class="swiper-slide">
-              <div class="title" data-swiper-parallax="-300">Slide 3</div>
-              <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
-              <div class="text" data-swiper-parallax="-100">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit,
-                  sit
-                  amet faucibus felis iaculis nec. Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Veniam reiciendis provident atque quod obcaecati voluptatibus ex qui
-                  repudiandae
-                  sunt dolores. Nulla laoreet justo vitae porttitor porttitor.
-                  Suspendisse in sem justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh
-                  euismod. Aliquam hendrerit lnt ut libero. Aenean feugiat non
-                  eros quis feugiat.</p>
-              </div>
+                <div class="title" data-swiper-parallax="-300">Slide 3</div>
+                <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
+                <div class="text" data-swiper-parallax="-100">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit,
+                      sit amet faucibus felis iaculis nec. Lorem ipsum dolor sit amet consectetur adipisicing
+                      elit. Veniam reiciendis provident atque quod obcaecati voluptatibus ex qui
+                      repudiandae sunt dolores. Nulla laoreet justo vitae porttitor porttitor.
+                      Suspendisse in sem justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh
+                      euismod. Aliquam hendrerit lnt ut libero. Aenean feugiat non eros quis feugiat.
+                  </p>
+                </div>
             </div>
           </div>
           <!-- Add Pagination -->
@@ -604,28 +535,28 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <!-- Required swiper-lazy class and image source specified in data-src attribute -->
-              <img src="{{ asset('images/banner/banner-9.jpg') }}" class="swiper-lazy img-fluid" alt="banner">
+              <img src="{{asset('images/banner/banner-9.jpg')}}" class="swiper-lazy img-fluid" alt="banner">
               <!-- Preloader image -->
               <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
             <div class="swiper-slide">
-              <img src="{{ asset('images/banner/banner-8.jpg') }}" class="swiper-lazy img-fluid" alt="banner">
+              <img src="{{asset('images/banner/banner-8.jpg')}}" class="swiper-lazy img-fluid" alt="banner">
               <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
             <div class="swiper-slide">
-              <img src="{{ asset('images/banner/banner-7.jpg') }}" class="swiper-lazy img-fluid" alt="banner">
+              <img src="{{asset('images/banner/banner-7.jpg')}}" class="swiper-lazy img-fluid" alt="banner">
               <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
             <div class="swiper-slide">
-              <img src="{{ asset('images/banner/banner-20.jpg') }}" class="swiper-lazy img-fluid" alt="banner">
+              <img src="{{asset('images/banner/banner-20.jpg')}}" class="swiper-lazy img-fluid" alt="banner">
               <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
             <div class="swiper-slide">
-              <img src="{{ asset('images/banner/banner-5.jpg') }}" class="swiper-lazy img-fluid" alt="banner">
+              <img src="{{asset('images/banner/banner-5.jpg')}}" class="swiper-lazy img-fluid" alt="banner">
               <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
             <div class="swiper-slide">
-              <img src="{{ asset('images/banner/banner-4.jpg') }}" class="swiper-lazy img-fluid" alt="banner">
+              <img src="{{asset('images/banner/banner-4.jpg')}}" class="swiper-lazy img-fluid" alt="banner">
               <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
           </div>
@@ -652,32 +583,23 @@
       <div class="card-body">
         <div class="swiper-responsive-breakpoints swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"><img class="img-fluid" src="{{ asset('images/banner/banner-30.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"><img class="img-fluid" src="{{asset('images/banner/banner-30.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"><img class="img-fluid" src="{{ asset('images/banner/banner-31.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"><img class="img-fluid" src="{{asset('images/banner/banner-31.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"><img class="img-fluid" src="{{ asset('images/banner/banner-32.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"><img class="img-fluid" src="{{asset('images/banner/banner-32.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"><img class="img-fluid" src="{{ asset('images/banner/banner-33.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"><img class="img-fluid" src="{{asset('images/banner/banner-33.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"><img class="img-fluid" src="{{ asset('images/banner/banner-34.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"><img class="img-fluid" src="{{asset('images/banner/banner-34.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"><img class="img-fluid" src="{{ asset('images/banner/banner-35.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"><img class="img-fluid" src="{{asset('images/banner/banner-35.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"><img class="img-fluid" src="{{ asset('images/banner/banner-36.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"><img class="img-fluid" src="{{asset('images/banner/banner-36.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"><img class="img-fluid" src="{{ asset('images/banner/banner-37.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"><img class="img-fluid" src="{{asset('images/banner/banner-37.jpg')}}" alt="banner">
             </div>
-            <div class="swiper-slide"><img class="img-fluid" src="{{ asset('images/banner/banner-38.jpg') }}"
-                alt="banner">
+            <div class="swiper-slide"><img class="img-fluid" src="{{asset('images/banner/banner-38.jpg')}}" alt="banner">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -708,7 +630,7 @@
         </div>
         <p class="text-center">
           <a href="#" class=" btn btn-primary prepend-2-slides font-small-3 mr-md-1 mb-md-0 mb-1">Prepend 2
-            Slides</a>
+              Slides</a>
           <a href="#" class=" btn btn-primary slide-1 font-small-3 mr-md-1 mb-md-0 mb-1">Slide 1</a>
           <a href="#" class=" btn btn-primary slide-250 font-small-3 mr-md-1 mb-md-0 mb-1">Slide 250</a>
           <a href="#" class=" btn btn-primary slide-500 font-small-3 mr-md-1 mb-md-0 mb-1">Slide 500</a>
@@ -719,14 +641,12 @@
   </div>
 </section>
 <!-- virtual slides swiper ends -->
-
 @endsection
-
-@section('vendor-script')
-        <!-- vendor files -->
-        <script src="{{ asset(mix('vendors/js/extensions/swiper.min.js')) }}"></script>
+{{-- vendor scripts --}}
+@section('vendor-scripts')
+<script src="{{asset('vendors/js/extensions/swiper.min.js')}}"></script>
 @endsection
-@section('page-script')
-        <!-- Page js files -->
-        <script src="{{ asset(mix('js/scripts/extensions/swiper.js')) }}"></script>
+{{-- page scripts --}}
+@section('page-scripts')
+<script src="{{asset('js/scripts/extensions/swiper.js')}}"></script>
 @endsection

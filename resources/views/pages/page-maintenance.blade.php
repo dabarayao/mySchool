@@ -1,21 +1,22 @@
-@extends('layouts/fullLayoutMaster')
-
-@section('title', 'Maintenance')
+@extends('layouts.fullLayoutMaster')
+{{-- page title --}}
+@section('title','Maintenance')
 
 @section('content')
-<!-- maintenance -->
+<!-- maintenance start -->
 <section class="row flexbox-container">
-  <div class="col-xl-7 col-md-8 col-12 d-flex justify-content-center">
-    <div class="card auth-card bg-transparent shadow-none rounded-0 mb-0 w-100">
+  <div class="col-xl-7 col-md-8 col-12">
+    <div class="card bg-transparent shadow-none">
       <div class="card-content">
-        <div class="card-body text-center">
-          <img src="{{ asset('images/pages/maintenance-2.png') }}" class="img-fluid align-self-center" alt="branding logo">
-          <h1 class="font-large-2 my-1">Under Maintenance!</h1>
+        <div class="card-body text-center bg-transparent miscellaneous">
+          <img src="{{asset('images/pages/maintenance-2.png')}}" class="img-fluid" alt="under maintenance"
+            width="400">
+          <h1 class="error-title my-1">Under Maintenance!</h1>
           <p class="px-2">
-            paraphonic unassessable foramination Caulopteris worral Spirophyton encrimson esparcet aggerate chondrule
-            restate whistler shallopy biosystematy area bertram plotting unstarting quarterstaff.
+            Sorry for the inconvenience but we're performing some maintenance at the moment. If you need you
+            can always <a href="mailto:hello@help.com">contact us</a>, otherwise we'll be back online shortly!
           </p>
-          <a class="btn btn-primary btn-lg mt-1" href="dashboard-analytics">Back to Home</a>
+          <a href="{{asset('/')}}" class="btn btn-primary round glow mt-2">BACK TO HOME</a>
         </div>
       </div>
     </div>

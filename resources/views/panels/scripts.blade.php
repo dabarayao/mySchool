@@ -1,15 +1,32 @@
-{{-- Vendor Scripts --}}
-<script src="{{ asset(mix('vendors/js/vendors.min.js')) }}"></script>
-<script src="{{ asset(mix('vendors/js/ui/prism.min.js')) }}"></script>
-@yield('vendor-script')
-{{-- Theme Scripts --}}
-<script src="{{ asset(mix('js/core/app-menu.js')) }}"></script>
-<script src="{{ asset(mix('js/core/app.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/components.js')) }}"></script>
-@if($configData['blankPage'] == false)
-<script src="{{ asset(mix('js/scripts/customizer.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/footer.js')) }}"></script>
-@endif
-{{-- page script --}}
-@yield('page-script')
-{{-- page script --}}
+
+    <!-- BEGIN: Vendor JS-->
+    <script>
+        var assetBaseUrl = "{{ asset('') }}";
+    </script>
+    <script src="{{asset('vendors/js/vendors.min.js')}}"></script>
+    <script src="{{asset('fonts/LivIconsEvo/js/LivIconsEvo.tools.js')}}"></script>
+    <script src="{{asset('fonts/LivIconsEvo/js/LivIconsEvo.defaults.js')}}"></script>
+    <script src="{{asset('fonts/LivIconsEvo/js/LivIconsEvo.min.js')}}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    @yield('vendor-scripts')
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    @if($configData['mainLayoutType'] == 'vertical-menu')
+    <script src="{{asset('js/scripts/configs/vertical-menu-light.js')}}"></script>
+    @else
+    <script src="{{asset('js/scripts/configs/horizontal-menu.js')}}"></script>
+    @endif
+    <script src="{{asset('js/core/app-menu.js')}}"></script>
+    <script src="{{asset('js/core/app.js')}}"></script>
+    <script src="{{asset('js/scripts/components.js')}}"></script>
+    <script src="{{asset('js/scripts/footer.js')}}"></script>
+    <script src="{{asset('js/scripts/customizer.js')}}"></script>
+    <script src="{{asset('assets/js/scripts.js')}}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    @yield('page-scripts')
+    <!-- END: Page JS-->

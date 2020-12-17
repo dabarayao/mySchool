@@ -1,8 +1,5 @@
-.icon-bg-circle{
-    color: $white;
-    padding: 0.5rem;
-    border-radius: 50%;
-}
+/*  Utilities css  */
+/*----------------*/ 
 .icon-left{
     margin-right:0.5rem;
 }
@@ -11,7 +8,7 @@
 }
 .icon-spin {
 	display: inline-block;
-  	animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
 }
 
 .blockOverlay{
@@ -21,45 +18,19 @@
   z-index: 1051 !important;
 }
 
-@-moz-keyframes spin {
-  	from {
-    	-moz-transform: rotate(0deg);
-  	}
-  	to {
-    	-moz-transform: rotate(360deg);
-  	}
-}
-
-@-webkit-keyframes spin {
-  	from {
-    	-webkit-transform: rotate(0deg);
-  	}
-  	to {
-    	-webkit-transform: rotate(360deg);
-  	}
-}
-
-@keyframes spin {
-  	from {
-    	transform: rotate(0deg);
-  	}
-  	to {
-    	transform: rotate(360deg);
-  	}
-}
-
 .hidden{
 	display: none;
 	visibility: hidden;
 }
 
-//Disabled
-a{
-	&.disabled{
-		// color: $dropdown-link-disabled-color !important;
-	}
-	&:hover {
-		cursor: pointer;
+/*  Disabled */
+.disabled, :disabled{
+  color: $gray-200 !important;
+  a{
+    color: $gray-200 !important;
+  }
+  &:hover {
+		cursor: auto !important;
 	}
 }
 
@@ -67,30 +38,24 @@ a{
 .square{@include border-radius($btn-border-radius-square);}
 
 .icon-line-height{
-    line-height : 1.5rem !important; 
+    line-height : 1.5rem !important;
 }
 
-//Tables
-//--------------------------
-.table-middle{
-    td{
-        vertical-align: middle;
-    }
+
+/*  Boxicons Default Set Font-size */
+.bx{
+  font-size: 1.2rem;
 }
 
-// Spinner classes
-.spinner {
-    display: inline-block;
-    -webkit-animation: spin 1s linear infinite;
-    -o-animation: spin 1s linear infinite;
-    animation: spin 1s linear infinite;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* drag n drop - bullets none on drag - as default */
+/*------------------------------------------------*/
+.gu-mirror{
+  list-style-type: none !important;
 }
 
-// Button focus outline
-button:focus{
-	outline: none;
+// line-ellipsis - For one line
+.line-ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

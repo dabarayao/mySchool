@@ -1,15 +1,17 @@
-@extends('layouts/contentLayoutMaster')
+@extends('layouts.contentLayoutMaster')
 
-@section('title', 'Drag & Drop')
+{{-- page title --}}
+@section('title','Drag & Drop')
+{{-- vendor styles --}}
+@section('vendor-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/extensions/dragula.min.css')}}">
+@endsection
 
-@section('vendor-style')
-        <!-- vendor css files -->
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/dragula.min.css')) }}">
+{{-- page styles --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/plugins/extensions/drag-and-drop.css')}}">
 @endsection
-@section('page-style')
-        <!-- Page css files -->
-        <link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/drag-and-drop.css')) }}">
-@endsection
+
 @section('content')
 <!-- Draggable cards section start -->
 <section id="draggable-cards">
@@ -102,7 +104,7 @@
             <ul class="list-group" id="basic-list-group">
               <li class="list-group-item">
                 <div class="media">
-                  <img src="{{ asset('images/portrait/small/avatar-s-12.jpg') }}" class="rounded-circle mr-2"
+                  <img src="{{asset('images/portrait/small/avatar-s-12.jpg')}}" class="rounded-circle mr-2"
                     alt="img-placeholder" height="50" width="50">
                   <div class="media-body">
                     <h5 class="mt-0">Mary S. Navarre</h5>
@@ -112,7 +114,7 @@
               </li>
               <li class="list-group-item">
                 <div class="media">
-                  <img src="{{ asset('images/portrait/small/avatar-s-1.jpg') }}" class="rounded-circle mr-2"
+                  <img src="{{asset('images/portrait/small/avatar-s-1.jpg')}}" class="rounded-circle mr-2"
                     alt="img-placeholder" height="50" width="50">
                   <div class="media-body">
                     <h5 class="mt-0">Samuel M. Ellis</h5>
@@ -122,7 +124,7 @@
               </li>
               <li class="list-group-item">
                 <div class="media">
-                  <img src="{{ asset('images/portrait/small/avatar-s-2.jpg') }}" class="rounded-circle mr-2"
+                  <img src="{{asset('images/portrait/small/avatar-s-2.jpg')}}" class="rounded-circle mr-2"
                     alt="img-placeholder" height="50" width="50">
                   <div class="media-body">
                     <h5 class="mt-0">Sandra C. Toney</h5>
@@ -132,7 +134,7 @@
               </li>
               <li class="list-group-item">
                 <div class="media">
-                  <img src="{{ asset('images/portrait/small/avatar-s-3.jpg') }}" class="rounded-circle mr-2"
+                  <img src="{{asset('images/portrait/small/avatar-s-3.jpg')}}" class="rounded-circle mr-2"
                     alt="img-placeholder" height="50" width="50">
                   <div class="media-body">
                     <h5 class="mt-0">Cleveland C. Goins</h5>
@@ -142,7 +144,7 @@
               </li>
               <li class="list-group-item">
                 <div class="media">
-                  <img src="{{ asset('images/portrait/small/avatar-s-4.jpg') }}" class="rounded-circle mr-2"
+                  <img src="{{asset('images/portrait/small/avatar-s-4.jpg')}}" class="rounded-circle mr-2"
                     alt="img-placeholder" height="50" width="50">
                   <div class="media-body">
                     <h5 class="mt-0">Linda M. English</h5>
@@ -173,7 +175,7 @@
                 <ul class="list-group list-group-flush" id="multiple-list-group-a">
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-12.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-12.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Mary S. Navarre</h5>
@@ -183,7 +185,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-1.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-1.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Samuel M. Ellis</h5>
@@ -193,7 +195,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-2.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-2.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Sandra C. Toney</h5>
@@ -203,7 +205,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-3.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-3.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Cleveland C. Goins</h5>
@@ -213,7 +215,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-4.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-4.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Linda M. English</h5>
@@ -228,7 +230,7 @@
                 <ul class="list-group list-group-flush" id="multiple-list-group-b">
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-12.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-12.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Mary S. Navarre</h5>
@@ -238,7 +240,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-1.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-1.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Samuel M. Ellis</h5>
@@ -248,7 +250,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-2.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-2.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Sandra C. Toney</h5>
@@ -258,7 +260,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-3.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-3.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Cleveland C. Goins</h5>
@@ -268,7 +270,7 @@
                   </li>
                   <li class="list-group-item">
                     <div class="media">
-                      <img src="{{ asset('images/portrait/small/avatar-s-4.jpg') }}" class="rounded-circle mr-2"
+                      <img src="{{asset('images/portrait/small/avatar-s-4.jpg')}}" class="rounded-circle mr-2"
                         alt="img-placeholder" height="50" width="50">
                       <div class="media-body">
                         <h5 class="mt-0">Linda M. English</h5>
@@ -419,12 +421,11 @@
 </section>
 <!-- // With Handle Ends -->
 @endsection
-
-@section('vendor-script')
-        <!-- vendor files -->
-        <script src="{{ asset(mix('vendors/js/extensions/dragula.min.js')) }}"></script>
+{{-- vendor scripts --}}
+@section('vendor-scripts')
+<script src="{{asset('vendors/js/extensions/dragula.min.js')}}"></script>
 @endsection
-@section('page-script')
-        <!-- Page js files -->
-        <script src="{{ asset(mix('js/scripts/extensions/drag-drop.js')) }}"></script>
+{{-- page scripts --}}
+@section('page-scripts')
+<script src="{{asset('js/scripts/extensions/drag-drop.js')}}"></script>
 @endsection

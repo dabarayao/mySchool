@@ -159,7 +159,7 @@
 
   &.disabled,
   &:disabled {
-    color: $dropdown-link-disabled-color;
+    // color: $dropdown-link-disabled-color;
     pointer-events: none;
     background-color: transparent;
     // Remove CSS gradients if they're enabled

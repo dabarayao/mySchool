@@ -1,133 +1,115 @@
-@extends('layouts/contentLayoutMaster')
-
-@section('title', 'Breadcrumbs')
+@extends('layouts.contentLayoutMaster')
+{{-- page title --}}
+@section('title','Breadcrumbs')
 
 @section('content')
-{{-- Default Breadcrumb Starts --}}
-  <section>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Default</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body">
-              <nav aria-label="breadcrumb">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
-                  </ol>
-                </nav>
-              </nav>
-            </div>
+<!-- Default Breadcrumb Starts -->
+<section id="default-breadcrumb">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Default</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#"><i class="bx bx-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item"><a href="#">Data</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Link</li>
+              </ol>
+            </nav>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  {{-- Default Breadcrumb Ends --}}
+  </div>
+</section>
+<!-- Default Breadcrumb Ends -->
 
-  {{-- Breadcrumb Styles Starts --}}
-  <section id="component-breadcrumbs">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Styles</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body">
-              <p>These breadcrumbs are only for demo puropses. You can change breadcrumb seprator by changing
-                <code>$breadcrumb-divider</code> variable value in scss</p>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-slash">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Library</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data</li>
-                </ol>
-              </nav>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-dots">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Library</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data</li>
-                </ol>
-              </nav>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-dashes">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Library</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data</li>
-                </ol>
-              </nav>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-pipes">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Library</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data</li>
-                </ol>
-              </nav>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-chevron">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Library</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data</li>
-                </ol>
-              </nav>
-            </div>
+<!-- Breadcrumb with Divider Starts -->
+<section id="breadcrumb-divider">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Breadcrumb Divider Icon with Active Link Fill</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <p>To change Divider Icon, add <code>.breadcrumb-divider</code> class alongwith <code>.breadcrumb</code>
+              class.</p>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-divider">
+                <li class="breadcrumb-item"><a href="#"><i class="bx bx-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item"><a href="#">Data</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Link</li>
+              </ol>
+            </nav>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  {{-- Breadcrumb Styles Ends --}}
+  </div>
+</section>
+<!-- Default Breadcrumb Ends -->
 
-  {{-- Breadcrumb Alignment Starts --}}
-  <section id="breadcrumb-alignment">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Alignment</h4>
-          </div>
-          <div class="card-content">
-            <div class="card-body">
-              <p class="text-left">Use class <code>.justify-content-{direction}</code> to align breadcrumb to center</p>
-              <div class="d-flex justify-content-start breadcrumb-wrapper">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb ml-1">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="d-flex justify-content-center breadcrumb-wrapper my-1">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
-                  </ol>
-                </nav>
-              </div>
-              <div class="d-flex justify-content-end breadcrumb-wrapper">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb mr-1">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
+<!-- Breadcrumb with Rounded Shape Starts -->
+<section id="breadcrumb-rounded">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Breadcrumb Rounded</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <p>For Rounded Breadcrumb, add <code>.rounded-pill</code> class alongwith <code>.breadcrumb</code> class.
+            </p>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb rounded-pill">
+                <li class="breadcrumb-item"><a href="#"><i class="bx bx-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item"><a href="#">Data</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Link</li>
+              </ol>
+            </nav>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  {{-- Breadcrumb Alignment Ends --}}
-  @endsection
+  </div>
+</section>
+<!-- Default Breadcrumb Ends -->
+
+<!-- Breadcrumb with Divider and Rounded Shape Starts -->
+<section id="breadcrumb-rounded-divider">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Breadcrumb Rounded with Divider Icon and Active Link Fill</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <p>For Rounded Breadcrumb with change divider icon, add <code>.rounded-pill.breadcrumb-divider</code> class
+              alongwith <code>.breadcrumb</code> class. </p>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb rounded-pill breadcrumb-divider">
+                <li class="breadcrumb-item"><a href="#"><i class="bx bx-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item"><a href="#">Data</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Link</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Default Breadcrumb Ends -->
+@endsection

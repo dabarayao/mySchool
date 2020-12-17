@@ -1,19 +1,14 @@
-<!-- BEGIN: Footer-->
-@if($configData["mainLayoutType"] == 'horizontal' && isset($configData["mainLayoutType"]))
-<footer
-    class="footer {{ $configData['footerType'] }} {{($configData['footerType']=== 'footer-hidden') ? 'd-none':''}} footer-light navbar-shadow">
-    @else
-    <footer
-        class="footer {{ $configData['footerType'] }} {{($configData['footerType']=== 'footer-hidden') ? 'd-none':''}} footer-light">
-        @endif
-        <p class="clearfix blue-grey lighten-2 mb-0"><span
-                class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2019<a
-                    class="text-bold-800 grey darken-2" href="https://1.envato.market/pixinvent_portfolio"
-                    target="_blank">Pixinvent,</a>All rights Reserved</span><span
-                class="float-md-right d-none d-md-block">Hand-crafted & Made with<i
-                    class="feather icon-heart pink"></i></span>
-            <button class="btn btn-primary btn-icon scroll-top" type="button"><i
-                    class="feather icon-arrow-up"></i></button>
-        </p>
-    </footer>
-    <!-- END: Footer-->
+<footer class="footer footer-light @if(isset($configData['footerType'])){{$configData['footerClass']}}@endif">
+  <p class="clearfix mb-0">
+    <span class="float-left d-inline-block">2020 &copy; PIXINVENT</span>
+    <span class="float-right d-sm-inline-block d-none">Crafted with
+      <i class="bx bxs-heart pink mx-50 font-small-3"></i>by
+      <a class="text-uppercase" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a>
+    </span>
+    @if($configData['isScrollTop'] === true)
+    <button class="btn btn-primary btn-icon scroll-top" type="button">
+      <i class="bx bx-up-arrow-alt"></i>
+    </button>
+    @endif
+  </p>
+</footer>

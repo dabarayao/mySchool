@@ -1,14 +1,15 @@
-/* ===============================================================================================
-	File Name: list-group.scss
-	Description: Contain list item, list group related extended SCSS.
-	----------------------------------------------------------------------------------------------
-	Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
-	Author: PIXINVENT
-	Author URL: http://www.themeforest.net/user/pixinvent
-================================================================================================*/
+// ===============================================================================================
+// File Name: list-group.scss
+// Description: Contain list item, list group related extended SCSS.
+// ----------------------------------------------------------------------------------------------
+// Item Name: Frest HTML Admin Template
+// Version: 1.0
+// Author: PIXINVENT
+// Author URL: http://www.themeforest.net/user/pixinvent
+//================================================================================================
 
-// Inline list style with pipeline seperator
-
+/*   Inline list style   */
+/*----------------------*/
 ul.list-inline {
   li {
     display: inline-block;
@@ -20,56 +21,47 @@ ul.list-inline {
     }
   }
 }
-
-// bootstrap list group
+/* bootstrap list group */
+/*---------------------*/
 .list-group {
   .list-group-item {
-    line-height: 1.5;
     &.active {
-      &:hover {
-        background-color: $primary;
-      }
-      &:focus{
-        // color: $body-color;
-        outline: 0;
-        &:hover{
-          color: $white;
+      i{
+        &.badge-circle{
+          background-color: $white;
         }
       }
+      &:hover{
+        background-color: $primary;
+      }
+      h1,h2,h3,h4,h5,h6 {
+        color: $white;
+      }
     }
-
-    &:hover {
-      background-color: $body-bg;
-    }
-
     i {
-      font-size: 1.2rem;
-      font-weight: 100;
-      position: relative;
-    }
-
-    &:not(.active):focus:active{
-      color: inherit;
+      /* List Group Icon css */
+      font-size: 1.4rem;
     }
   }
-  .list-group-item-action{
-    // &:active{
-    //   background-color: $primary;
-    //   color: $white;
-    // }
-    &:focus{
-      // background-color: $body-bg;
-      outline: 0;
+  //Removed list group button focus outline
+  button {
+    &.list-group-item {
+      &:focus {
+        outline: 0px;
+      }
+    }
+  }
+
+  // List group active psuedo element action
+  .list-group-item-action {
+    &:hover {
+      background-color: $list-group-hover-bg;
     }
   }
 }
 
-  // for drag and drop border radius on selected
-  .list-group-item.gu-mirror{
-    border-radius: 0;
-  }
-
-// Inline users list
+/* Inline users list - Use in Widget page */
+/*---------------------------------------*/
 .users-list{
   li+li {
       margin-left: -.785rem;
@@ -77,10 +69,11 @@ ul.list-inline {
   li{
     img{
       border: 2px solid $white;
-      box-shadow: 0px 2px 10px 0px rgba($gray-600, 0.3)
     }
     .badge{
-      color: $black;
+      border: 2px solid $white;
+      border-radius: 50%;
+      padding: 0.4rem 0.4rem;
     }
   }
 }

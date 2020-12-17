@@ -3,15 +3,13 @@
   Description: Menu navigation, custom scrollbar, hover scroll bar, multilevel menu
   initialization and manipulations
   ----------------------------------------------------------------------------------------
-  Item Name:  Vusax - Vuejs, HTML & Laravel Admin Dashboard Template
+  Item Name: Frest HTML Admin Template
+  Version: 1.0
   Author: Pixinvent
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 (function (window, document, $) {
   'use strict';
-
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
 
   $.app = $.app || {};
 
@@ -28,38 +26,19 @@
     container: null,
     horizontalMenu: false,
 
-    is_touch_device: function () {
-      var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
-      var mq = function (query) {
-        return window.matchMedia(query).matches;
-      }
-      if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-        return true;
-      }
-      // include the 'heartz' as a way to have a non matching MQ to help terminate the join
-      // https://git.io/vznFH
-      var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
-      return mq(query);
-    },
-
     manualScroller: {
       obj: null,
 
       init: function () {
         var scroll_theme = ($('.main-menu').hasClass('menu-dark')) ? 'light' : 'dark';
-        if (!$.app.menu.is_touch_device()) {
-          this.obj = new PerfectScrollbar(".main-menu-content", {
-            suppressScrollX: true,
-            wheelPropagation: false
-          });
-        }
-        else {
-          $(".main-menu").addClass("menu-native-scroll")
-        }
+        this.obj = new PerfectScrollbar(".main-menu-content", {
+          suppressScrollX: true,
+          wheelPropagation: false
+        });
       },
 
       update: function () {
-        // if (this.obj) {
+        if (this.obj) {
           // Scroll to currently active menu on page load if data-scroll-to-active is true
           if ($('.main-menu').data('scroll-to-active') === true) {
             var activeEl, menu, activeElHeight;
@@ -69,24 +48,24 @@
                 activeEl = document.querySelector('.main-menu-content li.sidebar-group-active');
               }
             }
-           else{
-            menu = document.querySelector('.main-menu-content');
-            if(activeEl){
-              activeElHeight = activeEl.getBoundingClientRect().top + menu.scrollTop;
+            else {
+              menu = document.querySelector('.main-menu-content');
+              if (activeEl) {
+                activeElHeight = activeEl.getBoundingClientRect().top + menu.scrollTop;
+              }
+              // If active element's top position is less than 2/3 (66%) of menu height than do not scroll
+              if (activeElHeight > parseInt((menu.clientHeight * 2) / 3)) {
+                var start = menu.scrollTop,
+                  change = activeElHeight - start - parseInt(menu.clientHeight / 2);
+              }
             }
-            // If active element's top position is less than 2/3 (66%) of menu height than do not scroll
-            if (activeElHeight > parseInt((menu.clientHeight * 2) / 3)) {
-              var start = menu.scrollTop,
-                change = activeElHeight - start - parseInt(menu.clientHeight / 2);
-            }
-           }
             setTimeout(function () {
               $.app.menu.container.stop().animate({ scrollTop: change }, 300);
               $('.main-menu').data('scroll-to-active', 'false');
             }, 300);
           }
-          // this.obj.update();
-        // }
+          this.obj.update();
+        }
       },
 
       enable: function () {
@@ -153,8 +132,9 @@
       }
     },
 
-    change: function (defMenu) {
+    change: function (defMenu, menuIconColorsObj) {
       var currentBreakpoint = Unison.fetch.now(); // Current Breakpoint
+
       this.reset();
 
       var menuType = $body.data('menu');
@@ -211,7 +191,7 @@
       // Dropdown submenu on large screen on hover For Large screen only
       // ---------------------------------------------------------------
       if (currentBreakpoint.name == 'xl') {
-        $('body[data-open="hover"] .header-navbar .dropdown').on('mouseenter', function () {
+        $('body[data-open="hover"] .dropdown').on('mouseenter', function () {
           if (!($(this).hasClass('show'))) {
             $(this).addClass('show');
           } else {
@@ -242,15 +222,6 @@
         $('.header-navbar[data-nav=brand-center]').addClass('navbar-brand-center');
       }
 
-      // On screen width change, current active menu in horizontal
-      if(currentBreakpoint.name == 'xl' && menuType == 'horizontal-menu'){
-        $(".main-menu-content").find('li.active').parents('li').addClass('sidebar-group-active active');
-      }
-
-      if(currentBreakpoint.name !== 'xl' && menuType == 'horizontal-menu'){
-        $("#navbar-type").toggleClass('d-none d-xl-block');
-      }
-
       // Dropdown submenu on small screen on click
       // --------------------------------------------------
       $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
@@ -262,35 +233,37 @@
         $(this).parent().toggleClass('show');
       });
 
-
       // Horizontal layout submenu drawer scrollbar
       if (menuType == 'horizontal-menu') {
-        $('li.dropdown-submenu').on('mouseenter', function(){
-          if(!$(this).parent('.dropdown').hasClass('show')){
+        $('li.dropdown-submenu').on('mouseenter', function () {
+          if (!$(this).parent('.dropdown').hasClass('show')) {
             $(this).removeClass('openLeft');
           }
           var dd = $(this).find('.dropdown-menu');
-          if(dd.length>0){
-            var pageHeight = $( window ).height(),
-            ddTop = $(this).position().top,
-            ddLeft = dd.offset().left,
-            ddWidth = dd.width(),
-            ddHeight = dd.height();
-            if(((pageHeight - ddTop) - ddHeight - 28) < 1) {
+          if (dd) {
+            var pageHeight = $(window).height(),
+              // ddTop = dd.offset().top,
+              ddTop = $(this).position().top,
+              ddLeft = dd.offset().left,
+              ddWidth = dd.width(),
+              ddHeight = dd.height();
+            if (((pageHeight - ddTop) - ddHeight - 28) < 1) {
               var maxHeight = (pageHeight - ddTop - 170);
-              $(this).find('.dropdown-menu').css({'max-height': maxHeight+'px', 'overflow-y': 'auto','overflow-x': 'hidden'});
+              $(this).find('.dropdown-menu').css({
+                'max-height': maxHeight + 'px',
+                'overflow-y': 'auto',
+                'overflow-x': 'hidden'
+              });
               var menu_content = new PerfectScrollbar('li.dropdown-submenu.show .dropdown-menu', {
                 wheelPropagation: false
               });
             }
             // Add class to horizontal sub menu if screen width is small
-            if(ddLeft + ddWidth - (window.innerWidth - 16) >= 0) {
+            if (ddLeft + ddWidth - (window.innerWidth - 16) >= 0) {
               $(this).addClass('openLeft');
             }
           }
         });
-        $('.theme-layouts').find('.semi-dark').hide();
-        $('#customizer-navbar-colors').hide();
       }
 
       /********************************************
@@ -440,7 +413,7 @@
       if (this.expanded === false) {
         if ($body.data('menu') == 'vertical-menu-modern') {
           $('.modern-nav-toggle').find('.toggle-icon')
-            .removeClass('feather icon-circle').addClass('feather icon-disc');
+            .removeClass('bx bx-circle').addClass('bx bx-disc');
         }
         this.transit(function () {
           $body.removeClass('menu-collapsed').addClass('menu-expanded');
@@ -471,7 +444,7 @@
       if (this.collapsed === false) {
         if ($body.data('menu') == 'vertical-menu-modern') {
           $('.modern-nav-toggle').find('.toggle-icon')
-            .removeClass('feather icon-disc').addClass('feather icon-circle');
+            .removeClass('bx bx-disc').addClass('bx bx-circle');
         }
         this.transit(function () {
           $body.removeClass('menu-expanded').addClass('menu-collapsed');
@@ -530,6 +503,42 @@
       $('div[data-menu="menu-wrapper"]').html('');
       $('div[data-menu="menu-wrapper"]').html(menuWrapper_el);
 
+      // Destroy Icons when screen size changes
+      $('.menu-livicon').removeLiviconEvo();
+
+      // Initialize Menu Icons with configs
+      $.each($('.menu-livicon'), function (i) {
+        var $this = $(this),
+          icon = $this.data('icon'),
+          iconStyle = $('#main-menu-navigation').data("icon-style");
+
+        $this.addLiviconEvo({
+          name: icon,
+          style: iconStyle,
+          duration: 0.85,
+          strokeWidth: '1.3px',
+          eventOn: 'parent',
+          strokeColor: menuIconColorsObj.iconStrokeColor,
+          solidColor: menuIconColorsObj.iconSolidColor,
+          fillColor: menuIconColorsObj.iconFillColor,
+          strokeColorAlt: menuIconColorsObj.iconStrokeColorAlt,
+          afterAdd: function () {
+            if (i === $(".main-menu-content .menu-livicon").length - 1) {
+              // When hover over any menu item, start animation and stop all other animation
+              $(".main-menu-content .nav-item a").on("mouseenter", function () {
+                if ($(".main-menu-content .menu-livicon").length) {
+                  $(".main-menu-content .menu-livicon").stopLiviconEvo()
+                  $(this)
+                    .find(".menu-livicon")
+                    .playLiviconEvo()
+                }
+              })
+            }
+          }
+        });
+
+      });
+
       var menuWrapper = $('div[data-menu="menu-wrapper"]'),
         menuContainer = $('div[data-menu="menu-container"]'),
         menuNavigation = $('ul[data-menu="menu-navigation"]'),
@@ -539,7 +548,6 @@
         dropdownSubMenu = $('li[data-menu="dropdown-submenu"]');
 
       if (screen === 'xl') {
-
         // Change body classes
         $body.removeClass('vertical-layout vertical-overlay-menu fixed-navbar').addClass($body.data('menu'));
 
@@ -570,7 +578,14 @@
         $('nav.header-navbar').addClass('fixed-top');
 
         // Change menu wrapper, menu container, menu navigation classes
-        menuWrapper.removeClass().addClass('main-menu menu-light menu-fixed menu-shadow');
+        menuWrapper.removeClass().addClass('main-menu menu-fixed menu-shadow');
+
+        if ($body.data('layout') === "dark-layout" || $body.data('layout') === "semi-dark-layout") {
+          menuWrapper.addClass('menu-dark');
+        }
+        else {
+          menuWrapper.addClass('menu-light');
+        }
         // menuContainer.removeClass().addClass('main-menu-content');
         menuNavigation.removeClass().addClass('navigation navigation-main');
 
@@ -592,9 +607,28 @@
           $(this).parent().toggleClass('open');
         });
 
-        $(".main-menu-content").find('li.active').parents('li').addClass('sidebar-group-active');
+        // $('.shadow-bottom').css('display', 'block');
+      }
 
-        $(".main-menu-content").find("li.active").closest("li.nav-item").addClass("open");
+      $(".main-menu-content").find('li.active').parents('li').addClass('sidebar-group-active');
+
+      function updateLivicon(el) {
+        el.updateLiviconEvo({
+          strokeColor: menuActiveIconColorsObj.iconStrokeColor,
+          solidColor: menuActiveIconColorsObj.iconSolidColor,
+          fillColor: menuActiveIconColorsObj.iconFillColor,
+          strokeColorAlt: menuActiveIconColorsObj.iconStrokeColorAlt
+        })
+      }
+
+      // Update Active Menu item Icon with active color
+      if ($('.nav-item.active .menu-livicon').length) {
+        updateLivicon($('.nav-item.active .menu-livicon'))
+      }
+
+      // Update Active sidebar group menu icon with active ccolor
+      if ($(".main-menu-content li.sidebar-group-active .menu-livicon").length) {
+        updateLivicon($(".main-menu-content li.sidebar-group-active .menu-livicon"))
       }
     },
 
@@ -784,7 +818,7 @@
             e.preventDefault();
           }
           else {
-            if ($listItem.has('ul').length) {
+            if ($listItem.has('ul')) {
               if ($listItem.is('.open')) {
                 $listItem.trigger('close.app.menu');
               } else {
@@ -979,10 +1013,3 @@
   };
 
 })(window, document, jQuery);
-
-// We listen to the resize event
-window.addEventListener('resize', () => {
-  // We execute the same script as before
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-});

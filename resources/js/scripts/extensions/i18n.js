@@ -2,10 +2,29 @@
     File Name: i18n.js
     Description: Internationalization
     --------------------------------------------------------------------------------------
-    Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Frest HTML Admin Template
+    Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
+// main menu internationalization
+
+  // init i18n and load language file
+  i18next
+    .use(window.i18nextXHRBackend)
+    .init({
+      debug: false,
+      fallbackLng: "en",
+      backend: {
+        loadPath: ""
+      },
+      returnObjects: true
+    },
+      function (err, t) {
+        // resources have been loaded
+        jqueryI18next.init(i18next, $)
+      }
+    )
 
 // For Language Select
 var changeText = $('.card-localization .card-text')

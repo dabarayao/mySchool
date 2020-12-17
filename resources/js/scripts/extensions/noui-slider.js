@@ -2,17 +2,13 @@
 	File Name: noui-slider.js
 	Description: noUiSlider is a lightweight JavaScript range slider library.
 	----------------------------------------------------------------------------------------
-	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+	Item Name: Frest HTML Admin Template
+	Version: 1.0
 	Author: PIXINVENT
 	Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 $(document).ready(function () {
 
-  // RTL Support
-  var direction = 'ltr';
-  if($('html').data('textdirection') == 'rtl'){
-    direction = 'rtl';
-  }
 
 	/********************************************
 	*				Slider values				*
@@ -23,7 +19,6 @@ $(document).ready(function () {
 
   noUiSlider.create(handlesSlider, {
     start: [4000, 8000],
-    direction: direction,
     range: {
       'min': [2000],
       'max': [10000]
@@ -36,7 +31,6 @@ $(document).ready(function () {
 
   noUiSlider.create(snapSlider, {
     start: [0, 500],
-    direction: direction,
     snap: true,
     connect: true,
     range: {
@@ -61,7 +55,6 @@ $(document).ready(function () {
 
   noUiSlider.create(tapSlider, {
     start: 40,
-    direction: direction,
     behaviour: 'tap',
     connect: 'upper',
     range: {
@@ -76,7 +69,6 @@ $(document).ready(function () {
 
   noUiSlider.create(dragSlider, {
     start: [40, 60],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -91,7 +83,6 @@ $(document).ready(function () {
 
   noUiSlider.create(dragFixedSlider, {
     start: [40, 60],
-    direction: direction,
     behaviour: 'drag-fixed',
     connect: true,
     range: {
@@ -109,7 +100,6 @@ $(document).ready(function () {
 
   noUiSlider.create(hoverSlider, {
     start: 20,
-    direction: direction,
     behaviour: 'hover-snap',
     range: {
       'min': 0,
@@ -127,7 +117,6 @@ $(document).ready(function () {
 
   noUiSlider.create(dragTapSlider, {
     start: [40, 60],
-    direction: direction,
     behaviour: 'drag-tap',
     connect: true,
     range: {
@@ -155,7 +144,6 @@ $(document).ready(function () {
   noUiSlider.create(pipsRange, {
     range: range_all_sliders,
     start: 0,
-    direction: direction,
     pips: {
       mode: 'range',
       density: 3
@@ -182,7 +170,6 @@ $(document).ready(function () {
   noUiSlider.create(pipsStepsFilter, {
     range: range_step_sliders,
     start: 0,
-    direction: direction,
     pips: {
       mode: 'steps',
       density: 5,
@@ -205,7 +192,6 @@ $(document).ready(function () {
 
   noUiSlider.create(defaultColorSlider, {
     start: [45, 55],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -220,7 +206,6 @@ $(document).ready(function () {
 
   noUiSlider.create(successColorSlider, {
     start: [40, 60],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -235,7 +220,6 @@ $(document).ready(function () {
 
   noUiSlider.create(infoColorSlider, {
     start: [35, 65],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -250,7 +234,6 @@ $(document).ready(function () {
 
   noUiSlider.create(warningColorSlider, {
     start: [45, 55],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -265,7 +248,6 @@ $(document).ready(function () {
 
   noUiSlider.create(dangerColorSlider, {
     start: [40, 60],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -280,7 +262,6 @@ $(document).ready(function () {
 
   noUiSlider.create(sliderColoredConnects, {
     start: [4000, 8000, 12000, 16000],
-    direction: direction,
     connect: [false, true, true, true, true],
     range: {
       'min': [2000],
@@ -303,7 +284,6 @@ $(document).ready(function () {
   // Extra large options
   var xl_options = {
     start: [45, 55],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -314,7 +294,6 @@ $(document).ready(function () {
 
   var lg_options = {
     start: [40, 60],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -325,7 +304,6 @@ $(document).ready(function () {
 
   var default_options = {
     start: [35, 65],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -336,7 +314,6 @@ $(document).ready(function () {
 
   var sm_options = {
     start: [30, 70],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -347,7 +324,6 @@ $(document).ready(function () {
 
   var xs_options = {
     start: [25, 75],
-    direction: direction,
     behaviour: 'drag',
     connect: true,
     range: {
@@ -411,7 +387,6 @@ $(document).ready(function () {
 
   noUiSlider.create(vertical_slider_1, {
     start: 20,
-    direction: direction,
     orientation: 'vertical',
     range: {
       'min': 0,
@@ -423,7 +398,6 @@ $(document).ready(function () {
 
   noUiSlider.create(vertical_slider_2, {
     start: 50,
-    direction: direction,
     orientation: 'vertical',
     range: {
       'min': 0,
@@ -435,7 +409,6 @@ $(document).ready(function () {
 
   noUiSlider.create(vertical_slider_3, {
     start: 20,
-    direction: direction,
     orientation: 'vertical',
     range: {
       'min': 0,
@@ -447,7 +420,6 @@ $(document).ready(function () {
 
   noUiSlider.create(vertical_slider_4, {
     start: 50,
-    direction: direction,
     orientation: 'vertical',
     range: {
       'min': 0,
@@ -459,7 +431,6 @@ $(document).ready(function () {
 
   noUiSlider.create(vertical_slider_5, {
     start: 20,
-    direction: direction,
     orientation: 'vertical',
     range: {
       'min': 0,
@@ -473,7 +444,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectLowerSlider1, {
     start: 30,
-    direction: direction,
     orientation: 'vertical',
     connect: 'lower',
     range: {
@@ -486,7 +456,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectLowerSlider2, {
     start: 40,
-    direction: direction,
     orientation: 'vertical',
     connect: 'lower',
     range: {
@@ -499,7 +468,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectLowerSlider3, {
     start: 50,
-    direction: direction,
     orientation: 'vertical',
     connect: 'lower',
     range: {
@@ -512,7 +480,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectLowerSlider4, {
     start: 60,
-    direction: direction,
     orientation: 'vertical',
     connect: 'lower',
     range: {
@@ -525,7 +492,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectLowerSlider5, {
     start: 70,
-    direction: direction,
     orientation: 'vertical',
     connect: 'lower',
     range: {
@@ -540,7 +506,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectUpperSlider1, {
     start: 30,
-    direction: direction,
     orientation: 'vertical',
     connect: 'upper',
     range: {
@@ -553,7 +518,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectUpperSlider2, {
     start: 40,
-    direction: direction,
     orientation: 'vertical',
     connect: 'upper',
     range: {
@@ -566,7 +530,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectUpperSlider3, {
     start: 50,
-    direction: direction,
     orientation: 'vertical',
     connect: 'upper',
     range: {
@@ -579,7 +542,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectUpperSlider4, {
     start: 60,
-    direction: direction,
     orientation: 'vertical',
     connect: 'upper',
     range: {
@@ -592,7 +554,6 @@ $(document).ready(function () {
 
   noUiSlider.create(connectUpperSlider5, {
     start: 70,
-    direction: direction,
     orientation: 'vertical',
     connect: 'upper',
     range: {
@@ -607,7 +568,6 @@ $(document).ready(function () {
 
   noUiSlider.create(tooltipSlider1, {
     start: [20, 80],
-    direction: direction,
     orientation: 'vertical',
     tooltips: [false, wNumb({
       decimals: 1
@@ -622,7 +582,6 @@ $(document).ready(function () {
 
   noUiSlider.create(tooltipSlider2, {
     start: [20, 80],
-    direction: direction,
     orientation: 'vertical',
     tooltips: [false, wNumb({
       decimals: 1
@@ -637,7 +596,6 @@ $(document).ready(function () {
 
   noUiSlider.create(tooltipSlider3, {
     start: [20, 80],
-    direction: direction,
     orientation: 'vertical',
     tooltips: [false, wNumb({
       decimals: 1
@@ -654,7 +612,6 @@ $(document).ready(function () {
   noUiSlider.create(directionTopBottom1, {
     range: range_all_sliders,
     start: 30,
-    direction: direction,
     connect: 'lower',
     orientation: 'vertical',
     pips: {
@@ -668,7 +625,6 @@ $(document).ready(function () {
   noUiSlider.create(directionTopBottom2, {
     range: range_all_sliders,
     start: 50,
-    direction: direction,
     connect: 'lower',
     orientation: 'vertical',
     pips: {
@@ -682,7 +638,6 @@ $(document).ready(function () {
   noUiSlider.create(directionTopBottom3, {
     range: range_all_sliders,
     start: 70,
-    direction: direction,
     connect: 'lower',
     orientation: 'vertical',
     pips: {
@@ -698,7 +653,6 @@ $(document).ready(function () {
 
   noUiSlider.create(verticalLimitSlider1, {
     start: [40, 60],
-    direction: direction,
     orientation: 'vertical',
     limit: 40,
     behaviour: 'drag',
@@ -713,7 +667,6 @@ $(document).ready(function () {
 
   noUiSlider.create(verticalLimitSlider2, {
     start: [35, 65],
-    direction: direction,
     orientation: 'vertical',
     limit: 40,
     behaviour: 'drag',
@@ -728,7 +681,6 @@ $(document).ready(function () {
 
   noUiSlider.create(verticalLimitSlider3, {
     start: [30, 70],
-    direction: direction,
     orientation: 'vertical',
     limit: 50,
     behaviour: 'drag',
@@ -743,7 +695,6 @@ $(document).ready(function () {
 
   noUiSlider.create(verticalLimitSlider4, {
     start: [25, 75],
-    direction: direction,
     orientation: 'vertical',
     limit: 50,
     behaviour: 'drag',
@@ -758,7 +709,6 @@ $(document).ready(function () {
 
   noUiSlider.create(verticalLimitSlider5, {
     start: [20, 80],
-    direction: direction,
     orientation: 'vertical',
     limit: 70,
     behaviour: 'drag',
@@ -838,8 +788,7 @@ $(document).ready(function () {
       max: timestamp(date)
     },
     step: 1 * 24 * 60 * 60 * 1000,
-    start: [timestamp(previousMonth), timestamp(date)],
-    direction: direction,
+    start: [timestamp(previousMonth), timestamp(date)]
   });
 
   // get range infos at html
@@ -871,7 +820,6 @@ $(document).ready(function () {
 
   noUiSlider.create(sliderWithInput, {
     start: [10, 30],
-    direction: direction,
     connect: true,
     range: {
       'min': -20,

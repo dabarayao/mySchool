@@ -1,17 +1,20 @@
-@extends('layouts/contentLayoutMaster')
+@extends('layouts.contentLayoutMaster')
 
-@section('title', 'NoUiSlider')
+{{-- page title --}}
+@section('title','noUiSlider')
+{{-- vendor styles --}}
+@section('vendor-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/extensions/nouislider.min.css')}}">
+@endsection
 
-@section('vendor-style')
-        <!-- vendor css files -->
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/nouislider.min.css')) }}">
+{{-- page styles --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/plugins/extensions/noui-slider.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/core/colors/palette-noui.css')}}">
 @endsection
-@section('page-style')
-        <!-- Page css files -->
-        <link rel="stylesheet" href="{{ asset(mix('css/plugins/extensions/noui-slider.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('css/core/colors/palette-noui.css')) }}">
-@endsection
+
 @section('content')
+<!-- Horizontal Sliders -->
 <!-- Slider values section start -->
 <section id="slider-values">
   <div class="row match-height">
@@ -34,7 +37,6 @@
             <div class="form-group">
               <div id="slider-snap" class="my-1"></div>
             </div>
-
           </div>
         </div>
       </div>
@@ -55,10 +57,8 @@
         <div class="card-content">
           <div class="card-body">
             <p>noUiSlider offers several ways to handle user interaction. The range can be set to drag, and handles can
-              move
-              to taps. All these effects are optional, and can be enable by adding their keyword to the behavior option.
-              This
-              option accepts a <code>"-"</code> separated list of <code>"drag"</code>, <code>"tap"</code>,
+              move to taps. All these effects are optional, and can be enable by adding their keyword to the behavior option.
+              This option accepts a <code>"-"</code> separated list of <code>"drag"</code>, <code>"tap"</code>,
               <code>"fixed"</code>, <code>"snap"</code> or <code>"none"</code>.</p>
             <h4>Tap</h4>
             <p>A handle snaps to a clicked location. A smooth transition is used. This option is <code>default</code>.
@@ -94,7 +94,6 @@
               <div id="hover" class="my-1"></div>
               <span class="example-val" id="hover-val"></span>
             </div>
-
           </div>
         </div>
       </div>
@@ -247,7 +246,7 @@
             <fieldset>
               <div class="my-1" id="slider-with-input"></div>
               <div class="row">
-                <div class="col-xl-1 col-lg-2 col-md-3 col-12 slider-select">
+                <div class="col-md-1 col-sm-12 slider-select">
                   <select class="form-control mr-1 mt-2 d-inline-block" id="slider-select">
                     <option value="-20">-20</option>
                     <option value="-19">-19</option>
@@ -312,7 +311,7 @@
                     <option value="40">40</option>
                   </select>
                 </div>
-                <div class="col-xl-1 col-lg-2 col-md-3 col-12">
+                <div class="col-md-1 col-sm-12">
                   <input class="form-control d-inline-block mt-2" type="number" min="-20" max="40" step="1"
                     id="slider-input-number">
                 </div>
@@ -640,12 +639,12 @@
 <!-- Vertical Sliders section end -->
 @endsection
 
-@section('vendor-script')
-        <!-- vendor files -->
-        <script src="{{ asset(mix('vendors/js/extensions/wNumb.js')) }}"></script>
-        <script src="{{ asset(mix('vendors/js/extensions/nouislider.min.js')) }}"></script>
+{{-- vendor scripts --}}
+@section('vendor-scripts')
+<script src="{{asset('vendors/js/extensions/wNumb.js')}}"></script>
+<script src="{{asset('vendors/js/extensions/nouislider.min.js')}}"></script>
 @endsection
-@section('page-script')
-        <!-- Page js files -->
-        <script src="{{ asset(mix('js/scripts/extensions/noui-slider.js')) }}"></script>
+{{-- page scripts --}}
+@section('page-scripts')
+<script src="{{asset('js/scripts/extensions/noui-slider.js')}}"></script>
 @endsection

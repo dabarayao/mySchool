@@ -1,16 +1,18 @@
-@extends('layouts/contentLayoutMaster')
+@extends('layouts.contentLayoutMaster')
+{{-- page title --}}
+@section('title','Apex Charts')
 
-@section('title', 'Apex Charts')
-
-@section('vendor-style')
-        <!-- vendor css files -->
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/charts/apexcharts.css')) }}">
+{{-- vendor styles --}}
+@section('vendor-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/charts/apexcharts.css')}}">
 @endsection
+
 @section('content')
 <div class="row">
   <div class="col-12">
-    <p>An Apexcharts.js component for ApexCharts. Read full documnetation <a
-        href="https://apexcharts.com/docs/installation/" target="_blank">here</a></p>
+    <p>An Apexcharts.js component for ApexCharts. Read full documnetation
+      <a href="https://apexcharts.com/docs/installation/" target="_blank">here</a>
+    </p>
   </div>
 </div>
 <!-- apex charts section start -->
@@ -160,7 +162,7 @@
         </div>
         <div class="card-content">
           <div class="card-body">
-            <div id="pie-chart" class="mx-auto"></div>
+            <div id="pie-chart" class="d-flex justify-content-center"></div>
           </div>
         </div>
       </div>
@@ -174,12 +176,14 @@
         </div>
         <div class="card-content">
           <div class="card-body">
-            <div id="donut-chart" class="mx-auto"></div>
+            <div id="donut-chart" class="d-flex justify-content-center"></div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
+  <div class="row">
     <!-- Radial Bar Chart -->
     <div class="col-lg-6 col-md-12">
       <div class="card">
@@ -211,12 +215,11 @@
 </section>
 <!-- // Apex charts section end -->
 @endsection
-
-@section('vendor-script')
-        <!-- vendor files -->
-        <script src="{{ asset(mix('vendors/js/charts/apexcharts.min.js')) }}"></script>
+{{-- vendor scripts --}}
+@section('vendor-scripts')
+<script src="{{asset('vendors/js/charts/apexcharts.min.js')}}"></script>
 @endsection
-@section('page-script')
-        <!-- Page js files -->
-        <script src="{{ asset(mix('js/scripts/charts/chart-apex.js')) }}"></script>
+{{-- page scripts --}}
+@section('page-scripts')
+<script src="{{asset('js/scripts/charts/chart-apex.js')}}"></script>
 @endsection

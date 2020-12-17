@@ -1,6 +1,4 @@
 // Justified nav links
-// -------------------------
-
 @mixin nav-justified {
   width: 100%;
 
@@ -30,7 +28,7 @@
 }
 
 // Move borders to anchors instead of bottom of list
-//
+
 // Mixin for adding on top the shared `.nav-justified` styles for our tabs
 @mixin nav-tabs-justified {
 

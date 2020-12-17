@@ -1,91 +1,171 @@
 
-@section('content-sidebar')
-    <div class="sidebar-content email-app-sidebar d-flex">
-        <span class="sidebar-close-icon">
-            <i class="feather icon-x"></i>
-        </span>
-        <div class="email-app-menu">
-            <div class="form-group form-group-compose text-center compose-btn">
-            <button type="button" class="btn btn-primary btn-block my-2" data-toggle="modal"
-                data-target="#composeForm"><i class="feather icon-edit"></i> Compose</button>
+@section('sidebar-content')
+<div class="sidebar-content email-app-sidebar d-flex">
+    <!-- sidebar close icon -->
+    <span class="sidebar-close-icon">
+      <i class="bx bx-x"></i>
+    </span>
+    <!-- sidebar close icon -->
+    <div class="email-app-menu">
+      <div class="form-group form-group-compose">
+        <!-- compose button  -->
+        <button type="button" class="btn btn-primary btn-block my-2 compose-btn">
+          <i class="bx bx-plus"></i>
+          Compose
+        </button>
+      </div>
+      <div class="sidebar-menu-list">
+        <!-- sidebar menu  -->
+        <div class="list-group list-group-messages">
+          <a href="#" class="list-group-item pt-0 active" id="inbox-menu">
+            <div class="fonticon-wrap d-inline mr-25">
+              <i class="livicon-evo"
+                data-options="name: envelope-put.svg; size: 24px; style: lines; strokeColor:#5A8DEE; eventOn:grandparent; duration:0.85;">
+              </i>
             </div>
-            <div class="sidebar-menu-list">
-            <div class="list-group list-group-messages font-medium-1">
-                <a href="#" class="list-group-item list-group-item-action border-0 pt-0 active">
-                <i class="font-medium-5 feather icon-mail mr-50"></i> Inbox <span
-                    class="badge badge-primary badge-pill float-right">3</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action border-0"><i
-                    class="font-medium-5 fa fa-paper-plane-o mr-50"></i> Sent</a>
-                <a href="#" class="list-group-item list-group-item-action border-0"><i
-                    class="font-medium-5 feather icon-edit-2 mr-50"></i> Draft <span
-                    class="badge badge-warning badge-pill float-right">4</span> </a>
-                <a href="#" class="list-group-item list-group-item-action border-0"><i class="font-medium-5 feather icon-star mr-50"></i>
-                Starred</a>
-                <a href="#" class="list-group-item list-group-item-action border-0"><i class="font-medium-5 feather icon-info mr-50"></i>
-                Spam <span class="badge badge-danger badge-pill float-right">3</span> </a>
-                <a href="#" class="list-group-item list-group-item-action border-0"><i class="font-medium-5 feather icon-trash mr-50"></i>
-                Trash</a>
+            Inbox
+            <span class="badge badge-light-primary badge-pill badge-round float-right mt-50">5</span>
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="fonticon-wrap d-inline mr-25">
+              <i class="livicon-evo"
+                data-options="name: paper-plane.svg; size: 24px; style: lines; strokeColor:#475f7b; eventOn:grandparent; duration:0.85;">
+              </i>
             </div>
-            <hr>
-            <h5 class="my-2 pt-25">Labels</h5>
-            <div class="list-group list-group-labels font-medium-1">
-                <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"><span
-                    class="bullet bullet-success mr-1"></span> Personal</a>
-                <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"><span
-                    class="bullet bullet-primary mr-1"></span> Company</a>
-                <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"><span
-                    class="bullet bullet-warning mr-1"></span> Important</a>
-                <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"><span
-                    class="bullet bullet-danger mr-1"></span> Private</a>
+            Sent
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="fonticon-wrap d-inline mr-25">
+              <i class="livicon-evo"
+                data-options="name: pen.svg; size: 24px; style: lines; strokeColor:#475f7b; eventOn:grandparent; duration:0.85;">
+              </i>
+            </div> Draft
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="fonticon-wrap d-inline mr-25">
+              <i class="livicon-evo"
+                data-options="name: star.svg; size: 24px; style: lines; strokeColor:#475f7b; eventOn:grandparent; duration:0.85;">
+              </i>
             </div>
+            Starred
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="fonticon-wrap d-inline mr-25">
+              <i class="livicon-evo"
+                data-options="name: info-alt.svg; size: 24px; style: lines; strokeColor:#475f7b; eventOn:grandparent; duration:0.85;">
+              </i>
             </div>
+            Spam
+            <span class="badge badge-light-danger badge-pill badge-round float-right mt-50">3</span>
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="fonticon-wrap d-inline mr-25">
+              <i class="livicon-evo"
+                data-options="name: trash.svg; size: 24px; style: lines; strokeColor:#475f7b; eventOn:grandparent; duration:0.85;">
+              </i>
+            </div>
+            Trash
+          </a>
         </div>
+        <!-- sidebar menu  end-->
+
+        <!-- sidebar label start -->
+        <label class="sidebar-label">Labels</label>
+        <div class="list-group list-group-labels ">
+          <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+            Product
+            <span class="bullet bullet-success bullet-sm"></span>
+          </a>
+          <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+            Work
+            <span class="bullet bullet-primary bullet-sm"></span>
+          </a>
+          <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+            Misc
+            <span class="bullet bullet-warning bullet-sm"></span>
+          </a>
+          <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+            Family
+            <span class="bullet bullet-danger bullet-sm"></span>
+          </a>
+          <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+            Design
+            <span class="bullet bullet-info bullet-sm"></span>
+          </a>
         </div>
-        <!-- Modal -->
-        <div class="modal fade text-left" id="composeForm" tabindex="-1" role="dialog" aria-labelledby="emailCompose"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title text-text-bold-600" id="emailCompose">New Message</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body pt-1">
-                <div class="form-label-group mt-1">
-                <input type="text" id="emailTo" class="form-control" placeholder="To" name="fname-floating">
-                <label for="emailTo">To</label>
-                </div>
-                <div class="form-label-group">
-                <input type="text" id="emailSubject" class="form-control" placeholder="Subject" name="fname-floating">
-                <label for="emailSubject">Subject</label>
-                </div>
-                <div class="form-label-group">
-                <input type="text" id="emailCC" class="form-control" placeholder="CC" name="fname-floating">
-                <label for="emailCC">CC</label>
-                </div>
-                <div class="form-label-group">
-                <input type="text" id="emailBCC" class="form-control" placeholder="BCC" name="fname-floating">
-                <label for="emailBCC">BCC</label>
-                </div>
-                <div id="email-container">
-                <div class="editor" data-placeholder="Message">
-                </div>
-                </div>
-                <div class="form-group mt-2">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="emailAttach">
-                    <label class="custom-file-label" for="emailAttach">Attach file</label>
-                </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <input type="submit" value="Send" class="btn btn-primary">
-                <input type="Reset" value="Cancel" class="btn btn-white" data-dismiss="modal">
-            </div>
-            </div>
-        </div>
+        <!-- sidebar label end -->
+      </div>
     </div>
+</div>
+  <!-- User new mail right area -->
+<div class="compose-new-mail-sidebar">
+    <div class="card shadow-none quill-wrapper p-0">
+      <div class="card-header">
+        <h3 class="card-title" id="emailCompose">New Message</h3>
+        <button type="button" class="close close-icon">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      <!-- form start -->
+      <form action="#" id="compose-form">
+        <div class="card-content">
+          <div class="card-body pt-0">
+            <div class="form-group pb-50">
+              <label for="emailfrom">from</label>
+              <input type="text" id="emailfrom" class="form-control" placeholder="user@example.com" disabled>
+            </div>
+            <div class="form-label-group">
+              <input type="email" id="emailTo" class="form-control" placeholder="To" required>
+              <label for="emailTo">To</label>
+            </div>
+            <div class="form-label-group">
+              <input type="text" id="emailSubject" class="form-control" placeholder="Subject">
+              <label for="emailSubject">Subject</label>
+            </div>
+            <div class="form-label-group">
+              <input type="text" id="emailCC" class="form-control" placeholder="CC">
+              <label for="emailCC">CC</label>
+            </div>
+            <div class="form-label-group">
+              <input type="text" id="emailBCC" class="form-control" placeholder="BCC">
+              <label for="emailBCC">BCC</label>
+            </div>
+            <!-- Compose mail Quill editor -->
+            <div class="snow-container border rounded p-50 ">
+              <div class="compose-editor mx-75"></div>
+              <div class="d-flex justify-content-end">
+                <div class="compose-quill-toolbar pb-0">
+                  <span class="ql-formats mr-0">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-link"></button>
+                    <button class="ql-image"></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mt-2">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="emailAttach">
+                <label class="custom-file-label" for="emailAttach">Attach file</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-end pt-0">
+          <button type="reset" class="btn btn-light-secondary cancel-btn mr-1">
+            <i class='bx bx-x mr-25'></i>
+            <span class="d-sm-inline d-none">Cancel</span>
+          </button>
+          <button type="submit" class="btn-send btn btn-primary">
+            <i class='bx bx-send mr-25'></i> <span class="d-sm-inline d-none">Send</span>
+          </button>
+        </div>
+      </form>
+      <!-- form start end-->
+    </div>
+</div>
+  <!--/ User Chat profile right area -->
 @endsection
+

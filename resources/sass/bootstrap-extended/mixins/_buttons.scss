@@ -1,3 +1,4 @@
+// button square variant mixin
 @mixin button-square-variant($border) {
     @include border-radius($border);
 }

@@ -1,5 +1,5 @@
 /*!
- * pickadate.js v3.6.4, 2019/05/25
+ * pickadate.js v3.6.3, 2019/04/03
  * By Amsul, http://amsul.ca
  * Hosted on http://amsul.github.io/pickadate.js
  * Licensed under MIT
@@ -95,10 +95,11 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
                 // and set as readonly to prevent keyboard popup.
                 ELEMENT.autofocus = ELEMENT == getActiveElement()
                 ELEMENT.readOnly = !SETTINGS.editable
-                SETTINGS.id = ELEMENT.id = ELEMENT.id || STATE.id
+                ELEMENT.id = ELEMENT.id || STATE.id
                 if ( ELEMENT.type != 'text' ) {
                     ELEMENT.type = 'text'
                 }
+
 
                 // Create a new picker component with the settings.
                 P.component = new COMPONENT(P, SETTINGS)
@@ -236,6 +237,7 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
 
                 // Add the “active” class.
                 $ELEMENT.addClass( CLASSES.active )
+                aria( ELEMENT, 'expanded', true )
 
                 // * A Firefox bug, when `html` has `overflow:hidden`, results in
                 //   killing transitions :(. So add the “opened” state on the next tick.
@@ -373,6 +375,7 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
 
                 // Remove the “active” class.
                 $ELEMENT.removeClass( CLASSES.active )
+                aria( ELEMENT, 'expanded', false )
 
                 // * A Firefox bug, when `html` has `overflow:hidden`, results in
                 //   killing transitions :(. So remove the “opened” state on the next tick.
@@ -640,11 +643,10 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
 
             // On focus/click, open the picker.
             on( 'focus.' + STATE.id + ' click.' + STATE.id,
-                function(event) {
-                    event.preventDefault()
-                    P.open()
-                }
-            )
+            debounce(function(event) {
+                event.preventDefault()
+                P.open()
+            }, 100))
 
             // Mousedown handler to capture when the user starts interacting
             // with the picker. This is used in working around a bug in Chrome 73.
@@ -676,6 +678,7 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
         // Update the aria attributes.
         aria(ELEMENT, {
             haspopup: true,
+            expanded: false,
             readonly: false,
             owns: ELEMENT.id + '_root'
         })
@@ -1014,6 +1017,22 @@ function getRealEventTarget( event, ELEMENT ) {
     }
 
     return event.target
+}
+
+// taken from https://davidwalsh.name/javascript-debounce-function
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
 }
 
 /**

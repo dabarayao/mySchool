@@ -1,361 +1,424 @@
+@extends('layouts.contentLayoutMaster')
 
-@extends('layouts/contentLayoutMaster')
-
-@section('title', 'To-Do')
-
-@section('page-style')
-        <!-- Page css files -->
-        <link rel="stylesheet" href="{{ asset(mix('css/pages/app-todo.css')) }}">
+{{-- page title --}}
+@section('title','TODO')
+{{-- vendor styles --}}
+@section('vendor-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/pickers/daterange/daterangepicker.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/forms/select/select2.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/editors/quill/quill.snow.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/extensions/dragula.min.css')}}">
 @endsection
-@include('pages/app-todo-sidebar')
+{{-- page style --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/pages/app-todo.css')}}">
+@endsection
+{{-- sidebar --}}
+@include('pages.app-todo-sidebar')
+{{-- page content --}}
 @section('content')
 <div class="app-content-overlay"></div>
 <div class="todo-app-area">
   <div class="todo-app-list-wrapper">
-      <div class="todo-app-list">
-          <div class="app-fixed-search">
-              <div class="sidebar-toggle d-block d-lg-none"><i class="feather icon-menu"></i></div>
-              <fieldset class="form-group position-relative has-icon-left m-0">
-                  <input type="text" class="form-control" id="todo-search" placeholder="Search..">
-                  <div class="form-control-position">
-                      <i class="feather icon-search"></i>
-                  </div>
-              </fieldset>
+    <div class="todo-app-list">
+      <div class="todo-fixed-search d-flex justify-content-between align-items-center">
+        <div class="sidebar-toggle d-block d-lg-none">
+          <i class="bx bx-menu"></i>
+        </div>
+        <fieldset class="form-group position-relative has-icon-left m-0 flex-grow-1">
+          <input type="text" class="form-control todo-search" id="todo-search" placeholder="Search Task">
+          <div class="form-control-position">
+            <i class="bx bx-search"></i>
           </div>
-          <div class="todo-task-list list-group">
-              <ul class="todo-task-list-wrapper media-list">
-                <li class="todo-item"  data-toggle="modal" data-target="#editTaskModal">
-                  <div class="todo-title-wrapper d-flex justify-content-between mb-50">
-                    <div class="todo-title-area d-flex align-items-center">
-                      <div class="title-wrapper d-flex">
-                        <div class="vs-checkbox-con">
-                            <input type="checkbox" >
-                            <span class="vs-checkbox vs-checkbox-sm">
-                              <span class="vs-checkbox--check">
-                                <i class="vs-icon feather icon-check"></i>
-                              </span>
-                            </span>
-                        </div>
-                        <h6 class="todo-title mt-50 mx-50">Fix Responsiveness 💻</h6>
-                      </div>
-                      <div class="chip-wrapper">
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Frontend"><span class="bullet bullet-primary bullet-xs"></span> Frontend</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="float-right todo-item-action d-flex">
-                      <a class='todo-item-info'><i class="feather icon-info"></i></a>
-                      <a class='todo-item-favorite'><i class="feather icon-star"></i></a>
-                      <a class='todo-item-delete'><i class="feather icon-trash"></i></a>
-                    </div>
-                  </div>
-                  <p class="todo-desc truncate mb-0">Jelly topping toffee bear claw. Sesame snaps lollipop macaroon croissant cheesecake pastry cupcake.</p>
-                </li>
-                <li class="todo-item"  data-toggle="modal" data-target="#editTaskModal">
-                  <div class="todo-title-wrapper d-flex justify-content-between mb-50">
-                    <div class="todo-title-area d-flex align-items-center">
-                      <div class="title-wrapper d-flex">
-                        <div class="vs-checkbox-con">
-                            <input type="checkbox" >
-                            <span class="vs-checkbox vs-checkbox-sm">
-                              <span class="vs-checkbox--check">
-                                <i class="vs-icon feather icon-check"></i>
-                              </span>
-                            </span>
-                        </div>
-                        <h6 class="todo-title mt-50 mx-50">Meet Jane ❤️</h6>
-                      </div>
-                      <div class="chip-wrapper">
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Frontend"><span class="bullet bullet-primary bullet-xs"></span> Frontend</span>
-                          </div>
-                        </div>
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Backend"><span class="bullet bullet-warning bullet-xs"></span> Backend</span>
-                          </div>
-                        </div>
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Doc"><span class="bullet bullet-success bullet-xs"></span> Doc</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="float-right todo-item-action d-flex">
-                      <a class='todo-item-info success'><i class="feather icon-info"></i></a>
-                      <a class='todo-item-favorite warning'><i class="feather icon-star"></i></a>
-                      <a class='todo-item-delete'><i class="feather icon-trash"></i></a>
-                    </div>
-                  </div>
-                  <p class="todo-desc truncate mb-0">Toffee sugar plum oat cake tiramisu tart bonbon gingerbread cheesecake cake.</p>
-                </li>
-                <li class="todo-item"  data-toggle="modal" data-target="#editTaskModal">
-                  <div class="todo-title-wrapper d-flex justify-content-between mb-50">
-                    <div class="todo-title-area d-flex align-items-center">
-                      <div class="title-wrapper d-flex">
-                        <div class="vs-checkbox-con">
-                            <input type="checkbox" >
-                            <span class="vs-checkbox vs-checkbox-sm">
-                              <span class="vs-checkbox--check">
-                                <i class="vs-icon feather icon-check"></i>
-                              </span>
-                            </span>
-                        </div>
-                        <h6 class="todo-title mt-50 mx-50">Pick up Natasha 😁</h6>
-                      </div>
-                      <div class="chip-wrapper">
-                      </div>
-                    </div>
-                    <div class="float-right todo-item-action d-flex">
-                      <a class='todo-item-info success'><i class="feather icon-info"></i></a>
-                      <a class='todo-item-favorite warning'><i class="feather icon-star"></i></a>
-                      <a class='todo-item-delete'><i class="feather icon-trash"></i></a>
-                    </div>
-                  </div>
-                  <p class="todo-desc truncate mb-0">Sweet roll toffee dragée cotton candy jelly beans halvah gingerbread jelly-o. Ice cream bear claw sugar plum powder.</p>
-                </li>
-                <li class="todo-item completed"  data-toggle="modal" data-target="#editTaskModal">
-                  <div class="todo-title-wrapper d-flex justify-content-between mb-50">
-                    <div class="todo-title-area d-flex align-items-center">
-                      <div class="title-wrapper d-flex">
-                        <div class="vs-checkbox-con">
-                            <input type="checkbox" checked>
-                            <span class="vs-checkbox vs-checkbox-sm">
-                              <span class="vs-checkbox--check">
-                                <i class="vs-icon feather icon-check"></i>
-                              </span>
-                            </span>
-                        </div>
-                        <h6 class="todo-title mt-50 mx-50">Skype Tommy</h6>
-                      </div>
-                      <div class="chip-wrapper">
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Bug"><span class="bullet bullet-danger bullet-xs"></span> Bug</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="float-right todo-item-action d-flex">
-                      <a class='todo-item-info'><i class="feather icon-info"></i></a>
-                      <a class='todo-item-favorite'><i class="feather icon-star"></i></a>
-                      <a class='todo-item-delete'><i class="feather icon-trash"></i></a>
-                    </div>
-                  </div>
-                  <p class="todo-desc truncate mb-0">Tart oat cake sesame snaps lollipop croissant cake biscuit.</p>
-                </li>
-                <li class="todo-item"  data-toggle="modal" data-target="#editTaskModal">
-                  <div class="todo-title-wrapper d-flex justify-content-between mb-50">
-                    <div class="todo-title-area d-flex align-items-center">
-                      <div class="title-wrapper d-flex">
-                        <div class="vs-checkbox-con">
-                            <input type="checkbox" >
-                            <span class="vs-checkbox vs-checkbox-sm">
-                              <span class="vs-checkbox--check">
-                                <i class="vs-icon feather icon-check"></i>
-                              </span>
-                            </span>
-                        </div>
-                        <h6 class="todo-title mt-50 mx-50">Send PPT 🎁</h6>
-                      </div>
-                      <div class="chip-wrapper">
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Backend"><span class="bullet bullet-warning bullet-xs"></span> Backend</span>
-                          </div>
-                        </div>
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Doc"><span class="bullet bullet-success bullet-xs"></span> Doc</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="float-right todo-item-action d-flex">
-                      <a class='todo-item-info success'><i class="feather icon-info"></i></a>
-                      <a class='todo-item-favorite warning'><i class="feather icon-star"></i></a>
-                      <a class='todo-item-delete'><i class="feather icon-trash"></i></a>
-                    </div>
-                  </div>
-                  <p class="todo-desc truncate mb-0">Dragée gummi bears tiramisu brownie cookie. Jelly beans pudding marzipan fruitcake muffin. Wafer gummi bears lollipop pudding lollipop biscuit.</p>
-                </li>
-                <li class="todo-item"  data-toggle="modal" data-target="#editTaskModal">
-                  <div class="todo-title-wrapper d-flex justify-content-between mb-50">
-                    <div class="todo-title-area d-flex align-items-center">
-                      <div class="title-wrapper d-flex">
-                        <div class="vs-checkbox-con">
-                            <input type="checkbox" >
-                            <span class="vs-checkbox vs-checkbox-sm">
-                              <span class="vs-checkbox--check">
-                                <i class="vs-icon feather icon-check"></i>
-                              </span>
-                            </span>
-                        </div>
-                        <h6 class="todo-title mt-50 mx-50">Submit Report</h6>
-                      </div>
-                      <div class="chip-wrapper">
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Frontend"><span class="bullet bullet-primary bullet-xs"></span> Frontend</span>
-                          </div>
-                        </div>
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Doc"><span class="bullet bullet-success bullet-xs"></span> Doc</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="float-right todo-item-action d-flex">
-                      <a class='todo-item-info'><i class="feather icon-info"></i></a>
-                      <a class='todo-item-favorite warning'><i class="feather icon-star"></i></a>
-                      <a class='todo-item-delete'><i class="feather icon-trash"></i></a>
-                    </div>
-                  </div>
-                  <p class="todo-desc truncate mb-0">Donut tart toffee cake cookie gingerbread. Sesame snaps brownie sugar plum candy canes muffin cotton candy.</p>
-                </li>
-                <li class="todo-item"  data-toggle="modal" data-target="#editTaskModal">
-                  <div class="todo-title-wrapper d-flex justify-content-between mb-50">
-                    <div class="todo-title-area d-flex align-items-center">
-                      <div class="title-wrapper d-flex">
-                        <div class="vs-checkbox-con">
-                            <input type="checkbox" >
-                            <span class="vs-checkbox vs-checkbox-sm">
-                              <span class="vs-checkbox--check">
-                                <i class="vs-icon feather icon-check"></i>
-                              </span>
-                            </span>
-                        </div>
-                        <h6 class="todo-title mt-50 mx-50">Refactor Code</h6>
-                      </div>
-                      <div class="chip-wrapper">
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Doc"><span class="bullet bullet-success bullet-xs"></span> Doc</span>
-                          </div>
-                        </div>
-                        <div class="chip mb-0">
-                          <div class="chip-body">
-                            <span class="chip-text" data-value="Backend"><span class="bullet bullet-warning bullet-xs"></span> Backend</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="float-right todo-item-action d-flex">
-                      <a class='todo-item-info success'><i class="feather icon-info"></i></a>
-                      <a class='todo-item-favorite warning'><i class="feather icon-star"></i></a>
-                      <a class='todo-item-delete'><i class="feather icon-trash"></i></a>
-                    </div>
-                  </div>
-                  <p class="todo-desc truncate mb-0">Pie liquorice wafer cotton candy danish. Icing topping jelly-o halvah pastry lollipop.</p>
-                </li>
-              </ul>
-              <div class="no-results">
-                 <h5>No Items Found</h5>
-              </div>
+        </fieldset>
+        <div class="todo-sort dropdown mr-1">
+          <button class="btn dropdown-toggle sorting" type="button" id="sortDropdown" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="bx bx-filter"></i>
+            <span>Sort</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sortDropdown">
+            <a class="dropdown-item ascending" href="#">Ascending</a>
+            <a class="dropdown-item descending" href="#">Descending</a>
           </div>
+        </div>
       </div>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTodoTask" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm" role="document">
-    <div class="modal-content">
-      <section class="todo-form">
-        <form id="form-edit-todo" class="todo-input">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editTodoTask">Edit Task</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="todo-item-action ml-auto">
-                <a class='edit-todo-item-info todo-item-info'><i class="feather icon-info"></i></a>
-                <a class='edit-todo-item-favorite todo-item-favorite'><i class="feather icon-star"></i></a>
-                <div class="dropdown todo-item-label">
-                  <i class="dropdown-toggle mr-0 mb-1 feather icon-tag" id="todoEditLabel"
-                    data-toggle="dropdown">
-                  </i>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="todoEditLabel">
-                    <div class="dropdown-item">
-                      <div class="vs-checkbox-con">
-                          <input type="checkbox" data-color="primary" data-value="Frontend">
-                          <span class="vs-checkbox">
-                            <span class="vs-checkbox--check">
-                              <i class="vs-icon feather icon-check mr-0"></i>
-                            </span>
-                          </span>
-                          <span>Frontend</span>
-                      </div>
-                    </div>
-                    <div class="dropdown-item">
-                      <div class="vs-checkbox-con">
-                          <input type="checkbox" data-color="warning" data-value="Backend">
-                          <span class="vs-checkbox">
-                            <span class="vs-checkbox--check">
-                              <i class="vs-icon feather icon-check mr-0"></i>
-                            </span>
-                          </span>
-                          <span>Backend</span>
-                      </div>
-                    </div>
-                    <div class="dropdown-item">
-                      <div class="vs-checkbox-con">
-                          <input type="checkbox" data-color="success" data-value="Doc">
-                          <span class="vs-checkbox">
-                            <span class="vs-checkbox--check">
-                              <i class="vs-icon feather icon-check mr-0"></i>
-                            </span>
-                          </span>
-                          <span>Doc</span>
-                      </div>
-                    </div>
-                    <div class="dropdown-item">
-                      <div class="vs-checkbox-con">
-                          <input type="checkbox" data-color="danger" data-value="Bug">
-                          <span class="vs-checkbox">
-                            <span class="vs-checkbox--check">
-                              <i class="vs-icon feather icon-check mr-0"></i>
-                            </span>
-                          </span>
-                          <span>Bug</span>
-                      </div>
-                    </div>
-                  </div>
+      <div class="todo-task-list list-group">
+        <!-- task list start -->
+        <ul class="todo-task-list-wrapper list-unstyled" id="todo-task-list-drag">
+          <li class="todo-item" data-name="David Smith">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox1">
+                  <label for="checkbox1"></label>
                 </div>
+                <p class="todo-title mx-50 m-0 truncate">Effective Hypnosis Quit Smoking Methods</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex">
+                  <span class="badge badge-light-primary badge-pill">Frontend</span>
+                </div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-1.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
             </div>
-            <fieldset class="form-group">
-              <input type="text" class="edit-todo-item-title form-control" placeholder="Title">
-            </fieldset>
-            <fieldset class="form-group">
-                <textarea class="edit-todo-item-desc form-control" rows="3" placeholder="Add description"></textarea>
-            </fieldset>
-          </div>
-          <div class="modal-footer">
-            <fieldset class="form-group position-relative has-icon-left mb-0">
-              <button type="button" class="btn btn-primary update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
-                <span class="d-none d-lg-block">Update</span></button>
-            </fieldset>
-            <fieldset class="form-group position-relative has-icon-left mb-0">
-              <button type="button" class="btn" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
-                <span class="d-none d-lg-block">Cancel</span></button>
-            </fieldset>
-          </div>
-        </form>
-      </section>
+          </li>
+          <li class="todo-item" data-name="John Doe">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox2">
+                  <label for="checkbox2"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">How To Protect Your Computer Very Useful Tips</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex"></div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-2.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75 warning'><i class="bx bx-star bxs-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="James Smith">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox14">
+                  <label for="checkbox14"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">It is a good idea to think of your PC as an office.</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex">
+                  <span class="badge badge-light-primary badge-pill">Frontend</span>
+                </div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-3.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="Maria Garcia">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox4">
+                  <label for="checkbox4"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Don't Let The Outtakes Take You Out</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex">
+                  <span class="badge badge-light-danger badge-pill ml-50">Issue</span>
+                  <span class="badge badge-light-success badge-pill ml-50">Backend</span>
+                </div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-4.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75 warning'><i class="bx bx-star bxs-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="Maria Rodrigu">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox5">
+                  <label for="checkbox5"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Sony laptops are among the most well known laptops on today</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex"></div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-5.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="Marry Smith">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox6">
+                  <label for="checkbox6"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Success Steps For Your Personal Or Business Life</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex"></div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-6.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="Maria Hern">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox7">
+                  <label for="checkbox7"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Believing Is The Absence Of Doubt</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex"></div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-7.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="Jamesh Jackson">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox8">
+                  <label for="checkbox8"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Are You Struggling In Life</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex">
+                  <span class="badge badge-light-danger badge-pill ml-50">Issue</span>
+                  <span class="badge badge-light-success badge-pill ml-50">Backend</span>
+                </div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-8.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="David Smith">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox9">
+                  <label for="checkbox9"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Hypnotherapy For Motivation Getting The Drive Back</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex"></div>
+                <span class=" badge badge-circle badge-light-primary">DS</span>
+                <a class='todo-item-favorite ml-75 warning'><i class="bx bx-star bxs-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="John Doe">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox10">
+                  <label for="checkbox10"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Fix Responsiveness</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex">
+                  <span class="badge badge-light-warning badge-pill ml-50">Design</span>
+                  <span class="badge badge-light-primary badge-pill ml-50">Frontend</span>
+                  <span class="badge badge-light-secondary badge-pill ml-50" data-tag="ISSUE,BACKEND"
+                    data-toggle="tooltip" data-placement="bottom" title="ISSUE,BACKEND">
+                    <i class='bx bx-dots-horizontal-rounded font-small-1'></i>
+                  </span>
+                </div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-10.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="James Smith">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox11">
+                  <label for="checkbox11"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Buying Used Electronic Test Equipment.</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex"></div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="Marry Smith">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox12">
+                  <label for="checkbox12"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Get The Boot A Birds Eye Look Into Mcse Boot Camps</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex">
+                  <span class="badge badge-light-warning badge-pill">Design</span>
+                </div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-12.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="Maria Garcia">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox13">
+                  <label for="checkbox13"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Dealing With Technical Support 10 Useful Tips</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex">
+                  <span class="badge badge-light-success badge-pill">Backend</span>
+                </div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-13.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="Maria Rodrigu">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox15">
+                  <label for="checkbox15"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">How Hypnosis Can Help You</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex"></div>
+                <span class="badge badge-circle badge-light-success">MR</span>
+                <a class='todo-item-favorite ml-75 warning'><i class="bx bx-star bxs-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="David Smith">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox16">
+                  <label for="checkbox16"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">Effective Hypnosis Quit Smoking Methods</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex">
+                  <span class="badge badge-light-primary badge-pill">Frontend</span>
+                </div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-1.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="todo-item" data-name="John Doe">
+            <div class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+              <div class="todo-title-area d-flex">
+                <i class='bx bx-grid-vertical handle'></i>
+                <div class="checkbox">
+                  <input type="checkbox" class="checkbox-input" id="checkbox17">
+                  <label for="checkbox17"></label>
+                </div>
+                <p class="todo-title mx-50 m-0 truncate">How To Protect Your Computer Very Useful Tips</p>
+              </div>
+              <div class="todo-item-action d-flex align-items-center">
+                <div class="todo-badge-wrapper d-flex"></div>
+                <div class="avatar ml-1">
+                  <img src="{{asset('images/portrait/small/avatar-s-2.jpg')}}" alt="avatar" height="30"
+                    width="30">
+                </div>
+                <a class='todo-item-favorite ml-75'><i class="bx bx-star"></i></a>
+                <a class='todo-item-delete ml-75'><i class="bx bx-trash"></i></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <!-- task list end -->
+        <div class="no-results">
+          <h5>No Items Found</h5>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 @endsection
 
-@section('page-script')
-        <!-- Page js files -->
-        <script src="{{ asset(mix('js/scripts/pages/app-todo.js')) }}"></script>
+@section('vendor-scripts')
+    <script src="{{asset('vendors/js/pickers/daterange/moment.min.js')}}"></script>
+    <script src="{{asset('vendors/js/pickers/daterange/daterangepicker.js')}}"></script>
+    <script src="{{asset('vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <script src="{{asset('vendors/js/editors/quill/quill.min.js')}}"></script>
+    <script src="{{asset('vendors/js/extensions/dragula.min.js')}}"></script>
 @endsection
 
+{{-- page scripts --}}
+@section('page-scripts')
+<script src="{{asset('js/scripts/pages/app-todo.js')}}"></script>
+@endsection

@@ -2,7 +2,8 @@
   File Name: documentation.scss
   Description: This is only documentation related css file, this is theme related css.
   ----------------------------------------------------------------------------------------------
-  Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+  Item Name: Frest HTML Admin Template
+  Version: 1.0
   Author: PIXINVENT
   Author URL: http://www.themeforest.net/user/pixinvent
 ================================================================================================*/
@@ -59,6 +60,28 @@ ul#page-navigation-list li ul li a.active{
 }
 .sidebar-right .component-sidebar .card-content{
   position: relative;
-  height: calc(100vh - 230px);
+  height: calc(100vh - 300px);
   overflow-y: auto;
+}
+
+.content-header-title{
+  color: #475F7B;
+  margin-right: 1rem;
+  border-right: 1px solid #828D99;
+ }
+ .breadcrumb-wrapper .breadcrumb .breadcrumb-item a, a i{
+  color: #828D99;
+ }
+ .breadcrumb-wrapper .breadcrumb .breadcrumb-item a:hover, a i:hover{
+  color: #5A8DEE;
+}
+.breadcrumb-wrapper .breadcrumb .breadcrumb-item + .breadcrumb-item{
+  padding-left: 9px;
+}
+.breadcrumb-wrapper .breadcrumb .breadcrumb-item + .breadcrumb-item:before{
+  color: #828D99;
+  padding-right: 9px;
+}
+html body .content .content-wrapper{
+  margin-top: 4.2rem;
 }

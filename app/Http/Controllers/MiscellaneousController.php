@@ -6,63 +6,29 @@ use Illuminate\Http\Request;
 
 class MiscellaneousController extends Controller
 {
-    // Coming Soon
-    public function coming_soon(){
-      $pageConfigs = [
-          'bodyClass' => "bg-full-screen-image",
-          'blankPage' => true
-      ];
-
-      return view('/pages/page-coming-soon', [
-          'pageConfigs' => $pageConfigs
-      ]);
-    }
-
-    // Error-404
-    public function error_404(){
-      $pageConfigs = [
-          'bodyClass' => "bg-full-screen-image",
-          'blankPage' => true
-      ];
-
-      return view('/pages/error-404', [
-          'pageConfigs' => $pageConfigs
-      ]);
-    }
-
-    // Error-500
-    public function error_500(){
-      $pageConfigs = [
-          'bodyClass' => "bg-full-screen-image",
-          'blankPage' => true
-      ];
-
-      return view('/pages/error-500', [
-          'pageConfigs' => $pageConfigs
-      ]);
-    }
-
-    // Not-authorized
-    public function not_authorized(){
-      $pageConfigs = [
-          'bodyClass' => "bg-full-screen-image",
-          'blankPage' => true
-      ];
-
-      return view('/pages/page-not-authorized', [
-          'pageConfigs' => $pageConfigs
-      ]);
-    }
-
-    // Maintenance
-    public function maintenance(){
-      $pageConfigs = [
-          'bodyClass' => "bg-full-screen-image",
-          'blankPage' => true
-      ];
-
-      return view('/pages/page-maintenance', [
-          'pageConfigs' => $pageConfigs
-      ]);
-    }
+  //Coming Soon
+  public function comingSoonPage(){
+    $pageConfigs = ['bodyCustomClass'=> 'bg-full-screen-image'];
+    return view('pages.page-coming-soon',['pageConfigs' => $pageConfigs]);
+  }
+  //404 error
+  public function error404Page(){
+    $pageConfigs = ['bodyCustomClass'=> 'bg-full-screen-image'];
+    return view('pages.error-404',['pageConfigs' => $pageConfigs]);
+  }
+   //500 error
+   public function error500Page(){
+    $pageConfigs = ['bodyCustomClass'=> 'bg-full-screen-image'];
+    return view('pages.error-500',['pageConfigs' => $pageConfigs]);
+  }
+  //not Authorized
+  public function notAuthPage(){
+    $pageConfigs = ['bodyCustomClass'=> 'bg-full-screen-image'];
+    return view('pages.page-not-authorized',['pageConfigs' => $pageConfigs]);
+  }
+  //Maintenance
+  public function maintenancePage(){
+    $pageConfigs = ['bodyCustomClass'=> 'bg-full-screen-image'];
+    return view('pages.page-maintenance',['pageConfigs' => $pageConfigs]);
+  }
 }

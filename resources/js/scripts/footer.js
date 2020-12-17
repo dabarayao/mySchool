@@ -2,7 +2,8 @@
   File Name: footer.js
   Description: Template footer js.
   ----------------------------------------------------------------------------------------
-  Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+  Item Name: Frest HTML Admin Template
+ Version: 1.0
   Author: Pixinvent
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/

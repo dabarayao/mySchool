@@ -1,13 +1,15 @@
 /*=========================================================================================
-	File Name: tour.js
-	Description: tour
+	File Name: ext-component-tour.js
+	Description: extra component tour for webpage guide
 	----------------------------------------------------------------------------------------
-	Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+	Item Name: Frest HTML Admin Template
+	Version: 1.0
 	Author: Pixinvent
 	Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
 $(document).ready(function () {
+  // tour initialize
   displayTour();
   $(window).resize(displayTour)
   var tour = new Shepherd.Tour({
@@ -15,7 +17,7 @@ $(document).ready(function () {
     scrollTo: true
   })
 
-  // tour steps
+  // tour step 1
   tour.addStep('step-1', {
     text: 'Here is page title.',
     attachTo: '.breadcrumbs-top .content-header-title bottom',
@@ -31,10 +33,10 @@ $(document).ready(function () {
       },
     ]
   });
-
+  // tour step 2
   tour.addStep('step-2', {
     text: 'Check your notifications from here.',
-    attachTo: '.dropdown-notification .icon-bell bottom',
+    attachTo: '.dropdown-notification .bx-bell bottom',
     buttons: [
 
       {
@@ -52,7 +54,7 @@ $(document).ready(function () {
       },
     ]
   });
-
+  // tour step 3
   tour.addStep('step-3', {
     text: 'Click here for user options.',
     attachTo: '.dropdown-user-link img bottom',
@@ -73,7 +75,7 @@ $(document).ready(function () {
       },
     ]
   });
-
+  // tour step 4
   tour.addStep('step-4', {
     text: 'Buy this awesomeness at affordable price!',
     attachTo: '.buy-now bottom',
@@ -110,5 +112,4 @@ $(document).ready(function () {
       })
     }
   }
-
 });

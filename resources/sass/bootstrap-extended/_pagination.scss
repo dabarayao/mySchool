@@ -1,195 +1,134 @@
-// Pagination
-
-.pagination {
-
-  // default look for page item, firsy and last item
-
+/*   Pagination css  */
+/*------------------*/
+// default look for page item, first and last item
+.pagination{
   .page-item {
-    border-radius: 5rem;
-    &.prev-item,
-    &.next-item,
+    &.previous,
+    &.next,
     &.first,
     &.last{
       .page-link {
         color: $primary;
+        padding: 0.435rem 0.5rem;
       }
 
       &.disabled {
         .page-link {
-          color: $secondary;
+          background-color: $input-disabled-bg;
         }
       }
     }
-
-    &:not(.prev-item),
-    &:not(.next-item),
-    &:not(.first),
-    &:not(.last),
-    &:not(.active){
+    &:first-child{
       .page-link{
-        line-height: 1.3;
+        border-left: 1px solid $pagination-border-color;
       }
     }
-
-  // prev and last item saperated styles
-
-    &.prev-item {
-      margin-right: .3571rem;
-
-      .page-link {
-        background-color: $pagination-bg-color;
-        padding: $pagination-action-padding-y $pagination-action-padding-x;
-        border-radius: 50%;
-
-        &:before {
-          content: "\e843";
-          font-family: 'feather';
-        }
-
-        &:hover {
-          background: $primary;
-          color: $white;
-        }
-      }
-
-      &~.page-item:nth-child(2){
-        border-top-left-radius: 5rem;
-        border-bottom-left-radius: 5rem;
-        .page-link {
-            border-top-left-radius: 5rem !important;
-            border-bottom-left-radius: 5rem !important;
-        }
-      }
-
-      &~.page-item:nth-last-child(2){
-        border-top-right-radius: 5rem;
-        border-bottom-right-radius: 5rem;
-        .page-link {
-          border-top-right-radius: 5rem !important;
-          border-bottom-right-radius: 5rem !important;
-        }
-      }
-    }
-
-    &.next-item {
-      margin-left: .3571rem;
-
-      .page-link {
-        background-color: $pagination-bg-color;
-        padding: $pagination-action-padding-y $pagination-action-padding-x;
-        border-radius: 50%;
-
-        &:after {
-          content: "\e844";
-          font-family: 'feather';
-        }
-
-        &:hover {
-          background: $primary;
-          color: $white;
-        }
-      }
-    }
-
-    // prev and next style 
-    &.prev, &.previous{
+    &:last-child{
       .page-link{
-        &:before {
-          content: "\e843";
-          font-family: 'feather';
-        }
+        border-right: 1px solid $pagination-border-color;
       }
     }
-    &.next{
-      .page-link{
-        &:after {
-          content: "\e844";
-          font-family: 'feather';
-        }
-      }
-    }
-    
-
-    // page link customization
 
     .page-link {
-      border: none;
-      margin: 0;
-      color: rgba($pure-black, .6);
-      background-color: $pagination-bg-color;
-      margin-left: 0;
-      font-size: 1rem;
-      font-weight: 700;
-
-      i {
-        position: relative;
-        top: 1px;
-      }
-
+      /* page link customization */
+      border: 1px solid $pagination-border-color;
+      border-right: 0;
+      border-left: 0;
+      color: $gray-900;
+      background-color: transparent;
+      font-weight: $font-weight-600;
       &:focus {
         box-shadow: none;
       }
-
       &:hover {
-        color: $primary;
+        border-radius: $border-radius;
+        background-color: rgba($primary, 0.2);
       }
-
+      // Prev - Next Icon
+      i{
+        font-weight: $font-weight-600;
+        vertical-align: middle;
+      }
     }
 
     // for active page item
-    &.active {
-      background-color: $pagination-bg-color;
+    &.active{
       border-radius: 0;
-
-      .page-link {
-        z-index: 3;
-        border-radius: 5rem;
-        background-color: $primary;
+      .page-link, .page-link:hover  {
+        border-radius: $border-radius;
+        background-color: $primary !important;
         color: $white;
-        transform: scale(1.05);
       }
     }
 
-    // if you dont want seprated look
+    // prev and last item css
+    &.previous   {
+      margin-right: .3571rem;
 
-    &:first-child:not(.prev-item){
-      &.active{
-        border-top-left-radius: 1.428rem;
-        border-bottom-left-radius: 1.428rem;
+      .page-link {
+        border: 1px solid $pagination-border-color;
+        border-radius: $border-radius;
+      }
+
+      &~.page-item:nth-child(2){
         .page-link{
-          border-radius: 5rem;
+          /* 1st page-item after "prev" button */
+          border-left: 1px solid $pagination-border-color;
+          border-top-left-radius: $border-radius;
+          border-bottom-left-radius: $border-radius;
         }
       }
-      .page-link {
-        border-top-left-radius: 1.428rem;
-        border-bottom-left-radius: 1.428rem;
+
+      &~.page-item:nth-last-child(-n+2){
+        .page-link{
+          /* last page-item previous of "Next" button */
+          border-right: 1px solid $pagination-border-color;
+          border-top-right-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
+        }
       }
     }
 
-    &:last-child:not(.next-item) {
-      &.active{
-        border-top-right-radius: 1.428rem;
-        border-bottom-right-radius: 1.428rem;
-        .page-link{
-          border-radius: 5rem;
-        }
-      }
+    &.next {
+      margin-left: .3571rem;
       .page-link {
-        border-top-right-radius: 1.428rem;
-        border-bottom-right-radius: 1.428rem;
+        border: 1px solid $pagination-border-color;
+        border-radius: $border-radius;
       }
     }
   }
-
-  // For Pagination lg
-
-  &.pagination-lg {
-    .page-item {
-      .page-link {
-        font-size: $pagination-font-size-lg;
-        transform: scale(1);
+  &.pagination-borderless{
+    .page-item{
+      .page-link{
+        /* Borderless Pagination */
+        border: none !important;
+      }
+      &.previous  , &.next{
+        .page-link{
+          background-color: $pagination-border-color;
+          &:hover{
+            background-color: rgba($primary, 0.2);
+          }
+        }
       }
     }
   }
-
+  
+  // pagination-lg
+  &.pagination-lg{
+    .page-item{
+      &:first-child{
+        .page-link{
+          border-top-left-radius: $border-radius;
+          border-bottom-left-radius: $border-radius;
+        }
+      }
+      &:last-child{
+        .page-link{
+          border-top-right-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
+        }
+      }
+    }
+  }
 }

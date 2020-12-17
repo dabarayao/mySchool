@@ -1,53 +1,40 @@
-@extends('layouts/fullLayoutMaster')
+@extends('layouts.fullLayoutMaster')
+{{-- page title --}}
+@section('title','Coming Soon')
 
-@section('title', 'Coming Soon')
-
-@section('page-style')
-        {{-- Page Css files --}}
-        <link rel="stylesheet" href="{{ asset(mix('css/pages/coming-soon.css')) }}">
+{{-- page scripts --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/pages/coming-soon.css')}}">
 @endsection
+
 @section('content')
-<!-- coming soon flat design -->
+<!-- coming soon start -->
 <section>
-  <div class="row d-flex vh-100 align-items-center justify-content-center">
-    <div class="col-xl-5 col-md-8 col-sm-10 col-12 px-md-0 px-2">
-        <div class="card text-center w-100 mb-0">
-            <div class="card-header justify-content-center pb-0">
-                <div class="card-title">
-                    <h2 class="mb-0">We are launching soon</h2>
-                </div>
-            </div>
-            <div class="card-content">
-                <div class="card-body pt-0">
-                    <img src="{{ asset('images/pages/rocket.png') }}" class="img-responsive block width-150 mx-auto" width="150" alt="bg-img">
-                    <div id="clockFlat" class="card-text text-center getting-started pt-2 d-flex justify-content-center flex-wrap"></div>
-                    <div class="divider">
-                        <div class="divider-text">Subscribe</div>
-                    </div>
-                    <p class="text-left">
-                        If you would like to be notified when our app is live, Please subscribe to our mailing list.
-                    </p>
-                    <form class="form-horizontal">
-                        <fieldset class="form-label-group">
-                            <input type="text" class="form-control" id="user-email" placeholder="Email">
-                            <label for="user-email">Email</label>
-                        </fieldset>
-                    </form>
-                    <button class="btn btn-primary w-100">Subscribe</button>
-                </div>
-            </div>
-        </div>
+  <div class="row flexbox-container">
+    <div class="col-md-6 col-12 text-center p-3">
+      <h1 class="error-title mb-2">We are launching soon</h1>
+      <p class="mb-1">Our website is opening soon. Please register to notify you when it's ready!</p>
+      <div id="clockFlat" class="card-text text-center coming-soon pt-2 d-flex justify-content-center mb-2"></div>
+      <form>
+        <fieldset class="form-group position-relative w-75 mx-auto">
+          <input type="text" class="form-control round form-control-lg shadow pl-2" placeholder="Email">
+          <button class="btn btn-primary cs-btn-notify round position-absolute" type="button">Notify</button>
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-md-6 d-lg-block d-none p-2">
+      <img class="img-fluid cs-effect cs-effect-bounce" src="{{asset('images/pages/comingsoon.png')}}" alt="coming soon" width="650">
     </div>
   </div>
 </section>
-<!--/ coming soon flat design -->
-@endsection
-@section('vendor-script')
-        {{-- vendor js files --}}
-        <script src="{{ asset(mix('vendors/js/coming-soon/jquery.countdown.min.js')) }}"></script>
+<!--/ coming soon end -->
 @endsection
 
-@section('page-script')
-        {{-- Page js files --}}
-        <script src="{{ asset(mix('js/scripts/pages/coming-soon.js')) }}"></script>
+{{-- vendor scripts --}}
+@section('vendor-scripts')
+<script src="{{asset('vendors/js/coming-soon/jquery.countdown.min.js')}}"></script>
+@endsection
+{{-- page scripts --}}
+@section('page-scripts')
+<script src="{{asset('js/scripts/pages/coming-soon.js')}}"></script>
 @endsection

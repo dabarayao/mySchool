@@ -1,9 +1,10 @@
 /*=========================================================================================
     File Name: popover.js
-    Description: Popovers are an updated version, which don’t rely on images, 
+    Description: Popovers are an updated version, which don’t rely on images,
                 use CSS3 for animations, and data-attributes for local title storage.
     ----------------------------------------------------------------------------------------
-    Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Frest HTML Admin Template
+    Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
@@ -18,8 +19,8 @@
 
     // onShow event
     $('#show-popover').popover({
-        title: 'Popover Show Event',
-        content: 'Bonbon chocolate cake. Pudding halvah pie apple pie topping marzipan pastry marzipan cupcake.',
+        title: 'Show Event',
+        content: 'Bonbon chocolate cake. Pudding halvah pie apple pie topping.',
         trigger: 'click',
         placement: 'right'
         }).on('show.bs.popover', function() {
@@ -28,8 +29,8 @@
 
     // onShown event
     $('#shown-popover').popover({
-        title: 'Popover Shown Event',
-        content: 'Bonbon chocolate cake. Pudding halvah pie apple pie topping marzipan pastry marzipan cupcake.',
+        title: 'Shown Event',
+        content: 'Bonbon chocolate cake. Pudding halvah pie apple pie topping.',
         trigger: 'click',
         placement: 'bottom'
     }).on('shown.bs.popover', function() {
@@ -38,8 +39,8 @@
 
     // onHide event
     $('#hide-popover').popover({
-        title: 'Popover Hide Event',
-        content: 'Bonbon chocolate cake. Pudding halvah pie apple pie topping marzipan pastry marzipan cupcake.',
+        title: 'Hide Event',
+        content: 'Bonbon chocolate cake. Pudding halvah pie apple pie topping.',
         trigger: 'click',
         placement: 'bottom'
     }).on('hide.bs.popover', function() {
@@ -48,8 +49,8 @@
 
     // onHidden event
     $('#hidden-popover').popover({
-        title: 'Popover Hidden Event',
-        content: 'Bonbon chocolate cake. Pudding halvah pie apple pie topping marzipan pastry marzipan cupcake.',
+        title: 'Hidden Event',
+        content: 'Bonbon chocolate cake. Pudding halvah pie apple pie topping.',
         trigger: 'click',
         placement: 'left'
     }).on('hidden.bs.popover', function() {
@@ -87,20 +88,6 @@
     });
     $('.manual').on('mouseout', function() {
         $(this).popover('hide');
-    });
-
-    /****************/
-    // Custom color //
-    /****************/
-    $('[data-popup=popover-color]').popover({
-        template: '<div class="popover"><div class="bg-teal"><div class="popover-arrow"></div><div class="popover-inner"></div></div></div>'
-    });
-
-    /**********************/
-    // Custom borer color //
-    /**********************/
-    $('[data-popup=popover-border]').popover({
-        template: '<div class="popover"><div class="border-orange"><div class="popover-arrow"></div><div class="popover-inner"></div></div></div>'
     });
 
 })(window, document, jQuery);

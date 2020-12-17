@@ -1,3 +1,4 @@
+
 // Core variables and mixins
 @import "../../../bootstrap/functions";
 @import "../../../bootstrap/mixins";
@@ -9,10 +10,12 @@
 // Overrides user variable
 @import "../../../core/variables/components-variables";
 
+  /*   Form Validation css  */
+  /*-----------------------*/
 .form-group{
-  // when an issue or error occured
   &.issue, &.error{
     .help-block, .help-inline{
+      /*   when an issue or error occured  */
       color: $danger;
     }
     input, select, textarea{
@@ -27,7 +30,7 @@
   }
 
 
-  // Validation Message Scss
+  //  Validation Message css
   .help-block ul{
     padding-left: 0;
 
@@ -35,6 +38,19 @@
       list-style-type: none;
       font-size: 0.875rem;
       padding-top: 0.2rem;
+      font-family: $font-family-sans-serif;
+      &::before{
+        content:"\eb99";
+        position: relative;
+        top: 2px;
+        font-family: boxicons !important;
+        font-weight: 400;
+        font-style: normal;
+        font-variant: normal;
+        line-height: 1;
+        display: inline-block;
+        text-transform: none;
+      }
     }
   }
 }

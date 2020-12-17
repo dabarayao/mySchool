@@ -1,6 +1,16 @@
-// For Drag And Drop
+// Core variables and mixins
+@import "../../bootstrap/functions";
+@import "../../bootstrap/mixins";
 
-// for pointer on hover
+// Core variables and mixins overrides
+@import "../../core/variables/variables";
+@import "../../bootstrap/variables";
+
+// Overrides user variable
+@import "../../core/variables/components-variables";
+
+/* For Drag And Drop css */
+/* --------------------- */
 
 #draggable-cards{
   .card{
@@ -20,8 +30,7 @@
   }
 }
 
-// For Multi List
-
+/* For Multi List */
 #multiple-list-group-a,#multiple-list-group-b{
   min-height: 5.714rem;
 }
@@ -32,9 +41,10 @@
   .list-group{
     min-height: 5.714rem;
     .handle{
+      /* handle in list-group*/
       padding: 0 5px;
       margin-right: 5px;
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba($black, 0.1);
       cursor: move;
       font-size: 1.2rem;
     }

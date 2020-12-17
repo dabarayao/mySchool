@@ -2,13 +2,14 @@
 //     File Name: type.scss
 //     Description: Type pages custom scss
 //     ----------------------------------------------------------------------------------------------
-//     Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+//     Item Name: Frest HTML Admin Template
+//     Version: 1.0
 //     Author: PIXINVENT
 //     Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
-
-//small
+/*  small font css  */
+/*-----------------*/
 .font-small-1{
   font-size: 0.7rem !important;
 }
@@ -18,7 +19,8 @@
 .font-small-3{
   font-size: 0.9rem !important;
 }
-//medium
+/* medium font css */
+/*----------------*/
 .font-medium-1{
   font-size: 1.1rem !important;
 }
@@ -34,7 +36,9 @@
 .font-medium-5{
   font-size: 1.5rem !important;
 }
-//large
+
+/* large font css */
+/*---------------*/
 .font-large-1{
   font-size: 2rem !important;
 }
@@ -51,10 +55,7 @@
   font-size: 6rem !important;
 }
 
-// Text styling
-// -------------------------
-
-// Font weights
+/* Font weights */
 
 .text-bold-300 {
   @include font-weight(light);
@@ -71,18 +72,11 @@
 .text-bold-700 {
   @include font-weight(bold);
 }
-
-// Font style
+/*   Font style   */
+/*---------------*/
 .text-italic {
     font-style: italic;
 }
 .text-highlight {
     padding: 4px 6px;
 }
-
-// //list Item
-// ol, ul, dl{
-//   li{
-//     line-height: 12;
-//   }
-// }

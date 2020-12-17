@@ -2,27 +2,38 @@
     File Name: 3-columns-left-sidebar.js
     Description: Invoices list datables configurations
     ----------------------------------------------------------------------------------------
-    Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Frest HTML Admin Template
+    Version: 1.0
     Author: Pixinvent
     Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-$(document).ready(function() {
-    /***********************************
-    *        js of small Slider        *
-    ************************************/
+$(document).ready(function () {
+  /***********************************
+  *        js of small Slider        *
+  ************************************/
 
-    var sm_options = {
-        start: [30,70],
-        behaviour: 'drag',
-        connect: true,
-        range: {
-            'min': 20,
-            'max': 80
-        }
-    };
-    var smallSlider = document.getElementById('small-slider');
-    noUiSlider.create(smallSlider, sm_options);
+  var sm_options = {
+    start: [30, 70],
+    behaviour: 'drag',
+    connect: true,
+    range: {
+      'min': 20,
+      'max': 80
+    }
+  };
+  var smallSlider = document.getElementById('small-slider');
+  noUiSlider.create(smallSlider, sm_options);
 
-    $(".sidebar-sticky").sticky();
+
+  /*************************************
+  *        Default Score Rating        *
+  **************************************/
+  $.fn.raty.defaults.path = '../images/raty/';
+
+  $('#score-rating').raty({
+    score: 3
+  });
+
+  $(".sidebar-sticky").sticky();
 });

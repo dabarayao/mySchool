@@ -1,98 +1,110 @@
-// Divider
+// =========================================================================================
+// 	File Name: divider.scss
+// 	Description: Divider css.
+// 	----------------------------------------------------------------------------------------
+// 	Item Name: Frest HTML Admin Template
+// 	Version: 1.0
+// 	Author: PIXINVENT
+// 	Author URL: http://www.themeforest.net/user/pixinvent
+// ==========================================================================================
 
-.divider{
+/* Divider Css */
+/* --------- */
+
+.divider {
   display: block;
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
   margin: 1rem 0;
 
-  // divider text display prop
-
-  .divider-text{
+  // Divider Text
+  .divider-text {
     position: relative;
     display: inline-block;
-    font-size: .9375rem;
+    font-size: 1rem;
     padding: 0 1rem;
     background-color: $white;
 
-    // divider icon font size
-
-    i{
+    // Divider Icon
+    i {
       font-size: 1rem;
     }
 
-    // divider border
-
-    &:before,&:after{
-        content: "";
-        position: absolute;
-        top: 50%;
-        width: 9999px;
-        border-top: 1px solid rgba($pure-black, .1)
+    // Divider Border
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 9999px;
+      border-top: 1px solid $border-color;
     }
 
-    // divider spacing
-    &:before{
+    // Divider Spacing
+    &:before {
       right: 100%;
     }
-
-    &:after{
+    &:after {
       left: 100%;
     }
   }
 
-    // divider positions config
+  // Divider Positions
 
-  &.divider-left{
-    .divider-text{
+  &.divider-left {
+    .divider-text {
       float: left;
       padding-left: 0;
-      &:before{
+      &:before {
         display: none;
       }
     }
   }
-  &.divider-left-center{
-    .divider-text{
+
+  &.divider-left-center {
+    .divider-text {
       left: -25%;
     }
   }
 
-  &.divider-right{
-    .divider-text{
+  &.divider-right {
+    .divider-text {
       float: right;
       padding-right: 0;
-      &:after{
-       display: none;
+      &:after {
+        display: none;
       }
     }
   }
-  &.divider-right-center{
-    .divider-text{
+
+  &.divider-right-center {
+    .divider-text {
       right: -25%;
     }
   }
 
-  // divider styles
+  // Divider Styles
 
-  &.divider-dotted{
-    .divider-text{
-      &:before,&:after{
+  &.divider-dotted {
+    .divider-text {
+      &:before,
+      &:after {
         border-style: dotted;
         border-width: 1px;
         border-top-width: 0;
-        border-color: rgba($pure-black,1);
+        border-color: rgba($black, 1);
       }
     }
   }
-  &.divider-dashed{
-    .divider-text{
-      &:before,&:after{
+  &.divider-dashed {
+    .divider-text {
+      &:before,
+      &:after {
         border-style: dashed;
         border-width: 1px;
         border-top-width: 0;
-        border-color: rgba($pure-black,1);
+        border-color: rgba($black, 1);
       }
     }
   }

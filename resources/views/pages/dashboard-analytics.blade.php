@@ -1,315 +1,548 @@
+@extends('layouts.contentLayoutMaster')
 
-@extends('layouts/contentLayoutMaster')
-
-@section('title', 'Dashboard Analytics')
-
-@section('vendor-style')
-        <!-- vendor css files -->
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/charts/apexcharts.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/tether-theme-arrows.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/tether.min.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/shepherd-theme-default.css')) }}">
+{{-- title --}}
+@section('title','Dashboard Analytics')
+{{-- venodr style --}}
+@section('vendor-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/charts/apexcharts.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/extensions/dragula.min.css')}}">
 @endsection
-@section('page-style')
-        <!-- Page css files -->
-        <link rel="stylesheet" href="{{ asset(mix('css/pages/dashboard-analytics.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('css/pages/card-analytics.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('css/plugins/tour/tour.css')) }}">
-  @endsection
 
-  @section('content')
-    {{-- Dashboard Analytics Start --}}
-    <section id="dashboard-analytics">
-      <div class="row">
-          <div class="col-lg-6 col-md-12 col-sm-12">
-          <div class="card bg-analytics text-white">
-            <div class="card-content">
-              <div class="card-body text-center">
-                <img src="{{ asset('images/elements/decore-left.png') }}" class="img-left" alt="card-img-left">
-                <img src="{{ asset('images/elements/decore-right.png')}}" class="img-right" alt="card-img-right">
-                <div class="avatar avatar-xl bg-primary shadow mt-0">
-                    <div class="avatar-content">
-                        <i class="feather icon-award white font-large-1"></i>
-                    </div>
+{{-- page style --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/pages/dashboard-analytics.css')}}">
+@endsection
+
+@section('content')
+<!-- Dashboard Analytics Start -->
+<section id="dashboard-analytics">
+    <div class="row">
+      <!-- Website Analytics Starts-->
+      <div class="col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="card-title">Website Analytics</h4>
+            <i class="bx bx-dots-vertical-rounded font-medium-3 cursor-pointer"></i>
+          </div>
+          <div class="card-content">
+            <div class="card-body pb-1">
+              <div class="d-flex justify-content-around align-items-center flex-wrap">
+                <div class="user-analytics">
+                  <i class="bx bx-user mr-25 align-middle"></i>
+                  <span class="align-middle text-muted">Users</span>
+                  <div class="d-flex">
+                    <div id="radial-success-chart"></div>
+                    <h3 class="mt-1 ml-50">61K</h3>
+                  </div>
                 </div>
-                <div class="text-center">
-                  <h1 class="mb-2 text-white">Congratulations John,</h1>
-                  <p class="m-auto w-75">You have done <strong>57.6%</strong> more sales today. Check your new badge in your profile.</p>
+                <div class="sessions-analytics">
+                  <i class="bx bx-trending-up align-middle mr-25"></i>
+                  <span class="align-middle text-muted">Sessions</span>
+                  <div class="d-flex">
+                    <div id="radial-warning-chart"></div>
+                    <h3 class="mt-1 ml-50">92K</h3>
+                  </div>
+                </div>
+                <div class="bounce-rate-analytics">
+                  <i class="bx bx-pie-chart-alt align-middle mr-25"></i>
+                  <span class="align-middle text-muted">Bounce Rate</span>
+                  <div class="d-flex">
+                    <div id="radial-danger-chart"></div>
+                    <h3 class="mt-1 ml-50">72.6%</h3>
+                  </div>
+                </div>
+              </div>
+              <div id="analytics-bar-chart"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-xl-3 col-md-6 col-sm-12 dashboard-referral-impression">
+        <div class="row">
+          <!-- Referral Chart Starts-->
+          <div class="col-xl-12 col-12">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body text-center pb-0">
+                  <h2>$32,690</h2>
+                  <span class="text-muted">Referral</span> 40%
+                  <div id="success-line-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Impression Radial Chart Starts-->
+          <div class="col-xl-12 col-12">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body donut-chart-wrapper">
+                  <div id="donut-chart" class="d-flex justify-content-center"></div>
+                  <ul class="list-inline d-flex justify-content-around mb-0">
+                    <li> <span class="bullet bullet-xs bullet-warning mr-50"></span>Search</li>
+                    <li> <span class="bullet bullet-xs bullet-info mr-50"></span>Email</li>
+                    <li> <span class="bullet bullet-xs bullet-primary mr-50"></span>Social</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
-          <div class="col-lg-3 col-md-6 col-12">
+      </div>
+      <div class="col-xl-3 col-md-12 col-sm-12">
+        <div class="row">
+          <!-- Conversion Chart Starts-->
+          <div class="col-xl-12 col-md-6 col-12">
             <div class="card">
-              <div class="card-header d-flex flex-column align-items-start pb-0">
-                  <div class="avatar bg-rgba-primary p-50 m-0">
-                      <div class="avatar-content">
-                          <i class="feather icon-users text-primary font-medium-5"></i>
-                      </div>
-                  </div>
-                  <h2 class="text-bold-700 mt-1 mb-25">92.6k</h2>
-                  <p class="mb-0">Subscribers Gained</p>
+              <div class="card-header d-flex justify-content-between pb-xl-0 pt-xl-1">
+                <div class="conversion-title">
+                  <h4 class="card-title">Conversion</h4>
+                  <p>60%
+                    <i class="bx bx-trending-up text-success font-size-small align-middle mr-25"></i>
+                  </p>
+                </div>
+                <div class="conversion-rate">
+                  <h2>89k</h2>
+                </div>
               </div>
               <div class="card-content">
-                  <div id="subscribe-gain-chart"></div>
+                <div class="card-body text-center">
+                  <div id="bar-negative-chart"></div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card">
-                <div class="card-header d-flex flex-column align-items-start pb-0">
-                    <div class="avatar bg-rgba-warning p-50 m-0">
+          <div class="col-xl-12 col-md-6 col-12">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <div class="avatar bg-rgba-primary m-0 p-25 mr-75 mr-xl-2">
                         <div class="avatar-content">
-                            <i class="feather icon-package text-warning font-medium-5"></i>
+                          <i class="bx bx-user text-primary font-medium-2"></i>
                         </div>
+                      </div>
+                      <div class="total-amount">
+                        <h5 class="mb-0">$38,566</h5>
+                        <small class="text-muted">Conversion</small>
+                      </div>
                     </div>
-                    <h2 class="text-bold-700 mt-1 mb-25">97.5K</h2>
-                    <p class="mb-0">Orders Received</p>
+                    <div id="primary-line-chart"></div>
+                  </div>
                 </div>
-                <div class="card-content">
-                    <div id="orders-received-chart"></div>
+              </div>
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <div class="avatar bg-rgba-warning m-0 p-25 mr-75 mr-xl-2">
+                        <div class="avatar-content">
+                          <i class="bx bx-dollar text-warning font-medium-2"></i>
+                        </div>
+                      </div>
+                      <div class="total-amount">
+                        <h5 class="mb-0">$53,659</h5>
+                        <small class="text-muted">Income</small>
+                      </div>
+                    </div>
+                    <div id="warning-line-chart"></div>
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
+        </div>
       </div>
-      <div class="row">
-          <div class="col-md-6 col-12">
-            <div class="card">
-              <div class="card-content">
-                  <div class="card-body">
-                      <div class="row pb-50">
-                          <div class="col-lg-6 col-12 d-flex justify-content-between flex-column order-lg-1 order-2 mt-lg-0 mt-2">
-                              <div>
-                                  <h2 class="text-bold-700 mb-25">2.7K</h2>
-                                  <p class="text-bold-500 mb-75">Avg Sessions</p>
-                                  <h5 class="font-medium-2">
-                                      <span class="text-success">+5.2% </span>
-                                      <span>vs last 7 days</span>
-                                  </h5>
-                              </div>
-                              <a href="#" class="btn btn-primary shadow">View Details <i class="feather icon-chevrons-right"></i></a>
-                          </div>
-                          <div class="col-lg-6 col-12 d-flex justify-content-between flex-column text-right order-lg-2 order-1">
-                              <div class="dropdown chart-dropdown">
-                                  <button class="btn btn-sm border-0 dropdown-toggle p-0" type="button" id="dropdownItem5"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Last 7 Days
-                                  </button>
-                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownItem5">
-                                    <a class="dropdown-item" href="#">Last 28 Days</a>
-                                    <a class="dropdown-item" href="#">Last Month</a>
-                                    <a class="dropdown-item" href="#">Last Year</a>
-                                  </div>
-                              </div>
-                              <div id="avg-session-chart"></div>
-                          </div>
-                      </div>
-                      <hr/>
-                      <div class="row avg-sessions pt-50">
-                          <div class="col-6">
-                              <p class="mb-0">Goal: $100000</p>
-                              <div class="progress progress-bar-primary mt-25">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100"
-                                  style="width:50%"></div>
-                              </div>
-                          </div>
-                          <div class="col-6">
-                              <p class="mb-0">Users: 100K</p>
-                              <div class="progress progress-bar-warning mt-25">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="60" aria-valuemax="100"
-                                  style="width:60%"></div>
-                              </div>
-                          </div>
-                          <div class="col-6">
-                              <p class="mb-0">Retention: 90%</p>
-                              <div class="progress progress-bar-danger mt-25">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="70" aria-valuemax="100"
-                                  style="width:70%"></div>
-                              </div>
-                          </div>
-                          <div class="col-6">
-                              <p class="mb-0">Duration: 1yr</p>
-                              <div class="progress progress-bar-success mt-25">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="90" aria-valuemax="100"
-                                  style="width:90%"></div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
+    </div>
+    <div class="row">
+      <!-- Activity Card Starts-->
+      <div class="col-xl-3 col-md-6 col-12 activity-card">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Activity</h4>
           </div>
-          <div class="col-md-6 col-12">
-            <div class="card">
-              <div class="card-header d-flex justify-content-between pb-0">
-                  <h4 class="card-title">Support Tracker</h4>
-                  <div class="dropdown chart-dropdown">
-                      <button class="btn btn-sm border-0 dropdown-toggle p-0" type="button" id="dropdownItem4"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Last 7 Days
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownItem4">
-                        <a class="dropdown-item" href="#">Last 28 Days</a>
-                        <a class="dropdown-item" href="#">Last Month</a>
-                        <a class="dropdown-item" href="#">Last Year</a>
-                      </div>
+          <div class="card-content">
+            <div class="card-body pt-1">
+              <div class="d-flex activity-content">
+                <div class="avatar bg-rgba-primary m-0 mr-75">
+                  <div class="avatar-content">
+                    <i class="bx bx-bar-chart-alt-2 text-primary"></i>
                   </div>
-              </div>
-              <div class="card-content">
-                  <div class="card-body pt-0">
-                      <div class="row">
-                          <div class="col-sm-2 col-12 d-flex flex-column flex-wrap text-center">
-                              <h1 class="font-large-2 text-bold-700 mt-2 mb-0">163</h1>
-                              <small>Tickets</small>
-                          </div>
-                          <div class="col-sm-10 col-12 d-flex justify-content-center">
-                              <div id="support-tracker-chart"></div>
-                          </div>
-                      </div>
-                      <div class="chart-info d-flex justify-content-between">
-                          <div class="text-center">
-                              <p class="mb-50">New Tickets</p>
-                              <span class="font-large-1">29</span>
-                          </div>
-                          <div class="text-center">
-                              <p class="mb-50">Open Tickets</p>
-                              <span class="font-large-1">63</span>
-                          </div>
-                          <div class="text-center">
-                              <p class="mb-50">Response Time</p>
-                              <span class="font-large-1">1d</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="row match-height">
-          <div class="col-lg-4 col-12">
-            <div class="card">
-              <div class="card-header d-flex justify-content-between pb-0">
-                  <h4>Product Orders</h4>
-                  <div class="dropdown chart-dropdown">
-                      <button class="btn btn-sm border-0 dropdown-toggle p-0" type="button" id="dropdownItem2"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Last 7 Days
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownItem2">
-                        <a class="dropdown-item" href="#">Last 28 Days</a>
-                        <a class="dropdown-item" href="#">Last Month</a>
-                        <a class="dropdown-item" href="#">Last Year</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="card-content">
-                  <div class="card-body">
-                      <div id="product-order-chart" class="mb-3"></div>
-                      <div class="chart-info d-flex justify-content-between mb-1">
-                          <div class="series-info d-flex align-items-center">
-                              <i class="fa fa-circle-o text-bold-700 text-primary"></i>
-                              <span class="text-bold-600 ml-50">Finished</span>
-                          </div>
-                          <div class="product-result">
-                              <span>23043</span>
-                          </div>
-                      </div>
-                      <div class="chart-info d-flex justify-content-between mb-1">
-                          <div class="series-info d-flex align-items-center">
-                              <i class="fa fa-circle-o text-bold-700 text-warning"></i>
-                              <span class="text-bold-600 ml-50">Pending</span>
-                          </div>
-                          <div class="product-result">
-                              <span>14658</span>
-                          </div>
-                      </div>
-                      <div class="chart-info d-flex justify-content-between mb-75">
-                          <div class="series-info d-flex align-items-center">
-                              <i class="fa fa-circle-o text-bold-700 text-danger"></i>
-                              <span class="text-bold-600 ml-50">Rejected</span>
-                          </div>
-                          <div class="product-result">
-                              <span>4758</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-12">
-            <div class="card">
-              <div class="card-header d-flex justify-content-between align-items-start">
-                <div>
-                  <h4 class="card-title">Sales Stats</h4>
-                  <p class="text-muted mt-25 mb-0">Last 6 months</p>
                 </div>
-                  <p class="mb-0"><i class="feather icon-more-vertical font-medium-3 text-muted cursor-pointer"></i></p>
-              </div>
-              <div class="card-content">
-                  <div class="card-body px-0">
-                      <div id="sales-chart"></div>
+                <div class="activity-progress flex-grow-1">
+                  <small class="text-muted d-inline-block mb-50">Total Sales</small>
+                  <small class="float-right">$8,125</small>
+                  <div class="progress progress-bar-primary progress-sm">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="50" style="width:50%"></div>
                   </div>
+                </div>
+              </div>
+              <div class="d-flex activity-content">
+                <div class="avatar bg-rgba-success m-0 mr-75">
+                  <div class="avatar-content">
+                    <i class="bx bx-dollar text-success"></i>
+                  </div>
+                </div>
+                <div class="activity-progress flex-grow-1">
+                  <small class="text-muted d-inline-block mb-50">Income Amount</small>
+                  <small class="float-right">$18,963</small>
+                  <div class="progress progress-bar-success progress-sm">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="80" style="width:80%"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex activity-content">
+                <div class="avatar bg-rgba-warning m-0 mr-75">
+                  <div class="avatar-content">
+                    <i class="bx bx-stats text-warning"></i>
+                  </div>
+                </div>
+                <div class="activity-progress flex-grow-1">
+                  <small class="text-muted d-inline-block mb-50">Total Budget</small>
+                  <small class="float-right">$14,150</small>
+                  <div class="progress progress-bar-warning progress-sm">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" style="width:60%"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex mb-75">
+                <div class="avatar bg-rgba-danger m-0 mr-75">
+                  <div class="avatar-content">
+                    <i class="bx bx-check text-danger"></i>
+                  </div>
+                </div>
+                <div class="activity-progress flex-grow-1">
+                  <small class="text-muted d-inline-block mb-50">Completed Tasks</small>
+                  <small class="float-right">106</small>
+                  <div class="progress progress-bar-danger progress-sm">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="30" style="width:30%"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-12">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">Activity Timeline</h4>
+        </div>
+      </div>
+      <!-- Profit Report Card Starts-->
+      <div class="col-xl-3 col-md-6 col-12 profit-report-card">
+        <div class="row">
+          <div class="col-md-12 col-sm-6">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title">Profit Report</h4>
+                <i class="bx bx-dots-vertical-rounded font-medium-3 cursor-pointer"></i>
+              </div>
+              <div class="card-content">
+                <div class="card-body pb-0 d-flex justify-content-around">
+                  <div class="d-inline-flex mr-xl-2">
+                    <div id="profit-primary-chart"></div>
+                    <div class="profit-content ml-50 mt-50">
+                      <h5 class="mb-0">$12k</h5>
+                      <small class="text-muted">2019</small>
+                    </div>
+                  </div>
+                  <div class="d-inline-flex">
+                    <div id="profit-info-chart"></div>
+                    <div class="profit-content ml-50 mt-50">
+                      <h5 class="mb-0">$64k</h5>
+                      <small class="text-muted">2019</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-content">
-              <div class="card-body">
-                <ul class="activity-timeline timeline-left list-unstyled">
-                  <li>
-                    <div class="timeline-icon bg-primary">
-                      <i class="feather icon-plus font-medium-2 align-middle"></i>
+          </div>
+          <div class="col-md-12 col-sm-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Registrations</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="d-flex align-items-end justify-content-around">
+                    <div class="registration-content mr-xl-2">
+                      <h4 class="mb-0">56.3k</h4>
+                      <i class="bx bx-trending-up success align-middle"></i>
+                      <span class="text-success">12.8%</span>
                     </div>
-                    <div class="timeline-info">
-                      <p class="font-weight-bold mb-0">Client Meeting</p>
-                      <span class="font-small-3">Bonbon macaroon jelly beans gummi bears jelly lollipop apple</span>
+                    <div id="registration-chart"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sales Chart Starts-->
+      <div class="col-xl-3 col-md-6 col-12 sales-card">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="card-title-content">
+              <h4 class="card-title">Sales</h4>
+              <small class="text-muted">Calculated in last 7 days</small>
+            </div>
+            <i class="bx bx-dots-vertical-rounded font-medium-3 cursor-pointer"></i>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+              <div id="sales-chart" class="mb-2"></div>
+              <div class="d-flex justify-content-between my-1">
+                <div class="sales-info d-flex align-items-center">
+                  <i class='bx bx-up-arrow-circle text-primary font-medium-5 mr-50'></i>
+                  <div class="sales-info-content">
+                    <h6 class="mb-0">Best Selling</h6>
+                    <small class="text-muted">Sunday</small>
+                  </div>
+                </div>
+                <h6 class="mb-0">28.6k</h6>
+              </div>
+              <div class="d-flex justify-content-between mt-2">
+                <div class="sales-info d-flex align-items-center">
+                  <i class='bx bx-down-arrow-circle icon-light font-medium-5 mr-50'></i>
+                  <div class="sales-info-content">
+                    <h6 class="mb-0">Lowest Selling</h6>
+                    <small class="text-muted">Thursday</small>
+                  </div>
+                </div>
+                <h6 class="mb-0">986k</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Growth Chart Starts-->
+      <div class="col-xl-3 col-md-6 col-12 growth-card">
+        <div class="card">
+          <div class="card-body text-center">
+            <div class="dropdown">
+              <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButtonSec"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                2019
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSec">
+                <a class="dropdown-item" href="#">2019</a>
+                <a class="dropdown-item" href="#">2018</a>
+                <a class="dropdown-item" href="#">2017</a>
+              </div>
+            </div>
+            <div id="growth-Chart"></div>
+            <h6 class="mb-0"> 62% Company Growth in 2019</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Task Card Starts -->
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-12">
+            <div class="card widget-todo">
+              <div class="card-header border-bottom d-flex justify-content-between align-items-center flex-wrap">
+                <h4 class="card-title d-flex mb-25 mb-sm-0">
+                  <i class='bx bx-check font-medium-5 pl-25 pr-75'></i>Tasks
+                </h4>
+                <ul class="list-inline d-flex mb-25 mb-sm-0">
+                  <li class="d-flex align-items-center">
+                    <i class='bx bx-check-circle font-medium-3 mr-50'></i>
+                    <div class="dropdown">
+                      <div class="dropdown-toggle mr-1 cursor-pointer" role="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Task
+                      </div>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Option 1</a>
+                        <a class="dropdown-item" href="#">Option 2</a>
+                        <a class="dropdown-item" href="#">Option 3</a>
+                      </div>
                     </div>
-                    <small class="text-muted">25 mins ago</small>
                   </li>
-                  <li>
-                    <div class="timeline-icon bg-warning">
-                      <i class="feather icon-alert-circle font-medium-2 align-middle"></i>
+                  <li class="d-flex align-items-center">
+                    <i class='bx bx-sort mr-50 font-medium-3'></i>
+                    <div class="dropdown">
+                      <div class="dropdown-toggle cursor-pointer" role="button" id="dropdownMenuButton2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Task</div>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <a class="dropdown-item" href="#">Option 1</a>
+                        <a class="dropdown-item" href="#">Option 2</a>
+                        <a class="dropdown-item" href="#">Option 3</a>
+                      </div>
                     </div>
-                    <div class="timeline-info">
-                      <p class="font-weight-bold mb-0">Email Newsletter</p>
-                      <span class="font-small-3">Cupcake gummi bears soufflé caramels candy</span>
-                    </div>
-                    <small class="text-muted">15 days ago</small>
                   </li>
-                  <li>
-                    <div class="timeline-icon bg-danger">
-                      <i class="feather icon-check font-medium-2 align-middle"></i>
+                </ul>
+              </div>
+              <div class="card-body px-0 py-1">
+                <ul class="widget-todo-list-wrapper" id="widget-todo-list">
+                  <li class="widget-todo-item">
+                    <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
+                      <div class="widget-todo-title-area d-flex align-items-center">
+                        <i class='bx bx-grid-vertical mr-25 font-medium-4 cursor-move'></i>
+                        <div class="checkbox checkbox-shadow">
+                          <input type="checkbox" class="checkbox__input" id="checkbox1">
+                          <label for="checkbox1"></label>
+                        </div>
+                        <span class="widget-todo-title ml-50">Add SCSS and JS files if required</span>
+                      </div>
+                      <div class="widget-todo-item-action d-flex align-items-center">
+                        <div class="badge badge-pill badge-light-success mr-1">frontend</div>
+                        <div class="avatar bg-rgba-primary m-0 mr-50">
+                          <div class="avatar-content">
+                            <span class="font-size-base text-primary">RA</span>
+                          </div>
+                        </div>
+                        <div class="dropdown">
+                          <span
+                            class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer icon-light"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="timeline-info">
-                      <p class="font-weight-bold mb-0">Plan Webinar</p>
-                      <span class="font-small-3">Candy ice cream cake. Halvah gummi bears</span>
-                    </div>
-                    <small class="text-muted">20 days ago</small>
                   </li>
-                  <li>
-                    <div class="timeline-icon bg-success">
-                      <i class="feather icon-check font-medium-2 align-middle"></i>
+                  <li class="widget-todo-item">
+                    <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
+                      <div class="widget-todo-title-area d-flex align-items-center">
+                        <i class='bx bx-grid-vertical mr-25 font-medium-4 cursor-move'></i>
+                        <div class="checkbox checkbox-shadow">
+                          <input type="checkbox" class="checkbox__input" id="checkbox2">
+                          <label for="checkbox2"></label>
+                        </div>
+                        <span class="widget-todo-title ml-50">Check your changes, before commiting</span>
+                      </div>
+                      <div class="widget-todo-item-action d-flex align-items-center">
+                        <div class="badge badge-pill badge-light-danger mr-1">backend</div>
+                        <div class="avatar m-0 mr-50">
+                          <img src="{{asset('images/profile/user-uploads/social-2.jpg')}}" alt="img placeholder"
+                            height="32" width="32">
+                        </div>
+                        <div class="dropdown">
+                          <span
+                            class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer icon-light"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="timeline-info">
-                      <p class="font-weight-bold mb-0">Launch Website</p>
-                      <span class="font-small-3">Candy ice cream cake. </span>
-                    </div>
-                    <small class="text-muted">25 days ago</small>
                   </li>
-                  <li>
-                    <div class="timeline-icon bg-primary">
-                      <i class="feather icon-check font-medium-2 align-middle"></i>
+                  <li class="widget-todo-item completed">
+                    <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
+                      <div class="widget-todo-title-area d-flex align-items-center">
+                        <i class='bx bx-grid-vertical mr-25 font-medium-4 cursor-move'></i>
+                        <div class="checkbox checkbox-shadow">
+                          <input type="checkbox" class="checkbox__input" id="checkbox3" checked>
+                          <label for="checkbox3"></label>
+                        </div>
+                        <span class="widget-todo-title ml-50">Dribble, Behance, UpLabs & Pinterest Post</span>
+                      </div>
+                      <div class="widget-todo-item-action d-flex align-items-center">
+                        <div class="badge badge-pill badge-light-primary mr-1">UI/UX</div>
+                        <div class="avatar bg-rgba-primary m-0 mr-50">
+                          <div class="avatar-content">
+                            <span class="font-size-base text-primary">JP</span>
+                          </div>
+                        </div>
+                        <div class="dropdown">
+                          <span
+                            class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer icon-light"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="timeline-info">
-                      <p class="font-weight-bold mb-0">Marketing</p>
-                      <span class="font-small-3">Candy ice cream. Halvah bears Cupcake gummi bears.</span>
+                  </li>
+                  <li class="widget-todo-item">
+                    <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
+                      <div class="widget-todo-title-area d-flex align-items-center">
+                        <i class='bx bx-grid-vertical mr-25 font-medium-4 cursor-move'></i>
+                        <div class="checkbox checkbox-shadow">
+                          <input type="checkbox" class="checkbox__input" id="checkbox4">
+                          <label for="checkbox4"></label>
+                        </div>
+                        <span class="widget-todo-title ml-50">Fresh Design Web & Responsive Miracle</span>
+                      </div>
+                      <div class="widget-todo-item-action d-flex align-items-center">
+                        <div class="badge badge-pill badge-light-info mr-1">Design</div>
+                        <div class="avatar m-0 mr-50">
+                          <img src="{{asset('images/profile/user-uploads/user-05.jpg')}}" alt="img placeholder"
+                            height="32" width="32">
+                        </div>
+                        <div class="dropdown">
+                          <span
+                            class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer icon-light"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <small class="text-muted">28 days ago</small>
+                  </li>
+                  <li class="widget-todo-item">
+                    <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
+                      <div class="widget-todo-title-area d-flex align-items-center">
+                        <i class='bx bx-grid-vertical mr-25 font-medium-4 cursor-move'></i>
+                        <div class="checkbox checkbox-shadow">
+                          <input type="checkbox" class="checkbox__input" id="checkbox5">
+                          <label for="checkbox5"></label>
+                        </div>
+                        <span class="widget-todo-title ml-50">Add Calendar page, source, credit page in
+                          documentation</span>
+                      </div>
+                      <div class="widget-todo-item-action d-flex align-items-center">
+                        <div class="badge badge-pill badge-light-warning mr-1">Javascript</div>
+                        <div class="avatar bg-rgba-primary m-0 mr-50">
+                          <div class="avatar-content">
+                            <span class="font-size-base text-primary">AK</span>
+                          </div>
+                        </div>
+                        <div class="dropdown">
+                          <span
+                            class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer icon-light"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="widget-todo-item">
+                    <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
+                      <div class="widget-todo-title-area d-flex align-items-center">
+                        <i class='bx bx-grid-vertical mr-25 font-medium-4 cursor-move'></i>
+                        <div class="checkbox checkbox-shadow">
+                          <input type="checkbox" class="checkbox__input" id="checkbox6">
+                          <label for="checkbox6"></label>
+                        </div>
+                        <span class="widget-todo-title ml-50">Add Angular Starter-kit</span>
+                      </div>
+                      <div class="widget-todo-item-action d-flex align-items-center">
+                        <div class="badge badge-pill badge-light-primary mr-1">UI/UX</div>
+                        <div class="avatar m-0 mr-50">
+                          <img src="{{asset('images/profile/user-uploads/user-05.jpg')}}" alt="img placeholder"
+                            height="32" width="32">
+                        </div>
+                        <div class="dropdown">
+                          <span
+                            class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer icon-light"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                            <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -317,169 +550,56 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="mb-0">Dispatched Orders</h4>
-            </div>
-            <div class="card-content">
-              <div class="table-responsive mt-1">
-                <table class="table table-hover-animation mb-0">
-                  <thead>
-                    <tr>
-                      <th>ORDER</th>
-                      <th>STATUS</th>
-                      <th>OPERATORS</th>
-                      <th>LOCATION</th>
-                      <th>DISTANCE</th>
-                      <th>START DATE</th>
-                      <th>EST DEL. DT</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>#879985</td>
-                      <td><i class="fa fa-circle font-small-3 text-success mr-50"></i>Moving</td>
-                      <td class="p-1">
-                        <ul class="list-unstyled users-list m-0  d-flex align-items-center">
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Vinnie Mostowy" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-11.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Elicia Rieske" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-7.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Julee Rossignol" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-10.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Darcey Nooner" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-8.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                        </ul>
-                      </td>
-                      <td>Anniston, Alabama</td>
-                      <td>
-                        <span>130 km</span>
-                        <div class="progress progress-bar-success mt-1 mb-0">
-                          <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td>14:58 26/07/2018</td>
-                      <td>28/07/2018</td>
-                    </tr>
-                    <tr>
-                      <td>#156897</td>
-                      <td><i class="fa fa-circle font-small-3 text-warning mr-50"></i>Pending</td>
-                      <td class="p-1">
-                        <ul class="list-unstyled users-list m-0  d-flex align-items-center">
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Trina Lynes" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-1.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Lilian Nenez" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-2.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Alberto Glotzbach" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-3.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                        </ul>
-                      </td>
-                      <td>Cordova, Alaska</td>
-                      <td>
-                        <span>234 km</span>
-                        <div class="progress progress-bar-warning mt-1 mb-0">
-                          <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td>14:58 26/07/2018</td>
-                      <td>28/07/2018</td>
-                    </tr>
-                    <tr>
-                      <td>#568975</td>
-                      <td><i class="fa fa-circle font-small-3 text-success mr-50"></i>Moving</td>
-                      <td class="p-1">
-                        <ul class="list-unstyled users-list m-0  d-flex align-items-center">
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Lai Lewandowski" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-6.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Elicia Rieske" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-7.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Darcey Nooner" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-8.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Julee Rossignol" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-10.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Jeffrey Gerondale" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-9.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                        </ul>
-                      </td>
-                      <td>Florence, Alabama</td>
-                      <td>
-                        <span>168 km</span>
-                        <div class="progress progress-bar-success mt-1 mb-0">
-                          <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td>14:58 26/07/2018</td>
-                      <td>28/07/2018</td>
-                    </tr>
-                    <tr>
-                      <td>#245689</td>
-                      <td><i class="fa fa-circle font-small-3 text-danger mr-50"></i>Canceled</td>
-                      <td class="p-1">
-                        <ul class="list-unstyled users-list m-0  d-flex align-items-center">
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Vinnie Mostowy" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-5.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                          <li data-toggle="tooltip" data-popup="tooltip-custom"  data-placement="bottom"
-                          data-original-title="Elicia Rieske" class="avatar pull-up">
-                            <img class="media-object rounded-circle" src="{{ asset('images/portrait/small/avatar-s-7.jpg')}}" alt="Avatar" height="30" width="30">
-                          </li>
-                        </ul>
-                      </td>
-                      <td>Clifton, Arizona</td>
-                      <td>
-                        <span>125 km</span>
-                        <div class="progress progress-bar-danger mt-1 mb-0">
-                          <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td>14:58 26/07/2018</td>
-                      <td>28/07/2018</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+      <!-- Daily Financials Card Starts -->
+      <div class="col-lg-5">
+        <div class="card ">
+          <div class="card-header">
+            <h4 class="card-title">
+              Order Timeline
+            </h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+              <ul class="widget-timeline mb-0">
+                <li class="timeline-items timeline-icon-primary active">
+                  <div class="timeline-time">September, 16</div>
+                  <h6 class="timeline-title">1983, orders, $4220</h6>
+                  <p class="timeline-text">2 hours ago</p>
+                  <div class="timeline-content">
+                    <img src="{{asset('images/icon/pdf.png')}}" alt="document" height="23" width="19"
+                      class="mr-50">New Order.pdf
+                  </div>
+                </li>
+                <li class="timeline-items timeline-icon-primary active">
+                  <div class="timeline-time">September, 17</div>
+                  <h6 class="timeline-title">12 Invoices have been paid</h6>
+                  <p class="timeline-text">25 minutes ago</p>
+                  <div class="timeline-content">
+                    <img src="{{asset('images/icon/pdf.png')}}" alt="document" height="23" width="19"
+                      class="mr-50">Invoices.pdf
+                  </div>
+                </li>
+                <li class="timeline-items timeline-icon-primary active pb-0">
+                  <div class="timeline-time">September, 18</div>
+                  <h6 class="timeline-title">Order #37745 from September</h6>
+                  <p class="timeline-text">4 minutes ago</p>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   <!-- Dashboard Analytics end -->
-  @endsection
-
-@section('vendor-script')
-        <!-- vendor files -->
-        <script src="{{ asset(mix('vendors/js/charts/apexcharts.min.js')) }}"></script>
-        <script src="{{ asset(mix('vendors/js/extensions/tether.min.js')) }}"></script>
-        <script src="{{ asset(mix('vendors/js/extensions/shepherd.min.js')) }}"></script>
 @endsection
-@section('page-script')
-        <!-- Page js files -->
-        <script src="{{ asset(mix('js/scripts/pages/dashboard-analytics.js')) }}"></script>
+
+{{-- vendor scripts --}}
+@section('vendor-scripts')
+<script src="{{asset('vendors/js/charts/apexcharts.min.js')}}"></script>
+<script src="{{asset('vendors/js/extensions/dragula.min.js')}}"></script>
+@endsection
+
+@section('page-scripts')
+<script src="{{asset('js/scripts/pages/dashboard-analytics.js')}}"></script>
 @endsection

@@ -1,70 +1,76 @@
-@extends('layouts/fullLayoutMaster')
-
-@section('title', 'Register Page')
-
-@section('page-style')
-        {{-- Page Css files --}}
-        <link rel="stylesheet" href="{{ asset(mix('css/pages/authentication.css')) }}">
+@extends('layouts.fullLayoutMaster')
+{{-- page title --}}
+@section('title','Register Page')
+{{-- page scripts --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/pages/authentication.css')}}">
 @endsection
+
 @section('content')
+<!-- register section starts -->
 <section class="row flexbox-container">
-  <div class="col-xl-8 col-10 d-flex justify-content-center">
-      <div class="card bg-authentication rounded-0 mb-0">
-          <div class="row m-0">
-              <div class="col-lg-6 d-lg-block d-none text-center align-self-center pl-0 pr-3 py-0">
-                  <img src="{{ asset('images/pages/register.jpg') }}" alt="branding logo">
+  <div class="col-xl-8 col-10">
+    <div class="card bg-authentication mb-0">
+      <div class="row m-0">
+        <!-- register section left -->
+        <div class="col-md-6 col-12 px-0">
+          <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+            <div class="card-header pb-1">
+              <div class="card-title">
+                <h4 class="text-center mb-2">Sign Up</h4>
               </div>
-              <div class="col-lg-6 col-12 p-0">
-                  <div class="card rounded-0 mb-0 p-2">
-                      <div class="card-header pt-50 pb-1">
-                          <div class="card-title">
-                              <h4 class="mb-0">Create Account</h4>
-                          </div>
+            </div>
+            <div class="text-center">
+              <p> <small> Please enter your details to sign up and be part of our great community</small>
+              </p>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <form >
+                    <div class="form-row">
+                      <div class="form-group col-md-6 mb-50">
+                        <label for="inputfirstname4">first name</label>
+                        <input type="text" class="form-control" id="inputfirstname4"
+                            placeholder="First name">
                       </div>
-                      <p class="px-2">Fill the below form to create a new account.</p>
-                      <div class="card-content">
-                          <div class="card-body pt-0">
-                              <form action="dashboard-analytics">
-                                  <div class="form-label-group">
-                                      <input type="text" id="inputName" class="form-control" placeholder="Name" required>
-                                      <label for="inputName">Name</label>
-                                  </div>
-                                  <div class="form-label-group">
-                                      <input type="email" id="inputEmail" class="form-control" placeholder="Email" required>
-                                      <label for="inputEmail">Email</label>
-                                  </div>
-                                  <div class="form-label-group">
-                                      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                      <label for="inputPassword">Password</label>
-                                  </div>
-                                  <div class="form-label-group">
-                                      <input type="password" id="inputConfPassword" class="form-control" placeholder="Confirm Password" required>
-                                      <label for="inputConfPassword">Confirm Password</label>
-                                  </div>
-                                  <div class="form-group row">
-                                      <div class="col-12">
-                                          <fieldset class="checkbox">
-                                            <div class="vs-checkbox-con vs-checkbox-primary">
-                                              <input type="checkbox" checked>
-                                              <span class="vs-checkbox">
-                                                <span class="vs-checkbox--check">
-                                                  <i class="vs-icon feather icon-check"></i>
-                                                </span>
-                                              </span>
-                                              <span class=""> I accept the terms & conditions.</span>
-                                            </div>
-                                          </fieldset>
-                                      </div>
-                                  </div>
-                                  <a href="auth-login" class="btn btn-outline-primary float-left btn-inline mb-50">Login</a>
-                                  <button type="submit" class="btn btn-primary float-right btn-inline mb-50">Register</a>
-                              </form>
-                          </div>
+                      <div class="form-group col-md-6 mb-50">
+                        <label for="inputlastname4">last name</label>
+                        <input type="text" class="form-control" id="inputlastname4"
+                            placeholder="Last name">
                       </div>
-                  </div>
+                    </div>
+                    <div class="form-group mb-50">
+                      <label class="text-bold-600" for="exampleInputUsername1">username</label>
+                      <input type="text" class="form-control" id="exampleInputUsername1"
+                          placeholder="Username"></div>
+                    <div class="form-group mb-50">
+                      <label class="text-bold-600" for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1"
+                          placeholder="Email address"></div>
+                    <div class="form-group mb-2">
+                      <label class="text-bold-600" for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1"
+                          placeholder="Password">
+                    </div>
+                    <a href="{{asset('/')}}" class="btn btn-primary glow position-relative w-100">SIGN UP<i
+                      id="icon-arrow" class="bx bx-right-arrow-alt"></i>
+                    </a>
+                </form>
+                <hr>
+                <div class="text-center"><small class="mr-25">Already have an account?</small>
+                  <a href="{{asset('auth-login')}}"><small>Sign in</small> </a>
+                </div>
               </div>
+            </div>
           </div>
+        </div>
+        <!-- image section right -->
+        <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
+            <img class="img-fluid" src="{{asset('images/pages/register.png')}}" alt="branding logo">
+        </div>
       </div>
+    </div>
   </div>
 </section>
+<!-- register section endss -->
 @endsection

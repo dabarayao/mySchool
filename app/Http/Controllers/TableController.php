@@ -6,33 +6,28 @@ use Illuminate\Http\Request;
 
 class TableController extends Controller
 {
-    // Bootstrap Table
-    public function table(){
+  //Basic Tables
+  public function basicTable(){
+    $pageConfigs = ['pageHeader' => true];
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["name" => "Bootstrap Tables"]
+    ];
+    return view('pages.table',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
+    //extended table
+    public function extendedTable(){
+      $pageConfigs = ['pageHeader' => true];
       $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"], ['name'=>"Table"]
+        ["link" => "/", "name" => "Home"],["name" => "Bootstrap Tables Extended"]
       ];
-      return view('/pages/table', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
-    }
-
-    // Datatable
-    public function datatable(){
-      $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"], ['name'=>"Datatable"]
-      ];
-      return view('/pages/table-datatable', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
-    }
-
-    // ag-Grid Table
-    public function ag_grid(){
-      $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"], ['name'=>"agGrid Table"]
-      ];
-      return view('/pages/table-ag-grid', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
-    }
+      return view('pages.table-extended',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
+   //datatable
+   public function dataTable(){
+    $pageConfigs = ['pageHeader' => true];
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["name" => "Datatable"]
+    ];
+    return view('pages.table-datatable',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
 }

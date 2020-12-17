@@ -2,297 +2,415 @@
     File Name: app-todo.js
     Description: app-todo
     ----------------------------------------------------------------------------------------
-    Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Frest HTML Admin Template
+   Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
+// Todo App variables
+var todoNewTasksidebar = $(".todo-new-task-sidebar"),
+  appContentOverlay = $(".app-content-overlay"),
+  sideBarLeft = $(".sidebar-left"),
+  todoTaskListWrapper = $(".todo-task-list-wrapper"),
+  todoItem = $(".todo-item"),
+  selectAssignLable = $(".select2-assign-label"),
+  selectUsersName = $(".select2-users-name"),
+  avatarUserImage = $(".avatar-user-image"),
+  updateTodo = $(".update-todo"),
+  addTodo = $(".add-todo"),
+  markCompleteBtn = $(".mark-complete-btn"),
+  newTaskTitle = $(".new-task-title"),
+  taskTitle = $(".task-title"),
+  noResults = $(".no-results"),
+  assignedAvatarContent = $(".assigned .avatar .avatar-content"),
+  todoAppMenu = $(".todo-app-menu");
+
+// badge colors object define here for badge color
+var badgeColors = {
+  "Frontend": "badge-light-primary",
+  "Backend": "badge-light-success",
+  "Issue": "badge-light-danger",
+  "Design": "badge-light-warning",
+  "Wireframe": "badge-light-info",
+}
 
 $(function () {
   "use strict";
 
-  var $curr_title, $curr_desc, $curr_info, $curr_fav, $curr_chipVal;
-
-  // if it is not touch device
-  if (!$.app.menu.is_touch_device()) {
-    // --------------------------------------------
-    // Sidebar menu scrollbar
-    // --------------------------------------------
-    if ($('.todo-application .sidebar-menu-list').length > 0) {
-      var content = new PerfectScrollbar('.sidebar-menu-list', {
-        theme: "dark"
-      });
+  // Single Date Picker
+  $('.pickadate').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    locale: {
+      format: 'MM/DD/YY'
     }
-
-    // --------------------------------------------
-    // Todo task list scrollbar
-    // --------------------------------------------
-    if ($('.todo-application .todo-task-list').length > 0) {
-      var sidebar_todo = new PerfectScrollbar('.todo-task-list', {
-        theme: "dark"
-      });
-    }
-  }
-
-  // if it is a touch device
-  else {
-    $(".sidebar-menu-list").css("overflow", "scroll");
-    $(".todo-task-list").css("overflow", "scroll");
-  }
-
-  // Info star click
-  $(document).on("click", ".todo-application .todo-item-info i", function (e) {
-    $(this).parent('.todo-item-info').toggleClass("success");
-    e.stopPropagation();
   });
 
-  // Favorite star click
-  $(document).on("click", ".todo-application .todo-item-favorite i", function (e) {
-    $(this).parent('.todo-item-favorite').toggleClass("warning");
-    e.stopPropagation();
+  // dragable list
+  dragula([document.getElementById("todo-task-list-drag")], {
+    moves: function (el, container, handle) {
+      return handle.classList.contains("handle");
+    }
   });
+
+
+  // select assigner
+  selectUsersName.select2({
+    placeholder: "Unassigned",
+    dropdownAutoWidth: true,
+    width: '100%'
+  });
+
+  // select label
+  selectAssignLable.select2({
+    dropdownAutoWidth: true,
+    width: '100%'
+  });
+
+  // Sidebar scrollbar
+  if ($('.todo-application .sidebar-menu-list').length > 0) {
+    var sidebarMenuList = new PerfectScrollbar('.sidebar-menu-list', {
+      theme: "dark",
+      wheelPropagation: false
+    });
+  }
+
+  //  New task scrollbar
+  if (todoNewTasksidebar.length > 0) {
+    var todo_new_task_sidebar = new PerfectScrollbar('.todo-new-task-sidebar', {
+      theme: "dark",
+      wheelPropagation: false
+    });
+  }
+
+  // Task list scrollbar
+  if ($('.todo-application .todo-task-list').length > 0) {
+    var sidebar_todo = new PerfectScrollbar('.todo-task-list', {
+      theme: "dark",
+      wheelPropagation: false
+    });
+  }
+
+  // New compose message compose field
+  var composeEditor = new Quill('.snow-container .compose-editor', {
+    modules: {
+      toolbar: '.compose-quill-toolbar'
+    },
+    placeholder: 'Add Description..... ',
+    theme: 'snow'
+  });
+
+  //Assigner Comment Quill editor
+  var commentEditor = new Quill('.snow-container .comment-editor', {
+    modules: {
+      toolbar: '.comment-quill-toolbar'
+    },
+    placeholder: 'Write a Comment...',
+    theme: 'snow'
+  });
+
+  // **************Sidebar Left**************//
+  // -----------------------------------------
 
   // Main menu toggle should hide app menu
-  $('.menu-toggle').on('click', function (e) {
-    $('.app-content .sidebar-left').removeClass('show');
-    $('.app-content .app-content-overlay').removeClass('show');
+  $('.menu-toggle').on('click', function () {
+    sideBarLeft.removeClass('show');
+    appContentOverlay.removeClass('show');
+    todoNewTasksidebar.removeClass('show');
   });
 
-  // On sidebar close click
+  //on click of app overlay removeclass show from sidebar left and overlay
+  appContentOverlay.on('click', function () {
+    sideBarLeft.removeClass('show');
+    appContentOverlay.removeClass('show');
+  });
+
+  // Add class active on click of sidebar menu's filters
+  todoAppMenu.find(".list-group a").on('click', function () {
+    var $this = $(this);
+    todoAppMenu.find(".active").removeClass('active');
+    $this.addClass("active")
+    // if active class available icon color primary blue else gray
+    if ($this.hasClass('active')) {
+      $this.find(".livicon-evo").updateLiviconEvo({
+        strokeColor: '#5A8DEE'
+      });
+      todoAppMenu.find(".list-group a").not(".active").find(".livicon-evo").updateLiviconEvo({
+        strokeColor: '#475f7b'
+      });
+    }
+  });
+
+  //On compose btn click of compose mail visible and sidebar left hide
+  $('.add-task-btn').on('click', function () {
+    //show class add on new task sidebar,overlay
+    todoNewTasksidebar.addClass('show');
+    appContentOverlay.addClass('show');
+    sideBarLeft.removeClass('show');
+    taskTitle.focus();
+    //d-none add on avatar and remove from avatar-content
+    avatarUserImage.addClass("d-none");
+    assignedAvatarContent.removeClass("d-none");
+    //select2 value null assign
+    selectUsersName.val(null).trigger('change');
+    selectAssignLable.val(null).trigger('change');
+    //update button has add class d-none remove from add TODO
+    updateTodo.addClass("d-none");
+    addTodo.removeClass("d-none");
+    //mark complete btn should hide & new task title will visible
+    markCompleteBtn.addClass("d-none");
+    newTaskTitle.removeClass("d-none");
+    //Input field Value empty
+    taskTitle.val("");
+    var compose_editor = $(".compose-editor .ql-editor");
+    compose_editor[0].innerHTML = "";
+    var comment_editor = $(".comment-editor .ql-editor");
+    comment_editor[0].innerHTML = "";
+    selectAssignLable.attr("disabled", "true");
+  });
+
+  // On sidebar close click hide sidebarleft and overlay
   $(".todo-application .sidebar-close-icon").on('click', function () {
-    $('.sidebar-left').removeClass('show');
-    $('.app-content-overlay').removeClass('show');
+    sideBarLeft.removeClass('show');
+    appContentOverlay.removeClass('show');
   });
 
-  // Todo sidebar toggle
-  $('.sidebar-toggle').on('click', function (e) {
-    e.stopPropagation();
-    $('.app-content .sidebar-left').toggleClass('show');
-    $('.app-content .app-content-overlay').addClass('show');
-  });
-  $('.app-content .app-content-overlay').on('click', function (e) {
-    $('.app-content .sidebar-left').removeClass('show');
-    $('.app-content .app-content-overlay').removeClass('show');
-  });
+  // **************New Task sidebar**************//
+  // ---------------------------------------------
 
-  // Add class active on click of sidebar filters list
-  $(".todo-application .list-group-filters a").on('click', function () {
-    if ($('.todo-application .list-group-filters a').hasClass('active')) {
-      $('.todo-application .list-group-filters a').removeClass('active');
-    }
-    $(this).addClass("active");
-  });
+  // add new task
+  addTodo.on("click", function () {
+    // check task assigned or not
+    function renderAvatar(src) {
+      if (src !== undefined) {
+        return '<img src="' + src + '"alt="avatar" height="30" width="30" >'
+      }
+      else {
+        return '<div class="avatar-content"><i class="bx bx-user font-medium-4"></i></div>'
+      }
+    };
+    // if add task field are fiill and create a new task
+    if (taskTitle.val().length > 0) {
+      var titleTask = taskTitle.val(),
+        selectAssign = $(".select2-users-name option:selected").val(),
+        $randomID = Math.floor((Math.random() * 100) + Date.now()), //generate random id
+        selectedVal = $(".select2-assign-label option:selected"),
+        selectedTags = [];
+      selectedVal.each(function () {
+        selectedTags.push($(this).text());
+      })
+      var newTags = selectedTags.map(function (tag) {
+        // map through every tag and create badges accordingly.
+        return '<span class="badge ' + badgeColors[tag] + ' badge-pill ml-25"> ' + tag + ' </span>' //badge created here
+      })
 
-  // For chat sidebar on small screen
-  if ($(window).width() > 992) {
-    if ($('.todo-application .app-content-overlay').hasClass('show')) {
-      $('.todo-application .app-content-overlay').removeClass('show');
-    }
-  }
-
-  // On add new item, clear modal popup fields
-  $(".add-task button").on('click', function (e) {
-    $('.modal .new-todo-item-title').val("");
-    $('.modal .new-todo-item-desc').val("");
-    $('.modal .dropdown-menu input').prop("checked", false);
-    if ($('.modal .todo-item-info').hasClass('success')) { $('.modal .todo-item-info').removeClass('success') }
-    if ($('.modal .todo-item-favorite').hasClass('warning')) { $('.modal .todo-item-favorite').removeClass('warning') }
-  });
-
-  // To add new todo list item
-  $(".add-todo-item").on('click', function (e) {
-    e.preventDefault();
-    var todoInfo = "",
-      todoFav = "",
-      todoChip = "";
-
-    var todoTitle = $(".new-todo-item-title").val();
-    var todoDesc = $(".new-todo-item-desc").val();
-    if ($(".modal.show .todo-item-info").hasClass('success')) {
-      todoInfo = " success";
-    }
-    if ($(".modal.show .todo-item-favorite").hasClass('warning')) {
-      todoFav = " warning";
-    }
-
-    // Chip calculation loop
-    var selected = $('.modal .dropdown-menu input:checked');
-
-    selected.each(function () {
-      todoChip += '<div class="chip mb-0">' +
-        '<div class="chip-body">' +
-        '<span class="chip-text" data-value="' + $(this).data('value') + '"><span class="bullet bullet-' + $(this).data('color') + ' bullet-xs"></span> ' + $(this).data('value') + '</span>' +
+      var avatarSRC = todoTaskListWrapper.find("[data-name='" + selectAssign + "']").find(".avatar img").attr("src"); //Img src find if data name matches with list
+      todoTaskListWrapper.append(
+        // append a new task in task list
+        '<li class="todo-item no-animation" data-name="' + selectAssign + '">' +
+        '<div class="todo-title-wrapper d-flex justify-content-between align-items-center">' +
+        '<div class="todo-title-area d-flex">' +
+        '<i class="bx bx-grid-vertical handle"></i>' +
+        '<div class="checkbox">' +
+        '<input type="checkbox" class="checkbox-input" id="' + $randomID + '">' +
+        '<label for="' + $randomID + '"></label>' + '</div>' +
+        '<p class="todo-title mx-50 m-0 truncate">' + titleTask + '</p>' +
         '</div>' +
-        '</div>';
-    });
-    // HTML Output
-    if (todoTitle != "") {
-      $(".todo-task-list-wrapper").append('<li class="todo-item" style="animation-delay: 0s;"  data-toggle="modal" data-target="#editTaskModal">' +
-        '<div class="todo-title-wrapper d-flex justify-content-between mb-50">' +
-        '<div class="todo-title-area d-flex align-items-center">' +
-        '<div class="title-wrapper d-flex">' +
-        '<div class="vs-checkbox-con">' +
-        '<input type="checkbox" >' +
-        '<span class="vs-checkbox vs-checkbox-sm">' +
-        '<span class="vs-checkbox--check">' +
-        '<i class="vs-icon feather icon-check"></i>' +
-        '</span>' +
-        '</span>' +
+        '<div class="todo-item-action d-flex align-items-center">' + newTags.join("") +
+        '<div class="avatar ml-1">' + renderAvatar(avatarSRC) +
         '</div>' +
-        '<h6 class="todo-title mt-50 mx-50">' + todoTitle + '</h6>' +
-        '</div>' +
-        '<div class="chip-wrapper">' + todoChip + '</div>' +
-        '</div>' +
-        '<div class="float-right todo-item-action d-flex">' +
-        '<a class="todo-item-info' + todoInfo + '"><i class="feather icon-info"></i></a>' +
-        '<a class="todo-item-favorite' + todoFav + '"><i class="feather icon-star"></i></a>' +
-        '<a class="todo-item-delete"><i class="feather icon-trash"></i></a>' +
-        '</div>' +
-        '</div>' +
-        '<p class="mb-0 todo-desc truncate">' + todoDesc + '</p>' +
-        '</li>');
+        '<a class="todo-item-favorite ml-50">' +
+        '<i class="bx bx-star"></i>' + '</a>' +
+        '<a class="todo-item-delete ml-50">' + '<i class="bx bx-trash"></i>' + '</a>' +
+        '</div></div></li>');
+      // new task sidebar, overlay hide
+      todoNewTasksidebar.removeClass('show');
+      appContentOverlay.removeClass('show');
+      selectAssignLable.attr("disabled", "true");
     }
-
-    $('#form-edit-todo .edit-todo-item-title').val(todoTitle);
-    $('#form-edit-todo .edit-todo-item-desc').val(todoDesc);
-    $('#form-edit-todo .dropdown-menu input').prop("checked", false);
-    if ($('#form-edit-todo .edit-todo-item-info').hasClass('success')) { $('#form-edit-todo .edit-todo-item-info').addClass('success') }
-    if ($('#form-edit-todo .edit-todo-item-favorite').hasClass('warning')) { $('#form-edit-todo .edit-todo-item-favorite').addClass('warning') }
-  });
-
-  // To update todo list item
-  $(document).on('click', ".todo-task-list-wrapper .todo-item", function (e) {
-
-    // Saving all values in variable
-    $curr_title = $(this).find('.todo-title');  // Set path for Current Title, use this variable when updating title
-    $curr_desc = $(this).find('.todo-desc');  // Set path for Current Description, use this variable when updating Description
-    $curr_info = $(this).find('.todo-item-info');  // Set path for Current info, use this variable when updating info
-    $curr_fav = $(this).find('.todo-item-favorite'); // Set path for Current favorite, use this variable when updating favorite
-    $curr_chipVal = $(this).find('.chip-wrapper'); // Set path for Chips, use this variable when updating chip value
-
-    var $title = $(this).find('.todo-title').html();
-    var $desc = $(this).find('.todo-desc').html();
-    var $info = $(this).find('.todo-item-info');
-    var $fav = $(this).find('.todo-item-favorite');
-    $('#form-edit-todo .dropdown-menu input').prop("checked", false);
-
-
-    // Checkbox checked as per chips
-
-    var selected = $(this).find('.chip');
-    selected.each(function () {
-
-      var chipVal = $(this).find('.chip-text').data('value');
-      $('#form-edit-todo .dropdown-menu input[data-value="' + chipVal + '"]').prop("checked", true);
-    });
-
-    // apply all variable values to fields
-    $('#form-edit-todo .edit-todo-item-title').val($title);
-    $('#form-edit-todo .edit-todo-item-desc').val($desc);
-
-    if ($('#form-edit-todo .todo-item-info').hasClass('success')) { $('#form-edit-todo .todo-item-info').removeClass('success') }
-    if ($('#form-edit-todo .edit-todo-item-favorite').hasClass('warning')) { $('#form-edit-todo .edit-todo-item-favorite').removeClass('warning') }
-
-    if ($($info).hasClass('success')) {
-      $('#form-edit-todo .todo-item-info').addClass('success');
-    }
-
-    if ($($fav).hasClass('warning')) {
-      $('#form-edit-todo .edit-todo-item-favorite').addClass('warning');
+    else {
+      // new task sidebar, overlay hide
+      todoNewTasksidebar.removeClass('show');
+      appContentOverlay.removeClass('show');
+      selectAssignLable.attr("disabled", "true");
     }
   });
 
-  // Updating Data Values to Fields
-  $('.update-todo-item').on('click', function () {
-    var $edit_title = $('#form-edit-todo .edit-todo-item-title').val();
-    var $edit_desc = $('#form-edit-todo .edit-todo-item-desc').val();
-    var $edit_info = $('#form-edit-todo .todo-item-info i');
-    var $edit_fav = $('#form-edit-todo .todo-item-favorite i');
-
-    $($curr_title).text($edit_title);
-    $($curr_desc).text($edit_desc);
-
-    if ($($curr_info).hasClass('success')) { $($curr_info).removeClass('success') }
-    if ($($curr_fav).hasClass('warning')) { $($curr_fav).removeClass('warning') }
-
-    if ($($edit_info).parent('.todo-item-info').hasClass('success')) {
-      $curr_info.addClass('success');
-    }
-
-    if ($($edit_fav).parent('.todo-item-favorite').hasClass('warning')) {
-      $curr_fav.addClass('warning');
-    }
-
-    // Chip calculation loop
-    var $edit_selected = $('#form-edit-todo .dropdown-menu input:checked');
-    var $edit_todoChip = "";
-
-    $edit_selected.each(function () {
-      $edit_todoChip += '<div class="chip mb-0">' +
-        '<div class="chip-body">' +
-        '<span class="chip-text" data-value="' + $(this).data('value') + '"><span class="bullet bullet-' + $(this).data('color') + ' bullet-xs"></span> ' + $(this).data('value') + '</span>' +
-        '</div>' +
-        '</div>';
-    });
-
-    $curr_chipVal.empty();
-
-    $($curr_chipVal).append($edit_todoChip);
-
-
+  // On Click of Close Icon btn, cancel btn and overlay remove show class from new task sidebar and overlay
+  // and reset all form fields
+  $(".close-icon, .cancel-btn, .app-content-overlay, .mark-complete-btn").on('click', function () {
+    todoNewTasksidebar.removeClass('show');
+    appContentOverlay.removeClass('show');
+    setTimeout(function () {
+      todoNewTasksidebar.find('textarea').val("");
+      var compose_editor = $(".compose-editor .ql-editor");
+      compose_editor[0].innerHTML = "";
+      var comment_editor = $(".comment-editor .ql-editor");
+      comment_editor[0].innerHTML = "";
+      selectAssignLable.attr("disabled", "true");
+    }, 100)
   });
 
-
-  //EVENT DELETION
-  $(document).on('click', '.todo-item-delete', function (e) {
-    var item = this;
-    e.stopPropagation();
-    $(item).closest('.todo-item').remove();
-  })
-
-  // Complete task strike through
-  $(document).on('click', '.todo-item input', function (event) {
-    event.stopPropagation();
-    $(this).closest('.todo-item').toggleClass("completed");
+  // on click of add label icon select 2 display
+  $(".add-tags").on("click", function () {
+    if (selectAssignLable.is('[disabled]')) {
+      selectAssignLable.removeAttr("disabled");
+    }
+    else {
+      selectAssignLable.attr("disabled", "true");
+    }
   });
 
+  // Update Task
+  updateTodo.on("click", function () {
+    todoNewTasksidebar.removeClass('show');
+    appContentOverlay.removeClass('show');
+    selectAssignLable.attr("disabled", "true");
+  });
 
-  // Filter
-  $("#todo-search").on("keyup", function () {
+  // ************Rightside content************//
+  // -----------------------------------------
+
+  // Search filter for task list
+  $(document).on("keyup", ".todo-search", function () {
+    todoItem = $(".todo-item");
+    $('.todo-item').css('animation', 'none')
     var value = $(this).val().toLowerCase();
     if (value != "") {
-      $(".todo-item").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      todoItem.filter(function () {
+        $(this).toggle($(this).text().toLowerCase().includes(value));
       });
       var tbl_row = $(".todo-item:visible").length; //here tbl_test is table name
 
       //Check if table has row or not
       if (tbl_row == 0) {
-        if (!$('.no-results').hasClass('show')) {
-          $('.no-results').addClass('show');
+        if (!noResults.hasClass('show')) {
+          noResults.addClass('show');
         }
       }
       else {
-        $('.no-results').removeClass('show');
-
+        noResults.removeClass('show');
       }
     }
     else {
       // If filter box is empty
-      $(".todo-item").show();
-      if ($('.no-results').hasClass('show')) {
-        $('.no-results').removeClass('show');
+      todoItem.show();
+      if (noResults.hasClass('show')) {
+        noResults.removeClass('show');
       }
     }
   });
+  // on Todo Item click show data in sidebar
+  var globalThis = ""; // Global variable use in multiple function
+  todoTaskListWrapper.on('click', '.todo-item', function (e) {
+    var $this = $(this);
+    globalThis = $this;
 
+    todoNewTasksidebar.addClass('show');
+    appContentOverlay.addClass('show');
+
+    var todoTitle = $this.find(".todo-title").text();
+    taskTitle.val(todoTitle);
+    var compose_editor = $(".compose-editor .ql-editor");
+    compose_editor[0].innerHTML = todoTitle;
+
+    // if avatar is available
+    if ($this.find(".avatar img").length) {
+      avatarUserImage.removeClass("d-none");
+      assignedAvatarContent.addClass("d-none");
+    }
+    else {
+      avatarUserImage.addClass("d-none");
+      assignedAvatarContent.removeClass("d-none");
+    }
+    //current task's image source assign to variable
+    var avatarSrc = $this.find(".avatar img").attr('src');
+
+    avatarUserImage.attr("src", avatarSrc);
+    var assignName = $this.attr('data-name');
+
+    $(".select2-users-name").val(assignName).trigger('change');
+
+    // badge selected value check
+    if ($(this).find('.badge').length) {
+      //if badge available in current task
+      var badgevalAll = [];
+      var selected = $(this).find('.badge');
+
+      selected.each(function () {
+        var badgeVal = $(this).text();
+        badgevalAll.push(badgeVal);
+        selectAssignLable.val(badgevalAll).trigger("change");
+      });
+    }
+    else {
+      selectAssignLable.val(null).trigger("change");
+    }
+    // update button has remove class d-none & add class d-none in add todo button
+    updateTodo.removeClass("d-none");
+    addTodo.addClass("d-none");
+    markCompleteBtn.removeClass("d-none");
+    newTaskTitle.addClass("d-none");
+
+  }).on('click', '.todo-item-favorite', function (e) {
+    e.stopPropagation();
+    $(this).toggleClass("warning");
+    $(this).find("i").toggleClass("bxs-star");
+  }).on('click', '.todo-item-delete', function (e) {
+    e.stopPropagation();
+    $(this).closest('.todo-item').remove();
+  }).on('click', '.checkbox', function (e) {
+    e.stopPropagation();
+  });
+
+  // Complete task strike through
+  todoTaskListWrapper.on('click', ".todo-item .checkbox-input", function (e) {
+    $(this).closest('.todo-item').toggleClass("completed");
+  });
+
+  // Complete button click action
+  markCompleteBtn.on("click", function () {
+    globalThis.addClass("completed");
+    globalThis.find(".checkbox-input").prop("checked", true);
+    selectAssignLable.attr("disabled", "true");
+  });
+
+  // Todo sidebar toggle
+  $('.sidebar-toggle').on('click', function (e) {
+    e.stopPropagation();
+    sideBarLeft.toggleClass('show');
+    appContentOverlay.addClass('show');
+  });
+
+  // sorting task list item
+  $(".ascending").on("click", function () {
+    todoItem = $(".todo-item");
+    $('.todo-item').css('animation', 'none')
+    todoItem.sort(sort_li).appendTo(todoTaskListWrapper);
+    function sort_li(a, b) {
+      return ($(b).find('.todo-title').text().toLowerCase()) < ($(a).find('.todo-title').text().toLowerCase()) ? 1 : -1;
+    }
+  });
+
+  // descending sorting
+  $(".descending").on("click", function () {
+    todoItem = $(".todo-item");
+    $('.todo-item').css('animation', 'none')
+    todoItem.sort(sort_li).appendTo(todoTaskListWrapper);
+    function sort_li(a, b) {
+      return ($(b).find('.todo-title').text().toLowerCase()) > ($(a).find('.todo-title').text().toLowerCase()) ? 1 : -1;
+    }
+  });
 });
 
 $(window).on("resize", function () {
   // remove show classes from sidebar and overlay if size is > 992
   if ($(window).width() > 992) {
-    if ($('.app-content .app-content-overlay').hasClass('show')) {
-      $('.app-content .sidebar-left').removeClass('show');
-      $('.app-content .app-content-overlay').removeClass('show');
+    if (appContentOverlay.hasClass('show')) {
+      sideBarLeft.removeClass('show');
+      appContentOverlay.removeClass('show');
+      todoNewTasksidebar.removeClass("show");
     }
   }
 });
+

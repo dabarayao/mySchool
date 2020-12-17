@@ -11,7 +11,9 @@
 
 $ex-val-color: #888;
 
-// default bg for noUi Slider
+/* noUi Slider css */
+/* --------------- */
+/* default bg for noUi Slider */
 .noUi-background{
     background: darken($body-bg,3%);
 }
@@ -27,10 +29,8 @@ $ex-val-color: #888;
 }
 
 // horizontal slider and it's sizes
-
 .noUi-horizontal{
     height: 10px;
-
     padding-right: 17px;
     .noUi-handle{
         width: 20px;
@@ -83,8 +83,7 @@ $ex-val-color: #888;
     }
 }
 
-// slider handle styles
-
+/* slider handle styles */
 .noUi-handle{
     box-shadow: none;
     border:none;
@@ -97,8 +96,7 @@ $ex-val-color: #888;
     border:5px solid $primary;
 
 }
-// for noUi square circle filled
-
+/* for noUi square circle filled */
 .circle-filled{
     .noUi-handle{
         &:after, &:before {
@@ -109,8 +107,7 @@ $ex-val-color: #888;
     }
 }
 
-// for noUi square and it's sizes
-
+/* for noUi square and it's sizes */
 .square{
     .noUi-handle{
         background: $primary;
@@ -146,7 +143,6 @@ $ex-val-color: #888;
             }
         }
     }
-
 
     &.slider-lg{
         .noUi-handle{
@@ -193,15 +189,13 @@ $ex-val-color: #888;
     }
 }
 
-// default connect color
-
+/* default connect color */
 .noUi-connect{
     background:$primary;
     box-shadow: none;
 }
 
-// noUi Vertical customization
-
+/* noUi Vertical customization */
 .noUi-vertical {
     display: inline-block;
     width: 8px;
@@ -237,14 +231,10 @@ $ex-val-color: #888;
             }
         }
     }
-    
-    .noUi-tooltip{
-        transform: translate(-10%,-50%);
-    }
 
 }
 
-// for example value of noUI Hover
+/* for example value of noUI Hover */
 .example-val {
     font: 400 12px Arial;
     color: $ex-val-color;
@@ -252,13 +242,13 @@ $ex-val-color: #888;
     margin: 15px 0;
 }
 
-// to remove outline on focus
+/* to remove outline on focus */
 .noUi-handle:focus{
   outline: 0;
 }
 
-// IE SPECIFIC FOR SLIDER WITH INPUT
-_:-ms-lang(x),
+/* IE SPECIFIC FOR SLIDER WITH INPUT */
+:-ms-lang(x),
 .slider-select {
   flex: 0 0 10%;
   max-width: 10%;

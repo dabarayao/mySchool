@@ -1,88 +1,49 @@
-// Badge
-
+/*  Badges css */
+/*------------*/
 .badge {
   color: $white;
+  font-family: $font-family-monospace;
   background-color: $primary;
-  font-weight: 400;
-  &[class*='badge-'] {
-    [class*='icon-'] {
-      line-height: 1;
-    }
+  text-transform: uppercase;
 
-    a {
-      color: $white;
-    }
-
-    i{
-      vertical-align: middle;
-    }
-
-    // badge dropdown alignment
-    .dropdown-toggle,
-    &.dropdown-toggle {
-      span,i {
-        vertical-align: text-top;
-      }
-      i{
-        padding-left: .2rem;
-      }
-      &::after {
-        position: relative;
-        top: 0;
-        left: 0;
-        font-size: 1rem;
-      }
-    }
-    .dropdown-menu {
-      a {
-        color: $dropdown-color;
-      }
-    }
-  }
-
-  // square badge
-  &.badge-square {
-    border-radius: 0;
-  }
-
-  // badge-up
-  // to align badge over any element
   &.badge-up {
+    /* badge-up - To align badge over any element */
     position: absolute;
-    top: -1rem;
-    right: -1rem;
-    &.badge-sm{
-      top: -.5rem;
-      right: -.5rem;
-    }
+    top: -0.8rem;
+    right: -0.5rem;
+  }
+
+  // badge-round
+  &.badge-round{
+    padding: .28rem 0.4rem;
+  }
+  // badge-icon
+  &.badge-icon{
+    padding: .25rem 0.4rem;
   }
 }
 
-// badge sizes
-.badge-xl {
-  font-size: 1.8rem;
-}
-.badge-lg {
-  font-size: 1.2rem;
-}
-.badge-md {
-  font-size: 1rem;
-}
-.badge-sm {
-  font-size: 0.7rem;
-}
+/*    Badge Circle    */
+/*-------------------*/
+.badge-circle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  background-color: $primary;
+  border-radius: 50%;
+  height: 36px;
+  width: 36px;
 
-// For fullscreen search
-.badge-icon {
-  i {
-    font-size: 100%;
-    margin-right: 5px;
+  // badge circle small 
+  &.badge-circle-sm{
+    height: 24px;
+    width: 24px;
   }
-}
 
- // badge dropup pointer
-.dropup{
-  .badge{
-    cursor: pointer;
+  // badge circle large 
+  &.badge-circle-lg{
+    height: 48px;
+    width: 48px;
   }
 }

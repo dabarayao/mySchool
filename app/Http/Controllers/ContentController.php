@@ -6,63 +6,64 @@ use Illuminate\Http\Request;
 
 class ContentController extends Controller
 {
-    // Content Grid
-    public function grid(){
+    // GridPage
+    public function gridContent(){
+      $pageConfigs = ['pageHeader' => true];
       $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"],['link'=>"dashboard-analytics",'name'=>"Content"], ['name'=>"Grid"]
+        ["link" => "/", "name" => "Home"],["link"=>"#", "name"=>"Content"],["name"=>"Grid"]
       ];
-      return view('/pages/content-grid', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
+      return view('pages.content-grid',["pageConfigs" => $pageConfigs, "breadcrumbs" => $breadcrumbs]);
+    }
+     // Typography 
+     public function typographyContent(){
+      $pageConfigs = ['pageHeader' => true];
+
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link"=>"#", "name"=>"Content"],["name"=>"Typography"]
+      ];
+
+      return view('pages.content-typography',["pageConfigs" => $pageConfigs, "breadcrumbs" => $breadcrumbs]);
+    }
+    // text Utilities
+    public function textUtilitiesContent(){
+      $pageConfigs = ['pageHeader' => true];
+
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link"=>"#", "name"=>"Content"],["name"=>"Text Utilities"]
+      ];
+
+      return view('pages.content-text-utilities',["pageConfigs" => $pageConfigs, "breadcrumbs" => $breadcrumbs]);
+    }
+    
+    // content-syntax-highlighter
+    public function contentSyntaxHighlighter(){
+      $pageConfigs = ['pageHeader' => true];
+
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link"=>"#", "name"=>"Content"],["name" => "Syntax Highlighter"]
+      ];
+
+      return view('pages.content-syntax-highlighter',["pageConfigs" => $pageConfigs, "breadcrumbs" => $breadcrumbs]);
     }
 
-    // Content Typography
-    public function typography(){
-      $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"],['link'=>"dashboard-analytics",'name'=>"Content"], ['name'=>"Typography"]
-      ];
-      return view('/pages/content-typography', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
-    }
+     // content-helper-classes
+     public function contentHelperClasses(){
+      $pageConfigs = ['pageHeader' => true];
 
-    // Content Text Utilities
-    public function text_utilities(){
       $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"],['link'=>"dashboard-analytics",'name'=>"Content"], ['name'=>"Text Utilities"]
+        ["link" => "/", "name" => "Home"],["link"=>"#", "name"=>"Content"],["name" => "Helper Classes"]
       ];
-      return view('/pages/content-text-utilities', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
-    }
 
-    // Content Syntax Highlighter
-    public function syntax_highlighter(){
-      $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"],['link'=>"dashboard-analytics",'name'=>"Content"], ['name'=>"Syntax Highlighter"]
-      ];
-      return view('/pages/content-syntax-highlighter', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
+      return view('pages.content-helper-classes',["pageConfigs" => $pageConfigs, "breadcrumbs" => $breadcrumbs]);
     }
+     // colors
+     public function colorContent(){
+      $pageConfigs = ['pageHeader' => true];
 
-    // Content Helper Classes
-    public function helper_classes(){
       $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"],['link'=>"dashboard-analytics",'name'=>"Content"], ['name'=>"Helper Classes"]
+        ["link" => "/", "name" => "Home"],["name" => "Colors"]
       ];
-      return view('/pages/content-helper-classes', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
-    }
 
-    // UI Elements - Colors
-    public function colors(){
-      $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"],['name'=>"Colors"]
-      ];
-      return view('/pages/colors', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
+      return view('pages.colors',["pageConfigs" => $pageConfigs, "breadcrumbs" => $breadcrumbs]);
     }
 }

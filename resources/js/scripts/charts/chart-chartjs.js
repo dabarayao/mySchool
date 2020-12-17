@@ -2,26 +2,28 @@
     File Name: chart-chartjs.js
     Description: Chartjs Examples
     ----------------------------------------------------------------------------------------
-    Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Frest HTML Admin Template
+    Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
 $(window).on("load", function () {
 
-  var $primary = '#7367F0';
-  var $success = '#28C76F';
-  var $danger = '#EA5455';
-  var $warning = '#FF9F43';
-  var $label_color = '#1E1E1E';
-  var grid_line_color = '#dae1e7';
-  var scatter_grid_color = '#f3f3f3';
-  var $scatter_point_light = '#D1D4DB';
-  var $scatter_point_dark = '#5175E0';
-  var $white = '#fff';
-  var $black = '#000';
+  var $primary = '#5A8DEE',
+    $success = '#39DA8A',
+    $danger = '#FF5B5C',
+    $warning = '#FDAC41',
+    $info = '#00CFDD',
+    $label_color = '#475F7B',
+    grid_line_color = '#dae1e7',
+    scatter_grid_color = '#f3f3f3',
+    $scatter_point_light = '#E6EAEE',
+    $scatter_point_dark = '#5A8DEE',
+    $white = '#fff',
+    $black = '#000';
 
-  var themeColors = [$primary, $success, $danger, $warning, $label_color];
+  var themeColors = [$primary, $warning, $danger, $success, $info, $label_color];
 
   // Line Chart
   // ------------------------------------------
@@ -101,22 +103,16 @@ $(window).on("load", function () {
 
     // Chart Options
     options: linechartOptions,
-
     data: linechartData
   };
-
   // Create the chart
   var lineChart = new Chart(lineChartctx, lineChartconfig);
-
-
-
 
   // Bar Chart
   // ------------------------------------------
 
   //Get the context of the Chart canvas element we want to select
   var barChartctx = $("#bar-chart");
-
   // Chart Options
   var barchartOptions = {
     // Elements options apply to all of the options unless overridden in a dataset
@@ -158,9 +154,7 @@ $(window).on("load", function () {
       display: true,
       text: 'Predicted world population (millions) in 2050'
     },
-
   };
-
   // Chart Data
   var barchartData = {
     labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
@@ -171,20 +165,15 @@ $(window).on("load", function () {
       borderColor: "transparent"
     }]
   };
-
   var barChartconfig = {
     type: 'bar',
 
     // Chart Options
     options: barchartOptions,
-
     data: barchartData
   };
-
   // Create the chart
   var barChart = new Chart(barChartctx, barChartconfig);
-
-
 
   // Horizontal Chart
   // -------------------------------------
@@ -257,12 +246,8 @@ $(window).on("load", function () {
   // Create the chart
   var horizontalChart = new Chart(horizontalChartctx, horizontalChartconfig);
 
-
-
   // Pie Chart
   // --------------------------------
-
-
   //Get the context of the Chart canvas element we want to select
   var pieChartctx = $("#simple-pie-chart");
 
@@ -299,11 +284,8 @@ $(window).on("load", function () {
   // Create the chart
   var pieSimpleChart = new Chart(pieChartctx, pieChartconfig);
 
-
-
   // Doughnut Chart
   // ---------------------------------------------
-
   //Get the context of the Chart canvas element we want to select
   var doughnutChartctx = $("#simple-doughnut-chart");
 
@@ -340,10 +322,8 @@ $(window).on("load", function () {
   // Create the chart
   var doughnutSimpleChart = new Chart(doughnutChartctx, doughnutChartconfig);
 
-
   // Radar Chart
   // ----------------------------------------
-
   //Get the context of the Chart canvas element we want to select
   var radarChartctx = $("#radar-chart");
 
@@ -381,18 +361,18 @@ $(window).on("load", function () {
     datasets: [{
       label: "1950",
       fill: true,
-      backgroundColor: "rgba(179,181,198,0.2)",
-      borderColor: "rgba(179,181,198,1)",
+      backgroundColor: "rgba(255,91,92,0.2)",
+      borderColor: $danger,
       pointBorderColor: $white,
-      pointBackgroundColor: "rgba(179,181,198,1)",
+      pointBackgroundColor: $danger,
       data: [8.77, 55.61, 21.69, 6.62, 6.82],
     }, {
       label: "2050",
       fill: true,
-      backgroundColor: "rgba(255,99,132,0.2)",
-      borderColor: "rgba(255,99,132,1)",
+      backgroundColor: "rgba(255,91,92,0.2)",
+      borderColor: $danger,
       pointBorderColor: $white,
-      pointBackgroundColor: "rgba(255,99,132,1)",
+      pointBackgroundColor: $danger,
       data: [25.48, 54.16, 7.61, 8.06, 4.45],
     },]
   };
@@ -409,11 +389,8 @@ $(window).on("load", function () {
   // Create the chart
   var polarChart = new Chart(radarChartctx, radarChartconfig);
 
-
-
   // Polar Chart
   // -----------------------------------
-
   //Get the context of the Chart canvas element we want to select
   var polarChartctx = $("#polar-chart");
 
@@ -463,12 +440,8 @@ $(window).on("load", function () {
   // Create the chart
   var polarChart = new Chart(polarChartctx, polarChartconfig);
 
-
-
-
   // Bubble Chart
   // ---------------------------------------
-
   //Get the context of the Chart canvas element we want to select
   var bubbleChartctx = $("#bubble-chart");
 
@@ -518,8 +491,8 @@ $(window).on("load", function () {
     },
     datasets: [{
       label: ["China"],
-      backgroundColor: "rgba(255,221,50,0.2)",
-      borderColor: "rgba(255,221,50,1)",
+      backgroundColor: "rgb(253, 172, 65,.2)",
+      borderColor: $warning,
       data: [{
         x: 21269017,
         y: 5.245,
@@ -527,8 +500,8 @@ $(window).on("load", function () {
       }],
     }, {
       label: ["Denmark"],
-      backgroundColor: "rgba(60,186,159,0.2)",
-      borderColor: "rgba(60,186,159,1)",
+      backgroundColor: "rgba(57,218,138,0.2)",
+      borderColor: $success,
       data: [{
         x: 258702,
         y: 7.526,
@@ -545,8 +518,8 @@ $(window).on("load", function () {
       }]
     }, {
       label: ["Japan"],
-      backgroundColor: "rgba(193,46,12,0.2)",
-      borderColor: "rgba(193,46,12,1)",
+      backgroundColor: "rgba(255,91,92,0.2)",
+      borderColor: $danger,
       data: [{
         x: 4931877,
         y: 5.921,
@@ -567,11 +540,8 @@ $(window).on("load", function () {
   // Create the chart
   var bubbleChart = new Chart(bubbleChartctx, bubbleChartconfig);
 
-
-
   // Scatter Chart
   // ------------------------------------
-
   //Get the context of the Chart canvas element we want to select
   var scatterChartctx = $("#scatter-chart");
 
@@ -636,7 +606,7 @@ $(window).on("load", function () {
         x: 40,
         y: 89,
       }],
-      backgroundColor: "rgba(209,212,219,.3)",
+      backgroundColor: "#E6EAEE",
       borderColor: "transparent",
       pointBorderColor: $scatter_point_light,
       pointBackgroundColor: $white,
@@ -667,7 +637,7 @@ $(window).on("load", function () {
         x: 76,
         y: 73,
       }],
-      backgroundColor: "rgba(81,117,224,.6)",
+      backgroundColor: "rgba(90,141,238,.6)",
       borderColor: "transparent",
       pointBorderColor: $scatter_point_dark,
       pointBackgroundColor: $white,

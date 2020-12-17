@@ -10,158 +10,130 @@ use App\Http\Controllers\LanguageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// dashboard Routes
+Route::get('/','DashboardController@dashboardEcommerce');
+Route::get('/dashboard-ecommerce','DashboardController@dashboardEcommerce');
+Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
 
+//Application Routes
+Route::get('/app-email','ApplicationController@emailApplication');
+Route::get('/app-chat','ApplicationController@chatApplication');
+Route::get('/app-todo','ApplicationController@todoApplication');
+Route::get('/app-calendar','ApplicationController@calendarApplication');
+Route::get('/app-kanban','ApplicationController@kanbanApplication');
+Route::get('/app-invoice-view','ApplicationController@invoiceApplication');
+Route::get('/app-invoice-list','ApplicationController@invoiceListApplication');
+Route::get('/app-invoice-edit','ApplicationController@invoiceEditApplication');
+Route::get('/app-invoice-add','ApplicationController@invoiceAddApplication');
+Route::get('/app-file-manager','ApplicationController@fileManagerApplication');
 
-// Route url
-Route::get('/', 'DashboardController@dashboardAnalytics');
-
-// Route Dashboards
-Route::get('/dashboard-analytics', 'DashboardController@dashboardAnalytics');
-Route::get('/dashboard-ecommerce', 'DashboardController@dashboardEcommerce');
-
-
-// Route Apps
-Route::get('/app-email', 'EmailAppController@emailApp');
-Route::get('/app-chat', 'ChatAppController@chatApp');
-Route::get('/app-todo', 'ToDoAppController@todoApp');
-Route::get('/app-calender', 'CalenderAppController@calenderApp');
-Route::get('/app-ecommerce-shop', 'EcommerceAppController@ecommerce_shop');
-Route::get('/app-ecommerce-details', 'EcommerceAppController@ecommerce_details');
-Route::get('/app-ecommerce-wishlist', 'EcommerceAppController@ecommerce_wishlist');
-Route::get('/app-ecommerce-checkout', 'EcommerceAppController@ecommerce_checkout');
-Route::get('/app-file-manager', 'FileManagerController@file_manager');
-
-// Users Pages
-Route::get('/app-user-list', 'UserPagesController@user_list');
-Route::get('/app-user-view', 'UserPagesController@user_view');
-Route::get('/app-user-edit', 'UserPagesController@user_edit');
-
-// Route Data List
-Route::resource('/data-list-view','DataListController');
-Route::resource('/data-thumb-view', 'DataThumbController');
-
-
-// Route Content
-Route::get('/content-grid', 'ContentController@grid');
-Route::get('/content-typography', 'ContentController@typography');
-Route::get('/content-text-utilities', 'ContentController@text_utilities');
-Route::get('/content-syntax-highlighter', 'ContentController@syntax_highlighter');
-Route::get('/content-helper-classes', 'ContentController@helper_classes');
-
-// Route Color
-Route::get('/colors', 'ContentController@colors');
-
-// Route Icons
-Route::get('/icons-feather', 'IconsController@icons_feather');
-Route::get('/icons-font-awesome', 'IconsController@icons_font_awesome');
-
-// Route Cards
-Route::get('/card-basic', 'CardsController@card_basic');
-Route::get('/card-advance', 'CardsController@card_advance');
-Route::get('/card-statistics', 'CardsController@card_statistics');
-Route::get('/card-analytics', 'CardsController@card_analytics');
-Route::get('/card-actions', 'CardsController@card_actions');
-
-// Route Components
-Route::get('/component-alert', 'ComponentsController@alert');
-Route::get('/component-buttons', 'ComponentsController@buttons');
-Route::get('/component-breadcrumbs', 'ComponentsController@breadcrumbs');
-Route::get('/component-carousel', 'ComponentsController@carousel');
-Route::get('/component-collapse', 'ComponentsController@collapse');
-Route::get('/component-dropdowns', 'ComponentsController@dropdowns');
-Route::get('/component-list-group', 'ComponentsController@list_group');
-Route::get('/component-modals', 'ComponentsController@modals');
-Route::get('/component-pagination', 'ComponentsController@pagination');
-Route::get('/component-navs', 'ComponentsController@navs');
-Route::get('/component-navbar', 'ComponentsController@navbar');
-Route::get('/component-tabs', 'ComponentsController@tabs');
-Route::get('/component-pills', 'ComponentsController@pills');
-Route::get('/component-tooltips', 'ComponentsController@tooltips');
-Route::get('/component-popovers', 'ComponentsController@popovers');
-Route::get('/component-badges', 'ComponentsController@badges');
-Route::get('/component-pill-badges', 'ComponentsController@pill_badges');
-Route::get('/component-progress', 'ComponentsController@progress');
-Route::get('/component-media-objects', 'ComponentsController@media_objects');
-Route::get('/component-spinner', 'ComponentsController@spinner');
-Route::get('/component-toast', 'ComponentsController@toast');
-
-// Route Extra Components
-Route::get('/ex-component-avatar', 'ExtraComponentsController@avatar');
-Route::get('/ex-component-chips', 'ExtraComponentsController@chips');
-Route::get('/ex-component-divider', 'ExtraComponentsController@divider');
-
-// Route Forms
-Route::get('/form-select', 'FormsController@select');
-Route::get('/form-switch', 'FormsController@switch');
-Route::get('/form-checkbox', 'FormsController@checkbox');
-Route::get('/form-radio', 'FormsController@radio');
-Route::get('/form-input', 'FormsController@input');
-Route::get('/form-input-groups', 'FormsController@input_groups');
-Route::get('/form-number-input', 'FormsController@number_input');
-Route::get('/form-textarea', 'FormsController@textarea');
-Route::get('/form-date-time-picker', 'FormsController@date_time_picker');
-Route::get('/form-layout', 'FormsController@layouts');
-Route::get('/form-wizard', 'FormsController@wizard');
-Route::get('/form-validation', 'FormsController@validation');
-
-// Route Tables
-Route::get('/table', 'TableController@table');
-Route::get('/table-datatable', 'TableController@datatable');
-Route::get('/table-ag-grid', 'TableController@ag_grid');
-
-// Route Pages
-Route::get('/page-user-profile', 'PagesController@user_profile');
-Route::get('/page-faq', 'PagesController@faq');
-Route::get('/page-knowledge-base', 'PagesController@knowledge_base');
-Route::get('/page-kb-category', 'PagesController@kb_category');
-Route::get('/page-kb-question', 'PagesController@kb_question');
-Route::get('/page-search', 'PagesController@search');
-Route::get('/page-invoice', 'PagesController@invoice');
-Route::get('/page-account-settings', 'PagesController@account_settings');
-Route::get('/pricing', 'PagesController@pricing');
-
-// Route Authentication Pages
-Route::get('/auth-login', 'AuthenticationController@login');
-Route::get('/auth-register', 'AuthenticationController@register');
-Route::get('/auth-forgot-password', 'AuthenticationController@forgot_password');
-Route::get('/auth-reset-password', 'AuthenticationController@reset_password');
-Route::get('/auth-lock-screen', 'AuthenticationController@lock_screen');
-
-// Route Miscellaneous Pages
-Route::get('/page-coming-soon', 'MiscellaneousController@coming_soon');
-Route::get('/error-404', 'MiscellaneousController@error_404');
-Route::get('/error-500', 'MiscellaneousController@error_500');
-Route::get('/page-not-authorized', 'MiscellaneousController@not_authorized');
-Route::get('/page-maintenance', 'MiscellaneousController@maintenance');
-
-// Route Charts & Google Maps
-Route::get('/chart-apex', 'ChartsController@apex');
-Route::get('/chart-chartjs', 'ChartsController@chartjs');
-Route::get('/chart-echarts', 'ChartsController@echarts');
-Route::get('/maps-google', 'ChartsController@maps_google');
-
-// Route Extension Components
-Route::get('/ext-component-sweet-alerts', 'ExtensionController@sweet_alert');
-Route::get('/ext-component-toastr', 'ExtensionController@toastr');
-Route::get('/ext-component-noui-slider', 'ExtensionController@noui_slider');
-Route::get('/ext-component-file-uploader', 'ExtensionController@file_uploader');
-Route::get('/ext-component-quill-editor', 'ExtensionController@quill_editor');
-Route::get('/ext-component-drag-drop', 'ExtensionController@drag_drop');
-Route::get('/ext-component-tour', 'ExtensionController@tour');
-Route::get('/ext-component-clipboard', 'ExtensionController@clipboard');
-Route::get('/ext-component-plyr', 'ExtensionController@plyr');
-Route::get('/ext-component-context-menu', 'ExtensionController@context_menu');
-Route::get('/ext-component-swiper', 'ExtensionController@swiper');
-Route::get('/ext-component-i18n', 'ExtensionController@i18n');
+// Content Page Routes
+Route::get('/content-grid','ContentController@gridContent');
+Route::get('/content-typography','ContentController@typographyContent');
+Route::get('/content-text-utilities','ContentController@textUtilitiesContent');
+Route::get('/content-syntax-highlighter','ContentController@contentSyntaxHighlighter');
+Route::get('/content-helper-classes','ContentController@contentHelperClasses');
+Route::get('/colors','ContentController@colorContent');
+// icons
+Route::get('/icons-livicons','IconsController@liveIcons');
+Route::get('/icons-boxicons','IconsController@boxIcons');
+// card
+Route::get('/card-basic','CardController@basicCard');
+Route::get('/card-actions','CardController@actionCard');
+Route::get('/widgets','CardController@widgets');
+// component route
+Route::get('/component-alerts','ComponentController@alertComponenet');
+Route::get('/component-buttons-basic','ComponentController@buttonComponenet');
+Route::get('/component-breadcrumbs','ComponentController@breadcrumbsComponenet');
+Route::get('/component-carousel','ComponentController@carouselComponenet');
+Route::get('/component-collapse','ComponentController@collapseComponenet');
+Route::get('/component-dropdowns','ComponentController@dropdownComponenet');
+Route::get('/component-list-group','ComponentController@listGroupComponenet');
+Route::get('/component-modals','ComponentController@modalComponenet');
+Route::get('/component-pagination','ComponentController@paginationComponenet');
+Route::get('/component-navbar','ComponentController@navbarComponenet');
+Route::get('/component-tabs-component','ComponentController@tabsComponenet');
+Route::get('/component-pills-component','ComponentController@pillComponenet');
+Route::get('/component-tooltips','ComponentController@tooltipsComponenet');
+Route::get('/component-popovers','ComponentController@popoversComponenet');
+Route::get('/component-badges','ComponentController@badgesComponenet');
+Route::get('/component-pill-badges','ComponentController@pillBadgesComponenet');
+Route::get('/component-progress','ComponentController@progressComponenet');
+Route::get('/component-media-objects','ComponentController@mediaObjectComponenet');
+Route::get('/component-spinner','ComponentController@spinnerComponenet');
+Route::get('/component-bs-toast','ComponentController@toastsComponenet');
+// extra component
+Route::get('/ex-component-avatar','ExComponentController@avatarComponent');
+Route::get('/ex-component-chips','ExComponentController@chipsComponent');
+Route::get('/ex-component-divider','ExComponentController@dividerComponent');
+// form elements
+Route::get('/form-inputs','FormController@inputForm');
+Route::get('/form-input-groups','FormController@inputGroupForm');
+Route::get('/form-number-input','FormController@numberInputForm');
+Route::get('/form-select','FormController@selectForm');
+Route::get('/form-radio','FormController@radioForm');
+Route::get('/form-checkbox','FormController@checkboxForm');
+Route::get('/form-switch','FormController@switchForm');
+Route::get('/form-textarea','FormController@textareaForm');
+Route::get('/form-quill-editor','FormController@quillEditorForm');
+Route::get('/form-file-uploader','FormController@fileUploaderForm');
+Route::get('/form-date-time-picker','FormController@datePickerForm');
+Route::get('/form-layout','FormController@formLayout');
+Route::get('/form-wizard','FormController@formWizard');
+Route::get('/form-validation','FormController@formValidation');
+Route::get('/form-repeater','FormController@formRepeater');
+// table route
+Route::get('/table','TableController@basicTable');
+Route::get('/extended','TableController@extendedTable');
+Route::get('/datatable','TableController@dataTable');
+// page Route
+Route::get('/page-user-profile','PageController@userProfilePage');
+Route::get('/page-faq','PageController@faqPage');
+Route::get('/page-knowledge-base','PageController@knowledgeBasePage');
+Route::get('/page-knowledge-base/categories','PageController@knowledgeCatPage');
+Route::get('/page-knowledge-base/categories/question','PageController@knowledgeQuestionPage');
+Route::get('/page-search','PageController@searchPage');
+Route::get('/page-account-settings','PageController@accountSettingPage');
+// User Route 
+Route::get('/page-users-list','UsersController@listUser');
+Route::get('/page-users-view','UsersController@viewUser');
+Route::get('/page-users-edit','UsersController@editUser');
+// Authentication  Route
+Route::get('/auth-login','AuthenticationController@loginPage');
+Route::get('/auth-register','AuthenticationController@registerPage');
+Route::get('/auth-forgot-password','AuthenticationController@forgetPasswordPage');
+Route::get('/auth-reset-password','AuthenticationController@resetPasswordPage');
+Route::get('/auth-lock-screen','AuthenticationController@authLockPage');
+// Miscellaneous
+Route::get('/page-coming-soon','MiscellaneousController@comingSoonPage');
+Route::get('/error-404','MiscellaneousController@error404Page');
+Route::get('/error-500','MiscellaneousController@error500Page');
+Route::get('/page-not-authorized','MiscellaneousController@notAuthPage');
+Route::get('/page-maintenance','MiscellaneousController@maintenancePage');
+// Charts Route
+Route::get('/chart-apex','ChartController@apexChart');
+Route::get('/chart-chartjs','ChartController@chartJs');
+Route::get('/chart-chartist','ChartController@chartist');
+Route::get('/maps-google','ChartController@googleMap');
+// extension route
+Route::get('/ext-component-sweet-alerts','ExtensionsController@sweetAlert');
+Route::get('/ext-component-toastr','ExtensionsController@toastr');
+Route::get('/ext-component-noui-slider','ExtensionsController@noUiSlider');
+Route::get('/ext-component-drag-drop','ExtensionsController@dragComponent');
+Route::get('/ext-component-tour','ExtensionsController@tourComponent');
+Route::get('/ext-component-swiper','ExtensionsController@swiperComponent');
+Route::get('/ext-component-treeview','ExtensionsController@treeviewComponent');
+Route::get('/ext-component-block-ui','ExtensionsController@blockUIComponent');
+Route::get('/ext-component-media-player','ExtensionsController@mediaComponent');
+Route::get('/ext-component-miscellaneous','ExtensionsController@miscellaneous');
+Route::get('/ext-component-i18n','ExtensionsController@i18n');
+// locale Route
+Route::get('lang/{locale}',[LanguageController::class,'swap']);
 
 // acess controller
 Route::get('/access-control', 'AccessController@index');
 Route::get('/access-control/{roles}', 'AccessController@roles');
-Route::get('/modern-admin', 'AccessController@home')->middleware('role:Admin');
+Route::get('/ecommerce', 'AccessController@home')->middleware('role:Admin');
 
-// Auth::routes();
+Auth::routes();
 
-Route::post('/login/validate', 'Auth\LoginController@validate_api');
-
-// locale Route
-Route::get('lang/{locale}',[LanguageController::class,'swap']);

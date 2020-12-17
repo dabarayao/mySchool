@@ -9,14 +9,16 @@
 // Overrides user variable
 @import "../../core/variables/components-variables";
 
+/* Dropzone css */
+/* ------------ */
 .dropzone{
 	min-height: 350px;
 	border: 2px dashed $primary;
   background: $body-bg;
 
-  // dropzone message customization
-	.dz-message{
-		font-size: 2rem;
+    .dz-message{
+    /* dropzone message customization */
+		font-size: 1.5rem;
 		position: absolute;
 		top: 50%;
 		left: 0;
@@ -25,13 +27,13 @@
 		margin-top: -30px;
 		color: $primary;
 		text-align: center;
-  }
+  	}
 
-  // dropzone message icon
-	.dz-message:before{
-		content: "\e864";
-	    font-family: 'feather';
-	    font-size: 80px;
+    .dz-message:before{
+      /* dropzone message icon */
+      content: "\ea86";
+	    font-family: 'boxicons';
+	    font-size: 3.5rem;
 	    position: absolute;
 	    top: 48px;
 	    width: 80px;
@@ -45,32 +47,33 @@
 	    text-indent: 0px;
 	    font-weight: normal;
 	    -webkit-font-smoothing: antialiased;
+  	}
+
+  	// for preview of files
+	.dz-preview{
+		background: transparent;
+
+		.dz-error-mark,.dz-success-mark{
+			background-image: url("../images/dropzone/spritemap.png")
+		}
+
+		.dz-error-message{
+    /* dropzone error message */
+		min-width: 113px;
+		top: 0;
+		left: 0;
+		}
   }
 
-  // for preview of files
-.dz-preview{
-	background: transparent;
-
-	.dz-error-mark,.dz-success-mark{
-		background-image: url("../images/dropzone/spritemap.png")
-	}
-
-    .dz-error-message{
-      min-width: 113px;
-      top: 0;
-      left: 0;
-    }
-  }
-
-  // for dropzone preview and remove icon
+  	// for dropzone preview and remove icon
 	.dz-preview .dz-remove{
 		font-size: 1.1rem;
 		color: $danger;
     	line-height: 2rem;
 
     	&:before{
-			content: "\e8f6";
-		    font-family: 'feather';
+			content: "\eb61";
+		    font-family: 'boxicons';
 		    display: inline-block;
 		    line-height: 1;
 		    z-index: 2;
@@ -87,7 +90,7 @@
 
 }
 
-// For Small Screen drop Logo
+/* For Small Screen drop Logo */
 @media(max-width: 576px){
   .dropzone{
     .dz-message{

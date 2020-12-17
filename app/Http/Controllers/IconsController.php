@@ -6,23 +6,22 @@ use Illuminate\Http\Request;
 
 class IconsController extends Controller
 {
-    // Icons Feather
-    public function icons_feather(){
-      $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"],['link'=>"dashboard-analytics",'name'=>"Icons"], ['name'=>"Feather Icons"]
-      ];
-      return view('/pages/icons-feather', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
-    }
+    //live icons
+    public function liveIcons(){
+      $pageConfigs = ['pageHeader' => true];
 
-    // Icons Font Awesome
-    public function icons_font_awesome(){
       $breadcrumbs = [
-          ['link'=>"dashboard-analytics",'name'=>"Home"],['link'=>"dashboard-analytics",'name'=>"Icons"], ['name'=>"Font Awesome"]
+        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Icons"],["name" => "LivIcons"]
       ];
-      return view('/pages/icons-font-awesome', [
-          'breadcrumbs' => $breadcrumbs
-      ]);
+      return view('pages.icons-livicons',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    }
+     //Box icons
+     public function boxIcons(){
+      $pageConfigs = ['pageHeader' => true];
+
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Icons"],["name" => "Boxicons"]
+      ];
+      return view('pages.icons-boxicons',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
     }
 }
