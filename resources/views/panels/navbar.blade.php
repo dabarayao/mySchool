@@ -1,7 +1,7 @@
 {{-- navabar  --}}
 <div class="header-navbar-shadow"></div>
-<nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu 
-@if(isset($configData['navbarType'])){{$configData['navbarClass']}} @endif" 
+<nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu
+@if(isset($configData['navbarType'])){{$configData['navbarClass']}} @endif"
 data-bgcolor="@if(isset($configData['navbarBgColor'])){{$configData['navbarBgColor']}}@endif">
   <div class="navbar-wrapper">
     <div class="navbar-container content">
@@ -188,7 +188,7 @@ data-bgcolor="@if(isset($configData['navbarBgColor'])){{$configData['navbarBgCol
                 <a class="dropdown-item" href="{{asset('app-chat')}}"><i class="bx bx-message mr-50"></i> Chats
               </a>
               <div class="dropdown-divider mb-0"></div>
-              <a class="dropdown-item" href="{{asset('auth-login')}}"><i class="bx bx-power-off mr-50"></i> Logout</a>
+              <a class="dropdown-item" href="{{route('auth-logout')}}"><i class="bx bx-power-off mr-50"></i> Logout</a>
             </div>
           </li>
         </ul>

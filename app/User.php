@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
   use HasApiTokens, Notifiable, HasRoles;
   use SoftDeletes;
@@ -20,7 +20,7 @@ class User extends Authenticatable
    * @var array
    */
   protected $fillable = [
-    'familyname', 'givenname', 'email', 'password',
+    'familyname', 'givenname', 'gender', 'email', 'password',
   ];
 
   /**
