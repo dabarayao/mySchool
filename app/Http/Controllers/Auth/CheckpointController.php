@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ResetAlertController extends Controller
+class CheckpointController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -14,8 +14,7 @@ class ResetAlertController extends Controller
    */
   public function index()
   {
-    //
-    return view('auth.passwords.passlink-alert');
+    return view('auth.checkpoint');
   }
 
   /**

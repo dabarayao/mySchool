@@ -12,7 +12,7 @@ class DashboardController extends Controller
 
   public function __construct()
   {
-    $this->middleware(['verified', 'auth']);
+    $this->middleware(['verified', 'auth', 'checkUserStatus']);
   }
 
   //ecommerce
