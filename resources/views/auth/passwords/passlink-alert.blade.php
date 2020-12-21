@@ -6,37 +6,37 @@
 
   {{-- FRENCH VERSION --}}
   @if (session('reset'))
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">{{ __('Vérifiez votre adresse E-mail') }}</div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">{{ __('Vérifiez votre adresse E-mail') }}</div>
 
-          <div class="card-body">
+            <div class="card-body">
 
-              <div class="alert alert-success" role="alert">
-                {{ __('Un lien de réinitialisation de votre mot de passe a été envoyé à votre adresse e-mail.') }}
-              </div>
+                <div class="alert alert-success" role="alert">
+                  {{ __('Un lien de réinitialisation de votre mot de passe a été envoyé à votre adresse e-mail.') }}
+                </div>
 
 
-            {{ __('Avant de continuer utiliser le lien que avez réçu sur votre adresse E-mail pour réinitialiser votre mot de passe') }}
-            {{ __('Si vous n\'avez pas reçu de mail') }},
+              {{ __('Avant de continuer utiliser le lien que avez réçu sur votre adresse E-mail pour réinitialiser votre mot de passe') }}
+              {{ __('Si vous n\'avez pas reçu de mail') }},
 
-              <a href="{{route('password.request')}}">{{ __('click ici pour renvoyer le lien') }}</a>.
+                <a href="{{route('password.request')}}">{{ __('click ici pour renvoyer le lien') }}</a>.
 
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
   @else
 
-  @php
+    @php
 
-  header('Location: /login');
-  exit;
-  @endphp
+    header('Location: /login');
+    exit;
+    @endphp
 
   @endif
   {{-- FRENCH VERSION --}}
@@ -79,7 +79,7 @@
 
   @endif
   {{-- ENGLISH VERSION --}}
-
+@endif
 
 
 

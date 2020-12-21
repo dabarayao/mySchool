@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
       $table->integer('phone')->nullable();
       $table->string('address')->nullable();
       $table->boolean('state')->default(0)->nullable();
-      $table->boolean('status')->default(1)->nullable();
+      $table->boolean('status')->default(0)->nullable();
       $table->boolean('root')->default(0);
       $table->integer('school_id')->nullable();
       $table->timestamp('email_verified_at')->nullable();
