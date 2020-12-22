@@ -6,28 +6,30 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTypemarksTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('typemarks', function (Blueprint $table) {
-            $table->id();
-            $table->string('label', 100);
-            $table->softDeletes();
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('typemarks', function (Blueprint $table) {
+      $table->id();
+      $table->string('label', 100);
+      $table->integer('created_user');
+      $table->integer('updated_user');
+      $table->softDeletes();
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('typemarks');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('typemarks');
+  }
 }

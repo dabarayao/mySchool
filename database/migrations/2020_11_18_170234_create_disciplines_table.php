@@ -6,30 +6,32 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateDisciplinesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('disciplines', function (Blueprint $table) {
-            $table->id();
-            $table->string('label', 100);
-            $table->integer('coef');
-            $table->string('comments', 100)->nullable();
-            $table->softDeletes();
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('disciplines', function (Blueprint $table) {
+      $table->id();
+      $table->string('label', 100);
+      $table->integer('coef');
+      $table->string('comments', 100)->nullable();
+      $table->integer('created_user');
+      $table->integer('updated_user');
+      $table->softDeletes();
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('disciplines');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('disciplines');
+  }
 }

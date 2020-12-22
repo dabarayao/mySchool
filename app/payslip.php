@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Admin extends Model
+class payslip extends Model
 {
-    //
-    use SoftDeletes;
+  //
+  use SoftDeletes;
 }

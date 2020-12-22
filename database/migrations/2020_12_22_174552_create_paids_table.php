@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassroomsTable extends Migration
+class CreatePaidsTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,12 +13,12 @@ class CreateClassroomsTable extends Migration
    */
   public function up()
   {
-    Schema::create('classrooms', function (Blueprint $table) {
+    Schema::create('paids', function (Blueprint $table) {
       $table->id();
-      $table->string('label');
-      $table->integer('nb_student');
-      $table->integer('nb_teacher');
-      $table->integer('school_id');
+      $table->integer('user_id');
+      $table->integer('payslip_id');
+      $table->date('pay_date');
+      $table->date('next_pay_date');
       $table->integer('created_user');
       $table->integer('updated_user');
       $table->softDeletes();
@@ -33,6 +33,6 @@ class CreateClassroomsTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('classrooms');
+    Schema::dropIfExists('paids');
   }
 }
