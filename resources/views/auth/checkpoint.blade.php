@@ -358,7 +358,7 @@
                       </div>
                   </div>
               </div>
-              <a class="inspiration btn btn-outline" href="{{route('logout')}}" >Déconnexion</a>
+              <a class="inspiration btn btn-outline" href="{{route('auth-logout')}}" >Déconnexion</a>
           </div>
        
       </div>
@@ -425,7 +425,7 @@
           </div>
       </div>
 
-      <a class="inspiration btn btn-outline" href="{{route('logout')}}" >Logout</a>
+      <a class="inspiration btn btn-outline" href="{{route('auth-logout')}}" >Logout</a>
       <!-- ENCLISH VERSION -->
 
     @endif
