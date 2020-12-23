@@ -1,5 +1,13 @@
 @extends('layouts.fullLayoutMaster')
 
+{{-- page title --}}
+
+@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@section('title','Lien de vérification')
+@else 
+@section('title','Verification link')
+@endif
+
 @section('content')
 
 @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')

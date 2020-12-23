@@ -19,6 +19,7 @@ class DashboardController extends Controller
   //ecommerce
   public function dashboardEcommerce()
   {
+    session()->forget('checkpoint');
     // auth connected state code sample
     if (Auth::check()) {
       $util = User::find(Auth::id());

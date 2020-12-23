@@ -1,6 +1,13 @@
 @extends('layouts.fullLayoutMaster')
 {{-- title --}}
-@section('title','checkpoint')
+
+
+@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@section('title','Paiement')
+@else
+@section('title','Checkpoint')
+@endif
+
 {{-- page scripts --}}
 @section('page-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/pages/authentication.css')}}">
@@ -351,9 +358,11 @@
                       </div>
                   </div>
               </div>
+              <a class="inspiration btn btn-outline" href="{{route('logout')}}" >Déconnexion</a>
           </div>
+       
       </div>
-
+     
       <!-- FRENCH VERSION -->
 
     @else
@@ -416,6 +425,7 @@
           </div>
       </div>
 
+      <a class="inspiration btn btn-outline" href="{{route('logout')}}" >Logout</a>
       <!-- ENCLISH VERSION -->
 
     @endif
@@ -426,7 +436,7 @@
 
   @php
 
-    header('Location: /login');
+    header('Location: /');
     exit;
   @endphp
 

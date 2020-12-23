@@ -1,6 +1,12 @@
 @extends('layouts.fullLayoutMaster')
 {{-- page title --}}
+
+@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@section('title','Mot de passe oublié')
+@else 
 @section('title','Forgot Password')
+@endif
+
 {{-- page scripts --}}
 @section('page-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/pages/authentication.css')}}">

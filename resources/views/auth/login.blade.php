@@ -1,6 +1,12 @@
 @extends('layouts.fullLayoutMaster')
 {{-- title --}}
-@section('title','Login Page')
+
+@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@section('title','Connexion')
+@else 
+@section('title','Login')
+@endif
+
 {{-- page scripts --}}
 @section('page-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/pages/authentication.css')}}">
@@ -22,7 +28,7 @@
               <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                 <div class="card-header pb-1">
                   <div class="card-title">
-                    <h4 class="text-center mb-2">Bienvenue</h4>
+                    <h4 class="text-center mb-2">Bienvenue sur mySchool</h4>
                   </div>
                 </div>
                 <div class="card-content">
@@ -54,14 +60,15 @@
                         @enderror
                       </div>
                       <div class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
-                        <div class="text-left">
+                        {{--remember me--}}
+                        {{--<div class="text-left">
                           <div class="checkbox checkbox-sm">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label class="form-check-label" for="remember">
                               <small>Se souvenir de moi</small>
                             </label>
                           </div>
-                        </div>
+                        </div>--}}
                         <div class="text-right">
                           <a href="{{ route('password.request') }}" class="card-link"><small>Mot de passe oublié?</small></a>
                         </div>
@@ -107,7 +114,7 @@
               <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                 <div class="card-header pb-1">
                   <div class="card-title">
-                    <h4 class="text-center mb-2">Welcome Back</h4>
+                    <h4 class="text-center mb-2">Welcome Back on mySchool</h4>
                   </div>
                 </div>
                 <div class="card-content">
@@ -139,14 +146,17 @@
                         @enderror
                       </div>
                       <div class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
-                        <div class="text-left">
-                          <div class="checkbox checkbox-sm">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                            <label class="form-check-label" for="remember">
-                              <small>Keep me logged in</small>
-                            </label>
-                          </div>
-                        </div>
+                        {{--remember me--}}
+                        {{--
+                          <div class="text-left">
+                            <div class="checkbox checkbox-sm">
+                              <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                              <label class="form-check-label" for="remember">
+                                <small>Keep me logged in</small>
+                              </label>
+                            </div>
+                           </div>
+                        --}}
                         <div class="text-right">
                           <a href="{{ route('password.request') }}" class="card-link"><small>Forgot Password?</small></a>
                         </div>

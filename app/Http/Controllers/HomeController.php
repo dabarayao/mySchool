@@ -27,21 +27,4 @@ class HomeController extends Controller
   {
     return view('home');
   }
-
-  // This is my auth logout method
-  public function logout(Request $request)
-  {
-
-    $util = User::find(Auth::id());
-    Auth::logout();
-
-    $util->state = false;
-    $util->save();
-
-    $request->session()->invalidate();
-
-    $request->session()->regenerateToken();
-
-    return redirect('/');
-  }
 }

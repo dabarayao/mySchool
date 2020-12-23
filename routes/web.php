@@ -143,6 +143,6 @@ Auth::routes(['verify' => true]);
 Route::get('/password-link', 'Auth\ResetAlertController@index')->name('passlink-alert');
 Route::get('/auth-checkpoint', 'Auth\CheckpointController@index')->name('checkpoint');
 
-Route::get('/auth-logout', 'HommeControllerr@index')->name('auth-logout');
+Route::get('/auth-logout', 'Auth\LogoutController@logout')->name('auth-logout');
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -1,4 +1,12 @@
 @extends('layouts.fullLayoutMaster')
+{{-- page title --}}
+
+@section('title','Forgot Password')
+@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@section('title','Mail de restauration')
+@else 
+@section('title','Reset email')
+@endif
 
 @section('content')
 

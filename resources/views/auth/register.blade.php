@@ -1,7 +1,13 @@
 @extends('layouts.fullLayoutMaster')
 
 {{-- page title --}}
-@section('title','Register Page')
+
+@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@section('title','Inscription')
+@else 
+@section('title','Register')
+@endif
+
 {{-- page scripts --}}
 @section('page-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/pages/authentication.css')}}">
