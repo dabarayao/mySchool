@@ -20,6 +20,7 @@ class CreateStudentsTable extends Migration
       $table->string('photo', 100)->nullable();
       $table->date('birthdate');
       $table->integer('phone');
+      $table->string('country', 100)->nullable();
       $table->string('address', 256);
       $table->integer('classroom_id');
       $table->integer('kins_id');

@@ -20,6 +20,7 @@ class CreateTeachersTable extends Migration
       $table->string('photo', 100)->nullable();
       $table->date('birthdate');
       $table->integer('phone');
+      $table->string('country', 100)->nullable();
       $table->string('address', 256);
       $table->integer('created_user');
       $table->integer('updated_user');

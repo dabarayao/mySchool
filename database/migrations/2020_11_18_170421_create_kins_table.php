@@ -23,6 +23,7 @@ class CreateKinsTable extends Migration
       $table->boolean('gender');
       $table->integer('phone');
       $table->date('birthdate');
+      $table->string('country', 100)->nullable();
       $table->string('address', 256);
       $table->boolean('state')->default(0)->nullable();
       $table->integer('created_user');

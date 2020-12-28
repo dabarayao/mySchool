@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
       $table->boolean('gender');
       $table->date('birthdate')->nullable();
       $table->integer('phone')->nullable();
+      $table->string('country', 100)->nullable();
       $table->string('address')->nullable();
       $table->boolean('state')->default(0)->nullable();
       $table->boolean('status')->default(0)->nullable();

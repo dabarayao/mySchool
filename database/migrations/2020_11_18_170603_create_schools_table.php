@@ -17,6 +17,7 @@ class CreateSchoolsTable extends Migration
       $table->id();
       $table->string('name', 256);
       $table->integer('phone');
+      $table->string('country', 100)->nullable();
       $table->string('area', 256);
       $table->string('town', 256);
       $table->string('city', 256);
