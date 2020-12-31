@@ -19,6 +19,7 @@ class CreateStudentsTable extends Migration
       $table->string('givenname', 256);
       $table->string('photo', 100)->nullable();
       $table->date('birthdate');
+      $table->string('dialcode', 100)->nullable();
       $table->integer('phone');
       $table->string('country', 100)->nullable();
       $table->string('address', 256);

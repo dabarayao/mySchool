@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
       $table->string('photo', 256)->nullable();
       $table->boolean('gender');
       $table->date('birthdate')->nullable();
+      $table->string('dialcode', 100)->nullable();
       $table->integer('phone')->nullable();
       $table->string('country', 100)->nullable();
       $table->string('address')->nullable();

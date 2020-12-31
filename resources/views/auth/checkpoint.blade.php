@@ -360,9 +360,9 @@
               </div>
               <a class="inspiration btn btn-outline" href="{{route('auth-logout')}}" >Déconnexion</a>
           </div>
-       
+
       </div>
-     
+
       <!-- FRENCH VERSION -->
 
     @else
@@ -422,10 +422,11 @@
                       </div>
                   </div>
               </div>
+              <a class="inspiration btn btn-outline" href="{{route('auth-logout')}}" >Logout</a>
           </div>
       </div>
 
-      <a class="inspiration btn btn-outline" href="{{route('auth-logout')}}" >Logout</a>
+
       <!-- ENCLISH VERSION -->
 
     @endif

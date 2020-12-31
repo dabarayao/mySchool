@@ -21,6 +21,7 @@ class CreateKinsTable extends Migration
       $table->string('email')->unique();
       $table->string('password', 100);
       $table->boolean('gender');
+      $table->string('dialcode', 100)->nullable();
       $table->integer('phone');
       $table->date('birthdate');
       $table->string('country', 100)->nullable();
