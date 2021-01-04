@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
-class CheckpointController extends Controller
+class UsersController extends Controller
 {
 
   public function __construct()
   {
     // the authenitfication middleware for the app
-    $this->middleware(['verified', 'auth']);
+    $this->middleware(['verified', 'auth', 'checkUserStatus']);
   }
 
   /**
@@ -23,15 +23,18 @@ class CheckpointController extends Controller
    */
   public function index()
   {
-    // auth connected state code sample
-    if (Auth::check()) {
-      $util = User::find(Auth::id());
-      if ($util->state == false); {
-        $util->state = true;
-        $util->save();
-      }
-    }
-    return view('auth.checkpoint');
+    //code for root user or superuser
+    $superuser = User::find(Auth::id());
+    //code for root user or superuser
+
+    $user = User::all()->sortByDesc('created_at');
+
+    return view('main.users.page-users-list')->with(
+      [
+        'superuser' => $superuser,
+        'user' => $user
+      ]
+    );
   }
 
   /**
@@ -64,6 +67,7 @@ class CheckpointController extends Controller
   public function show($id)
   {
     //
+    return view('main.page-users-view');
   }
 
   /**
@@ -75,6 +79,7 @@ class CheckpointController extends Controller
   public function edit($id)
   {
     //
+    return view('main.page-users-edit');
   }
 
   /**

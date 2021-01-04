@@ -96,10 +96,12 @@ Route::get('/page-knowledge-base/categories', 'PageController@knowledgeCatPage')
 Route::get('/page-knowledge-base/categories/question', 'PageController@knowledgeQuestionPage');
 Route::get('/page-search', 'PageController@searchPage');
 Route::get('/page-account-settings', 'PageController@accountSettingPage');
+
 // User Route
-Route::get('/page-users-list', 'UsersController@listUser');
+/* Route::get('/page-users-list', 'UsersController@listUser');
 Route::get('/page-users-view', 'UsersController@viewUser');
-Route::get('/page-users-edit', 'UsersController@editUser');
+Route::get('/page-users-edit', 'UsersController@editUser'); */
+
 // Authentication  Route
 Route::get('/auth-login', 'AuthenticationController@loginPage');
 Route::get('/auth-register', 'AuthenticationController@registerPage');
@@ -138,7 +140,7 @@ Route::get('/access-control/{roles}', 'AccessController@roles');
 Route::get('/ecommerce', 'AccessController@home')->middleware('role:Admin');
 
 
-// Authentification routes
+// mySchool Authentification routes
 Auth::routes(['verify' => true]);
 Route::get('/password-link', 'Auth\ResetAlertController@index')->name('passlink-alert');
 Route::get('/auth-checkpoint', 'Auth\CheckpointController@index')->name('checkpoint');
@@ -146,3 +148,8 @@ Route::get('/auth-checkpoint', 'Auth\CheckpointController@index')->name('checkpo
 Route::get('/auth-logout', 'Auth\LogoutController@logout')->name('auth-logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// mySchool Users  routes
+Route::get('/users/page-users-list', 'main\UsersController@index');
+//Route::get('/users/page-users-view', 'main\UsersController@viewUser');
+//Route::get('/users/page-users-edit', 'main\UsersController@editUser');
