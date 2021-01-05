@@ -1,6 +1,15 @@
 @extends('layouts.contentLayoutMaster')
 {{-- page title --}}
-@section('title','Users List')
+  @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+
+    @section('title','Listes des utilisateurs')
+
+  @else 
+
+    @section('title','Users List')
+
+  @endif
+
 {{-- vendor styles --}}
 @section('vendor-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/tables/datatable/datatables.min.css')}}">
@@ -14,6 +23,9 @@
 <section class="users-list-wrapper">
 
   @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+
+      {{-- FRENCH VERSION --}}
+
 
       <!-- header breadcrumbs -->
       <div class="content-header row">
@@ -40,7 +52,7 @@
 
 
       <p>
-        <button type="button" class="btn btn-primary"><i class='bx bx-add-to-queue bx-flashing' ></i><span> Ajouter un nouveau </span></button>
+        <a role="button" class="btn round btn-outline-primary"><i class='bx bx-add-to-queue bx-flashing' ></i><span> Ajouter un nouveau </span></a>
       </p>
 
       <div class="users-list-table">
@@ -56,37 +68,64 @@
                         <th>nom</th>
                         <th>prénoms</th>
                         <th>email</th>
-                        <th>role</th>
+                        {{--<th>role</th>--}}
                         <th>etat</th>
+                        {{-- Special display for root users --}}
+                        @if($superuser->root == true)
+
                         <th>status</th>
+                        
+                        @endif
+
                         <th>actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($user as $users)
+                    {{-- Special display for root users --}}
+                    @if($superuser->root == false && $users->root == true)
+
+                        @php 
+                        
+                        continue;
+
+                        @endphp
+
+                    @endif
                       <tr>
                       <td>300</td>
-                      <td><a href="{{asset('page-users-view')}}">{{$users->familyname}}</a>
+                      <td><span class="text-primary">{{$users->familyname}}</span>
                       </td>
                       <td>{{$users->givenname}}</td>
                       <td>{{$users->email}}</td>
-                      <td>none</td>
+                      {{--<td>none</td>--}}
                       <td>
                         @if ($users->state == true)
-                          <span class="badge badge-success">Connecté</span>
+                          <span class="badge badge-pill badge-glow badge-success">Connecté</span>
                         @else
-                          <span class="badge badge-danger">Déconnecté</span>
+                          <span class="badge badge-pill badge-glow badge-danger">Déconnecté</span>
                         @endif
                       </td>
+                      {{-- Special display for root users --}}
+                      @if($superuser->root == true)
+
                       <td>
                         @if ($users->root == true)
-                          <span class="badge badge-success">Active</span>
+                          <span class="badge badge-pill badge-glow badge-success">Active</span>
                         @else
-                          <span class="badge badge-danger">Inactive</span>
+                          <span class="badge badge-pill badge-glow badge-danger">Inactive</span>
                         @endif
                       </td>
-                      <td><a href="{{asset('page-users-edit')}}"><i
-                                  class="bx bx-edit-alt"></i></a></td>
+
+                      @endif
+
+                      <td>
+                          <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="{{asset('page-users-edit')}}" role="button" class="text-secondary" title="modifier"><i class="bx bx-edit"></i></a>
+                            <a href="{{asset('page-users-edit')}}" role="button" class="text-primary" title="voir"><i class='bx bx-show-alt'></i></a>
+                            <a href="{{asset('page-users-edit')}}" role="button" class="text-danger" title="supprimer"><i class="bx bx-trash"></i></a>
+                          </div>
+                      </td>
                       </tr>
                     @endforeach
 
@@ -100,7 +139,10 @@
           </div>
         </div>
       </div>
+
+      {{-- FRENCH VERSION --}}
   @else
+      {{-- ENGLISH VERSION --}}
 
       <!-- header breadcrumbs -->
       <div class="content-header row">
@@ -127,7 +169,7 @@
 
 
       <p>
-        <button type="button" class="btn btn-primary"><i class='bx bx-add-to-queue bx-flashing' ></i><span> Ajouter un nouveau </span></button>
+        <a role="button" class="btn round btn-outline-primary"><i class='bx bx-add-to-queue bx-flashing' ></i><span> Add a new </span></a>
       </p>
 
       <div class="users-list-table">
@@ -143,37 +185,67 @@
                         <th>familyname</th>
                         <th>givenname</th>
                         <th>email</th>
-                        <th>role</th>
+                        {{--<th>role</th>--}}
                         <th>state</th>
+                        {{-- Special display for root users --}}
+                        @if($superuser->root == true)
+
                         <th>status</th>
-                        <th>edit</th>
+                        
+                        @endif
+
+                        <th>actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($user as $users)
+                    {{-- Special display for root users --}}
+                    @if($superuser->root == false && $users->root == true)
+
+                        @php 
+                            
+                         continue;
+
+                         @endphp
+                      
+                    @endif
+
+
                       <tr>
                       <td>300</td>
                       <td><a href="{{asset('page-users-view')}}">{{$users->familyname}}</a>
                       </td>
                       <td>{{$users->givenname}}</td>
                       <td>{{$users->email}}</td>
-                      <td>none</td>
+                      {{--<td>none</td>--}}
                       <td>
                         @if ($users->state == true)
-                          <span class="badge badge-success">Logged in</span>
+                          <span class="badge badge-pill badge-glow badge-success">Logged in</span>
                         @else
-                          <span class="badge badge-danger">Logged out</span>
+                          <span class="badge badge-pill badge-glow badge-danger">Logged out</span>
                         @endif
                       </td>
+
+                      {{-- Special display for root users --}}
+                      @if($superuser->root == true)
+
                       <td>
                         @if ($users->root == true)
-                          <span class="badge badge-success">Active</span>
+                          <span class="badge badge-pill badge-glow badge-success">Active</span>
                         @else
-                          <span class="badge badge-danger">Close</span>
+                          <span class="badge badge-pill badge-glow badge-danger">Close</span>
                         @endif
                       </td>
-                      <td><a href="{{asset('page-users-edit')}}"><i
-                                  class="bx bx-edit-alt"></i></a></td>
+
+                      @endif
+
+                      <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="{{asset('page-users-edit')}}" role="button" class="text-secondary" title="edit"><i class="bx bx-edit"></i></a>
+                            <a href="{{asset('page-users-edit')}}" role="button" class="text-primary" title="show"><i class='bx bx-show-alt'></i></a>
+                            <a href="{{asset('page-users-edit')}}" role="button" class="text-danger" title="delete"><i class="bx bx-trash"></i></a>
+                        </div>
+                      </td>
                       </tr>
                     @endforeach
 
@@ -188,6 +260,7 @@
         </div>
       </div>
 
+      {{-- ENGLISH VERSION --}}
   @endif
 </section>
 <!-- users list ends -->

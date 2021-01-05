@@ -23,6 +23,16 @@ class UsersController extends Controller
    */
   public function index()
   {
+    // auth connected state code sample
+    if (Auth::check()) {
+      $util = User::find(Auth::id());
+      if ($util->state == false); {
+        $util->state = true;
+        $util->save();
+      }
+    }
+
+
     //code for root user or superuser
     $superuser = User::find(Auth::id());
     //code for root user or superuser
@@ -33,6 +43,23 @@ class UsersController extends Controller
       [
         'superuser' => $superuser,
         'user' => $user
+      ]
+    );
+  }
+
+  /* Display store form */
+  public function storeDisplay()
+  {
+
+
+    //code for root user or superuser
+    $superuser = User::find(Auth::id());
+    //code for root user or superuser
+
+
+    return view('main.users.page-users-add')->with(
+      [
+        'superuser' => $superuser
       ]
     );
   }

@@ -9,7 +9,7 @@
       "tagcustom": "badge badge-light-danger badge-pill badge-round float-right mr-2"
     },
     {
-      "url": "users/page-users-list",
+      "url": "users/list",
       "name": "User",
       "i18n": "User",
       "icon": "users"

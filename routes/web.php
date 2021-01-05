@@ -150,6 +150,7 @@ Route::get('/auth-logout', 'Auth\LogoutController@logout')->name('auth-logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // mySchool Users  routes
-Route::get('/users/page-users-list', 'main\UsersController@index');
-//Route::get('/users/page-users-view', 'main\UsersController@viewUser');
-//Route::get('/users/page-users-edit', 'main\UsersController@editUser');
+Route::get('/users/list', 'main\UsersController@index')->name('users-list');
+Route::get('/users/list/add', 'main\UsersController@storeDisplay')->name('users-list');
+//Route::get('/users/view', 'main\UsersController@viewUser');
+//Route::get('/users/edit', 'main\UsersController@editUser');
