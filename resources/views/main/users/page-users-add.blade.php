@@ -477,7 +477,7 @@
                     <div class="form-group">
                       <label for="confirm-password-icon">Confirm password</label>
                       <div class="position-relative has-icon-left">
-                        <input type="password" id="confirm-password-icon" class="form-control" 
+                        <input type="password" id="confirm-password-icon" class="form-control"
                           placeholder="Confirm your Password">
                         <div class="form-control-position">
                           <i class="bx bx-lock"></i>
@@ -523,6 +523,33 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="phonenumber-icon">Phone</label>
+                      <span class="col-md-6 col-6 ">
+                          @include('main.tools.dialcodes')
+
+                      </span>
+                      <span class="col-md-6 col-6">
+
+                          <div class="position-relative has-icon-left">
+                            <input type="text" id="phonenumber-icon" class="form-control" name="phone"
+                              placeholder="Phone number">
+                            <div class="form-control-position">
+                              <i class='bx bxs-mobile' ></i>
+                            </div>
+                          </div>
+
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="country-icon">Country</label>
+                      @include('main.tools.countries')
+                    </div>
+                  </div>
+
                   <div class="form-group col-12">
                     <div class="form-group">
                       <div class="checkbox">
@@ -531,6 +558,7 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="col-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
                     <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>

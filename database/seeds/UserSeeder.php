@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
       'phone' => 79549937,
       'country' => 'ZA',
       'address' => 'II PLATEAUX CASA',
+      'job' => 'Ingénieur analyste',
       'status' => true,
       'root' => true,
       'email_verified_at' => date("Y-m-d H:i:s")

@@ -25,7 +25,8 @@ class CreateKinsTable extends Migration
       $table->integer('phone');
       $table->date('birthdate');
       $table->string('country', 100)->nullable();
-      $table->string('address', 256);
+      $table->string('address', 256)->nullable();
+      $table->string('job', 100)->nullable();
       $table->boolean('state')->default(0)->nullable();
       $table->integer('created_user');
       $table->integer('updated_user');

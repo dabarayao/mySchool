@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
       $table->integer('phone')->nullable();
       $table->string('country', 100)->nullable();
       $table->string('address')->nullable();
+      $table->string('job', 100)->nullable();
       $table->boolean('state')->default(0)->nullable();
       $table->boolean('status')->default(0)->nullable();
       $table->boolean('root')->default(0);
