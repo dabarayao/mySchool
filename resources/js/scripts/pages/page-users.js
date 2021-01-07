@@ -105,4 +105,14 @@ $(document).ready(function () {
     if ($(".users-edit").length > 0) {
         $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
     }
+
+    // all tooltips
+  $('#not-verified').tooltip();
+
+  // users add
+  $("#password-icon").on("keyup", function () {
+    
+        alert("bonjour");
+    });
+
 });

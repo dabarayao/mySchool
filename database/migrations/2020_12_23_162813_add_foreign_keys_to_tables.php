@@ -348,6 +348,12 @@ class AddForeignKeysToTables extends Migration
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
+      $table->foreign('roles_id')
+        ->references('id')
+        ->on('roles')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
       $table->foreign('created_user')
         ->references('id')
         ->on('users')

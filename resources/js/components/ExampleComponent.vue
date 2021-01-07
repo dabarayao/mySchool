@@ -1,23 +1,19 @@
-<template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+      el: '#user_add_modal',
+      data: {
+        password: 'bonjour'
+      },
+      computed: {
+        conf: function () {
+          alert('bonjour');
         }
+
+      },
+      mounted() {
+            console.log('Component mounted.')
+     }
     }
 </script>

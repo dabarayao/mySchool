@@ -8,6 +8,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vue from 'vue'
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -27,6 +29,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
+
+/* pager-users-list add form validation */
+const user_add = new Vue({
+  el: '#user_add_modal',
+  data: {
+    password: 'bonjour'
+  },
+  computed: {
+    conf: function () {
+      alert('bonjour')
+    }
+
+  }
 });

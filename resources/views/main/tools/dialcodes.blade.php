@@ -2,7 +2,7 @@
 
     {{-- FRENCH VERSION --}}
 
-<select id="DisplayPhoneCountryISO" class="form-control" name="dialcode" aria-labelledby="iSmsHeading">
+<select id="dialcode-icon" class="form-control" name="dialcode" aria-labelledby="iSmsHeading">
     <option value="+93">Afghanistan &rlm;(&lrm;+93)</option>
     <option value="+27">Afrique du Sud &rlm;(&lrm;+27)</option>
     <option value="+355">Albanie &rlm;(&lrm;+355)</option>
@@ -250,7 +250,7 @@
 @else
     {{-- ENGLISH VERSION --}}
 
-<select id="DisplayPhoneCountryISO" class="form-control" name="dialcode" aria-labelledby="iSmsHeading">
+<select id="dialcode-icon" class="form-control" name="dialcode" aria-labelledby="iSmsHeading">
     <option value="+93">Afghanistan &rlm;(&lrm;+93)</option>
     <option value="+355">Albania &rlm;(&lrm;+355)</option>
     <option value="+213">Algeria &rlm;(&lrm;+213)</option>

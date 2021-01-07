@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
       $table->boolean('status')->default(0)->nullable();
       $table->boolean('root')->default(0);
       $table->integer('school_id')->nullable();
+      $table->integer('roles_id')->nullable();
       $table->timestamp('email_verified_at')->nullable();
       $table->integer('created_user')->nullable();
       $table->integer('updated_user')->nullable();

@@ -97,10 +97,10 @@ Route::get('/page-knowledge-base/categories/question', 'PageController@knowledge
 Route::get('/page-search', 'PageController@searchPage');
 Route::get('/page-account-settings', 'PageController@accountSettingPage');
 
-// User Route
-/* Route::get('/page-users-list', 'UsersController@listUser');
+
+Route::get('/page-users-list', 'UsersController@listUser');
 Route::get('/page-users-view', 'UsersController@viewUser');
-Route::get('/page-users-edit', 'UsersController@editUser'); */
+Route::get('/page-users-edit', 'UsersController@editUser');
 
 // Authentication  Route
 Route::get('/auth-login', 'AuthenticationController@loginPage');
