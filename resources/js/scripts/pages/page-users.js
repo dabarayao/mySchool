@@ -107,12 +107,12 @@ $(document).ready(function () {
     }
 
     // all tooltips
-  $('#not-verified').tooltip();
+    $('#not-verified').tooltip();
 
-  // users add
-  $("#password-icon").on("keyup", function () {
-    
-        alert("bonjour");
-    });
+
+
 
 });
+
+
+

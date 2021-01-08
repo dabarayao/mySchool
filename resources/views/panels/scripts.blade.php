@@ -19,6 +19,7 @@
     @else
     <script src="{{asset('js/scripts/configs/horizontal-menu.js')}}"></script>
     @endif
+
     <script src="{{asset('js/core/app-menu.js')}}"></script>
     <script src="{{asset('js/core/app.js')}}"></script>
     <script src="{{asset('js/scripts/components.js')}}"></script>
@@ -26,6 +27,10 @@
     <script src="{{asset('js/scripts/customizer.js')}}"></script>
     <script src="{{asset('assets/js/scripts.js')}}"></script>
     <!-- END: Theme JS-->
+    <script src="{{asset('js/app.js')}}"></script>
+
+
+
 
     <!-- BEGIN: Page JS-->
     @yield('page-scripts')

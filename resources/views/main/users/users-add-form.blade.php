@@ -51,7 +51,7 @@
                         <label for="password-icon">Mot de passe</label>
                         <div class="position-relative has-icon-left">
                           <input type="password" id="password-icon" class="form-control" name="password"
-                            placeholder="Password" required>
+                            placeholder="Password" @keyup="passUp" required>
                           <div class="form-control-position">
                             <i class="bx bx-lock"></i>
                           </div>
@@ -63,7 +63,7 @@
                         <label for="confirm-password-icon">Confirmer le Mot de passe</label>
                         <div class="position-relative has-icon-left">
                           <input type="password" id="confirm-password-icon" class="form-control"
-                            placeholder="Confirm your Password"  required>
+                            placeholder="Confirm your Password" @keyup="passUp"  required>
                           <div class="invalid-feedback">
                             Les mots de passe ne correspondent pas.
                           </div>
@@ -130,8 +130,8 @@
                       <div class="form-group">
                         <label for="phonenumber-icon">Téléphone</label>
                         <div class="position-relative has-icon-left">
-                                  <input type="text" id="phonenumber-icon" class="form-control" name="phone"
-                                    placeholder="Phone number" required>
+                                  <input type="text" id="phonenumber-icon" class="form-control maskField" name="phone"
+                                    placeholder="Phone number" mask="999-999-999-999-999"  required>
                                   <div class="form-control-position">
                                     <i class='bx bxs-mobile' ></i>
                                   </div>
@@ -154,7 +154,7 @@
                       <div class="form-group">
                         <label for="job-icon">Profession</label>
                         <div class="position-relative has-icon-left">
-                          <input type="text" id="job-icon" class="form-control" name="address"
+                          <input type="text" id="job-icon" class="form-control" name="job"
                             placeholder="Job" required>
                           <div class="form-control-position">
                             <i class='fa fa-briefcase' ></i>
@@ -167,7 +167,7 @@
                       <div class="form-group">
                         <label for="status-icon">Status</label>
                         <div class="position-relative has-icon-left">
-                          <select id="status-icon" class="form-control"  name="gender">
+                          <select id="status-icon" class="form-control"  name="status">
                               <option value="0"> ACTIVE </option>
                               <option value="1"> INACTIVE </option>
                             </select>
@@ -246,7 +246,7 @@
                         <label for="password-icon">Password</label>
                         <div class="position-relative has-icon-left">
                           <input type="password" id="password-icon" class="form-control" name="password"
-                            placeholder="Password" required>
+                            placeholder="Password" @keyup="passUp" required>
                           <div class="form-control-position">
                             <i class="bx bx-lock"></i>
                           </div>
@@ -258,7 +258,7 @@
                         <label for="confirm-password-icon">Confirm password</label>
                         <div class="position-relative has-icon-left">
                           <input type="password" id="confirm-password-icon" class="form-control"
-                            placeholder="Confirm your Password" required>
+                            placeholder="Confirm your Password" @keyup="passUp" required>
                           <div class="invalid-feedback">
                             The passwords does not match.
                           </div>
@@ -325,8 +325,8 @@
                       <div class="form-group">
                         <label for="phonenumber-icon">Phone</label>
                         <div class="position-relative has-icon-left">
-                                  <input type="text" id="phonenumber-icon" class="form-control" name="phone"
-                                    placeholder="Phone number" required>
+                                  <input type="text" id="phonenumber-icon" class="form-control maskField" name="phone"
+                                    placeholder="Phone number" mask="999-999-999-999-999" required>
                                   <div class="form-control-position">
                                     <i class='bx bxs-mobile' ></i>
                                   </div>
@@ -389,4 +389,5 @@
   {{-- ENGLISH VERSION --}}
 
 @endif
+
 

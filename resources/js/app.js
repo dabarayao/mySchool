@@ -4,11 +4,15 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+/* require('./bootstrap'); */ // this is comment becauser there is already bootstrap cdn in the app
 
 window.Vue = require('vue');
 
-import Vue from 'vue'
+import Vue from 'vue';
+
+import Cleave from 'cleave.js';
+import "cleave.js/dist/addons/cleave-phone.us"
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,7 +25,7 @@ import Vue from 'vue'
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,16 +34,47 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 
+var cleave = new Cleave('#phonenumber-icon', {
+      phone: true,
+      phoneRegionCode: 'US'
+    });
+
 /* pager-users-list add form validation */
 const user_add = new Vue({
   el: '#user_add_modal',
   data: {
     password: 'bonjour'
   },
-  computed: {
-    conf: function () {
-      alert('bonjour')
+  methods: {
+    confCheck: function (e) {
+        e.preventDefault();
+
+      if (document.getElementById('password-icon').value !==
+          document.getElementById('confirm-password-icon').value) {
+
+        let pass = document.getElementById('password-icon');
+        let confPass = document.getElementById('confirm-password-icon')
+
+        pass.classList.add('is-invalid');
+        confPass.classList.add('is-invalid');
+
+      } else {
+
+        document.getElementById('user-add-form').submit();
+      }
+    },
+    passUp: function () {
+        let pass = document.getElementById('password-icon');
+        let confPass = document.getElementById('confirm-password-icon')
+
+        pass.classList.remove('is-invalid');
+        confPass.classList.remove('is-invalid');
     }
+
+  },
+  mounted() {
+        /* pager-users-list add input phone mask */
+        //alert('bonjour');
 
   }
 });

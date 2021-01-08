@@ -83,6 +83,23 @@ class UsersController extends Controller
   public function store(Request $request)
   {
     //
+    $user = new User;
+    $user->familyname = $request->familyname;
+    $user->givenname = $request->givenname;
+    $user->email = $request->email;
+    $user->password = bcrypt($request->password);
+    $user->gender = $request->gender;
+    $user->birthdate = $request->birthdate;
+    $user->country = $request->country;
+    $user->dialcode = $request->dialcode;
+    $user->phone = $request->phone;
+    $user->address = $request->address;
+    $user->job = $request->job;
+    $user->status = $request->status;
+
+    $user->save();
+
+    return redirect()->route('users-list');
   }
 
   /**

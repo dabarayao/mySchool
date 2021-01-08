@@ -4,6 +4,10 @@
     {{-- font awesome 5 cdn --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
 
+    {{-- vue.js development mode --}}
+    {{--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
+
+
     <!-- BEGIN: Vendor CSS-->
     @if($configData['direction'] === 'ltr')
     <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/vendors.min.css')}}">

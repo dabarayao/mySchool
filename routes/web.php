@@ -151,6 +151,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // mySchool Users  routes
 Route::get('/users/list', 'main\UsersController@index')->name('users-list');
-Route::get('/users/list/add', 'main\UsersController@storeDisplay')->name('users-list');
+Route::post('/users/list', 'main\UsersController@store')->name('users-add-from');
 //Route::get('/users/view', 'main\UsersController@viewUser');
 //Route::get('/users/edit', 'main\UsersController@editUser');

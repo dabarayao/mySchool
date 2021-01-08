@@ -53,7 +53,7 @@
 
 
       <p>
-        <a role="button" class="btn round btn-outline-primary" data-toggle="modal" data-target="##user_add_modal"><i class='bx bx-add-to-queue bx-flashing' ></i><span> Ajouter un nouveau </span></a>
+        <a role="button" class="btn round btn-outline-primary" data-toggle="modal" data-target="#user_add_modal"><i class='bx bx-add-to-queue bx-flashing' ></i><span> Ajouter un nouveau </span></a>
       </p>
 
       <div class="users-list-table">
@@ -149,14 +149,16 @@
       <!-- all modal start -->
 
           <!--user add modal -->
-              <div class="modal modal-primary fade text-left w-100" id="#user_add_modal" tabindex="-1" role="dialog"
+              <div class="modal modal-primary fade text-left w-100" id="user_add_modal" tabindex="-1" role="dialog"
                 aria-labelledby="myModalLabel16" aria-hidden="true">
-                <form class="form" id="user-add-form" method="POST" action="">
+                <form class="form" id="user-add-form" method="POST" action="{{route('users-add-from')}}" @submit="confCheck">
+                  @csrf
+
                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel16">Ajouter un utilsateur</h4>
-                        <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
+                      <div class="modal-header bg-primary">
+                        <h4 class="modal-title" style="color: white;" id="myModalLabel16"><i class="bx bx-add-to-queue"></i> Ajouter un utilsateur</h4>
+                        <button type="button" class="close bg-danger" style="color: white;" data-dismiss="modal" aria-label="Close">
                           <i class="bx bx-x"></i>
                         </button>
                       </div>
@@ -170,13 +172,14 @@
                           <i class="bx bx-x d-block d-sm-none"></i>
                           <span class="d-none d-sm-block">Réinitialiser</span>
                         </button>
-                        <button type="b" class="btn btn-primary ml-1" >
+                        <button type="submit" class="btn btn-primary ml-1" >
                           <i class="bx bx-check d-block d-sm-none"></i>
                           <span class="d-none d-sm-block">Envoyer</span>
                         </button>
                       </div>
                     </div>
                   </div>
+
                 </form>
               </div>
 
@@ -325,12 +328,39 @@
 {{-- page scripts --}}
 @section('page-scripts')
 <script src="{{asset('js/scripts/pages/page-users.js')}}"></script>
+
 <script>
 
-  // users add
+
+  /* users add
   $("#password-icon").on("keyup", function () {
-    
+
         alert("bonjour");
-    });
+    });*/
+
+
+/* pager-users-list add form validation
+const user_add = new Vue({
+  el: '#user_add_modal',
+  data: {
+    password: 'bonjour'
+  },
+  methods: {
+    conf: function() {
+      alert('bonjour');
+    },
+    mounted() {
+      console.log('Component mounted.');
+    }
+
+  }
+});
+
+*/
+
 </script>
+
+{{-- supermask.js cdn--}}
+<script src="https://cdn.jsdelivr.net/npm/supermask-js@1.0.0/index.min.js"></script>
+
 @endsection
