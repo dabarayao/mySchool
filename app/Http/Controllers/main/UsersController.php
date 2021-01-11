@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UsersController extends Controller
 {
@@ -83,7 +85,15 @@ class UsersController extends Controller
   public function store(Request $request)
   {
     //
+    $files = $request->file('photo');
+
+    $picture = Storage::putFile('public', $files);
+    $resize = Image::make($files)->resize(200, 200)->save('storage/' . basename($picture), 80);
+    $path = Storage::url($picture);
+
+
     $user = new User;
+    $user->photo = $path;
     $user->familyname = $request->familyname;
     $user->givenname = $request->givenname;
     $user->email = $request->email;
@@ -95,7 +105,9 @@ class UsersController extends Controller
     $user->phone = $request->phone;
     $user->address = $request->address;
     $user->job = $request->job;
-    $user->status = $request->status;
+    if (isset($request->status)) {
+      $user->status = $request->status;
+    }
 
     $user->save();
 
@@ -111,7 +123,8 @@ class UsersController extends Controller
   public function show($id)
   {
     //
-    return view('main.page-users-view');
+    $user = User::find($id);
+    return view('main.users.page-users-view')->with('user', $user);
   }
 
   /**
@@ -123,7 +136,8 @@ class UsersController extends Controller
   public function edit($id)
   {
     //
-    return view('main.page-users-edit');
+
+    return view('main.users.page-users-edit');
   }
 
   /**

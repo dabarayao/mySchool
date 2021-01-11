@@ -17,7 +17,7 @@
 
                         <label for="photo-icon">Photo</label>
                         <div class="position-relative has-icon-left">
-                          <input type="file" id="photo-icon" class="form-control" accept="image/*" name="photo"
+                          <input type="file" id="photo-icon" class="form-control photo-icon" accept="image/*" name="photo"
                             placeholder="Familyname" @change="inputFileCheck" required>
                           <div class="form-control-position">
                             <i class='bx bx-image-add'></i>
@@ -30,7 +30,7 @@
                       <div class="form-group">
                         <label for="family-name-icon">Nom</label>
                         <div class="position-relative has-icon-left">
-                          <input type="text" id="family-name-icon" class="form-control" name="familyname"
+                          <input type="text" id="family-name-icon" class="form-control family-name-icon" name="familyname"
                             placeholder="Familyname" required>
                           <div class="form-control-position">
                             <i class="bx bx-user"></i>
@@ -42,7 +42,7 @@
                       <div class="form-group">
                         <label for="given-name-icon">Prénoms</label>
                         <div class="position-relative has-icon-left">
-                          <input type="text" id="given-name-icon" class="form-control" name="givenname"
+                          <input type="text" id="given-name-icon" class="form-control given-name-icon" name="givenname"
                             placeholder="Givenname" required>
                           <div class="form-control-position">
                             <i class="bx bxs-user-detail"></i>
@@ -54,7 +54,7 @@
                       <div class="form-group">
                         <label for="email-icon">Email</label>
                         <div class="position-relative has-icon-left">
-                          <input type="email" id="email-icon" class="form-control" name="email"
+                          <input type="email" id="email-icon" class="form-control email-icon" name="email"
                             placeholder="Email" required>
                           <div class="form-control-position">
                             <i class="bx bx-mail-send"></i>
@@ -66,7 +66,7 @@
                       <div class="form-group">
                         <label for="password-icon">Mot de passe</label>
                         <div class="position-relative has-icon-left">
-                          <input type="password" id="password-icon" class="form-control" name="password"
+                          <input type="password" id="password-icon" class="form-control password-icon" name="password"
                             placeholder="Password" @keyup="passUp" required>
                           <div class="form-control-position">
                             <i class="bx bx-lock"></i>
@@ -78,7 +78,7 @@
                       <div class="form-group">
                         <label for="confirm-password-icon">Confirmer le Mot de passe</label>
                         <div class="position-relative has-icon-left">
-                          <input type="password" id="confirm-password-icon" class="form-control"
+                          <input type="password" id="confirm-password-icon" class="form-control confirm-password-icon"
                             placeholder="Confirm your Password" @keyup="passUp"  required>
                           <div class="invalid-feedback">
                             Les mots de passe ne correspondent pas.
@@ -93,7 +93,7 @@
                       <div class="form-group">
                         <label for="gender-icon">Sexe</label>
                         <div class="position-relative has-icon-left">
-                          <select id="gender-icon" class="form-control"  name="gender">
+                          <select id="gender-icon" class="form-control gender-icon"  name="gender">
                               <option value="0"> MALE </option>
                               <option value="1"> FEMALE </option>
                             </select>
@@ -107,7 +107,7 @@
                       <div class="form-group">
                         <label for="birthdate-icon">Date de naissance</label>
                         <div class="position-relative has-icon-left">
-                          <input type="date" id="birthdate-icon" class="form-control" name="birthdate"
+                          <input type="date" id="birthdate-icon" class="form-control birthdate-icon" name="birthdate"
                             placeholder="birthdate" required>
                           <div class="form-control-position">
                             <i class='bx bxs-baby-carriage' ></i>
@@ -133,7 +133,7 @@
                       <div class="form-group">
                         <label for="address-icon">Adresse</label>
                         <div class="position-relative has-icon-left">
-                          <input type="text" id="address-icon" class="form-control" name="address"
+                          <input type="text" id="address-icon" class="form-control address-icon" name="address"
                             placeholder="Address" required>
                           <div class="form-control-position">
                             <i class='bx bxs-building-house' ></i>
@@ -158,7 +158,7 @@
                       <div class="form-group">
                         <label for="phonenumber-icon">Téléphone</label>
                         <div class="position-relative has-icon-left">
-                                  <input type="text" id="phonenumber-icon" class="form-control maskField" name="phone"
+                                  <input type="text" id="phonenumber-icon" class="form-control phonenumber-icon maskField" name="phone"
                                     placeholder="Phone number" mask="999-999-999-999-999"  required>
                                   <div class="form-control-position">
                                     <i class='bx bxs-mobile' ></i>
@@ -170,7 +170,7 @@
                       <div class="form-group">
                         <label for="job-icon">Profession</label>
                         <div class="position-relative has-icon-left">
-                          <input type="text" id="job-icon" class="form-control" name="job"
+                          <input type="text" id="job-icon" class="form-control job-icon" name="job"
                             placeholder="Job" required>
                           <div class="form-control-position">
                             <i class='fa fa-briefcase' ></i>
@@ -186,7 +186,7 @@
                           <div class="form-group">
                             <label for="status-icon">Status</label>
                             <div class="position-relative has-icon-left">
-                              <select id="status-icon" class="form-control"  name="status">
+                              <select id="status-icon" class="form-control status-icon"  name="status">
                                   <option value="0"> ACTIVE </option>
                                   <option value="1"> INACTIVE </option>
                                 </select>
@@ -232,7 +232,7 @@
 
                         <label for="photo-icon">Photo</label>
                         <div class="position-relative has-icon-left">
-                          <input type="file" id="photo-icon" class="form-control" accept="image/*" name="photo"
+                          <input type="file" id="photo-icon" class="form-control photo-icon" accept="image/*" name="photo"
                             placeholder="Familyname" @change="inputFileCheck"  required>
                           <div class="form-control-position">
                             <i class='bx bx-image-add'></i>
@@ -245,7 +245,7 @@
                       <div class="form-group">
                         <label for="family-name-icon">Familyname</label>
                         <div class="position-relative has-icon-left">
-                          <input type="text" id="family-name-icon" class="form-control" name="familyname"
+                          <input type="text" id="family-name-icon" class="form-control family-name-icon" name="familyname"
                             placeholder="Familyname" required>
                           <div class="form-control-position">
                             <i class="bx bx-user"></i>
@@ -257,7 +257,7 @@
                       <div class="form-group">
                         <label for="given-name-icon">Givenname</label>
                         <div class="position-relative has-icon-left">
-                          <input type="text" id="given-name-icon" class="form-control" name="givenname"
+                          <input type="text" id="given-name-icon" class="form-control given-name-icon" name="givenname"
                             placeholder="Givenname" required>
                           <div class="form-control-position">
                             <i class="bx bxs-user-detail"></i>
@@ -269,7 +269,7 @@
                       <div class="form-group">
                         <label for="email-icon">Email</label>
                         <div class="position-relative has-icon-left">
-                          <input type="email" id="email-icon" class="form-control" name="email"
+                          <input type="email" id="email-icon" class="form-control email-icon" name="email"
                             placeholder="Email" required>
                           <div class="form-control-position">
                             <i class="bx bx-mail-send"></i>
@@ -281,7 +281,7 @@
                       <div class="form-group">
                         <label for="password-icon">Password</label>
                         <div class="position-relative has-icon-left">
-                          <input type="password" id="password-icon" class="form-control" name="password"
+                          <input type="password" id="password-icon" class="form-control password-icon" name="password"
                             placeholder="Password" @keyup="passUp" required>
                           <div class="form-control-position">
                             <i class="bx bx-lock"></i>
@@ -293,7 +293,7 @@
                       <div class="form-group">
                         <label for="confirm-password-icon">Confirm password</label>
                         <div class="position-relative has-icon-left">
-                          <input type="password" id="confirm-password-icon" class="form-control"
+                          <input type="password" id="confirm-password-icon" class="form-control confirm-password-icon"
                             placeholder="Confirm your Password" @keyup="passUp" required>
                           <div class="invalid-feedback">
                             The passwords does not match.
@@ -308,7 +308,7 @@
                       <div class="form-group">
                         <label for="gender-icon">Gender</label>
                         <div class="position-relative has-icon-left">
-                          <select id="gender-icon" class="form-control"  name="gender">
+                          <select id="gender-icon" class="form-control gender-icon"  name="gender">
                               <option value="0"> MALE </option>
                               <option value="1"> FEMALE </option>
                             </select>
@@ -322,7 +322,7 @@
                       <div class="form-group">
                         <label for="birthdate-icon">Birthdate</label>
                         <div class="position-relative has-icon-left">
-                          <input type="date" id="birthdate-icon" class="form-control" name="birthdate"
+                          <input type="date" id="birthdate-icon" class="form-control birthdate-icon" name="birthdate"
                             placeholder="birthdate" required>
                           <div class="form-control-position">
                             <i class='bx bxs-baby-carriage' ></i>
@@ -348,7 +348,7 @@
                       <div class="form-group">
                         <label for="address-icon">Address</label>
                         <div class="position-relative has-icon-left">
-                          <input type="text" id="address-icon" class="form-control" name="address"
+                          <input type="text" id="address-icon" class="form-control address-icon" name="address"
                             placeholder="Address" required>
                           <div class="form-control-position">
                             <i class='bx bxs-building-house' ></i>
@@ -373,7 +373,7 @@
                       <div class="form-group">
                         <label for="phonenumber-icon">Phone</label>
                         <div class="position-relative has-icon-left">
-                                  <input type="text" id="phonenumber-icon" class="form-control maskField" name="phone"
+                                  <input type="text" id="phonenumber-icon" class="form-control phonenumber-icon maskField" name="phone"
                                     placeholder="Phone number" mask="999-999-999-999-999" required>
                                   <div class="form-control-position">
                                     <i class='bx bxs-mobile' ></i>
@@ -385,10 +385,10 @@
                       <div class="form-group">
                         <label for="job-icon">Job</label>
                         <div class="position-relative has-icon-left">
-                          <input type="text" id="job-icon" class="form-control" name="address"
+                          <input type="text" id="job-icon" class="form-control job-icon" name="address"
                             placeholder="Job" required>
                           <div class="form-control-position">
-                            <i class='fa fa-briefcase' ></i>
+                            <i class='fa fa-briefcase'></i>
                           </div>
                         </div>
                       </div>
@@ -401,7 +401,7 @@
                       <div class="form-group">
                         <label for="status-icon">Status</label>
                         <div class="position-relative has-icon-left">
-                          <select id="status-icon" class="form-control"  name="gender">
+                          <select id="status-icon" class="form-control status-icon"  name="gender">
                               <option value="0"> ACTIVE </option>
                               <option value="1"> INACTIVE </option>
                             </select>

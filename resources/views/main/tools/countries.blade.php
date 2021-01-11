@@ -2,7 +2,7 @@
 
     {{-- FRENCH VERSION --}}
 
-<select id="country-icon" class="form-control" name="country" data-bind="options: countries,
+<select id="country-icon" class="form-control country-icon" name="country" data-bind="options: countries,
                                         optionsValue: 'iso',
                                         optionsText: 'name',
                                         value: country,
@@ -12,7 +12,7 @@
 @else
     {{-- ENGLISH VERSION --}}
 
-    <select id="country-icon" class="form-control" name="country" data-bind="options: countries,
+    <select id="country-icon" class="form-control country-icon" name="country" data-bind="options: countries,
                                         optionsValue: 'iso',
                                         optionsText: 'name',
                                         value: country,

@@ -61,10 +61,12 @@ Dropzone.options.dpAcceptFiles = {
 
 
 /************************************************
-*               Remove Thumbnail                *
+*               Remove Thumbnail
+             is used for mySchool App               *
 ************************************************/
 Dropzone.options.dpzRemoveThumb = {
   paramName: "file", // The name that will be used to transfer the file
+  maxFiles: 5,
   maxFilesize: 1, // MB
   addRemoveLinks: true,
   dictRemoveFile: " Trash"

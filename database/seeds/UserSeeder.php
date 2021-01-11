@@ -30,7 +30,8 @@ class UserSeeder extends Seeder
         'job' => 'Ingénieur analyste',
         'status' => true,
         'root' => true,
-        'email_verified_at' => date("Y-m-d H:i:s")
+        'email_verified_at' => date("Y-m-d H:i:s"),
+        'created_at' => date("Y-m-d H:i:s")
       ],
 
       [
@@ -47,7 +48,8 @@ class UserSeeder extends Seeder
         'job' => 'comptable',
         'status' => false,
         'root' => false,
-        'email_verified_at' => date("Y-m-d H:i:s")
+        'email_verified_at' => date("Y-m-d H:i:s"),
+        'created_at' => date("Y-m-d H:i:s")
       ],
 
       [
@@ -64,7 +66,8 @@ class UserSeeder extends Seeder
         'job' => 'Chirugien',
         'status' => false,
         'root' => false,
-        'email_verified_at' => date("Y-m-d H:i:s")
+        'email_verified_at' => date("Y-m-d H:i:s"),
+        'created_at' => date("Y-m-d H:i:s")
       ]
     ]);
   }

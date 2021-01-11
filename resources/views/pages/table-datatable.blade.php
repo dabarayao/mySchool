@@ -291,6 +291,7 @@
     </div>
 </section>
 <!--/ Zero configuration table -->
+
 <!-- Row grouping -->
 <section id="row-grouping">
     <div class="row">

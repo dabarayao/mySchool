@@ -31,6 +31,8 @@
       <a href="{{asset('page-users-edit')}}" class="btn btn-sm btn-primary">Edit</a>
     </div>
   </div>
+
+  {{--
   <!-- users view media object ends -->
   <!-- users view card data start -->
   <div class="card">
@@ -107,6 +109,8 @@
   </div>
   <!-- users view card data ends -->
   <!-- users view card details start -->
+--}}
+
   <div class="card">
     <div class="card-content">
       <div class="card-body">
@@ -126,15 +130,15 @@
             <tbody>
               <tr>
                 <td>Username:</td>
-                <td class="users-view-username">dean3004</td>
+                <td class="users-view-username">{{$user->familyname}}</td>
               </tr>
               <tr>
                 <td>Name:</td>
-                <td class="users-view-name">Dean Stanley</td>
+                <td class="users-view-name">{{$user->givenname}}</td>
               </tr>
               <tr>
                 <td>E-mail:</td>
-                <td class="users-view-email">deanstanley@gmail.com</td>
+                <td class="users-view-email">{{$user->email}}/td>
               </tr>
               <tr>
                 <td>Comapny:</td>
@@ -143,29 +147,12 @@
 
             </tbody>
           </table>
-          <h5 class="mb-1"><i class="bx bx-link"></i> Social Links</h5>
-          <table class="table table-borderless">
-            <tbody>
-              <tr>
-                <td>Twitter:</td>
-                <td><a href="#">https://www.twitter.com/</a></td>
-              </tr>
-              <tr>
-                <td>Facebook:</td>
-                <td><a href="#">https://www.facebook.com/</a></td>
-              </tr>
-              <tr>
-                <td>Instagram:</td>
-                <td><a href="#">https://www.instagram.com/</a></td>
-              </tr>
-            </tbody>
-          </table>
-          <h5 class="mb-1"><i class="bx bx-info-circle"></i> Personal Info</h5>
+          <h5><i class="bx bx-info-circle"></i> Personal Info</h5>
           <table class="table table-borderless mb-0">
             <tbody>
               <tr>
                 <td>Birthday:</td>
-                <td>03/04/1990</td>
+                <td>{{$user->birthdate}}</td>
               </tr>
               <tr>
                 <td>Country:</td>
@@ -177,7 +164,7 @@
               </tr>
               <tr>
                 <td>Contact:</td>
-                <td>+(305) 254 24668</td>
+                <td>({{$user->dialcode}})   {{$user->phone}}</td>
               </tr>
             </tbody>
           </table>

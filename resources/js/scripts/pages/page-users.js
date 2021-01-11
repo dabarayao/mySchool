@@ -107,7 +107,16 @@ $(document).ready(function () {
     }
 
     // all tooltips
-    $('#not-verified').tooltip();
+  $('#not-verified').tooltip();
+
+  function pleur() {
+
+
+
+      alert('bonjour');
+
+  }
+
 
 
 

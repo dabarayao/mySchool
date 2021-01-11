@@ -10,8 +10,6 @@ window.Vue = require('vue');
 
 import Vue from 'vue';
 
-import Cleave from 'cleave.js';
-import "cleave.js/dist/addons/cleave-phone.us"
 
 
 /**
@@ -34,10 +32,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  */
 
 
-var cleave = new Cleave('#phonenumber-icon', {
-      phone: true,
-      phoneRegionCode: 'US'
-    });
+
 
 /* pager-users-list add form validation */
 const user_add = new Vue({
@@ -69,6 +64,21 @@ const user_add = new Vue({
 
         pass.classList.remove('is-invalid');
         confPass.classList.remove('is-invalid');
+    },
+    inputFileCheck: function (e) {
+
+        var uploadField = document.getElementById("photo-icon");
+
+      if (uploadField.files[0].size > 2097152) {
+
+
+
+        alert("File is too big! 2 mo maximum");
+        uploadField.value = "";
+      }
+
+
+
     }
 
   },
