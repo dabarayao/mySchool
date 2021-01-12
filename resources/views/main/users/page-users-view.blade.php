@@ -13,15 +13,15 @@
     <div class="col-12 col-sm-7">
       <div class="media mb-2">
         <a class="mr-1" href="#">
-          <img src="{{asset('images/portrait/small/avatar-s-26.jpg')}}" alt="users view avatar"
+          <img src="{{$user->photo}}" alt="users view avatar"
             class="users-avatar-shadow rounded-circle" height="64" width="64">
         </a>
         <div class="media-body pt-25">
-          <h4 class="media-heading"><span class="users-view-name">Dean Stanley </span><span
+          <h4 class="media-heading"><span class="users-view-name">{{$user->givenname}} </span><span
               class="text-muted font-medium-1"> @</span><span
-              class="users-view-username text-muted font-medium-1 ">candy007</span></h4>
-          <span>ID:</span>
-          <span class="users-view-id">305</span>
+              class="users-view-username text-muted font-medium-1 ">{{$user->familyname}} </span></h4>
+          <span>Crée le :</span>
+          <span class="users-view-id">{{$user->created_at}} </span>
         </div>
       </div>
     </div>
@@ -138,11 +138,11 @@
               </tr>
               <tr>
                 <td>E-mail:</td>
-                <td class="users-view-email">{{$user->email}}/td>
+                <td class="users-view-email">{{$user->email}}</td>
               </tr>
               <tr>
-                <td>Comapny:</td>
-                <td>XYZ Corp. Ltd.</td>
+                <td>Sexe :</td>
+                <td>@if ($user->gender == false) Masculin @else Féminin @endif</td>
               </tr>
 
             </tbody>
@@ -151,21 +151,54 @@
           <table class="table table-borderless mb-0">
             <tbody>
               <tr>
-                <td>Birthday:</td>
-                <td>{{$user->birthdate}}</td>
+                <td>Birthdate:</td>
+                <td><span data-toggle="tooltip" data-placement="right" title="{{$age}} ans">{{$user->birthdate}}<span></td>
               </tr>
               <tr>
                 <td>Country:</td>
-                <td>USA</td>
+                <td>{{$country}}</td>
               </tr>
               <tr>
-                <td>Languages:</td>
-                <td>English</td>
+                <td>Adresse:</td>
+                <td>{{$user->address}}</td>
               </tr>
               <tr>
                 <td>Contact:</td>
                 <td>({{$user->dialcode}})   {{$user->phone}}</td>
               </tr>
+              <tr>
+                <td>Profession:</td>
+                <td>({{$user->job}})</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h5><i class="bx bx-plus"></i> Extra</h5>
+          <table class="table table-borderless mb-0">
+            <tbody>
+              <tr>
+                <td>Etat:</td>
+                <td>
+                  @if ($user->state == true)
+                  <span class="badge badge-pill badge-glow badge-success">Connecté</span>
+                  @else
+                  <span class="badge badge-pill badge-glow badge-danger">Déconnecté</span>
+                  @endif
+                </td>
+              </tr>
+              <tr>
+                <td>Statut:</td>
+                @if ($superuser->root == true)
+                <td>
+                  @if ($user->status == true)
+                  <span class="badge badge-pill badge-glow badge-success">Actif</span>
+                  @else
+                  <span class="badge badge-pill badge-glow badge-danger">Inactif</span>
+                  @endif
+                </td>
+                @endif
+              </tr>
+
             </tbody>
           </table>
         </div>

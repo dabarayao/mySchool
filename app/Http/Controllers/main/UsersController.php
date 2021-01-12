@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use DB;
 
 class UsersController extends Controller
 {
@@ -85,6 +86,7 @@ class UsersController extends Controller
   public function store(Request $request)
   {
     //
+    //
     $files = $request->file('photo');
 
     $picture = Storage::putFile('public', $files);
@@ -123,8 +125,25 @@ class UsersController extends Controller
   public function show($id)
   {
     //
+    $superuser = User::find(Auth::id());
     $user = User::find($id);
-    return view('main.users.page-users-view')->with('user', $user);
+
+    $age = floor((time() - strtotime($user->birthdate)) / 31556926);
+
+
+    if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr') {
+      $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 1])->value('label');
+    } else {
+      $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 2])->get('label');
+    }
+
+
+    return view('main.users.page-users-view')->with([
+      'user' => $user,
+      'country' => $countries,
+      'superuser' => $superuser,
+      'age' => $age
+    ]);
   }
 
   /**
@@ -133,11 +152,14 @@ class UsersController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
+  public function edit($id, Request $request)
   {
     //
+    $superuser = User::find(Auth::id());
+    $user = User::find($id);
 
-    return view('main.users.page-users-edit');
+
+    return view('main.users.page-users-edit')->with(['user' => $user, 'superuser' => $superuser]);
   }
 
   /**
@@ -149,8 +171,41 @@ class UsersController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+
+    if($request->hasFile('photo'))
+    {
+    $files = $request->file('photo');
+
+    $picture = Storage::putFile('public', $files);
+    $resize = Image::make($files)->resize(200, 200)->save('storage/' . basename($picture), 80);
+    $path = Storage::url($picture);
+    }
+
+
+    $user = User::find($id);
+    if ($request->hasFile('photo')) {
+    $user->photo = $path;
+    }
+    $user->familyname = $request->familyname;
+    $user->givenname = $request->givenname;
+    $user->email = $request->email;
+    $user->password = bcrypt($request->password);
+    $user->gender = $request->gender;
+    $user->birthdate = $request->birthdate;
+    $user->country = $request->country;
+    $user->dialcode = $request->dialcode;
+    $user->phone = $request->phone;
+    $user->address = $request->address;
+    $user->job = $request->job;
+    if (isset($request->status)) {
+      $user->status = $request->status;
+    }
+
+    $user->save();
+
+    return redirect()->route('users-list');
   }
+
 
   /**
    * Remove the specified resource from storage.

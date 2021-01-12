@@ -10,6 +10,9 @@ window.Vue = require('vue');
 
 import Vue from 'vue';
 
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 
 
 /**
@@ -83,8 +86,90 @@ const user_add = new Vue({
 
   },
   mounted() {
-        /* pager-users-list add input phone mask */
-        //alert('bonjour');
+
+
+  }
+});
+
+/* pager-users-edit edit form */
+const user_add_edit = new Vue({
+  el: '#user_edit_modal',
+  data: {
+    photo: false,
+    fire: 'changer'
+  },
+  methods: {
+    confCheck: function (e) {
+        e.preventDefault();
+
+      if (document.getElementById('password-icon').value !==
+          document.getElementById('confirm-password-icon').value) {
+
+        let pass = document.getElementById('password-icon');
+        let confPass = document.getElementById('confirm-password-icon')
+
+        pass.classList.add('is-invalid');
+        confPass.classList.add('is-invalid');
+
+      } else {
+
+        document.getElementById('user_edit_modal_form').submit();
+      }
+    },
+    passUp: function () {
+        let pass = document.getElementById('password-icon');
+        let confPass = document.getElementById('confirm-password-icon')
+
+        pass.classList.remove('is-invalid');
+        confPass.classList.remove('is-invalid');
+    },
+    inputFileCheck: function (e) {
+
+        var uploadField = document.getElementById("photo-icon");
+
+      if (uploadField.files[0].size > 2097152) {
+
+
+
+        alert("File is too big! 2 mo maximum");
+        uploadField.value = "";
+      }
+
+
+
+    },
+    displayUploader: function (e) {
+
+
+      if (this.photo === false)
+      {
+        this.fire = 'Annuler';
+      }
+      else{
+        this.fire = 'Change';
+      }
+
+      this.photo = !this.photo;
+
+    }
+
+  },
+  mounted() {
+
+    // user edit from country's select
+    var c = document.getElementById("country-icon");
+    var ch = document.getElementById("edit_country");
+    c.value = ch.value;
+
+    // user edit from dialcode's select
+    var d = document.getElementById("dialcode-icon");
+    var dh = document.getElementById("edit_dialcode");
+    d.value = dh.value;
+
+    // user edit from status's select
+    var s = document.getElementById("status-icon");
+    var sh = document.getElementById("edit_status");
+    s.value = sh.value;
 
   }
 });

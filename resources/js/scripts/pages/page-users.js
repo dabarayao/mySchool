@@ -109,16 +109,6 @@ $(document).ready(function () {
     // all tooltips
   $('#not-verified').tooltip();
 
-  function pleur() {
-
-
-
-      alert('bonjour');
-
-  }
-
-
-
 
 
 });

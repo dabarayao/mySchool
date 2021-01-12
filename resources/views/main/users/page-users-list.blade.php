@@ -220,41 +220,6 @@
                 </form>
               </div>
 
-          <!--user edit modal -->
-              <div class="modal modal-primary fade text-left w-100" id="user_edit_modal" tabindex="-1" role="dialog"
-                aria-labelledby="myModalLabel16" aria-hidden="true">
-                <form class="form" id="user-add-form" method="POST" action="{{route('users-add-from')}}" enctype="multipart/form-data" @submit="confCheck">
-                  @csrf
-
-                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header bg-primary">
-                        <h4 class="modal-title" style="color: white;" id="myModalLabel16"><i class='bx bx-edit'></i> Modifier un utilsateur</h4>
-                        <button type="button" class="close bg-danger" style="color: white;" data-dismiss="modal" aria-label="Close">
-                          <i class="bx bx-x"></i>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-
-                        @include('main.users.users-add-form')
-
-                      </div>
-                      <div class="modal-footer">
-                        <button type="reset" class="btn btn-light-secondary" >
-                          <i class="bx bx-x d-block d-sm-none"></i>
-                          <span class="d-none d-sm-block">Réinitialiser</span>
-                        </button>
-                        <button type="submit" class="btn btn-primary ml-1" >
-                          <i class="bx bx-check d-block d-sm-none"></i>
-                          <span class="d-none d-sm-block">Envoyer</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                </form>
-              </div>
-
       <!-- all modal end -->
 
 
