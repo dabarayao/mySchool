@@ -22,6 +22,7 @@ class CreateMonthveragesTable extends Migration
       $table->integer('yearverage_id');
       $table->integer('created_user');
       $table->integer('updated_user');
+      $table->integer('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

@@ -23,6 +23,7 @@ class CreateChatsTable extends Migration
       $table->integer('chats_id')->nullable();
       $table->integer('created_user');
       $table->integer('updated_user');
+      $table->integer('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

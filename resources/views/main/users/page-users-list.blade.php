@@ -145,9 +145,9 @@
 
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="{{route('users-edit-form', $users->id)}}" role="button" class="text-secondary editer"><i data-toggle="tooltip" data-placement="bottom" title="modifier" class="bx bx-edit"></i></a>
-                                                    <a href="{{route('users-view', $users->id)}}" role="button" class="text-primary" title="voir"><i class='bx bx-show-alt'></i></a>
-                                                    <a href="#" role="button" class="text-danger" title="supprimer"><i class="bx bx-trash"></i></a>
+                                                    <a href="{{route('users-edit-form', $users->id)}}" role="button" class="text-secondary editer"><i data-toggle="tooltip" data-placement="right" title="modifier" class="bx bx-edit"></i></a>
+                                                    <a href="{{route('users-view', $users->id)}}" role="button" class="text-primary"><i data-toggle="tooltip" data-placement="right" class='bx bx-show-alt' title="voir"></i></a>
+                                                    <a href="{{route('users-delete', $users->id)}}" role="button" class="text-danger" id="del_user_but" onclick="return confirm('Etes-vous sûre de vouloir supprimer cet utilisateur?');"><i data-toggle="tooltip" data-placement="right" class="bx bx-trash" title="supprimer"></i></a>
                                                 </div>
                                             </td>
                                           </tr>
@@ -338,7 +338,7 @@
                                                 @if($superuser->root == true)
 
                                                 <td>
-                                                  @if ($users->root == true)
+                                                  @if ($users->status == true)
                                                     <span class="badge badge-pill badge-glow badge-success" data-toggle="tooltip" data-placement="bottom" title="Active"><i class="fa fa-check fa-2x"></i></span>
                                                   @else
                                                     <span class="badge badge-pill badge-glow badge-danger" data-toggle="tooltip" data-placement="bottom" title="Inactive"><i class="fa fa-close fa-2x"></i></span>
@@ -351,9 +351,9 @@
 
                                               <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="{{asset('page-users-edit')}}" role="button" class="text-secondary" title="edit"><i class="bx bx-edit"></i></a>
-                                                    <a href="{{asset('page-users-edit')}}" role="button" class="text-primary" title="show"><i class='bx bx-show-alt'></i></a>
-                                                    <a href="{{asset('page-users-edit')}}" role="button" class="text-danger" title="delete"><i class="bx bx-trash"></i></a>
+                                                  <a href="{{route('users-edit-form', $users->id)}}" role="button" class="text-secondary editer"><i data-toggle="tooltip" data-placement="right" title="edit" class="bx bx-edit"></i></a>
+                                                  <a href="{{route('users-view', $users->id)}}" role="button" class="text-primary"><i data-toggle="tooltip" data-placement="right" class='bx bx-show-alt' title="show"></i></a>
+                                                  <a href="{{route('users-delete', $users->id)}}" role="button" class="text-danger" onclick="return confirm('Are you sure you want to delete this user?');"><i data-toggle="tooltip" data-placement="right" class="bx bx-trash" title="delete"></i></a>
                                                 </div>
                                               </td>
                                               </tr>

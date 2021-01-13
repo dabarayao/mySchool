@@ -33,6 +33,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+        $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
 
@@ -67,6 +73,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+        $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
 
@@ -89,6 +101,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
 
@@ -107,6 +125,12 @@ class AddForeignKeysToTables extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
@@ -145,6 +169,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
 
@@ -179,6 +209,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
 
@@ -203,6 +239,12 @@ class AddForeignKeysToTables extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
@@ -259,6 +301,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
 
@@ -283,6 +331,12 @@ class AddForeignKeysToTables extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
@@ -315,6 +369,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
 
@@ -333,6 +393,12 @@ class AddForeignKeysToTables extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
@@ -365,6 +431,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('paids', function (Blueprint $table) {
@@ -392,6 +464,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('payslips', function (Blueprint $table) {
@@ -408,6 +486,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('teachers', function (Blueprint $table) {
@@ -420,6 +504,12 @@ class AddForeignKeysToTables extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
@@ -447,6 +537,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('yearverages', function (Blueprint $table) {
@@ -458,6 +554,12 @@ class AddForeignKeysToTables extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
@@ -477,6 +579,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('schools', function (Blueprint $table) {
@@ -488,6 +596,12 @@ class AddForeignKeysToTables extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
@@ -507,6 +621,12 @@ class AddForeignKeysToTables extends Migration
         ->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('disciplines', function (Blueprint $table) {
@@ -518,6 +638,12 @@ class AddForeignKeysToTables extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')

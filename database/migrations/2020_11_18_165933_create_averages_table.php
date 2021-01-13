@@ -22,6 +22,7 @@ class CreateAveragesTable extends Migration
       $table->integer('monthverage_id');
       $table->integer('created_user');
       $table->integer('updated_user');
+      $table->integer('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

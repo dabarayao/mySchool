@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Closure;
 use App\User;
+use Illuminate\Support\Facades\Redirect;
 
 class CheckUserStatus
 {

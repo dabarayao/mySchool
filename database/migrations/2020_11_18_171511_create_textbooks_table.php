@@ -16,8 +16,9 @@ class CreateTextbooksTable extends Migration
         Schema::create('textbooks', function (Blueprint $table) {
             $table->id();
             $table->integer('classroom_id');
-      $table->integer('created_user');
-      $table->integer('updated_user');
+            $table->integer('created_user');
+            $table->integer('updated_user');
+            $table->integer('deleted_user')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

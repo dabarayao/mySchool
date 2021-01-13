@@ -22,6 +22,7 @@ class CreateFillsTable extends Migration
       $table->integer('discipline_id');
       $table->integer('created_user');
       $table->integer('updated_user');
+      $table->integer('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

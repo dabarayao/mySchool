@@ -21,6 +21,7 @@ class CreatePaidsTable extends Migration
       $table->date('next_pay_date');
       $table->integer('created_user');
       $table->integer('updated_user');
+      $table->integer('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

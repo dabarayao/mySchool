@@ -31,7 +31,7 @@
                         <label for="family-name-icon">Nom</label>
                         <div class="position-relative has-icon-left">
                           <input type="text" id="family-name-icon" class="form-control" name="familyname"
-                            placeholder="Familyname" required>
+                            placeholder="Familyname" maxlength="256" required>
                           <div class="form-control-position">
                             <i class="bx bx-user"></i>
                           </div>
@@ -43,7 +43,7 @@
                         <label for="given-name-icon">Prénoms</label>
                         <div class="position-relative has-icon-left">
                           <input type="text" id="given-name-icon" class="form-control" name="givenname"
-                            placeholder="Givenname" required>
+                            placeholder="Givenname"  maxlength="256" required>
                           <div class="form-control-position">
                             <i class="bx bxs-user-detail"></i>
                           </div>
@@ -55,7 +55,7 @@
                         <label for="email-icon">Email</label>
                         <div class="position-relative has-icon-left">
                           <input type="email" id="email-icon" class="form-control" name="email"
-                            placeholder="Email" required>
+                            placeholder="Email"  maxlength="256" required>
                           <div class="form-control-position">
                             <i class="bx bx-mail-send"></i>
                           </div>
@@ -79,7 +79,7 @@
                         <label for="confirm-password-icon">Confirmer le Mot de passe</label>
                         <div class="position-relative has-icon-left">
                           <input type="password" id="confirm-password-icon" class="form-control"
-                            placeholder="Confirm your Password" @keyup="passUp"  required>
+                            placeholder="Confirm your Password" minlength="8" maxlength="100" @keyup="passUp"  required>
                           <div class="invalid-feedback">
                             Les mots de passe ne correspondent pas.
                           </div>
@@ -134,7 +134,7 @@
                         <label for="address-icon">Adresse</label>
                         <div class="position-relative has-icon-left">
                           <input type="text" id="address-icon" class="form-control" name="address"
-                            placeholder="Address" required>
+                            placeholder="Address" maxlength="100" required>
                           <div class="form-control-position">
                             <i class='bx bxs-building-house' ></i>
                           </div>
@@ -159,7 +159,7 @@
                         <label for="phonenumber-icon">Téléphone</label>
                         <div class="position-relative has-icon-left">
                                   <input type="text" id="phonenumber-icon" class="form-control maskField" name="phone"
-                                    placeholder="Phone number" mask="999-999-999-999-999"  required>
+                                    placeholder="Phone number" mask="999-999-999-999-999" maxlength="19"  required>
                                   <div class="form-control-position">
                                     <i class='bx bxs-mobile' ></i>
                                   </div>
@@ -171,7 +171,7 @@
                         <label for="job-icon">Profession</label>
                         <div class="position-relative has-icon-left">
                           <input type="text" id="job-icon" class="form-control" name="job"
-                            placeholder="Job" required>
+                            placeholder="Profession" maxlength="100" required>
                           <div class="form-control-position">
                             <i class='fa fa-briefcase' ></i>
                           </div>
@@ -182,19 +182,34 @@
                     {{-- Special display for root users --}}
                     @if($superuser->root == true)
 
-                      <div class="col-md-6 col-12">
+                    <div class="col-md-6 col-12">
                           <div class="form-group">
                             <label for="status-icon">Status</label>
                             <div class="position-relative has-icon-left">
                               <select id="status-icon" class="form-control"  name="status">
-                                  <option value="0"> ACTIVE </option>
-                                  <option value="1"> INACTIVE </option>
+                                  <option value="1"> ACTIF </option>
+                                  <option value="0"> INACTIF </option>
                                 </select>
                               <div class="form-control-position">
                                 <i class="fa fa-power-off" aria-hidden="true"></i>
                               </div>
                             </div>
                           </div>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <label for="status-icon">Superutilisateur</label>
+                        <div class="position-relative has-icon-left">
+                          <select id="status-icon" class="form-control"  name="status">
+                              <option value="1"> OUI </option>
+                              <option value="0"> NON </option>
+                            </select>
+                          <div class="form-control-position">
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
                     @endif
@@ -246,7 +261,7 @@
                         <label for="family-name-icon">Familyname</label>
                         <div class="position-relative has-icon-left">
                           <input type="text" id="family-name-icon" class="form-control" name="familyname"
-                            placeholder="Familyname" required>
+                            placeholder="Familyname"  maxlength="256" required>
                           <div class="form-control-position">
                             <i class="bx bx-user"></i>
                           </div>
@@ -258,7 +273,7 @@
                         <label for="given-name-icon">Givenname</label>
                         <div class="position-relative has-icon-left">
                           <input type="text" id="given-name-icon" class="form-control" name="givenname"
-                            placeholder="Givenname" required>
+                            placeholder="Givenname"  maxlength="256" required>
                           <div class="form-control-position">
                             <i class="bx bxs-user-detail"></i>
                           </div>
@@ -270,7 +285,7 @@
                         <label for="email-icon">Email</label>
                         <div class="position-relative has-icon-left">
                           <input type="email" id="email-icon" class="form-control" name="email"
-                            placeholder="Email" required>
+                            placeholder="Email" maxlength="256" required>
                           <div class="form-control-position">
                             <i class="bx bx-mail-send"></i>
                           </div>
@@ -282,7 +297,7 @@
                         <label for="password-icon">Password</label>
                         <div class="position-relative has-icon-left">
                           <input type="password" id="password-icon" class="form-control" name="password"
-                            placeholder="Password" @keyup="passUp" required>
+                            placeholder="Password" minlength="8" maxlength="100" @keyup="passUp" required>
                           <div class="form-control-position">
                             <i class="bx bx-lock"></i>
                           </div>
@@ -294,7 +309,7 @@
                         <label for="confirm-password-icon">Confirm password</label>
                         <div class="position-relative has-icon-left">
                           <input type="password" id="confirm-password-icon" class="form-control"
-                            placeholder="Confirm your Password" @keyup="passUp" required>
+                            placeholder="Confirm your Password" minlength="8" maxlength="100" @keyup="passUp" required>
                           <div class="invalid-feedback">
                             The passwords does not match.
                           </div>
@@ -349,7 +364,7 @@
                         <label for="address-icon">Address</label>
                         <div class="position-relative has-icon-left">
                           <input type="text" id="address-icon" class="form-control" name="address"
-                            placeholder="Address" required>
+                            placeholder="Address" maxlength="100" required>
                           <div class="form-control-position">
                             <i class='bx bxs-building-house' ></i>
                           </div>
@@ -374,7 +389,7 @@
                         <label for="phonenumber-icon">Phone</label>
                         <div class="position-relative has-icon-left">
                                   <input type="text" id="phonenumber-icon" class="form-control maskField" name="phone"
-                                    placeholder="Phone number" mask="999-999-999-999-999" required>
+                                    placeholder="Phone number" mask="999-999-999-999-999" maxlength="19" required>
                                   <div class="form-control-position">
                                     <i class='bx bxs-mobile' ></i>
                                   </div>
@@ -386,7 +401,7 @@
                         <label for="job-icon">Job</label>
                         <div class="position-relative has-icon-left">
                           <input type="text" id="job-icon" class="form-control" name="address"
-                            placeholder="Job" required>
+                            placeholder="Job" maxlength="19" required>
                           <div class="form-control-position">
                             <i class='fa fa-briefcase' ></i>
                           </div>
@@ -402,8 +417,8 @@
                         <label for="status-icon">Status</label>
                         <div class="position-relative has-icon-left">
                           <select id="status-icon" class="form-control"  name="gender">
-                              <option value="0"> ACTIVE </option>
-                              <option value="1"> INACTIVE </option>
+                              <option value="1"> ACTIVE </option>
+                              <option value="0"> INACTIVE </option>
                             </select>
                           <div class="form-control-position">
                             <i class="fa fa-power-off" aria-hidden="true"></i>
@@ -411,6 +426,21 @@
                         </div>
                       </div>
 
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <div class="form-group">
+                        <label for="status-icon">Root user</label>
+                        <div class="position-relative has-icon-left">
+                          <select id="status-icon" class="form-control"  name="root">
+                              <option value="1"> YES </option>
+                              <option value="0"> NO </option>
+                            </select>
+                          <div class="form-control-position">
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
                     @endif

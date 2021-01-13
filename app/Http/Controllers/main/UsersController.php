@@ -85,8 +85,8 @@ class UsersController extends Controller
    */
   public function store(Request $request)
   {
-    //
-    //
+
+    //code to store an resize the image
     $files = $request->file('photo');
 
     $picture = Storage::putFile('public', $files);
@@ -94,7 +94,9 @@ class UsersController extends Controller
     $path = Storage::url($picture);
 
 
+
     $user = new User;
+    $current = User::find(Auth::id());
     $user->photo = $path;
     $user->familyname = $request->familyname;
     $user->givenname = $request->givenname;
@@ -107,6 +109,11 @@ class UsersController extends Controller
     $user->phone = $request->phone;
     $user->address = $request->address;
     $user->job = $request->job;
+    $user->created_user = $current->id;
+    $user->updated_user = $current->id;
+    if (isset($request->root)) {
+    $user->root = $request->root;
+    }
     if (isset($request->status)) {
       $user->status = $request->status;
     }
@@ -127,22 +134,29 @@ class UsersController extends Controller
     //
     $superuser = User::find(Auth::id());
     $user = User::find($id);
-
+    // code to calculate age of hte users
     $age = floor((time() - strtotime($user->birthdate)) / 31556926);
 
 
     if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr') {
       $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 1])->value('label');
     } else {
-      $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 2])->get('label');
+      $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 2])->value('label');
     }
+
+    $write_user = User::find($user->created_user);
+    $edit_user = User::find($user->updated_user);
+
+
 
 
     return view('main.users.page-users-view')->with([
       'user' => $user,
       'country' => $countries,
       'superuser' => $superuser,
-      'age' => $age
+      'age' => $age,
+      'writeby' => $write_user,
+      'editby' => $edit_user
     ]);
   }
 
@@ -174,6 +188,7 @@ class UsersController extends Controller
 
     if($request->hasFile('photo'))
     {
+    //code to store an resize the image
     $files = $request->file('photo');
 
     $picture = Storage::putFile('public', $files);
@@ -183,6 +198,7 @@ class UsersController extends Controller
 
 
     $user = User::find($id);
+    $current = User::find(Auth::id());
     if ($request->hasFile('photo')) {
     $user->photo = $path;
     }
@@ -197,6 +213,7 @@ class UsersController extends Controller
     $user->phone = $request->phone;
     $user->address = $request->address;
     $user->job = $request->job;
+    $user->updated_user = $current->id;
     if (isset($request->status)) {
       $user->status = $request->status;
     }
@@ -215,6 +232,19 @@ class UsersController extends Controller
    */
   public function destroy($id)
   {
-    //
+
+    $user = User::find($id);
+
+    // code to archive deleted users
+    $userCopy = $user;
+    $current = User::find(Auth::id());
+    $userCopy->deleted_user = $current->id;
+    $userCopy->save();
+
+
+    $user->delete();
+
+
+    return redirect()->route('users-list');
   }
 }

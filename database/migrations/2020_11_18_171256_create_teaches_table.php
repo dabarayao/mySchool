@@ -19,6 +19,7 @@ class CreateTeachesTable extends Migration
       $table->integer('nb_classroom')->nullable();
       $table->integer('created_user');
       $table->integer('updated_user');
+      $table->integer('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

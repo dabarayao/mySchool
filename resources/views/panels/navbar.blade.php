@@ -1,3 +1,14 @@
+<?php
+
+
+use Illuminate\Support\Facades\Auth;
+use App\User;
+
+
+$user = User::find(Auth::id());
+
+?>
+
 {{-- navabar  --}}
 
 @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
@@ -167,10 +178,10 @@ data-bgcolor="@if(isset($configData['navbarBgColor'])){{$configData['navbarBgCol
           <li class="dropdown dropdown-user nav-item">
             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
               <div class="user-nav d-sm-flex d-none">
-                <span class="user-name">John Doe</span>
-                <span class="user-status text-muted">Disponible</span>
+                <span class="user-name">{{$user->familyname}}</span>
+                <span class="user-status text-muted">{{$user->givenname}} </span>
               </div>
-              <span><img class="round" src="{{asset('images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
+              <span><img class="round" src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$user->photo}} @endif" alt="avatar" height="40" width="40"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right pb-0">
               <a class="dropdown-item" href="{{asset('page-user-profile')}}">
@@ -357,10 +368,10 @@ data-bgcolor="@if(isset($configData['navbarBgColor'])){{$configData['navbarBgCol
           <li class="dropdown dropdown-user nav-item">
             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
               <div class="user-nav d-sm-flex d-none">
-                <span class="user-name">John Doe</span>
-                <span class="user-status text-muted">Available</span>
+                <span class="user-name">{{$user->familyname}}</span>
+                <span class="user-status text-muted">{{$user->givenname}}</span>
               </div>
-              <span><img class="round" src="{{asset('images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
+              <span><img class="round" src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$user->photo}} @endif" alt="avatar" height="40" width="40"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right pb-0">
               <a class="dropdown-item" href="{{asset('page-user-profile')}}">

@@ -21,6 +21,7 @@ class CreateClassroomsTable extends Migration
       $table->integer('school_id');
       $table->integer('created_user');
       $table->integer('updated_user');
+      $table->integer('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

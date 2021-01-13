@@ -20,6 +20,7 @@ class CreateDisciplinesTable extends Migration
       $table->string('comments', 100)->nullable();
       $table->integer('created_user');
       $table->integer('updated_user');
+      $table->integer('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

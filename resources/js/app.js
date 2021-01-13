@@ -96,7 +96,7 @@ const user_add_edit = new Vue({
   el: '#user_edit_modal',
   data: {
     photo: false,
-    fire: 'changer'
+    fire: ['changer', 'change']
   },
   methods: {
     confCheck: function (e) {
@@ -143,15 +143,18 @@ const user_add_edit = new Vue({
 
       if (this.photo === false)
       {
-        this.fire = 'Annuler';
+        this.fire[0] = 'Annuler';
+        this.fire[1] = 'Reset';
       }
       else{
-        this.fire = 'Change';
+        this.fire[0] = 'Change';
+        this.fire[1] = 'Changer';
       }
 
       this.photo = !this.photo;
 
     }
+
 
   },
   mounted() {
@@ -169,7 +172,15 @@ const user_add_edit = new Vue({
     // user edit from status's select
     var s = document.getElementById("status-icon");
     var sh = document.getElementById("edit_status");
-    s.value = sh.value;
+
+    if (sh.value == true)
+    {
+      s.value = 1;
+    }
+    else
+    {
+      s.value = 0;
+    }
 
   }
 });
