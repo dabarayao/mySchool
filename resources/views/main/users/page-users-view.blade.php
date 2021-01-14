@@ -1,6 +1,19 @@
 @extends('layouts.contentLayoutMaster')
-{{-- page title --}}
-@section('title','Users View')
+
+@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+
+  {{-- page title --}}
+  @section('title','Détails utilisateurs')
+
+@else
+
+  {{-- page title --}}
+  @section('title','Users View')
+
+@endif
+
+
+
 {{-- page styles --}}
 @section('page-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/pages/page-users.css')}}">

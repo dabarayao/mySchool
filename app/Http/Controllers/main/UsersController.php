@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -89,8 +90,8 @@ class UsersController extends Controller
     //code to store an resize the image
     $files = $request->file('photo');
 
-    $picture = Storage::putFile('public', $files);
-    $resize = Image::make($files)->resize(200, 200)->save('storage/' . basename($picture), 80);
+    $picture = Storage::putFile('public/users/', $files);
+    $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
     $path = Storage::url($picture);
 
 
@@ -119,6 +120,17 @@ class UsersController extends Controller
     }
 
     $user->save();
+
+    $setting = new Setting;
+    $setting->theme = "semi-dark";
+    $setting->language = 1;
+    $setting->type_monthverage = false;
+    $setting->user_id = User::where('email', $request->email)->value('id');
+    $setting->created_user = $current->id;
+    $setting->updated_user = $current->id;
+
+    $setting->save();
+
 
     return redirect()->route('users-list');
   }
@@ -191,8 +203,8 @@ class UsersController extends Controller
     //code to store an resize the image
     $files = $request->file('photo');
 
-    $picture = Storage::putFile('public', $files);
-    $resize = Image::make($files)->resize(200, 200)->save('storage/' . basename($picture), 80);
+    $picture = Storage::putFile('public/users/', $files);
+    $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
     $path = Storage::url($picture);
     }
 
@@ -219,6 +231,20 @@ class UsersController extends Controller
     }
 
     $user->save();
+
+    $user_set = User::where('email', '=', $request->email)->value('id');
+    if( Setting::where('user_id', '=', $user_set)->count() == 0)
+    {
+
+    $setting = new Setting;
+    $setting->theme = "semi-dark";
+    $setting->language = 1;
+    $setting->type_monthverage = false;
+    $setting->user_id = User::where('email', $request->email)->value('id');
+    $setting->created_user = $current->id;
+    $setting->updated_user = $current->id;
+    $setting->save();
+    }
 
     return redirect()->route('users-list');
   }

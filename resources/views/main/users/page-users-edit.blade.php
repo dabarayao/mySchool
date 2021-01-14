@@ -1,6 +1,18 @@
 @extends('layouts.contentLayoutMaster')
-{{-- page title --}}
-@section('title','Users Edit')
+
+@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+
+  {{-- page title --}}
+  @section('title','Modifier utilisateur')
+
+@else
+
+  {{-- page title --}}
+  @section('title','Users Edit')
+
+@endif
+
+
 {{-- vendor styles --}}
 @section('vendor-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/validation/form-validation.css')}}">
@@ -258,8 +270,8 @@
                           <label for="status-icon">Status</label>
                             <input type="hidden" id="edit_status" value="{{$user->status}}">
                             <select id="status-icon" required class="form-control"  name="status">
-                                <option value="0"> INACTIF </option>
-                                <option value="1"> ACTIF </option>
+                              <option value="1"> ACTIF </option>
+                              <option value="0"> INACTIF </option>
                             </select>
 
                         </div>
@@ -393,16 +405,16 @@
                                   <div class="controls">
                                       <label>Password</label>
                                       <input type="password" id="password-icon" @keyup="passUp" class="form-control" placeholder="Password"
-                                          required minlength="8" maxlength="100
-                                          data-validation-required-message="This email field is required" name="password">
+                                          required minlength="8" maxlength="100"
+                                          data-validation-required-message="This email field is" required name="password">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="controls">
                                       <label>Confirm Password</label>
                                       <input type="password" id="confirm-password-icon" @keyup="passUp" class="form-control" placeholder="Confirm Password"
-                                          required minlength="8" maxlength="100
-                                          data-validation-required-message="This email field is required" name="confirm password">
+                                          required minlength="8" maxlength="100"
+                                          data-validation-required-message="This email field is" required name="confirm password">
                                           <div class="invalid-feedback">
                                             The Password doesn't match
                                           </div>
@@ -557,8 +569,8 @@
                           <label for="status-icon">Status</label>
                             <input type="hidden" id="edit_status" value="{{$user->status}}">
                             <select id="status-icon" required class="form-control"  name="status">
-                                <option value="0"> INACTIVE </option>
                                 <option value="1"> ACTIVE </option>
+                                <option value="0"> INACTIVE </option>
                             </select>
 
                         </div>

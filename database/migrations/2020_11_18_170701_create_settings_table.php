@@ -17,7 +17,6 @@ class CreateSettingsTable extends Migration
       $table->id();
       $table->string('theme', 100)->nullable();
       $table->string('language', 100)->nullable();
-      $table->boolean('displaytable')->nullable();
       $table->boolean('type_monthverage')->default(0);
       $table->integer('user_id');
       $table->integer('created_user');

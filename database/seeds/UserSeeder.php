@@ -33,7 +33,6 @@ class UserSeeder extends Seeder
         'email_verified_at' => date("Y-m-d H:i:s"),
         'created_at' => date("Y-m-d H:i:s")
       ],
-
       [
         'familyname' => 'woods',
         'givenname' => 'mika jordyn',
@@ -70,5 +69,11 @@ class UserSeeder extends Seeder
         'created_at' => date("Y-m-d H:i:s")
       ]
     ]);
+
+
+
+
+
+
   }
 }
