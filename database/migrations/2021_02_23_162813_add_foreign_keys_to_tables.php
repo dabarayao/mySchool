@@ -90,6 +90,12 @@ class AddForeignKeysToTables extends Migration
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
+      $table->foreign('schoolyear_id')
+        ->references('id')
+        ->on('schoolyears')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
       $table->foreign('created_user')
         ->references('id')
         ->on('users')
@@ -115,6 +121,12 @@ class AddForeignKeysToTables extends Migration
       $table->foreign('school_id')
         ->references('id')
         ->on('schools')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('exam_id')
+        ->references('id')
+        ->on('exams')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
@@ -287,6 +299,12 @@ class AddForeignKeysToTables extends Migration
       $table->foreign('typemark_id')
         ->references('id')
         ->on('typemarks')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('schoolyear_id')
+        ->references('id')
+        ->on('schoolyears')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
@@ -546,6 +564,11 @@ class AddForeignKeysToTables extends Migration
     });
 
     Schema::table('yearverages', function (Blueprint $table) {
+      $table->foreign('schoolyear_id')
+        ->references('id')
+        ->on('schoolyears')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
 
       $table->foreign('created_user')
         ->references('id')
@@ -630,6 +653,145 @@ class AddForeignKeysToTables extends Migration
     });
 
     Schema::table('disciplines', function (Blueprint $table) {
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('schoolyears', function (Blueprint $table) {
+
+      $table->foreign('school_id')
+        ->references('id')
+        ->on('schools')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('class_disciplines', function (Blueprint $table) {
+
+      $table->foreign('classroom_id')
+        ->references('id')
+        ->on('classrooms')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('discipline_id')
+        ->references('id')
+        ->on('disciplines')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('promotions', function (Blueprint $table) {
+
+      $table->foreign('schoolyear_id')
+        ->references('id')
+        ->on('schoolyears')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('current_class')
+        ->references('id')
+        ->on('classrooms')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('promote_class')
+        ->references('id')
+        ->on('classrooms')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('student_id')
+        ->references('id')
+        ->on('students')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('studentexams', function (Blueprint $table) {
+
+      $table->foreign('student_id')
+        ->references('id')
+        ->on('students')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('exam_id')
+        ->references('id')
+        ->on('exams')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
 
       $table->foreign('created_user')
         ->references('id')

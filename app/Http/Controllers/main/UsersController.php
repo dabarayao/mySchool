@@ -86,6 +86,20 @@ class UsersController extends Controller
    */
   public function store(Request $request)
   {
+    $request->validate([
+      'photo' => 'required',
+      'familyname' => 'required',
+      'givenname' => 'required',
+      'familyname' => 'required',
+      'email' => 'required',
+      'password' => 'required',
+      'gender' => 'required',
+      'country' => 'required',
+      'dialcode' => 'required',
+      'phone' => 'required',
+      'job' => 'required',
+      'address' => 'required',
+    ]);
 
     //code to store an resize the image
     $files = $request->file('photo');
@@ -197,6 +211,19 @@ class UsersController extends Controller
    */
   public function update(Request $request, $id)
   {
+    $request->validate([
+      'familyname' => 'required',
+      'givenname' => 'required',
+      'familyname' => 'required',
+      'email' => 'required',
+      'password' => 'required',
+      'gender' => 'required',
+      'country' => 'required',
+      'dialcode' => 'required',
+      'phone' => 'required',
+      'job' => 'required',
+      'address' => 'required',
+    ]);
 
     if($request->hasFile('photo'))
     {

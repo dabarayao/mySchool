@@ -23,6 +23,7 @@ class CreateMarksTable extends Migration
       $table->integer('discipline_id');
       $table->integer('classroom_id');
       $table->integer('average_id');
+      $table->integer('schoolyear_id');
       $table->integer('typemark_id');
       $table->string('remark', 100);
       $table->integer('created_user');

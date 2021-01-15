@@ -145,10 +145,12 @@
 
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="{{route('users-edit-form', $users->id)}}" role="button" class="text-secondary editer"><i data-toggle="tooltip" data-placement="right" title="modifier" class="bx bx-edit"></i></a>
                                                     <a href="{{route('users-view', $users->id)}}" role="button" class="text-primary"><i data-toggle="tooltip" data-placement="right" class='bx bx-show-alt' title="voir"></i></a>
+                                                    <a href="{{route('users-edit-form', $users->id)}}" role="button" class="text-secondary editer"><i data-toggle="tooltip" data-placement="right" title="modifier" class="bx bx-edit"></i></a>
+                                                    @if($users->root == false)
                                                     <a href="{{route('users-delete', $users->id)}}" role="button" class="text-danger" id="del_user_but" onclick="return confirm('Etes-vous sûre de vouloir supprimer cet utilisateur?');"><i data-toggle="tooltip" data-placement="right" class="bx bx-trash" title="supprimer"></i></a>
-                                                </div>
+                                                    @endif
+                                                  </div>
                                             </td>
                                           </tr>
                                         @endforeach
@@ -351,9 +353,11 @@
 
                                               <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                  <a href="{{route('users-edit-form', $users->id)}}" role="button" class="text-secondary editer"><i data-toggle="tooltip" data-placement="right" title="edit" class="bx bx-edit"></i></a>
                                                   <a href="{{route('users-view', $users->id)}}" role="button" class="text-primary"><i data-toggle="tooltip" data-placement="right" class='bx bx-show-alt' title="show"></i></a>
+                                                  <a href="{{route('users-edit-form', $users->id)}}" role="button" class="text-secondary editer"><i data-toggle="tooltip" data-placement="right" title="edit" class="bx bx-edit"></i></a>
+                                                  @if($users->root == false)
                                                   <a href="{{route('users-delete', $users->id)}}" role="button" class="text-danger" onclick="return confirm('Are you sure you want to delete this user?');"><i data-toggle="tooltip" data-placement="right" class="bx bx-trash" title="delete"></i></a>
+                                                  @endif
                                                 </div>
                                               </td>
                                               </tr>

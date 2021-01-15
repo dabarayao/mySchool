@@ -15,9 +15,9 @@ class CreateYearveragesTable extends Migration
   {
     Schema::create('yearverages', function (Blueprint $table) {
       $table->id();
-      $table->integer('value');
+      $table->double('value');
       $table->string('congrat', 100);
-      $table->integer('year');
+      $table->integer('schoolyear_id');
       $table->integer('yearverage_id');
       $table->integer('created_user');
       $table->integer('updated_user');

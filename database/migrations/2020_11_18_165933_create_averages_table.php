@@ -16,9 +16,9 @@ class CreateAveragesTable extends Migration
     Schema::create('averages', function (Blueprint $table) {
       $table->id();
       $table->double('value');
-      $table->double('congrat');
+      $table->string('congrat', 100);
       $table->integer('coef');
-      $table->date('year');
+      $table->integer('schoolyear_id');
       $table->integer('monthverage_id');
       $table->integer('created_user');
       $table->integer('updated_user');
