@@ -1,12 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\main;
 
+use App\Http\Controllers\Controller;
 use App\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SettingController extends Controller
 {
+
+    public function __construct()
+    {
+      // the authenitfication middleware for the app
+      $this->middleware(['verified', 'auth', 'checkUserStatus']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        $setting = Setting::find(Auth::id());
+        return view('main.settings.page-account-settings')->with('setting', $setting);
     }
 
     /**

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\main;
 
-use App\payslip;
+use App\Http\Controllers\Controller;
+use App\Class_discipline;
 use Illuminate\Http\Request;
 
-class PayslipController extends Controller
+class ClassDisciplineController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class PayslipController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\payslip  $payslip
+     * @param  \App\Class_discipline  $class_discipline
      * @return \Illuminate\Http\Response
      */
-    public function show(payslip $payslip)
+    public function show(Class_discipline $class_discipline)
     {
         //
     }
@@ -52,10 +53,10 @@ class PayslipController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\payslip  $payslip
+     * @param  \App\Class_discipline  $class_discipline
      * @return \Illuminate\Http\Response
      */
-    public function edit(payslip $payslip)
+    public function edit(Class_discipline $class_discipline)
     {
         //
     }
@@ -64,10 +65,10 @@ class PayslipController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\payslip  $payslip
+     * @param  \App\Class_discipline  $class_discipline
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, payslip $payslip)
+    public function update(Request $request, Class_discipline $class_discipline)
     {
         //
     }
@@ -75,10 +76,10 @@ class PayslipController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\payslip  $payslip
+     * @param  \App\Class_discipline  $class_discipline
      * @return \Illuminate\Http\Response
      */
-    public function destroy(payslip $payslip)
+    public function destroy(Class_discipline $class_discipline)
     {
         //
     }

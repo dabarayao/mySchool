@@ -15,7 +15,7 @@
       "icon": "users"
     },
     {
-      "url": "page-account-settings",
+      "url": "settings",
       "name": "Account Settings",
       "i18n": "Account Settings",
       "icon": "wrench"

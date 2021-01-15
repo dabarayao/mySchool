@@ -156,3 +156,6 @@ Route::get('/users/list/edit/{id}', 'main\UsersController@edit')->name('users-ed
 Route::put('/users/list/edit/{id}', 'main\UsersController@update')->name('users-update')->where('id', '[0-9]+');
 Route::get('/users/list/view/{id}', 'main\UsersController@show')->name('users-view')->where('id', '[0-9]+');
 Route::get('/users/list/delete/{id}', 'main\UsersController@destroy')->name('users-delete')->where('id', '[0-9]+');
+
+// mySchool settings  routes
+Route::get('/settings', 'main\SettingController@index');

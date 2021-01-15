@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\main;
 
-use App\Class_discipline;
+use App\Http\Controllers\Controller;
+use App\Schoolyear;
 use Illuminate\Http\Request;
 
-class ClassDisciplineController extends Controller
+class SchoolyearController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class ClassDisciplineController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Class_discipline  $class_discipline
+     * @param  \App\Schoolyear  $schoolyear
      * @return \Illuminate\Http\Response
      */
-    public function show(Class_discipline $class_discipline)
+    public function show(Schoolyear $schoolyear)
     {
         //
     }
@@ -52,10 +53,10 @@ class ClassDisciplineController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Class_discipline  $class_discipline
+     * @param  \App\Schoolyear  $schoolyear
      * @return \Illuminate\Http\Response
      */
-    public function edit(Class_discipline $class_discipline)
+    public function edit(Schoolyear $schoolyear)
     {
         //
     }
@@ -64,10 +65,10 @@ class ClassDisciplineController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Class_discipline  $class_discipline
+     * @param  \App\Schoolyear  $schoolyear
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Class_discipline $class_discipline)
+    public function update(Request $request, Schoolyear $schoolyear)
     {
         //
     }
@@ -75,10 +76,10 @@ class ClassDisciplineController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Class_discipline  $class_discipline
+     * @param  \App\Schoolyear  $schoolyear
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Class_discipline $class_discipline)
+    public function destroy(Schoolyear $schoolyear)
     {
         //
     }

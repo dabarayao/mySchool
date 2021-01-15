@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\main;
 
-use App\Schoolyear;
+use App\Http\Controllers\Controller;
+use App\Promotion;
 use Illuminate\Http\Request;
 
-class SchoolyearController extends Controller
+class PromotionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class SchoolyearController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Schoolyear  $schoolyear
+     * @param  \App\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function show(Schoolyear $schoolyear)
+    public function show(Promotion $promotion)
     {
         //
     }
@@ -52,10 +53,10 @@ class SchoolyearController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Schoolyear  $schoolyear
+     * @param  \App\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Schoolyear $schoolyear)
+    public function edit(Promotion $promotion)
     {
         //
     }
@@ -64,10 +65,10 @@ class SchoolyearController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Schoolyear  $schoolyear
+     * @param  \App\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schoolyear $schoolyear)
+    public function update(Request $request, Promotion $promotion)
     {
         //
     }
@@ -75,10 +76,10 @@ class SchoolyearController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Schoolyear  $schoolyear
+     * @param  \App\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Schoolyear $schoolyear)
+    public function destroy(Promotion $promotion)
     {
         //
     }
