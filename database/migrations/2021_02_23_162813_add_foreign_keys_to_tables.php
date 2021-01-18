@@ -22,6 +22,18 @@ class AddForeignKeysToTables extends Migration
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
+      $table->foreign('monthyear_id')
+        ->references('id')
+        ->on('monthyears')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('schoolyear_id')
+        ->references('id')
+        ->on('schoolyears')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
       $table->foreign('created_user')
         ->references('id')
         ->on('users')
@@ -87,6 +99,12 @@ class AddForeignKeysToTables extends Migration
       $table->foreign('yearverage_id')
         ->references('id')
         ->on('yearverages')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('monthyear_id')
+        ->references('id')
+        ->on('monthyears')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
@@ -299,6 +317,12 @@ class AddForeignKeysToTables extends Migration
       $table->foreign('typemark_id')
         ->references('id')
         ->on('typemarks')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('monthyear_id')
+        ->references('id')
+        ->on('monthyears')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
@@ -564,6 +588,13 @@ class AddForeignKeysToTables extends Migration
     });
 
     Schema::table('yearverages', function (Blueprint $table) {
+
+      $table->foreign('monthyear_id')
+        ->references('id')
+        ->on('monthyears')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
       $table->foreign('schoolyear_id')
         ->references('id')
         ->on('schoolyears')
@@ -702,6 +733,12 @@ class AddForeignKeysToTables extends Migration
 
     Schema::table('class_disciplines', function (Blueprint $table) {
 
+      $table->foreign('schoolyear_id')
+        ->references('id')
+        ->on('schoolyears')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
       $table->foreign('classroom_id')
         ->references('id')
         ->on('classrooms')
@@ -789,6 +826,62 @@ class AddForeignKeysToTables extends Migration
       $table->foreign('exam_id')
         ->references('id')
         ->on('exams')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('monthyears', function (Blueprint $table) {
+
+      $table->foreign('schoolyear_id')
+        ->references('id')
+        ->on('schoolyears')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('schoolevents', function (Blueprint $table) {
+
+      $table->foreign('school_id')
+        ->references('id')
+        ->on('schools')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 

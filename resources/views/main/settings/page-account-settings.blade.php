@@ -47,32 +47,34 @@
                                         aria-labelledby="account-pill-general" aria-expanded="true">
                                         <div class="media">
                                             <a href="javascript: void(0);">
-                                                <img src="{{asset('images/portrait/small/avatar-s-16.jpg')}}"
+                                                <img src="@if($current->photo == NULL && $current->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($current->photo == NULL && $current->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$current->photo}} @endif"
                                                     class="rounded mr-75" alt="profile image" height="64" width="64">
                                             </a>
                                             <div class="media-body mt-25">
                                                 <div
                                                     class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                        <label for="select-files" class="btn btn-sm btn-light-primary ml-50 mb-50 mb-sm-0">
+                                                        <label class="btn btn-sm btn-light-primary ml-50 mb-50 mb-sm-0">
                                                           <span>Upload new photo</span>
 
                                                         </label>
                                                     <button class="btn btn-sm btn-light-secondary ml-50">Reset</button>
                                                 </div>
 
-                                                <p class="text-muted ml-1 mt-50"><small><input id="select-files" type="file" ></small></p>
+                                                <p class="text-muted ml-1 mt-50"><small><input id="select-files"  type="file" ></small></p>
                                             </div>
                                         </div>
                                         <hr>
-                                        <form novalidate>
+                                        <form action="{{route('settings-update')}}" method="POST">
+                                          @csrf
+                                          {{method_field('put')}}
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <div class="controls">
                                                             <label>Theme</label>
-                                                            <input id="select-files" type="hidden" value="{{$setting->theme}}">
+                                                            <input id="select-files" type="hidden" value="{{$setting->theme}}" >
                                                             <div class="form-group">
-                                                              <select class="form-control" id="themeSelect">
+                                                              <select class="form-control" id="themeSelect" name="theme" required>
                                                                 <option value="semi-dark">semi-dark</option>
                                                                 <option value="dark">dark</option>
                                                                 <option value="light">light</option>
@@ -85,9 +87,9 @@
                                                     <div class="form-group">
                                                         <div class="controls">
                                                             <label>Langage</label>
-                                                            <input id="select-files" type="hidden" value="{{$setting->language}}">
+                                                            <input id="select-files" type="hidden" value="{{$setting->language}}" >
                                                             <div class="form-group">
-                                                              <select class="form-control" id="LangageSelect">
+                                                              <select class="form-control" id="LangageSelect" name="language" required>
                                                                 <option value="1">Français</option>
                                                                 <option value="2">Anglais</option>
                                                               </select>
@@ -106,7 +108,7 @@
                                                             @endif
                                                             <div class="controls">
                                                               <div class="form-group">
-                                                                <select class="form-control" id="LastSelect">
+                                                                <select class="form-control" id="LastSelect" name="type_monthverage" required>
                                                                   <option value="0">Trimestre</option>
                                                                   <option value="1">Semestre</option>
                                                                 </select>

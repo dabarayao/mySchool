@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExamsTable extends Migration
+class CreateMonthyearsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateExamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('monthyears', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
-            $table->boolean('type');
-            $table->date('date');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->integer('schoolyear_id');
             $table->integer('created_user');
             $table->integer('updated_user');
             $table->integer('deleted_user')->nullable();
@@ -33,6 +33,6 @@ class CreateExamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('monthyears');
     }
 }

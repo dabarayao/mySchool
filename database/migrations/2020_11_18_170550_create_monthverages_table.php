@@ -18,6 +18,7 @@ class CreateMonthveragesTable extends Migration
       $table->double('value');
       $table->double('congrat');
       $table->integer('coef');
+      $table->integer('monthyear_id');
       $table->integer('schoolyear_id');
       $table->integer('yearverage_id');
       $table->integer('created_user');

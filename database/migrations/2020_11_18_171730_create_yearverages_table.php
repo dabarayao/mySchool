@@ -17,6 +17,7 @@ class CreateYearveragesTable extends Migration
       $table->id();
       $table->double('value');
       $table->string('congrat', 100);
+      $table->integer('monthyear_id');
       $table->integer('schoolyear_id');
       $table->integer('yearverage_id');
       $table->integer('created_user');

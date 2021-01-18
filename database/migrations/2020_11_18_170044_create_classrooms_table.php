@@ -18,7 +18,7 @@ class CreateClassroomsTable extends Migration
       $table->string('label');
       $table->integer('nb_student');
       $table->integer('nb_teacher');
-      $table->boolean('isexam');
+      $table->boolean('isexam')->default(0);
       $table->integer('school_id');
       $table->integer('exam_id');
       $table->integer('created_user');

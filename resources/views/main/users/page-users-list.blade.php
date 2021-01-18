@@ -209,11 +209,11 @@
                       <div class="modal-footer">
                         <button type="reset" class="btn btn-light-secondary" >
                           <i class="bx bx-x d-block d-sm-none"></i>
-                          <span class="d-none d-sm-block">Réinitialiser</span>
+                          <span class="d-none d-sm-block"> <i class='bx bx-eraser'></i> Effacer</span>
                         </button>
                         <button type="submit" class="btn btn-primary ml-1" >
                           <i class="bx bx-check d-block d-sm-none"></i>
-                          <span class="d-none d-sm-block">Envoyer</span>
+                          <span class="d-none d-sm-block"> Envoyer <i class='bx bx-send' ></i> </span>
                         </button>
                       </div>
                     </div>
@@ -417,11 +417,11 @@
                       <div class="modal-footer">
                         <button type="reset" class="btn btn-light-secondary" >
                           <i class="bx bx-x d-block d-sm-none"></i>
-                          <span class="d-none d-sm-block">Réinitialiser</span>
+                          <span class="d-none d-sm-block"> Reset <i class='bx bx-eraser'></i> </span>
                         </button>
                         <button type="submit" class="btn btn-primary ml-1" >
                           <i class="bx bx-check d-block d-sm-none"></i>
-                          <span class="d-none d-sm-block">Envoyer</span>
+                          <span class="d-none d-sm-block"> Send <i class='bx bx-send'></i> </span>
                         </button>
                       </div>
                     </div>

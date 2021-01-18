@@ -4,6 +4,7 @@ namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
 use App\Setting;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +24,23 @@ class SettingController extends Controller
      */
     public function index()
     {
+            // auth connected state code sample
+        if (Auth::check()) {
+          $util = User::find(Auth::id());
+          if ($util->state == false); {
+            $util->state = true;
+            $util->save();
+          }
+        }
+
         $setting = Setting::find(Auth::id());
-        return view('main.settings.page-account-settings')->with('setting', $setting);
+
+
+        //code for root user or superuser
+        $current = User::find(Auth::id());
+        //code for root user or superuser
+
+        return view('main.settings.page-account-settings')->with(['setting' => $setting, 'current' => $current]);
     }
 
     /**
@@ -67,7 +83,7 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
-        //
+
     }
 
     /**
@@ -79,7 +95,25 @@ class SettingController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
-        //
+
+      /* sif($request->hasFile('photo'))
+        {
+        //code to store an resize the image
+        $files = $request->file('photo');
+
+        $picture = Storage::putFile('public/users/', $files);
+        $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
+        $path = Storage::url($picture);
+        } */
+
+        $setting = Setting::find(Auth::id());
+        $setting->theme = $request->theme;
+        $setting->language = $request->language;
+        $setting->type_monthverage = $request->type_monthverage;
+        $setting->updated_user = Auth::id();
+        $setting->save();
+
+        return redirect()->route('settings-display');
     }
 
     /**

@@ -17,6 +17,10 @@ class CreateClassDisciplinesTable extends Migration
             $table->integer('classroom_id');
             $table->integer('discipline_id');
             $table->integer('nb_student');
+            $table->integer('day');
+            $table->time('start_hour');
+            $table->time('end_hour');
+            $table->integer('schoolyear_id');
             $table->integer('created_user');
             $table->integer('updated_user');
             $table->integer('deleted_user')->nullable();
