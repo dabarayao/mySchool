@@ -4,7 +4,7 @@
 
 @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
 @section('title','Inscription')
-@else 
+@else
 @section('title','Register')
 @endif
 
@@ -25,11 +25,11 @@
         <div class="card bg-authentication mb-0">
           <div class="row m-0">
             <!-- register section left -->
-            <div class="col-md-6 col-12 px-0">
-              <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+            <div class="col-md-6 col-12 px-0"  style="background: white;">
+              <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center" style="background: url({{asset('images/logo/logo200x200.png')}}) top left no-repeat; background-size: 20%">
                 <div class="card-header pb-1">
                   <div class="card-title">
-                    <h4 class="text-center mb-2">Inscription</h4>
+                    <h5 class="text-center mb-2  font-weight-bold">Inscription</h5>
                   </div>
                 </div>
                 <div class="text-center">
@@ -134,11 +134,11 @@
         <div class="card bg-authentication mb-0">
           <div class="row m-0">
             <!-- register section left -->
-            <div class="col-md-6 col-12 px-0">
-              <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+            <div class="col-md-6 col-12 px-0" style="background: white;">
+              <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center"  style="background: url({{asset('images/logo/logo200x200.png')}}) top left no-repeat; background-size: 20%">
                 <div class="card-header pb-1">
                   <div class="card-title">
-                    <h4 class="text-center mb-2">Sign Up</h4>
+                    <h5 class="text-center mb-2 font-weight-bold">Sign Up</h5>
                   </div>
                 </div>
                 <div class="text-center">

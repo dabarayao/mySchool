@@ -3,7 +3,7 @@
 
 @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
 @section('title','Connexion')
-@else 
+@else
 @section('title','Login')
 @endif
 
@@ -24,17 +24,18 @@
         <div class="card bg-authentication mb-0">
           <div class="row m-0">
             <!-- left section-login -->
-            <div class="col-md-6 col-12 px-0">
-              <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+            <div class="col-md-6 col-12 px-0"  style="background: white;">
+              <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center" style="background: url({{asset('images/logo/logo200x200.png')}}) top left no-repeat; background-size: 20%">
                 <div class="card-header pb-1">
                   <div class="card-title">
-                    <h4 class="text-center mb-2">Bienvenue sur mySchool</h4>
+                    <h5 class="text-center mb-2 font-weight-bold"">Bienvenue sur mySchool</h5>
                   </div>
                 </div>
                 <div class="card-content">
                   <div class="card-body">
                     <div class="divider">
                       <div class="divider-text text-uppercase text-muted">
+
                         <small>S'il vous plait entrez vos données pour vous connecter</small>
                       </div>
                     </div>
@@ -110,11 +111,11 @@
         <div class="card bg-authentication mb-0">
           <div class="row m-0">
             <!-- left section-login -->
-            <div class="col-md-6 col-12 px-0">
-              <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+            <div class="col-md-6 col-12 px-0"  style="background: white;">
+              <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center"  style="background: url({{asset('images/logo/logo200x200.png')}}) top left no-repeat; background-size: 20%">
                 <div class="card-header pb-1">
                   <div class="card-title">
-                    <h4 class="text-center mb-2">Welcome Back on mySchool</h4>
+                    <h5 class="text-center mb-2 font-weight-bold">Welcome Back on mySchool</h5>
                   </div>
                 </div>
                 <div class="card-content">

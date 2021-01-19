@@ -47,14 +47,14 @@ License: You must have a valid license purchased only from themeforest(the above
 
   <!-- BEGIN: Body-->
   <body class="vertical-layout 1-column navbar-sticky {{$configData['bodyCustomClass']}} footer-static blank-page
-  @if($configData['theme'] === 'dark'){{'dark-layout'}} @elseif($configData['theme'] === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+  @if($configData['theme'] === 'dark'){{'dark-layout'}} @elseif($configData['theme'] === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif" data-open="click" data-menu="vertical-menu-modern" data-col="1-column" style="background: url({{asset('images/authent/backcover.jpg')}}) center no-repeat; background-size: cover;">
     <!-- BEGIN: Content-->
     <div class="app-content content">
       <div class="content-overlay"></div>
       <div class="content-wrapper">
         <div class="content-header row">
         </div>
-        <div class="content-body">
+        <div class="content-body" >
          @yield('content')
         </div>
       </div>

@@ -72,7 +72,8 @@
                   </div>
                   <!-- users edit media object ends -->
 
-                  <div v-if="photo"><input type="file" id="edit_file" name="photo" ><br><br></div>
+                  <div v-if="photo"><input type="file" id="edit_file" name="photo" @change="inputFileCheck"><br>
+                    <br></div>
 
                   <!-- users edit account form start -->
 
@@ -80,7 +81,7 @@
                           <div class="col-12 col-sm-6">
                               <div class="form-group">
                                   <div class="controls">
-                                      <label>Nom</label>
+                                      <label>Nom <settings></settings></label>
                                       <input type="text" class="form-control" placeholder="Nom"
                                           value="{{$user->familyname}}" required
                                           data-validation-required-message="This username field is required" name="familyname">

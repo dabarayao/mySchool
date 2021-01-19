@@ -8,11 +8,7 @@
 
 window.Vue = require('vue');
 
-import Vue from 'vue';
 
-import $ from 'jquery';
-window.jQuery = $;
-window.$ = $;
 
 
 /**
@@ -27,6 +23,7 @@ window.$ = $;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import settings from './components/SettingsPhoto.vue'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,7 +35,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 
 /* pager-users-list add form validation */
-const user_add = new Vue({
+var user_add = new Vue({
   el: '#user_add_modal',
   data: {
     password: 'bonjour'
@@ -92,7 +89,7 @@ const user_add = new Vue({
 });
 
 /* pager-users-edit edit form */
-const user_add_edit = new Vue({
+var user_add_edit = new Vue({
   el: '#user_edit_modal',
   data: {
     photo: false,
@@ -125,7 +122,7 @@ const user_add_edit = new Vue({
     },
     inputFileCheck: function (e) {
 
-        var uploadField = document.getElementById("photo-icon");
+        var uploadField = document.getElementById("edit_file");
 
       if (uploadField.files[0].size > 2097152) {
 
@@ -184,3 +181,15 @@ const user_add_edit = new Vue({
 
   }
 });
+
+var user_settings = new Vue({
+  el: '#user_setting',
+  mounted() {
+
+  },
+  components: {
+    settings
+  }
+});
+
+

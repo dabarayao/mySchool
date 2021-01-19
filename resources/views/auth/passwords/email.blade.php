@@ -3,7 +3,7 @@
 
 @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
 @section('title','Mot de passe oublié')
-@else 
+@else
 @section('title','Forgot Password')
 @endif
 
@@ -23,11 +23,11 @@
     <div class="card bg-authentication mb-0">
       <div class="row m-0">
         <!-- left section-forgot password -->
-        <div class="col-md-6 col-12 px-0">
-          <div class="card disable-rounded-right mb-0 p-2">
+        <div class="col-md-6 col-12 px-0" style="background: white;">
+          <div class="card disable-rounded-right mb-0 p-2"  style="background: url({{asset('images/logo/logo200x200.png')}}) top left no-repeat; background-size: 20%">
             <div class="card-header pb-1">
               <div class="card-title">
-                <h4 class="text-center mb-2">Avez-vous oublié votre mot de passe?</h4>
+                <h5 class="text-center mb-2">Mot de passe oublié?</h5>
               </div>
             </div>
             <div class="form-group d-flex justify-content-between align-items-center mb-2">
@@ -93,11 +93,11 @@
     <div class="card bg-authentication mb-0">
       <div class="row m-0">
         <!-- left section-forgot password -->
-        <div class="col-md-6 col-12 px-0">
-          <div class="card disable-rounded-right mb-0 p-2">
+        <div class="col-md-6 col-12 px-0"  style="background: white;">
+          <div class="card disable-rounded-right mb-0 p-2"  style="background: url({{asset('images/logo/logo200x200.png')}}) top left no-repeat; background-size: 20%">
             <div class="card-header pb-1">
               <div class="card-title">
-                <h4 class="text-center mb-2">Forgot Password?</h4>
+                <h5 class="text-center mb-2">Forgot Password?</h5>
               </div>
             </div>
             <div class="form-group d-flex justify-content-between align-items-center mb-2">
