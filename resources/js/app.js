@@ -152,7 +152,6 @@ var user_add_edit = new Vue({
 
     }
 
-
   },
   mounted() {
 
@@ -184,11 +183,22 @@ var user_add_edit = new Vue({
 
 var user_settings = new Vue({
   el: '#user_setting',
-  mounted() {
-
-  },
   components: {
     settings
+  },
+  mounted() {
+
+    var t = document.getElementById("themeSelect");
+    var th = document.getElementById("hide_theme");
+    t.value = th.value;
+
+    var l = document.getElementById("langageSelect");
+    var lh = document.getElementById("hide_langage");
+    l.value = lh.value;
+
+
+
+
   }
 });
 

@@ -1,3 +1,14 @@
+<?php
+use App\User;
+use App\Setting;
+use Illuminate\Support\Facades\Auth;
+
+
+$user = User::find(Auth::id());
+$setting = Setting::find($user->id);
+
+?>
+
 <!DOCTYPE html>
 <!--
 Template Name: Frest HTML Admin Template
@@ -47,7 +58,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
   <!-- BEGIN: Body-->
   <body class="vertical-layout 1-column navbar-sticky {{$configData['bodyCustomClass']}} footer-static blank-page
-  @if($configData['theme'] === 'dark'){{'dark-layout'}} @elseif($configData['theme'] === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif" data-open="click" data-menu="vertical-menu-modern" data-col="1-column" style="background: url({{asset('images/authent/backcover.jpg')}}) center no-repeat; background-size: cover;">
+  @if($setting->theme === 'dark'){{'dark-layout'}} @elseif($setting->theme === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif" data-open="click" data-menu="vertical-menu-modern" data-col="1-column" style="background: url({{asset('images/authent/backcover.jpg')}}) center no-repeat; background-size: cover;">
     <!-- BEGIN: Content-->
     <div class="app-content content">
       <div class="content-overlay"></div>

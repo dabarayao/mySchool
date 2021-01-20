@@ -1,6 +1,18 @@
+<?php
+use App\User;
+use App\Setting;
+use Illuminate\Support\Facades\Auth;
+
+
+$user = User::find(Auth::id());
+$setting = Setting::find($user->id);
+
+?>
+
+
 {{-- vertical-menu --}}
 @if($configData['mainLayoutType'] == 'vertical-menu')
-<div class="main-menu menu-fixed @if($configData['theme'] === 'light') {{"menu-light"}} @else {{'menu-dark'}} @endif menu-accordion menu-shadow" data-scroll-to-active="true">
+<div class="main-menu menu-fixed @if($setting->theme === 'light') {{"menu-light"}} @else {{'menu-dark'}} @endif menu-accordion menu-shadow" data-scroll-to-active="true">
       <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
       <li class="nav-item mr-auto">
@@ -9,11 +21,8 @@
             <img src="{{asset('images/logo/logo.png')}}" class="logo" alt="">
           </div>
           <h2 class="brand-text mb-0">
-            @if(!empty($configData['templateTitle']) && isset($configData['templateTitle']))
-            {{$configData['templateTitle']}}
-            @else
-            Frest
-            @endif
+            mySchool
+
           </h2>
           </a>
       </li>
@@ -59,7 +68,7 @@
 {{-- horizontal-menu --}}
 @if($configData['mainLayoutType'] == 'horizontal-menu')
 <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-light navbar-without-dd-arrow
-@if($configData['navbarType'] === 'navbar-static') {{'navbar-sticky'}} @endif" role="navigation" data-menu="menu-wrapper">
+  @if($configData['navbarType'] === 'navbar-static') {{'navbar-sticky'}} @endif" role="navigation" data-menu="menu-wrapper">
   <div class="navbar-header d-xl-none d-block">
       <ul class="nav navbar-nav flex-row">
       <li class="nav-item mr-auto">
@@ -68,11 +77,7 @@
             <img src="{{asset('images/logo/logo.png')}}" class="logo" alt="">
           </div>
           <h2 class="brand-text mb-0">
-            @if(!empty($configData['templateTitle']) && isset($configData['templateTitle']))
-            {{$configData['templateTitle']}}
-            @else
             mySchool
-            @endif
           </h2>
           </a>
       </li>
@@ -118,11 +123,7 @@
           <img src="{{asset('images/logo/logo.png')}}" class="logo" alt="">
         </div>
         <h2 class="brand-text mb-0">
-          @if(!empty($configData['templateTitle']) && isset($configData['templateTitle']))
-          {{$configData['templateTitle']}}
-          @else
-          Frest
-          @endif
+          mySchool
         </h2>
       </a>
     </li>

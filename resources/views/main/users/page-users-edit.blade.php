@@ -81,7 +81,7 @@
                           <div class="col-12 col-sm-6">
                               <div class="form-group">
                                   <div class="controls">
-                                      <label>Nom <settings></settings></label>
+                                      <label>Nom </label>
                                       <input type="text" class="form-control" placeholder="Nom"
                                           value="{{$user->familyname}}" required
                                           data-validation-required-message="This username field is required" name="familyname">

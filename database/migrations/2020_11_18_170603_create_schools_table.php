@@ -26,6 +26,7 @@ class CreateSchoolsTable extends Migration
       $table->string('photo', 256);
       $table->date('building_date');
       $table->string('funder', 256);
+      $table->boolean('type_monthyear')->default(0);
       $table->boolean('status')->default(1)->nullable();
       $table->integer('created_user');
       $table->integer('updated_user');

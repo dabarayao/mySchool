@@ -1,7 +1,18 @@
+<?php
+use App\User;
+use App\Setting;
+use Illuminate\Support\Facades\Auth;
+
+
+$user = User::find(Auth::id());
+$setting = Setting::find($user->id);
+
+?>
+
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu-modern 2-columns
 @if($configData['isMenuCollapsed'] == true){{'menu-collapsed'}}@endif
-@if($configData['theme'] === 'dark'){{'dark-layout'}} @elseif($configData['theme'] === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif
+@if($setting->theme === 'dark'){{'dark-layout'}} @elseif($setting->theme === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif
 @if($configData['isContentSidebar'] === true) {{'content-left-sidebar'}} @endif @if(isset($configData['navbarType'])){{$configData['navbarType']}}@endif
 @if(isset($configData['footerType'])) {{$configData['footerType']}} @endif
 {{$configData['bodyCustomClass']}}

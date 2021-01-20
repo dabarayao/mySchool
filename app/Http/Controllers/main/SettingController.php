@@ -7,6 +7,8 @@ use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SettingController extends Controller
 {
@@ -93,10 +95,10 @@ class SettingController extends Controller
      * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request)
     {
 
-      /* sif($request->hasFile('photo'))
+        if($request->hasFile('photo'))
         {
         //code to store an resize the image
         $files = $request->file('photo');
@@ -104,12 +106,16 @@ class SettingController extends Controller
         $picture = Storage::putFile('public/users/', $files);
         $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
         $path = Storage::url($picture);
-        } */
+
+        $user = User::find(Auth::id());
+        $user->photo = $path;
+        $user->save();
+
+        }
 
         $setting = Setting::find(Auth::id());
         $setting->theme = $request->theme;
         $setting->language = $request->language;
-        $setting->type_monthverage = $request->type_monthverage;
         $setting->updated_user = Auth::id();
         $setting->save();
 

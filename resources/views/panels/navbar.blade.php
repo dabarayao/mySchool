@@ -1,8 +1,8 @@
 <?php
 
 
-use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 
 $user = User::find(Auth::id());

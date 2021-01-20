@@ -45,23 +45,24 @@
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="account-vertical-general"
                                         aria-labelledby="account-pill-general" aria-expanded="true">
-                                        <div class="media">
-                                            <a href="javascript: void(0);">
-                                                <img src="@if($current->photo == NULL && $current->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($current->photo == NULL && $current->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$current->photo}} @endif"
-                                                    class="rounded mr-75" alt="profile image" height="64" width="64">
-                                            </a>
-                                            <settings></settings>
-                                        </div>
-                                        <hr>
-                                        <form action="{{route('settings-update')}}" method="POST">
-                                          @csrf
-                                          {{method_field('put')}}
+                                        <form action="{{route('settings-update')}}" method="POST" enctype="multipart/form-data">
+                                              @csrf
+                                              {{method_field('put')}}
+                                            <div class="media">
+                                                <a href="javascript: void(0);">
+                                                    <img src="@if($current->photo == NULL && $current->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($current->photo == NULL && $current->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$current->photo}} @endif"
+                                                        class="rounded mr-75" alt="profile image" height="64" width="64">
+                                                </a>
+                                                <settings></settings>
+                                            </div>
+                                            <hr>
+
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <div class="controls">
                                                             <label>Theme</label>
-                                                            <input id="select-files" type="hidden" value="{{$setting->theme}}" >
+                                                            <input id="hide_theme" type="hidden" value="{{$setting->theme}}" >
                                                             <div class="form-group">
                                                               <select class="form-control" id="themeSelect" name="theme" required>
                                                                 <option value="semi-dark">semi-dark</option>
@@ -76,47 +77,14 @@
                                                     <div class="form-group">
                                                         <div class="controls">
                                                             <label>Langage</label>
-                                                            <input id="select-files" type="hidden" value="{{$setting->language}}" >
+                                                            <input type="hidden" id="hide_langage" value="{{$setting->language}}" >
                                                             <div class="form-group">
-                                                              <select class="form-control" id="LangageSelect" name="language" required>
+                                                              <select class="form-control" id="langageSelect" name="language" required>
                                                                 <option value="1">Français</option>
                                                                 <option value="2">Anglais</option>
                                                               </select>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <div class="controls">
-                                                            <label>Durée annuel</label>
-                                                            @if($setting->type_monthverage == false)
-                                                            <input id="select-files" type="hidden" value="0">
-                                                            @else
-                                                            <input id="select-files" type="hidden" value="1">
-                                                            @endif
-                                                            <div class="controls">
-                                                              <div class="form-group">
-                                                                <select class="form-control" id="LastSelect" name="type_monthverage" required>
-                                                                  <option value="0">Trimestre</option>
-                                                                  <option value="1">Semestre</option>
-                                                                </select>
-                                                              </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="alert bg-rgba-warning alert-dismissible mb-2"
-                                                        role="alert">
-                                                        <button type="button" class="close" data-dismiss="alert"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                        <p class="mb-0">
-                                                            Your email is not confirmed. Please check your inbox.
-                                                        </p>
-                                                        <a href="javascript: void(0);">Resend confirmation</a>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">

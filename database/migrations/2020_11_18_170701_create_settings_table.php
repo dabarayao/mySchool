@@ -15,9 +15,9 @@ class CreateSettingsTable extends Migration
   {
     Schema::create('settings', function (Blueprint $table) {
       $table->id();
-      $table->string('theme', 100)->nullable();
-      $table->string('language', 100)->nullable();
-      $table->boolean('type_monthverage')->default(0);
+      $table->string('theme', 100);
+      $table->string('language', 100);
+      $table->string('navbarcolor', 100);
       $table->integer('user_id');
       $table->integer('created_user');
       $table->integer('updated_user');

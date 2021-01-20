@@ -1,3 +1,8 @@
+{{--
+
+
+
+
 <div class="customizer-content p-2">
   <h4 class="text-uppercase mb-0">Theme Customizer</h4>
   <small>Customize & Preview in Real Time</small>
@@ -87,12 +92,12 @@
   <div id="customizer-navbar-colors">
     <h5>Navbar Colors</h5>
     <ul class="list-inline unstyled-list">
-      <li class="color-box bg-white border selected" data-navbar-default=""></li>
-      <li class="color-box bg-primary" data-navbar-color="bg-primary"></li>
+      <li class="color-box bg-white border selected" id="whitenav" data-navbar-default=""></li>
+      <li class="color-box bg-primary" id="bluenav" data-navbar-color="bg-primary"></li>
       <li class="color-box bg-success" data-navbar-color="bg-success"></li>
       <li class="color-box bg-danger" data-navbar-color="bg-danger"></li>
       <li class="color-box bg-info" data-navbar-color="bg-info"></li>
-      <li class="color-box bg-warning" data-navbar-color="bg-warning"></li>
+      <li class="color-box bg-warning" id="yellownav" data-navbar-color="bg-warning"></li>
       <li class="color-box bg-dark" data-navbar-color="bg-dark"></li>
     </ul>
     <small><strong>Note :</strong> This option with work only on sticky navbar when you scroll page.</small>
@@ -190,3 +195,5 @@
   </div>
   <!-- Hide Scroll To Top Ends-->
 </div>
+
+--}}
