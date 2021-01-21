@@ -17,7 +17,6 @@ class CreateSettingsTable extends Migration
       $table->id();
       $table->string('theme', 100);
       $table->string('language', 100);
-      $table->string('navbarcolor', 100);
       $table->integer('user_id');
       $table->integer('created_user');
       $table->integer('updated_user');

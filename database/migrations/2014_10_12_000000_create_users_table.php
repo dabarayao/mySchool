@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
       $table->string('address')->nullable();
       $table->string('job', 100)->nullable();
       $table->boolean('state')->default(0)->nullable();
+      $table->integer('logtime')->default(0);
       $table->boolean('status')->default(0)->nullable();
       $table->boolean('root')->default(0);
       $table->integer('school_id')->nullable();
