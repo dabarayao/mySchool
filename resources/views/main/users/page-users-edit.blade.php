@@ -1,10 +1,13 @@
 @extends('layouts.contentLayoutMaster')
 
-@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@if($setting->language == 1)
+
+  @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en'))
 
   {{-- page title --}}
   @section('title','Modifier utilisateur')
 
+  @endif
 @else
 
   {{-- page title --}}
@@ -28,12 +31,15 @@
 @section('content')
 
 
-@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@if($setting->language == 1)
+
+  @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en'))
 
     {{-- FRENCH VERSION --}}
 
   <!-- users edit start -->
-  <section class="users-edit" id="user_edit_modal">
+  <section class="users-edit" id="user_edit_form">
+    <input type="hidden" id="settin_lang" value="{{$setting->language}}">
     <div class="card">
       <div class="card-content">
         <div class="card-body">
@@ -65,14 +71,14 @@
                       <div class="media-body">
                           <h4 class="media-heading">{{$user->familyname}} {{$user->givenname}}</h4>
                           <div class="col-12 px-0 d-flex">
-                              <a href="#" class="btn btn-sm btn-primary mr-25" id="btnUp" @click="displayUploader">@{{fire[0]}}</a>
+                              <a href="#" class="btn btn-sm btn-primary mr-25" id="btnUp" @click="displayUploader">@{{fire}}</a>
 
                           </div>
                       </div>
                   </div>
                   <!-- users edit media object ends -->
 
-                  <div v-if="photo"><input type="file" id="edit_file" name="photo" @change="inputFileCheck"><br>
+                  <div v-if="photo"><input type="file" data-validation-required-message="This image field is required" id="edit_file" name="photo" accept="image/*" @change="inputFileCheck"><br>
                     <br></div>
 
                   <!-- users edit account form start -->
@@ -83,40 +89,40 @@
                                   <div class="controls">
                                       <label>Nom </label>
                                       <input type="text" class="form-control" placeholder="Nom"
-                                          value="{{$user->familyname}}" required
-                                          data-validation-required-message="This username field is required" name="familyname">
+                                          value="{{$user->familyname}}" required maxlength="256"
+                                          data-validation-required-message="cet champ nom est obligatoire" name="familyname">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="controls">
                                       <label>Prénoms</label>
                                       <input type="text" class="form-control" placeholder="Prénoms"
-                                          value="{{$user->givenname}}" required
-                                          data-validation-required-message="This name field is required" name="givenname">
+                                          value="{{$user->givenname}}" required maxlength="256"
+                                          data-validation-required-message="cet champ prénoms est obligatoire" name="givenname">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="controls">
                                       <label>E-mail</label>
                                       <input type="email" class="form-control" placeholder="Email"
-                                          value="{{$user->email}}" required
-                                          data-validation-required-message="This email field is required" name="email">
+                                          value="{{$user->email}}" required maxlength="256"
+                                          data-validation-required-message="cet email est obligatoire" name="email">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="controls">
                                       <label>Mot de passe</label>
                                       <input type="password" id="password-icon" @keyup="passUp" class="form-control" placeholder="Mot de passe"
-                                          required
-                                          data-validation-required-message="This email field is required" name="password">
+                                          required minlength="8" maxlength="100"
+                                          data-validation-required-message="cet champ mot de passe est obligatoire" name="password">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="controls">
                                       <label>Confirmer le mot de passe</label>
                                       <input type="password" id="confirm-password-icon" @keyup="passUp" class="form-control" placeholder="Confirmer le mot de passe"
-                                          required
-                                          data-validation-required-message="This email field is required" name="confirm password">
+                                          required minlength="8" maxlength="100"
+                                          data-validation-required-message="cet champ confirmer mot de passe est obligatoire" name="confirm password">
                                           <div class="invalid-feedback">
                                             Les mots de passe ne correspondent pas.
                                           </div>
@@ -149,9 +155,9 @@
                               <div class="form-group">
                                 <div class="controls">
                                   <label>Téléphone</label>
-                                  <input type="text" class="form-control" placeholder="Téléphone"
-                                      value="{{$user->phone}}" required
-                                      data-validation-required-message="This email field is required" name="phone">
+                                  <input type="text" class="form-control maskField" placeholder="Téléphone"
+                                      value="{{$user->phone}}" required  maxlength="19" mask="999-999-999-999-999"
+                                      data-validation-required-message="cet champ téléphone est obligatoire" name="phone">
                                 </div>
                             </div>
                           </div>
@@ -286,23 +292,23 @@
                             <label>Date de naissance</label>
                             <input type="date" class="form-control birthdate-picker" required
                                 placeholder="Date de naissance" value="{{$user->birthdate}}"
-                                data-validation-required-message="This birthdate field is required" name="birthdate">
+                                data-validation-required-message="cet champ date de naissance  est obligatoire" name="birthdate">
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="controls position-relative">
                             <label>Adresse</label>
-                            <input type="text" class="form-control birthdate-picker" required
+                            <input type="text" class="form-control birthdate-picker" required maxlength="100"
                                 placeholder="Adresse" value="{{$user->address}}"
-                                data-validation-required-message="This birthdate field is required" name="address">
+                                data-validation-required-message="cet champ addresse est obligatoire" name="address">
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="controls position-relative">
                             <label>Profession</label>
-                            <input type="text" class="form-control birthdate-picker" required
+                            <input type="text" class="form-control birthdate-picker" required maxlength="100"
                                 placeholder="Profession" value="{{$user->job}}"
-                                data-validation-required-message="This birthdate field is required" name="job">
+                                data-validation-required-message="cet champ profession est obligatoire" name="job">
                           </div>
                         </div>
                       </div>
@@ -328,12 +334,15 @@
 
     {{-- FRENCH VERSION --}}
 
+  @endif
+
 @else
 
     {{-- ENGLISH VERSION --}}
 
   <!-- users edit start -->
-  <section class="users-edit" id="user_edit_modal">
+  <section class="users-edit" id="user_edit_form">
+    <input type="hidden" id="settin_lang" value="{{$setting->language}}">
     <div class="card">
       <div class="card-content">
         <div class="card-body">
@@ -351,7 +360,7 @@
                 </a>
             </li>
           </ul>
-          <form method="POST" action="{{route('users-update', $user->id)}}" id="user_edit_modal_form" enctype="multipart/form-data"  @submit="confCheck">
+          <form method="POST" novalidate action="{{route('users-update', $user->id)}}" id="user_edit_modal_form" enctype="multipart/form-data"  @submit="confCheck">
             @csrf
             {{ method_field('PUT') }}
             <div class="tab-content">
@@ -365,14 +374,14 @@
                       <div class="media-body">
                           <h4 class="media-heading">{{$user->familyname}} {{$user->givenname}}</h4>
                           <div class="col-12 px-0 d-flex">
-                              <a href="#" class="btn btn-sm btn-primary mr-25" id="btnUp" @click="displayUploader">@{{fire[1]}}</a>
+                              <a href="#" class="btn btn-sm btn-primary mr-25" id="btnUp" @click="displayUploader">@{{fire}}</a>
 
                           </div>
                       </div>
                   </div>
                   <!-- users edit media object ends -->
 
-                  <div v-if="photo"><input type="file" id="edit_file" name="photo" ><br><br></div>
+                  <div v-if="photo"><input type="file" data-validation-required-message="This image field is required" id="edit_file" name="photo"  accept="image/*" @change="inputFileCheck"><br><br></div>
 
                   <!-- users edit account form start -->
 
@@ -383,7 +392,7 @@
                                       <label>Familyname</label>
                                       <input type="text" class="form-control" placeholder="Familyname"
                                           value="{{$user->familyname}}" required maxlength="256"
-                                          data-validation-required-message="This username field is required" name="familyname">
+                                          data-validation-required-message="This familyname field is required" name="familyname">
                                   </div>
                               </div>
                               <div class="form-group">
@@ -391,7 +400,7 @@
                                       <label>Givenname</label>
                                       <input type="text" class="form-control" placeholder="Givenname"
                                           value="{{$user->givenname}}" required maxlength="256"
-                                          data-validation-required-message="This name field is required" name="givenname">
+                                          data-validation-required-message="This givenname field is required" name="givenname">
                                   </div>
                               </div>
                               <div class="form-group">
@@ -407,7 +416,7 @@
                                       <label>Password</label>
                                       <input type="password" id="password-icon" @keyup="passUp" class="form-control" placeholder="Password"
                                           required minlength="8" maxlength="100"
-                                          data-validation-required-message="This email field is" required name="password">
+                                          data-validation-required-message="This password field is" required name="password">
                                   </div>
                               </div>
                               <div class="form-group">
@@ -415,7 +424,7 @@
                                       <label>Confirm Password</label>
                                       <input type="password" id="confirm-password-icon" @keyup="passUp" class="form-control" placeholder="Confirm Password"
                                           required minlength="8" maxlength="100"
-                                          data-validation-required-message="This email field is" required name="confirm password">
+                                          data-validation-required-message="This confirm password field is" required name="confirm password">
                                           <div class="invalid-feedback">
                                             The Password doesn't match
                                           </div>
@@ -448,9 +457,9 @@
                               <div class="form-group">
                                 <div class="controls">
                                   <label>Phone</label>
-                                  <input type="text" class="form-control" placeholder="Téléphone"
-                                      value="{{$user->phone}}" required maxlength="19"
-                                      data-validation-required-message="This email field is required" name="phone">
+                                  <input type="text" class="form-control maskField" placeholder="Téléphone"
+                                      value="{{$user->phone}}" required maxlength="19" mask="999-999-999-999-999"
+                                      data-validation-required-message="This phone field is required" name="phone">
                                 </div>
                             </div>
                           </div>
@@ -593,7 +602,7 @@
                             <label>Address</label>
                             <input type="text" class="form-control birthdate-picker" required
                                 placeholder="Adresse" maxlength="100" value="{{$user->address}}"
-                                data-validation-required-message="This birthdate field is required" name="address">
+                                data-validation-required-message="This address field is required" name="address">
                           </div>
                         </div>
                         <div class="form-group">
@@ -601,7 +610,7 @@
                             <label>Job</label>
                             <input type="text" class="form-control birthdate-picker" required
                                 placeholder="Job" value="{{$user->job}}" maxlength="100"
-                                data-validation-required-message="This birthdate field is required" name="job">
+                                data-validation-required-message="This job field is required" name="job">
                           </div>
                         </div>
                       </div>

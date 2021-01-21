@@ -23,7 +23,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-import settings from './components/SettingsPhoto.vue'
+import settings from './components/SettingsGeneral.vue'
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -90,10 +91,10 @@ var user_add = new Vue({
 
 /* pager-users-edit edit form */
 var user_add_edit = new Vue({
-  el: '#user_edit_modal',
+  el: '#user_edit_form',
   data: {
     photo: false,
-    fire: ['changer', 'change']
+    fire: 'changer'
   },
   methods: {
     confCheck: function (e) {
@@ -123,29 +124,67 @@ var user_add_edit = new Vue({
     inputFileCheck: function (e) {
 
         var uploadField = document.getElementById("edit_file");
+        var setLang = document.getElementById("settin_lang");
+        var userLang = navigator.language || navigator.userLanguage;
 
-      if (uploadField.files[0].size > 2097152) {
+        if(setLang.value == 1)
+        {
+          if (userLang === ('fr' || 'en'))
+          {
+            if (uploadField.files[0].size > 2097152) {
 
 
 
-        alert("File is too big! 2 mo maximum");
-        uploadField.value = "";
-      }
+              alert("Le fichier est trop lourd 2 mo maximum");
+              uploadField.value = "";
+            }
+          }
+
+        }
+        else
+        {
+            if (uploadField.files[0].size > 2097152) {
+
+              alert("File is too big! 2 mo maximum");
+              uploadField.value = "";
+            }
+        }
 
 
 
     },
     displayUploader: function (e) {
 
+      // lang of photochanger
+      var setLang = document.getElementById("settin_lang");
+      var userLang = navigator.language || navigator.userLanguage;
 
       if (this.photo === false)
       {
-        this.fire[0] = 'Annuler';
-        this.fire[1] = 'Reset';
+          if(setLang.value == 1)
+          {
+            if (userLang === ('fr' || 'en'))
+            {
+              this.fire = 'Annuler';
+            }
+          }
+          else
+          {
+            this.fire = 'Reset';
+          }
       }
       else{
-        this.fire[0] = 'Change';
-        this.fire[1] = 'Changer';
+          if(setLang.value == 1)
+          {
+            if (userLang === ('fr' || 'en'))
+            {
+              this.fire = 'Changer';
+            }
+          }
+          else
+          {
+            this.fire = 'Replace';
+          }
       }
 
       this.photo = !this.photo;
@@ -154,6 +193,23 @@ var user_add_edit = new Vue({
 
   },
   mounted() {
+
+    // lang of photochanger
+    var setLang = document.getElementById("settin_lang");
+    var userLang = navigator.language || navigator.userLanguage;
+
+    if(setLang.value == 1)
+    {
+        if (userLang === ('fr' || 'en'))
+        {
+          this.fire = 'Changer';
+        }
+    }
+    else
+    {
+          this.fire = 'Replace';
+    }
+
 
     // user edit from country's select
     var c = document.getElementById("country-icon");

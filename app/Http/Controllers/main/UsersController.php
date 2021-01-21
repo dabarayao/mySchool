@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -41,12 +42,16 @@ class UsersController extends Controller
     $superuser = User::find(Auth::id());
     //code for root user or superuser
 
+    //code for settings implementation
+    $setting = Setting::where('user_id', Auth::id())->first();
+
     $user = User::all()->sortByDesc('created_at');
 
     return view('main.users.page-users-list')->with(
       [
         'superuser' => $superuser,
-        'user' => $user
+        'user' => $user,
+        'setting' => $setting
       ]
     );
   }
@@ -116,7 +121,7 @@ class UsersController extends Controller
     $user->familyname = $request->familyname;
     $user->givenname = $request->givenname;
     $user->email = $request->email;
-    $user->password = bcrypt($request->password);
+    $user->password = Hash::make($request->password);
     $user->gender = $request->gender;
     $user->birthdate = $request->birthdate;
     $user->country = $request->country;
@@ -170,6 +175,7 @@ class UsersController extends Controller
       $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 2])->value('label');
     }
 
+    $setting = Setting::where('user_id', Auth::id())->first();
     $write_user = User::find($user->created_user);
     $edit_user = User::find($user->updated_user);
 
@@ -182,7 +188,8 @@ class UsersController extends Controller
       'superuser' => $superuser,
       'age' => $age,
       'writeby' => $write_user,
-      'editby' => $edit_user
+      'editby' => $edit_user,
+      'setting' => $setting
     ]);
   }
 
@@ -197,9 +204,13 @@ class UsersController extends Controller
     //
     $superuser = User::find(Auth::id());
     $user = User::find($id);
+    $setting = Setting::where('user_id', Auth::id())->first();
 
 
-    return view('main.users.page-users-edit')->with(['user' => $user, 'superuser' => $superuser]);
+    return view('main.users.page-users-edit')->with([
+      'user' => $user,
+      'superuser' => $superuser,
+      'setting' => $setting]);
   }
 
   /**
@@ -244,7 +255,7 @@ class UsersController extends Controller
     $user->familyname = $request->familyname;
     $user->givenname = $request->givenname;
     $user->email = $request->email;
-    $user->password = bcrypt($request->password);
+    $user->password = Hash::make($request->password);
     $user->gender = $request->gender;
     $user->birthdate = $request->birthdate;
     $user->country = $request->country;

@@ -67,7 +67,7 @@
                         <label for="password-icon">Mot de passe</label>
                         <div class="position-relative has-icon-left">
                           <input type="password" id="password-icon" class="form-control" name="password"
-                            placeholder="Password" @keyup="passUp" required>
+                            placeholder="Password" minlength="8" maxlength="100" @keyup="passUp" required>
                           <div class="form-control-position">
                             <i class="bx bx-lock"></i>
                           </div>

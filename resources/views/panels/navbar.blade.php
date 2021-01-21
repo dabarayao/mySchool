@@ -1,11 +1,9 @@
 <?php
 use App\User;
-use App\Setting;
 use Illuminate\Support\Facades\Auth;
 
 
 $user = User::find(Auth::id());
-$setting = Setting::find($user->id);
 
 ?>
 

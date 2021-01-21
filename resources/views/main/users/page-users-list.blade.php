@@ -1,8 +1,12 @@
 @extends('layouts.contentLayoutMaster')
 {{-- page title --}}
-  @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+  @if($setting->language == 1)
+
+    @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en'))
 
     @section('title','Listes des utilisateurs')
+
+    @endif
 
   @else
 
@@ -23,7 +27,9 @@
 <!-- users list start -->
 <section class="users-list-wrapper">
 
-  @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+  @if($setting->language == 1)
+
+    @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en'))
 
       {{-- FRENCH VERSION --}}
 
@@ -226,6 +232,7 @@
 
 
       {{-- FRENCH VERSION --}}
+    @endif
   @else
       {{-- ENGLISH VERSION --}}
 

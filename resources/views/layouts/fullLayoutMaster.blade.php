@@ -1,16 +1,12 @@
 <?php
-use App\User;
 use App\Setting;
 use Illuminate\Support\Facades\Auth;
 
 if (Auth::check()) {
 
-  $user = User::find(Auth::id());
-  $setting = Setting::find($user->id);
+  $setting = Setting::where('user_id', Auth::id())->first();
 
 }
-
-
 
 ?>
 

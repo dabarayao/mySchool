@@ -1,9 +1,13 @@
 @extends('layouts.contentLayoutMaster')
 
-@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@if($setting->language == 1)
+
+  @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en'))
 
   {{-- page title --}}
   @section('title','Détails utilisateurs')
+
+  @endif
 
 @else
 
@@ -20,7 +24,9 @@
 @endsection
 @section('content')
 
-@if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+@if($setting->language == 1)
+
+  @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en'))
 
   {{-- FRENCH VERSION --}}
 
@@ -237,6 +243,8 @@
 
   {{-- FRENCH VERSION --}}
 
+  @endif
+
 @else
 
   {{-- ENGLISH VERSION --}}
@@ -255,12 +263,17 @@
             <h4 class="media-heading"><span>{{$user->familyname}} </span><span
                 class="text-muted font-medium-1"> @</span><span
                 >{{$user->givenname}} </span></h4>
+
+            @if($writeby != NULL)
             <span>Starting at : {{date('Y-M-d', strtotime($user->created_at))}} </span>
             <span>by <span class="text-primary text-bold-700 text-uppercase">{{$writeby->familyname}} {{$writeby->givenname}}</span></span>
              <br>
+            @endif
+            @if($editby != NULL)
             <span>Edit at :</span>
             <span>{{date('d-M-Y', strtotime($user->updated_at))}} </span>
             <span>by <span class="text-primary text-bold-700 text-uppercase">{{$editby->familyname}} {{$editby->givenname}}</span> </span>
+            @endif
           </div>
         </div>
       </div>

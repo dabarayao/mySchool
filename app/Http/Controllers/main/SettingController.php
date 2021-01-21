@@ -5,6 +5,7 @@ namespace App\Http\Controllers\main;
 use App\Http\Controllers\Controller;
 use App\Setting;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -35,14 +36,16 @@ class SettingController extends Controller
           }
         }
 
-        $setting = Setting::find(Auth::id());
+        $setting = Setting::where('user_id', Auth::id())->first();
 
 
         //code for root user or superuser
         $current = User::find(Auth::id());
         //code for root user or superuser
 
-        return view('main.settings.page-account-settings')->with(['setting' => $setting, 'current' => $current]);
+        return view('main.settings.page-account-settings')->with([
+          'setting' => $setting,
+          'current' => $current]);
     }
 
     /**
@@ -120,6 +123,25 @@ class SettingController extends Controller
         $setting->save();
 
         return redirect()->route('settings-display');
+    }
+
+    public function updatePass(Request $request){
+      $user = User::find(Auth::id());
+      dd($request->old_password);
+      if($user->password === Hash::make($request->old_password))
+      {
+        $user->password = Hash::make($request->password);
+        session()->forget('error');
+
+        return redirect()->route('settings-display');
+      }
+      else
+      {
+        session()->flash('error', 1);
+        return redirect()->route('settings-display');
+      }
+
+
     }
 
     /**
