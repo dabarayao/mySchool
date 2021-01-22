@@ -15,7 +15,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        return view('main.shools.page-schools-add')
     }
 
     /**

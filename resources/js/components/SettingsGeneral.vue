@@ -24,7 +24,7 @@
       data: function () {
         return {
         photo: false,
-        fire: 'changer'
+        fire: 'changer la photo'
         }
       },
       methods: {
@@ -53,12 +53,12 @@
           {
             if (userLang === ('fr' || 'en'))
             {
-              this.fire = 'Changer';
+              this.fire = 'Changer la photo';
             }
           }
           else
           {
-            this.fire = 'Replace';
+            this.fire = 'Replace picture';
           }
         }
 
@@ -105,12 +105,12 @@
           {
             if (userLang === ('fr' || 'en'))
             {
-              this.fire = 'Changer';
+              this.fire = 'Changer la photo';
             }
           }
           else
           {
-            this.fire = 'Replace';
+            this.fire = 'Replace picture';
           }
       }
     }

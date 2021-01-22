@@ -14,8 +14,10 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+      // the authenitfication middleware for the app
+      $this->middleware(['verified', 'auth', 'checkUserStatus']);
     }
+
 
     /**
      * Show the application dashboard.
@@ -24,6 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('main.homepage');
     }
 }

@@ -94,7 +94,7 @@ var user_add_edit = new Vue({
   el: '#user_edit_form',
   data: {
     photo: false,
-    fire: 'changer'
+    fire: 'changer la photo'
   },
   methods: {
     confCheck: function (e) {
@@ -178,12 +178,12 @@ var user_add_edit = new Vue({
           {
             if (userLang === ('fr' || 'en'))
             {
-              this.fire = 'Changer';
+              this.fire = 'Changer la photo';
             }
           }
           else
           {
-            this.fire = 'Replace';
+            this.fire = 'Replace picture';
           }
       }
 
@@ -202,12 +202,12 @@ var user_add_edit = new Vue({
     {
         if (userLang === ('fr' || 'en'))
         {
-          this.fire = 'Changer';
+          this.fire = 'Changer la photo';
         }
     }
     else
     {
-          this.fire = 'Replace';
+          this.fire = 'Replace picture';
     }
 
 

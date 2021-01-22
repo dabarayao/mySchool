@@ -14,7 +14,7 @@
       <div class="card-content">
         <div class="card-body text-center bg-transparent miscellaneous">
           <h1 class="error-title">Page Non disponible :(</h1>
-          <p class="pb-3">
+          <p class="pb-3 text-uppercase text-bold-700">
            Nous ne pouvons pas trouvé la page que vous recherchez</p>
       <img class="img-fluid" src="{{asset('images/pages/404.png')}}" alt="404 error">
           <a href="{{asset('/')}}" class="btn btn-primary round glow mt-3">Retourner a l'accueil</a>
@@ -34,7 +34,7 @@
       <div class="card-content">
         <div class="card-body text-center bg-transparent miscellaneous">
           <h1 class="error-title">Page Not Found :(</h1>
-          <p class="pb-3">
+          <p class="pb-3 text-uppercase text-bold-700">
             we couldn't find the page you are looking for</p>
       <img class="img-fluid" src="{{asset('images/pages/404.png')}}" alt="404 error">
           <a href="{{asset('/')}}" class="btn btn-primary round glow mt-3">BACK TO HOME</a>

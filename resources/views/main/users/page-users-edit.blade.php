@@ -319,7 +319,7 @@
 
                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                   <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
-                    Envoyer <i class='bx bx-send' ></i>
+                    Modifier <i class='bx bx-send' ></i>
                   </button>
                   <button type="reset" class="btn btn-light">  Effacer <i class='bx bx-eraser' ></i></button>
               </div>
@@ -620,8 +620,7 @@
                 </div>
 
                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                  <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
-                    changes <i class='bx bx-send'></i>
+                  <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1"> Edit <i class='bx bx-send'></i>
                   </button>
                   <button type="reset" class="btn btn-light"> Cancel <i class='bx bx-eraser' ></i> </button>
               </div>

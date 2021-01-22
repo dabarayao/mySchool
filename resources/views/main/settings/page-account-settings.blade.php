@@ -31,6 +31,7 @@
 @if($setting->language == 1)
 
   @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en'))
+
     <!-- account setting page start -->
     <section id="page-account-settings">
         <div class="row" id="user_setting">
@@ -71,17 +72,22 @@
                                                   @csrf
                                                   {{method_field('put')}}
 
-                                                <div class="media">
+
                                                     <a href="javascript: void(0);">
                                                         <img src="@if($current->photo == NULL && $current->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($current->photo == NULL && $current->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$current->photo}} @endif"
                                                             class="rounded mr-75" alt="profile image" height="64" width="64">
                                                     </a>
-                                                  <div class="media">
+                                                  <div class="row">
                                                       <span> {{$current->familyname}} {{$current->givenname}} </span>
-                                                  </div><br>
-                                                    <settings></settings>
+                                                  </div>
+                                                  <div class="row">
 
-                                                </div>
+                                                    <settings></settings>
+                                                  </div>
+
+
+
+
                                                 <hr>
 
                                                 <div class="row">
@@ -234,16 +240,18 @@
                                           <form action="{{route('settings-update')}}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 {{method_field('put')}}
-                                              <div class="media">
+
                                                   <a href="javascript: void(0);">
                                                       <img src="@if($current->photo == NULL && $current->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($current->photo == NULL && $current->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$current->photo}} @endif"
                                                           class="rounded mr-75" alt="profile image" height="64" width="64">
                                                   </a>
-                                                  <div class="media">
+                                                  <div class="row">
                                                       <span> {{$current->familyname}} {{$current->givenname}} </span>
-                                                  </div><br>
-                                                  <settings></settings>
-                                              </div>
+                                                  </div>
+                                                  <div class="row">
+                                                    <settings></settings>
+                                                  </div>
+
                                               <hr>
 
                                               <div class="row">

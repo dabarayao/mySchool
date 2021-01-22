@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 // dashboard Routes
-Route::get('/', 'DashboardController@dashboardEcommerce');
+Route::get('/ecommerce', 'DashboardController@dashboardEcommerce');
 Route::get('/dashboard-ecommerce', 'DashboardController@dashboardEcommerce');
 Route::get('/dashboard-analytics', 'DashboardController@dashboardAnalytics');
 
@@ -147,7 +147,8 @@ Route::get('/auth-checkpoint', 'Auth\CheckpointController@index')->name('checkpo
 
 Route::get('/auth-logout', 'Auth\LogoutController@logout')->name('auth-logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// mySchool homepage
+Route::get('/', 'main\HomeController@index')->name('home');
 
 // mySchool Users  routes
 Route::get('/users/list', 'main\UsersController@index')->name('users-list');
@@ -161,3 +162,6 @@ Route::get('/users/list/delete/{id}', 'main\UsersController@destroy')->name('use
 Route::get('/settings', 'main\SettingController@index')->name('settings-display');
 Route::put('/settings/', 'main\SettingController@update')->name('settings-update');
 Route::put('/settings/pass', 'main\SettingController@updatePass')->name('settings-pass');
+
+// myschool schools routes
+Route::get('/schools', 'main\SchoolController@index')->name('schools-display');
