@@ -214,12 +214,20 @@ var user_add_edit = new Vue({
     // user edit from country's select
     var c = document.getElementById("country-icon");
     var ch = document.getElementById("edit_country");
+
+    if (ch.value != "")
+    {
     c.value = ch.value;
+    }
 
     // user edit from dialcode's select
     var d = document.getElementById("dialcode-icon");
     var dh = document.getElementById("edit_dialcode");
+
+    if (dh.value != "")
+    {
     d.value = dh.value;
+    }
 
     // user edit from status's select
     var s = document.getElementById("status-icon");

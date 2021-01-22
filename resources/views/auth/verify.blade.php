@@ -4,7 +4,7 @@
 
 @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
 @section('title','Lien de vérification')
-@else 
+@else
 @section('title','Verification link')
 @endif
 
@@ -30,7 +30,8 @@
           {{ __('Si vous n\'avez pas reçu de mail') }},
           <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
             @csrf
-            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click ici pour renvoyer le lien') }}</button>.
+            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click ici pour renvoyer le lien') }}</button>. <br>
+            <a class="btn btn-outline-primary" href="{{route('auth-logout')}}" >Déconnexion</a>
           </form>
         </div>
       </div>
@@ -59,7 +60,8 @@
           {{ __('Si vous n\'avez pas reçu de mail') }},
           <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
             @csrf
-            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to resend link') }}</button>.
+            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to resend link') }}</button>.<br>
+            <a class="btn btn-outline-primary" href="{{route('auth-logout')}}" >Logout</a>
           </form>
         </div>
       </div>

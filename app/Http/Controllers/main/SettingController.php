@@ -127,10 +127,9 @@ class SettingController extends Controller
 
     public function updatePass(Request $request){
       $user = User::find(Auth::id());
-      dd($request->old_password);
-      if($user->password === Hash::make($request->old_password))
+      if(Hash::check($request->old_password, $user->password ))
       {
-        $user->password = Hash::make($request->password);
+        $user->password = bcrypt($request->password);
         session()->forget('error');
 
         return redirect()->route('settings-display');

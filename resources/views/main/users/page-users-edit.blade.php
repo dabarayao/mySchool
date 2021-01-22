@@ -290,7 +290,7 @@
                         <div class="form-group">
                           <div class="controls position-relative">
                             <label>Date de naissance</label>
-                            <input type="date" class="form-control birthdate-picker" required
+                            <input type="date" class="form-control" required
                                 placeholder="Date de naissance" value="{{$user->birthdate}}"
                                 data-validation-required-message="cet champ date de naissance  est obligatoire" name="birthdate">
                           </div>
@@ -298,7 +298,7 @@
                         <div class="form-group">
                           <div class="controls position-relative">
                             <label>Adresse</label>
-                            <input type="text" class="form-control birthdate-picker" required maxlength="100"
+                            <input type="text" class="form-control" required maxlength="100"
                                 placeholder="Adresse" value="{{$user->address}}"
                                 data-validation-required-message="cet champ addresse est obligatoire" name="address">
                           </div>
@@ -306,7 +306,7 @@
                         <div class="form-group">
                           <div class="controls position-relative">
                             <label>Profession</label>
-                            <input type="text" class="form-control birthdate-picker" required maxlength="100"
+                            <input type="text" class="form-control" required maxlength="100"
                                 placeholder="Profession" value="{{$user->job}}"
                                 data-validation-required-message="cet champ profession est obligatoire" name="job">
                           </div>
@@ -592,7 +592,7 @@
                         <div class="form-group">
                           <div class="controls position-relative">
                             <label>Bitrhdate</label>
-                            <input type="date" class="form-control birthdate-picker" required
+                            <input type="date" class="form-control" required
                                 placeholder="Date de naissance" value="{{$user->birthdate}}"
                                 data-validation-required-message="This birthdate field is required" name="birthdate">
                           </div>
@@ -600,7 +600,7 @@
                         <div class="form-group">
                           <div class="controls position-relative">
                             <label>Address</label>
-                            <input type="text" class="form-control birthdate-picker" required
+                            <input type="text" class="form-control" required
                                 placeholder="Adresse" maxlength="100" value="{{$user->address}}"
                                 data-validation-required-message="This address field is required" name="address">
                           </div>
@@ -608,7 +608,7 @@
                         <div class="form-group">
                           <div class="controls position-relative">
                             <label>Job</label>
-                            <input type="text" class="form-control birthdate-picker" required
+                            <input type="text" class="form-control" required
                                 placeholder="Job" value="{{$user->job}}" maxlength="100"
                                 data-validation-required-message="This job field is required" name="job">
                           </div>
@@ -653,4 +653,7 @@
 @section('page-scripts')
 <script src="{{asset('js/scripts/pages/page-users.js')}}"></script>
 <script src="{{asset('js/scripts/navs/navs.js')}}"></script>
+
+{{-- supermask.js cdn--}}
+<script src="https://cdn.jsdelivr.net/npm/supermask-js@1.0.0/index.min.js"></script>
 @endsection

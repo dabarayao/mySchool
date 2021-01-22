@@ -107,7 +107,7 @@
                       <div class="form-group">
                         <label for="birthdate-icon">Date de naissance</label>
                         <div class="position-relative has-icon-left">
-                          <input type="date" id="birthdate-icon" class="form-control" name="birthdate"
+                          <input type="date" id="birthdate-icon" class="form-control birthdate-picker" name="birthdate"
                             placeholder="birthdate" required>
                           <div class="form-control-position">
                             <i class='bx bxs-baby-carriage' ></i>
@@ -337,7 +337,7 @@
                       <div class="form-group">
                         <label for="birthdate-icon">Birthdate</label>
                         <div class="position-relative has-icon-left">
-                          <input type="date" id="birthdate-icon" class="form-control" name="birthdate"
+                          <input type="date" id="birthdate-icon" class="form-control birthdate-picker" name="birthdate"
                             placeholder="birthdate" required>
                           <div class="form-control-position">
                             <i class='bx bxs-baby-carriage' ></i>

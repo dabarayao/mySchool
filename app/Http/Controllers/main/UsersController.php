@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -121,7 +120,7 @@ class UsersController extends Controller
     $user->familyname = $request->familyname;
     $user->givenname = $request->givenname;
     $user->email = $request->email;
-    $user->password = Hash::make($request->password);
+    $user->password = bcrypt($request->password);
     $user->gender = $request->gender;
     $user->birthdate = $request->birthdate;
     $user->country = $request->country;
@@ -143,7 +142,6 @@ class UsersController extends Controller
     $setting = new Setting;
     $setting->theme = "semi-dark";
     $setting->language = 1;
-    $setting->type_monthverage = false;
     $setting->user_id = User::where('email', $request->email)->value('id');
     $setting->created_user = $current->id;
     $setting->updated_user = $current->id;
@@ -162,6 +160,16 @@ class UsersController extends Controller
    */
   public function show($id)
   {
+
+    // auth connected state code sample
+    if (Auth::check()) {
+      $util = User::find(Auth::id());
+      if ($util->state == false); {
+        $util->state = true;
+        $util->save();
+      }
+    }
+
     //
     $superuser = User::find(Auth::id());
     $user = User::find($id);
@@ -201,6 +209,16 @@ class UsersController extends Controller
    */
   public function edit($id, Request $request)
   {
+
+    // auth connected state code sample
+    if (Auth::check()) {
+      $util = User::find(Auth::id());
+      if ($util->state == false); {
+        $util->state = true;
+        $util->save();
+      }
+    }
+
     //
     $superuser = User::find(Auth::id());
     $user = User::find($id);
@@ -255,7 +273,7 @@ class UsersController extends Controller
     $user->familyname = $request->familyname;
     $user->givenname = $request->givenname;
     $user->email = $request->email;
-    $user->password = Hash::make($request->password);
+    $user->password = bcrypt($request->password);
     $user->gender = $request->gender;
     $user->birthdate = $request->birthdate;
     $user->country = $request->country;
@@ -277,7 +295,6 @@ class UsersController extends Controller
     $setting = new Setting;
     $setting->theme = "semi-dark";
     $setting->language = 1;
-    $setting->type_monthverage = false;
     $setting->user_id = User::where('email', $request->email)->value('id');
     $setting->created_user = $current->id;
     $setting->updated_user = $current->id;
