@@ -137,8 +137,8 @@ class UsersController extends Controller
       $user->status = $request->status;
     }
 
-    if ($current->root === false) {
-       $user->school_id == $current->school_id;
+    if ($current->root == false) {
+       $user->school_id = $current->school_id;
     }
 
     $user->save();
@@ -292,7 +292,7 @@ class UsersController extends Controller
 
     if ($current->root == false)
     {
-      $user->school_id == $current->school_id;
+      $user->school_id = $current->school_id;
     }
 
     $user->save();
