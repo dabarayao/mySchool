@@ -101,6 +101,11 @@ class SettingController extends Controller
     public function update(Request $request)
     {
 
+      $request->validate([
+        'theme' => 'required',
+        'language' => 'required'
+      ]);
+
         if($request->hasFile('photo'))
         {
         //code to store an resize the image
@@ -116,7 +121,7 @@ class SettingController extends Controller
 
         }
 
-        $setting = Setting::find(Auth::id());
+        $setting = Setting::where('user_id', Auth::id())->first();
         $setting->theme = $request->theme;
         $setting->language = $request->language;
         $setting->updated_user = Auth::id();
@@ -126,6 +131,11 @@ class SettingController extends Controller
     }
 
     public function updatePass(Request $request){
+
+      $request->validate([
+        'password' => 'required'
+      ]);
+
       $user = User::find(Auth::id());
       if(Hash::check($request->old_password, $user->password ))
       {

@@ -18,6 +18,7 @@ class CreateSchoolyearsTable extends Migration
             $table->string('year', 100);
             $table->date('start_date');
             $table->date('end_date');
+            $table->boolean('is_over');
             $table->integer('school_id');
             $table->integer('created_user');
             $table->integer('updated_user');

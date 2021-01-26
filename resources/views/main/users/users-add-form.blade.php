@@ -416,7 +416,7 @@
                       <div class="form-group">
                         <label for="status-icon">Status</label>
                         <div class="position-relative has-icon-left">
-                          <select id="status-icon" class="form-control"  name="gender">
+                          <select id="status-icon" class="form-control"  name="status">
                               <option value="1"> ACTIVE </option>
                               <option value="0"> INACTIVE </option>
                             </select>

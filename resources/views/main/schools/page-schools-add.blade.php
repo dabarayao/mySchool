@@ -9,6 +9,26 @@
 
 @section('content')
 
+      <!-- header breadcrumbs -->
+      <div class="content-header row">
+        <div class="content-header-left col-12 mb-2 mt-1">
+          <div class="row breadcrumbs-top">
+            <div class="col-12">
+              <h5 class="content-header-title float-left pr-1 mb-0">Accueil</h5>
+              <div class="breadcrumb-wrapper col-12">
+                <ol class="breadcrumb p-0 mb-0">
+                                          <li class="breadcrumb-item ">
+                                  <a href="#"><i class="bx bx-home-alt"></i></a>
+                                  </li>
+                                <li class="breadcrumb-item active">
+                                Ajouter une école
+                                  </li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 {{--
 <!-- Form wizard with icon tabs section start -->
 <section id="icon-tabs">
@@ -595,6 +615,7 @@
 <!-- Form wizard with icon tabs section end -->
 --}}
 
+{{--
 <!-- Form wizard with step validation section start -->
 <section id="validation">
   <div class="row">
@@ -605,11 +626,13 @@
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form action="#" class="wizard-validation">
+            <form action="{{route('schools-add')}}" method="POST" class="wizard-validation" id="school_add_form" enctype="multipart/form-data">
+              @csrf
+
               <!-- Step 1 -->
               <h6>
                 <i class="step-icon"></i>
-                <span>Baisc Information</span>
+                <span>Basic Information</span>
               </h6>
               <!-- Step 1 -->
               <!-- body content of step 1 -->
@@ -617,35 +640,32 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="firstName3">First Name </label>
-                      <input type="text" class="form-control required" id="firstName3" name="firstName"
-                        placeholder="Enter Your First Name">
+                      <label for="schoolname">School's Name </label>
+                      <input type="text" class="form-control required" id="schoolname" name="schoolname"
+                        placeholder="The name of the school">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="lastName3">Last Name</label>
-                      <input type="text" class="form-control required" id="lastName3" name="lastName"
-                        placeholder="Enter Your Last Name">
+                      <label for="dialcode-icon">Dialcode</label>
+                      @include('main.tools.dialcodes')
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="emailAddress5">Email</label>
-                      <input type="email" class="form-control required" id="emailAddress5" name="emailAddress"
-                        placeholder="Enter Your Email">
+                      <label for="schooltype">Phone</label>
+                      <input type="text" class="form-control required" id="schoolphone" name="phone"
+                        placeholder="Phone of the school">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="location">City</label>
-                      <select class="custom-select form-control" id="location" name="location">
-                        <option value="">New York</option>
-                        <option value="Amsterdam">Chicago</option>
-                        <option value="Berlin">San Francisco</option>
-                        <option value="Frankfurt">Boston</option>
+                      <label for="schooltype">Type</label>
+                      <select class="custom-select form-control" id="schooltype" name="type">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
                       </select>
                     </div>
                   </div>
@@ -655,7 +675,7 @@
               <!-- Step 2 -->
               <h6>
                 <i class="step-icon"></i>
-                <span>Job Details</span>
+                <span>Map Location</span>
               </h6>
               <!-- step 2 -->
               <!-- body content of step 2 end -->
@@ -663,34 +683,42 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="proposalTitle3">
-                        Proposal Title
-                      </label>
-                      <input type="text" class="form-control required" id="proposalTitle3" name="proposalTitle"
-                        placeholder="Enter Your Proposel Title">
-                    </div>
-                    <div class="form-group">
-                      <label for="jobTitle5">
-                        Job Title
-                      </label>
-                      <input type="text" class="form-control required" id="jobTitle5" name="jobTitle5"
-                        placeholder="Enter Your Job Title">
+                      <label for="country-icon">Country</label>
+                      @include('main.tools.countries')
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="shortDescription3">Short Description</label>
-                      <textarea name="shortDescription" id="shortDescription3" rows="4" class="form-control"
-                        placeholder="Please Enter short Description"></textarea>
+                      <label for="schoolarea">
+                        Town
+                      </label>
+                      <input type="text" class="form-control required" id="schoolarea" name="area"
+                        placeholder="Town of the school">
                     </div>
                   </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="schooladdress">Address</label>
+                      <input type="text" class="form-control required" id="schooladdress" name="address"
+                        placeholder="Address of the school eg: area - city...">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="schooladdress">Number of room</label>
+                      <input type="number" class="form-control required" id="schooladdress" name="nbroom"
+                        placeholder="Number of room into the school">
+                    </div>
+                  </div>
+
                 </div>
               </fieldset>
               <!-- body content of step 2 end -->
               <!-- Step 3 -->
               <h6>
                 <i class="step-icon"></i>
-                <span>Event Details</span>
+                <span>Administration</span>
               </h6>
               <!-- step 3 end -->
               <!-- step 3 content -->
@@ -698,53 +726,51 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="eventName3">
-                        Event Name
+                      <label for="schoolphoto">
+                        Photo
                       </label>
-                      <input type="text" class="form-control required" id="eventName3" name="eventName"
+                      <input type="file" class="form-control required" id="schoolphoto" name="photo"
                         placeholder="Enter Event Name">
                     </div>
                     <div class="form-group">
-                      <label for="eventStatus3">Event Statuss</label>
-                      <select class="custom-select form-control required" id="eventStatus3" name="eventStatus">
-                        <option value="Planning">Planning</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Finished">Finished</option>
-                      </select>
+                      <label for="schoolstart">Building date</label>
+                      <input type="date" class="form-control required" id="schoolstart" name="building_date"
+                      placeholder="Enter Event Name">
                     </div>
                   </div>
+
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="eventLocation3">Event Location </label>
-                      <select class="custom-select form-control required" id="eventLocation3" name="eventStatus">
-                        <option value="Planning">New York</option>
-                        <option value="In Progress">Chicago</option>
-                        <option value="Finished">San Francisco</option>
-                        <option value="Finished">Boston</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label class="mr-2">Requirements :</label>
-                      <div class="c-inputs-stacked">
-                        <div class="d-inline-block mr-2">
-                          <fieldset>
-                            <div class="checkbox">
-                              <input type="checkbox" class="checkbox__input" id="checkbox6">
-                              <label for="checkbox6">Staffing</label>
-                            </div>
-                          </fieldset>
-                        </div>
-                        <div class="d-inline-block">
-                          <fieldset>
-                            <div class="checkbox">
-                              <input type="checkbox" class="checkbox__input" id="checkbox5">
-                              <label for="checkbox5">Catering</label>
-                            </div>
-                          </fieldset>
-                        </div>
-                      </div>
+                      <label for="schoolfunder">Funder's Name </label>
+                      <input type="text" class="form-control required" id="schoolfunder" name="funder"
+                      placeholder="Funder's Name of the school">
                     </div>
                   </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="schoolmonthyear">Type of monthyear</label>
+                      <select class="custom-select form-control" id="schoolmonthyear" name="type_monthyear">
+                        <option value="0">TRIMESTER</option>
+                        <option value="1">SEMESTRE</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  @if($current->root == true)
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="schoolstatus">Status</label>
+                      <select class="custom-select form-control" id="schoolstatus" name="status">
+                        <option value="1">ACTIVE</option>
+                        <option value="0">INACTIVE</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  @endif
+
                 </div>
               </fieldset>
               <!-- step 3 content end-->
@@ -756,6 +782,7 @@
   </div>
 </section>
 <!-- Form wizard with step validation section end -->
+--}}
 
 {{--
 <!-- vertical Wizard start-->
@@ -1028,6 +1055,165 @@
 <!-- vertical Wizard end-->
 --}}
 
+
+<!-- // Basic multiple Column Form section start -->
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Add a school </h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <form class="form" method="POST" action="{{route('schools-add')}}" enctype="multipart/form-data">
+
+              @csrf
+
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="schoolphoto">
+                        School's Photo
+                      </label>
+                      <input type="file" class="form-control required" id="schoolphoto" name="photo"
+                        placeholder="Enter Event Name">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="schoolname">School's Name </label>
+                      <input type="text" class="form-control required" id="schoolname" name="schoolname"
+                        placeholder="The name of the school" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="dialcode-icon">Dialcode</label>
+                      @include('main.tools.dialcodes')
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="schooltype">Phone</label>
+                      <input type="text" class="form-control required maskField" id="schoolphone"  mask="999-999-999-999-999" maxlength="19" name="phone"
+                        placeholder="Phone of the school" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="schooltype">Type</label>
+                      <select class="custom-select form-control" id="schooltype" name="type" required>
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="country-icon">Country</label>
+                      @include('main.tools.countries')
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="schooltown">Town</label>
+                      <input type="text" class="form-control required" id="schooltown" name="area"
+                        placeholder="Town of the country" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                      <label for="schooladdress">Address</label>
+                      <input type="text" class="form-control required" id="schooladdress" name="address"
+                        placeholder="Address of the school eg: area - city..." required>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="schooladdress">Number of room</label>
+                        <input type="number" class="form-control required" id="schooladdress" name="nbroom"
+                        placeholder="Number of room into the school" required>
+
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="schoolstart">Building date</label>
+                        <input type="date" class="form-control required" id="schoolstart" name="building_date"
+                        placeholder="Enter Event Name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="schoolfunder">Funder's Name </label>
+                        <input type="text" class="form-control required" id="schoolfunder" name="funder"
+                         placeholder="Funder's Name of the school" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="schoolmonthyear">Type of monthyear</label>
+                        <select class="custom-select form-control"  required id="schoolmonthyear" name="type_monthyear">
+                          <option value="0">TRIMESTER</option>
+                          <option value="1">SEMESTRE</option>
+                        </select>
+                    </div>
+                  </div>
+
+                  @if($current->root == true)
+
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="schoolstatus">Status</label>
+                        <select class="custom-select form-control" id="schoolstatus" name="status">
+                          <option value="1">ACTIVE</option>
+                          <option value="0">INACTIVE</option>
+                        </select>
+                    </div>
+                  </div>
+
+                  @endif
+
+                  @if($current->root == true)
+
+                  <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="schoolusers">Users</label>
+                        <select class="custom-select form-control" id="schoolusers" name="user">
+
+                          @foreach($user as $users)
+
+                            @if($users->root == false)
+                            <optgroup label="{{$users->email}}">
+                              <option value="{{$users->id}}">{{$users->familyname}} {{$users->givenname}}</option>
+                            </optgroup>
+                            @endif
+
+                          @endforeach
+
+                        </select>
+                    </div>
+                  </div>
+
+                  @endif
+
+                  <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                    <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // Basic multiple Column Form section end -->
+
 @endsection
 {{-- vendor scripts --}}
 @section('vendor-scripts')
@@ -1038,4 +1224,6 @@
 {{-- page scripts --}}
 @section('page-scripts')
 <script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script>
+{{-- supermask.js cdn--}}
+<script src="https://cdn.jsdelivr.net/npm/supermask-js@1.0.0/index.min.js"></script>
 @endsection

@@ -16,7 +16,6 @@ class CreateDisciplinesTable extends Migration
     Schema::create('disciplines', function (Blueprint $table) {
       $table->id();
       $table->string('label', 100);
-      $table->integer('coef');
       $table->string('comments', 100)->nullable();
       $table->integer('created_user');
       $table->integer('updated_user');

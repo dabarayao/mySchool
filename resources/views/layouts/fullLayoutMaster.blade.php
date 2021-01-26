@@ -41,10 +41,27 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <title>@yield('title')
 
-    @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
-     - MySchool education's manager app
+    @if(Auth::check())
+
+      @if($setting->language == 1)
+
+
+        - MySchool application de gestion d'école
+
+      @else
+
+        - MySchool education's manager app
+
+      @endif
+
     @else
-     - MySchool application de gestion d'école
+
+      @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+        - MySchool application de gestion d'école
+      @else
+        - MySchool education's manager app
+      @endif
+
     @endif
 
     </title>

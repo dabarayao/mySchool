@@ -106,6 +106,16 @@
                                                     @endphp
 
                                                 @endif
+
+                                                @if($superuser->root == false && $superuser->school_id != NULL && ($users->school_id != $superuser->school_id))
+
+                                                @php
+
+                                                continue;
+
+                                                @endphp
+
+                                                @endif
                                           <tr>
                                             <td>
                                                 <div class="avatar mr-1 avatar-lg">
@@ -137,7 +147,7 @@
                                                 @endif
                                             </td>
                                             {{-- Special display for root users --}}
-                                            @if($superuser->status == true)
+                                            @if($superuser->root == true)
 
                                             <td>
                                                 @if ($users->status == true)
@@ -196,7 +206,7 @@
           <!--user add modal -->
               <div class="modal modal-primary fade text-left w-100" id="user_add_modal" tabindex="-1" role="dialog"
                 aria-labelledby="myModalLabel16" aria-hidden="true">
-                <form class="form" id="user-add-form" method="POST" action="{{route('users-add-from')}}" enctype="multipart/form-data" @submit="confCheck">
+                <form class="form" id="user-add-form" method="POST" action="{{route('users-add-form')}}" enctype="multipart/form-data" @submit="confCheck">
                   @csrf
 
                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
@@ -308,8 +318,17 @@
 
                                             @endif
 
+                                            @if($superuser->root == false && $superuser->school_id != NULL && ($users->school_id != $superuser->school_id))
 
-                                              <tr>
+                                                @php
+
+                                                continue;
+
+                                                @endphp
+
+                                            @endif
+
+                                            <tr>
                                               <td>
                                                 <div class="avatar mr-1 avatar-lg">
                                                   @if($users->photo == NULL && $users->gender == false)
@@ -365,7 +384,10 @@
                                                   @endif
                                                 </div>
                                               </td>
-                                              </tr>
+                                            </tr>
+
+
+
                                             @endforeach
 
 
@@ -403,13 +425,13 @@
           <!--user add modal -->
               <div class="modal modal-primary fade text-left w-100" id="user_add_modal" tabindex="-1" role="dialog"
                 aria-labelledby="myModalLabel16" aria-hidden="true">
-                <form class="form" id="user-add-form" method="POST" action="{{route('users-add-from')}}" enctype="multipart/form-data" @submit="confCheck">
+                <form class="form" id="user-add-form" method="POST" action="{{route('users-add-form')}}" enctype="multipart/form-data" @submit="confCheck">
                   @csrf
 
                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
                     <div class="modal-content">
                       <div class="modal-header bg-primary">
-                        <h4 class="modal-title" style="color: white;" id="myModalLabel16"><i class="bx bx-add-to-queue"></i> Ajouter un utilsateur</h4>
+                        <h4 class="modal-title" style="color: white;" id="myModalLabel16"><i class="bx bx-add-to-queue"></i> Add an user</h4>
                         <button type="button" class="close bg-danger" style="color: white;" data-dismiss="modal" aria-label="Close">
                           <i class="bx bx-x"></i>
                         </button>

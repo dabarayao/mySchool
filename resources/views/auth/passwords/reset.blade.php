@@ -36,7 +36,7 @@
 
                       <div class="form-group">
                           <label class="text-bold-600" for="exampleInputPassword1">Adresse e-mail</label>
-                          <input id="email" disabled type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                          <input id="email" hidden type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
                           @error('email')
                             <span class="invalid-feedback" role="alert">
                               <strong>Ce lien de réinitialisation n'est pas plus valide</strong>
@@ -102,7 +102,7 @@
 
                       <div class="form-group">
                           <label class="text-bold-600" for="exampleInputPassword1">E-mail address</label>
-                          <input id="email" disabled type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                          <input id="email" hidden type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
                           @error('email')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>

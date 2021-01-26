@@ -137,6 +137,10 @@ class UsersController extends Controller
       $user->status = $request->status;
     }
 
+    if ($current->root === false) {
+       $user->school_id == $current->school_id;
+    }
+
     $user->save();
 
     $setting = new Setting;
@@ -284,6 +288,11 @@ class UsersController extends Controller
     $user->updated_user = $current->id;
     if (isset($request->status)) {
       $user->status = $request->status;
+    }
+
+    if ($current->root == false)
+    {
+      $user->school_id == $current->school_id;
     }
 
     $user->save();

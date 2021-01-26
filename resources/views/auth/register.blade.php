@@ -198,7 +198,7 @@
                       </div>
                       <div class="form-group mb-2">
                         <label class="text-bold-600" for="password">Password</label>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password" minlength="8" maxlength="100">
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -208,7 +208,7 @@
                       {{-- confirm password of the user--}}
                       <div class="form-group mb-2">
                         <label class="text-bold-600" for="password-confirm">Confirm Password</label>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" minlength="8" maxlength="100">
                       </div>
                       <button type="submit" class="btn btn-primary glow position-relative w-100">SIGN UP<i
                         id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>

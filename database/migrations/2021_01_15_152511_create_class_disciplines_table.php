@@ -16,6 +16,7 @@ class CreateClassDisciplinesTable extends Migration
         Schema::create('class_disciplines', function (Blueprint $table) {
             $table->integer('classroom_id');
             $table->integer('discipline_id');
+            $table->integer('coef');
             $table->integer('nb_student');
             $table->integer('day');
             $table->time('start_hour');
