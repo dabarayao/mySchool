@@ -47,18 +47,34 @@ class SchoolController extends Controller
       // users who's is currently connected
 
       // All users
-      $user = User::all();
+      $user = User::where([['school_id', '=' , null], ['root', '=', false]])->get();
+      $userNb = User::where([['school_id', '=' , null], ['root', '=', false]])->count();
       // All users
 
 
 
 
 
+      if($current->root == (true || false) && $current->school_id == null)
+      {
+        return view('main.schools.page-schools-add')->with([
+          'setting' => $setting,
+          'current' => $current,
+          'user' => $user,
+          'userNb' => $userNb]);
+      }
+      else
+      {
+        return redirect()->route('home');
+      }
+    }
 
-      return view('main.schools.page-schools-add')->with([
-        'setting' => $setting,
-        'current' => $current,
-        'user' => $user]);
+    public function schoolDisplay() {
+
+      $schools = school::all();
+
+      return view('main.schools.page-schools-list')->with('schools', $schools);
+
     }
 
     /**
@@ -116,6 +132,7 @@ class SchoolController extends Controller
         $school->area = $request->area;
         $school->address = $request->address;
         $school->nb_room = $request->nbroom;
+
         if($request->hasFile('photo'))
         {
         $school->photo = $path;
@@ -143,9 +160,15 @@ class SchoolController extends Controller
           $user->status = $school->status;
           $user->save();
         }
-        else
+        else if(!isset($request->user) && $current->root == false)
         {
           $current->school_id = $school->id;
+
+          $current->save();
+        }
+        else
+        {
+          $current->school_id = NULL;
 
           $current->save();
         }

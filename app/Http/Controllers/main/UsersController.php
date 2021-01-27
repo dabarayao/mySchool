@@ -105,55 +105,64 @@ class UsersController extends Controller
       'address' => 'required',
     ]);
 
-    //code to store an resize the image
-    $files = $request->file('photo');
+    if (User::where('email', $request->email)->count() == 0)
+    {
+      //code to store an resize the image
+      $files = $request->file('photo');
 
-    $picture = Storage::putFile('public/users/', $files);
-    $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
-    $path = Storage::url($picture);
+      $picture = Storage::putFile('public/users/', $files);
+      $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
+      $path = Storage::url($picture);
 
 
 
-    $user = new User;
-    $current = User::find(Auth::id());
-    $user->photo = $path;
-    $user->familyname = $request->familyname;
-    $user->givenname = $request->givenname;
-    $user->email = $request->email;
-    $user->password = bcrypt($request->password);
-    $user->gender = $request->gender;
-    $user->birthdate = $request->birthdate;
-    $user->country = $request->country;
-    $user->dialcode = $request->dialcode;
-    $user->phone = $request->phone;
-    $user->address = $request->address;
-    $user->job = $request->job;
-    $user->created_user = $current->id;
-    $user->updated_user = $current->id;
-    if (isset($request->root)) {
-    $user->root = $request->root;
+      $user = new User;
+      $current = User::find(Auth::id());
+      $user->photo = $path;
+      $user->familyname = $request->familyname;
+      $user->givenname = $request->givenname;
+      $user->email = $request->email;
+      $user->password = bcrypt($request->password);
+      $user->gender = $request->gender;
+      $user->birthdate = $request->birthdate;
+      $user->country = $request->country;
+      $user->dialcode = $request->dialcode;
+      $user->phone = $request->phone;
+      $user->address = $request->address;
+      $user->job = $request->job;
+      $user->created_user = $current->id;
+      $user->updated_user = $current->id;
+      if (isset($request->root)) {
+      $user->root = $request->root;
+      }
+      if (isset($request->status)) {
+        $user->status = $request->status;
+      }
+
+      if ($current->root == false) {
+        $user->school_id = $current->school_id;
+      }
+
+
+        $user->save();
+
+        $setting = new Setting;
+        $setting->theme = "semi-dark";
+        $setting->language = 1;
+        $setting->user_id = User::where('email', $request->email)->value('id');
+        $setting->created_user = $current->id;
+        $setting->updated_user = $current->id;
+
+        $setting->save();
+
+
+        return redirect()->route('users-list');
     }
-    if (isset($request->status)) {
-      $user->status = $request->status;
+    else
+    {
+      session()->flash('emailroradd', 1);
+      return redirect()->route('users-list');
     }
-
-    if ($current->root == false) {
-       $user->school_id = $current->school_id;
-    }
-
-    $user->save();
-
-    $setting = new Setting;
-    $setting->theme = "semi-dark";
-    $setting->language = 1;
-    $setting->user_id = User::where('email', $request->email)->value('id');
-    $setting->created_user = $current->id;
-    $setting->updated_user = $current->id;
-
-    $setting->save();
-
-
-    return redirect()->route('users-list');
   }
 
   /**
@@ -258,59 +267,69 @@ class UsersController extends Controller
       'address' => 'required',
     ]);
 
-    if($request->hasFile('photo'))
+    if (User::where('email', $request->email)->count() == 0)
     {
-    //code to store an resize the image
-    $files = $request->file('photo');
+      if($request->hasFile('photo'))
+      {
+      //code to store an resize the image
+      $files = $request->file('photo');
 
-    $picture = Storage::putFile('public/users/', $files);
-    $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
-    $path = Storage::url($picture);
+      $picture = Storage::putFile('public/users/', $files);
+      $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
+      $path = Storage::url($picture);
+      }
+
+
+      $user = User::find($id);
+      $current = User::find(Auth::id());
+      if ($request->hasFile('photo')) {
+      $user->photo = $path;
+      }
+      $user->familyname = $request->familyname;
+      $user->givenname = $request->givenname;
+      $user->email = $request->email;
+      $user->password = bcrypt($request->password);
+      $user->gender = $request->gender;
+      $user->birthdate = $request->birthdate;
+      $user->country = $request->country;
+      $user->dialcode = $request->dialcode;
+      $user->phone = $request->phone;
+      $user->address = $request->address;
+      $user->job = $request->job;
+      $user->updated_user = $current->id;
+      if (isset($request->status)) {
+        $user->status = $request->status;
+      }
+
+      if ($current->root == false)
+      {
+        $user->school_id = $current->school_id;
+      }
+
+      $user->save();
+
+      $user_set = User::where('email', '=', $request->email)->value('id');
+      if( Setting::where('user_id', '=', $user_set)->count() == 0)
+      {
+
+      $setting = new Setting;
+      $setting->theme = "semi-dark";
+      $setting->language = 1;
+      $setting->user_id = User::where('email', $request->email)->value('id');
+      $setting->created_user = $current->id;
+      $setting->updated_user = $current->id;
+      $setting->save();
+      }
+
+      return redirect()->route('users-list');
+
     }
-
-
-    $user = User::find($id);
-    $current = User::find(Auth::id());
-    if ($request->hasFile('photo')) {
-    $user->photo = $path;
-    }
-    $user->familyname = $request->familyname;
-    $user->givenname = $request->givenname;
-    $user->email = $request->email;
-    $user->password = bcrypt($request->password);
-    $user->gender = $request->gender;
-    $user->birthdate = $request->birthdate;
-    $user->country = $request->country;
-    $user->dialcode = $request->dialcode;
-    $user->phone = $request->phone;
-    $user->address = $request->address;
-    $user->job = $request->job;
-    $user->updated_user = $current->id;
-    if (isset($request->status)) {
-      $user->status = $request->status;
-    }
-
-    if ($current->root == false)
+    else
     {
-      $user->school_id = $current->school_id;
+      $user = User::find($id);
+      session()->flash('emailroredit', $request->email);
+      return redirect()->route('users-edit-form', $user->id);
     }
-
-    $user->save();
-
-    $user_set = User::where('email', '=', $request->email)->value('id');
-    if( Setting::where('user_id', '=', $user_set)->count() == 0)
-    {
-
-    $setting = new Setting;
-    $setting->theme = "semi-dark";
-    $setting->language = 1;
-    $setting->user_id = User::where('email', $request->email)->value('id');
-    $setting->created_user = $current->id;
-    $setting->updated_user = $current->id;
-    $setting->save();
-    }
-
-    return redirect()->route('users-list');
   }
 
 

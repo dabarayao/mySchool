@@ -46,6 +46,13 @@ class HomeController extends Controller
 
         $school = School::where('id', $current->school_id)->first();
 
+        if (School::all()->count() == 0)
+        {
+        return view('main.homepage', ['current' => $current, 'school' => $school, 'empty' => 1]);
+        }
+        else
+        {
         return view('main.homepage', ['current' => $current, 'school' => $school]);
+        }
     }
 }

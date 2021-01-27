@@ -1,6 +1,21 @@
 <?php
+use App\Setting;
+use Illuminate\Support\Facades\Auth;
 
-if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr') {
+if (Auth::check()) {
+
+  $setting = Setting::where('user_id', Auth::id())->first();
+
+}
+
+?>
+
+<?php
+
+if($setting->language == 1)
+{
+
+if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en')) {
   /* FRENCH VERSION */
   return [
     "Dashboard" => "Tableau de bord",
@@ -137,6 +152,8 @@ if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr') {
     "Charts" => "Graphiques",
     "Access Control" => "Contrôle d'accès",
   ];
+}
+
 } else {
   /* ENGLISH VERSION */
   return [

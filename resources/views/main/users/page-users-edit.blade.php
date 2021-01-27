@@ -104,9 +104,15 @@
                               <div class="form-group">
                                   <div class="controls">
                                       <label>E-mail</label>
-                                      <input type="email" class="form-control" placeholder="Email"
+                                      <input type="email" class="form-control @if(session()->get('emailroredit')) is-invalid @endif" placeholder="Email"
                                           value="{{$user->email}}" required maxlength="256"
                                           data-validation-required-message="cet email est obligatoire" name="email">
+                                          @if(session()->get('emailroredit'))
+                                          <div class="invalid-feedback">
+                                            L'email existe déja
+                                          </div>
+                                          @endif
+
                                   </div>
                               </div>
                               <div class="form-group">
@@ -406,9 +412,14 @@
                               <div class="form-group">
                                   <div class="controls">
                                       <label>E-mail</label>
-                                      <input type="email" class="form-control" placeholder="E-mail"
-                                          value="{{$user->email}}" required maxlength="256"
+                                      <input type="email" class="form-control @if(session()->get('emailroredit')) is-invalid @endif" placeholder="E-mail"
+                                          value="@if(session()->get('emailroredit')) {{session()->get('emailroredit')}} @else {{$user->email}} @endif"  required maxlength="256"
                                           data-validation-required-message="This email field is required" name="email">
+                                          @if(session()->get('emailroredit'))
+                                          <div class="invalid-feedback">
+                                            The email already exists
+                                          </div>
+                                          @endif
                                   </div>
                               </div>
                               <div class="form-group">

@@ -12,6 +12,39 @@
 
 @section('content')
 
+@if(!isset($empty) && $current->root == true)
+
+    <!-- Dashboard Ecommerce Starts -->
+    <section id="dashboard-ecommerce">
+      <div class="row">
+        <!-- Greetings Content Starts -->
+        <div class="col-xl-4 col-md-6 col-12 dashboard-greetings">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="greeting-text">Bienvenue sur mySchool !</h3>
+              <p class="mb-0"><i class='bx bx-happy-heart-eyes'></i> Votre application de gestion d'écoles</p>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-end">
+                  <div class="dashboard-content-left">
+                    <h1 class="text-primary font-large-2 text-bold-500">850 Ecoles</h1>
+                    <p>Nous font confiance</p>
+                    <a role="button" href="{{route('schools-display')}}" class="btn btn-primary glow">Liste des écoles</a>
+                  </div>
+                  <div class="dashboard-content-right">
+                    <img src="{{asset('images/icon/cup.png')}}" height="220" width="220" class="img-fluid"
+                      alt="Dashboard Ecommerce" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+@else
+
   @if($school != NULL)
 
     <!-- Dashboard Ecommerce Starts -->
@@ -30,7 +63,7 @@
                     <div class="dashboard-content-left">
                       <h1 class="text-primary font-large-2 text-bold-500">{{$school->nb_room}} room</h1>
                       <p>Build in {{$school->building_date}}</p>
-                      <a role="button" href="{{route('schools-display')}}" class="btn btn-primary glow">Edit school</a>
+                      <a role="button" href="{{route('schools-add')}}" class="btn btn-primary glow">Edit school</a>
                     </div>
                     <div class="dashboard-content-right">
                       <img src="{{asset('images/icon/cup.png')}}" height="220" width="220" class="img-fluid"
@@ -1058,7 +1091,7 @@
                   <div class="dashboard-content-left">
                     <h1 class="text-primary font-large-2 text-bold-500">109</h1>
                     <p>Ecoles nous font conscience pour la gestion.</p>
-                    <a role="button" href="{{route('schools-display')}}" class="btn btn-primary glow">Ajouter votre Ecole</a>
+                    <a role="button" href="{{route('schools-add')}}" class="btn btn-primary glow">Ajouter votre Ecole</a>
                   </div>
                   <div class="dashboard-content-right">
                     <img src="{{asset('images/icon/cup.png')}}" height="220" width="220" class="img-fluid"
@@ -2069,6 +2102,8 @@
     <!-- Dashboard Ecommerce ends -->
 
   @endif
+
+@endif
 
 @endsection
 

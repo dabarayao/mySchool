@@ -164,5 +164,6 @@ Route::put('/settings/', 'main\SettingController@update')->name('settings-update
 Route::put('/settings/pass', 'main\SettingController@updatePass')->name('settings-pass');
 
 // myschool schools routes
-Route::get('/schools', 'main\SchoolController@index')->name('schools-display');
-Route::post('/schools', 'main\SchoolController@store')->name('schools-add');
+Route::get('/schools/add', 'main\SchoolController@index')->name('schools-add');
+Route::get('/schools/list', 'main\SchoolController@schoolDisplay')->name('schools-display');
+Route::post('/schools/add', 'main\SchoolController@store')->name('schools-add');

@@ -69,12 +69,20 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header">
-                          <h4 class="card-title">Zero configuration</h4>
+                          <h4 class="card-title">Listes des utilisateurs</h4>
                       </div>
                       <div class="card-content">
                           <div class="card-body card-dashboard">
-                              <p class="card-text">DataTables has most features enabled by default, so all you need to do to
-                                  use it with your own tables is to call the construction function: $().DataTable();.</p>
+                              <p class="card-text">
+                                @if(session()->get('emailroradd'))
+                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                  L'email que vous avez rentrez existe déja, l'utilisateur ne peut pas être ajouter
+                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                   </button>
+                                 </div>
+                                 @endif
+                              </p>
                               <div class="table-responsive">
                                   <table class="table zero-configuration">
                                       <thead>
@@ -203,7 +211,7 @@
 
       <!-- all modal start -->
 
-          <!--user add modal -->
+      <!--user add modal -->
               <div class="modal modal-primary fade text-left w-100" id="user_add_modal" tabindex="-1" role="dialog"
                 aria-labelledby="myModalLabel16" aria-hidden="true">
                 <form class="form" id="user-add-form" method="POST" action="{{route('users-add-form')}}" enctype="multipart/form-data" @submit="confCheck">
@@ -280,12 +288,20 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header">
-                          <h4 class="card-title">Zero configuration</h4>
+                          <h4 class="card-title">Users list</h4>
                       </div>
                       <div class="card-content">
                           <div class="card-body card-dashboard">
-                              <p class="card-text">DataTables has most features enabled by default, so all you need to do to
-                                  use it with your own tables is to call the construction function: $().DataTable();.</p>
+                              <p class="card-text">
+                                @if(session()->get('emailroradd'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                   The email already exists, user can't be added
+                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                   </button>
+                                 </div>
+                                @endif
+                              </p>
                               <div class="table-responsive">
                                   <table class="table zero-configuration">
                                       <thead>
