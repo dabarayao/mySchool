@@ -89,8 +89,8 @@ var user_add = new Vue({
   }
 });
 
-/* pager-users-edit edit form */
-var user_add_edit = new Vue({
+/* pager-users-edit  form */
+var user_edit = new Vue({
   el: '#user_edit_form',
   data: {
     photo: false,
@@ -245,6 +245,7 @@ var user_add_edit = new Vue({
   }
 });
 
+/* pager-settings edit form */
 var user_settings = new Vue({
   el: '#user_setting',
   components: {
@@ -266,4 +267,115 @@ var user_settings = new Vue({
   }
 });
 
+/* pager-schools-add  form */
+var school_add = new Vue({
+  el: '#school_add',
+  data: {
+    photo: false,
+    fire: 'changer la photo'
+  },
+  methods: {
+    inputFileCheck: function (e) {
 
+        var uploadField = document.getElementById("schoolphoto");
+        var setLang = document.getElementById("settin_lang");
+        var userLang = navigator.language || navigator.userLanguage;
+
+        if(setLang.value == 1)
+        {
+          if (userLang === ('fr' || 'en'))
+          {
+            if (uploadField.files[0].size > 2097152) {
+
+
+
+              alert("Le fichier est trop lourd 2 mo maximum");
+              uploadField.value = "";
+            }
+          }
+
+        }
+        else
+        {
+            if (uploadField.files[0].size > 2097152) {
+
+              alert("File is too big! 2 mo maximum");
+              uploadField.value = "";
+            }
+        }
+
+
+
+    }
+  },
+  mounted() {
+    console.log('school mounted');
+
+  }
+});
+
+/* pager-schools-edit  form */
+var school_edit = new Vue({
+  el: '#school_edit',
+  data: {
+    photo: false,
+    fire: 'changer la photo'
+  },
+  methods: {
+    inputFileCheck: function (e) {
+
+        var uploadField = document.getElementById("schoolphoto");
+        var setLang = document.getElementById("settin_lang");
+        var userLang = navigator.language || navigator.userLanguage;
+
+        if(setLang.value == 1)
+        {
+          if (userLang === ('fr' || 'en'))
+          {
+            if (uploadField.files[0].size > 2097152) {
+
+
+
+              alert("Le fichier est trop lourd 2 mo maximum");
+              uploadField.value = "";
+            }
+          }
+
+        }
+        else
+        {
+            if (uploadField.files[0].size > 2097152) {
+
+              alert("File is too big! 2 mo maximum");
+              uploadField.value = "";
+            }
+        }
+
+
+
+    }
+
+  },
+  mounted() {
+
+    // school edit from country's select
+    var c = document.getElementById("country-icon");
+    var ch = document.getElementById("school_country");
+
+    if (ch.value != "")
+    {
+    c.value = ch.value;
+    }
+
+    // school edit from dialcode's select
+    var d = document.getElementById("dialcode-icon");
+    var dh = document.getElementById("school_dialcode");
+
+    if (dh.value != "")
+    {
+    d.value = dh.value;
+    }
+
+
+  }
+});

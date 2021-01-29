@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\School;
 use App\Setting;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -71,9 +72,23 @@ class SchoolController extends Controller
 
     public function schoolDisplay() {
 
-      $schools = school::all();
+      // auth connected state code sample
+      if (Auth::check()) {
+        $util = User::find(Auth::id());
+        if ($util->state == false); {
+          $util->state = true;
+          $util->save();
+        }
+      }
 
-      return view('main.schools.page-schools-list')->with('schools', $schools);
+      // settings code for current users
+      $setting = Setting::where('user_id', Auth::id())->first();
+      // settings code for current users
+
+
+      $schools = school::all()->sortByDesc('created_at');
+
+      return view('main.schools.page-schools-list')->with(['schools' => $schools, 'setting' => $setting]);
 
     }
 
@@ -183,9 +198,44 @@ class SchoolController extends Controller
      * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function show(School $school)
+    public function show($id, School $school)
     {
         //
+
+        // auth connected state code sample
+        if (Auth::check()) {
+          $util = User::find(Auth::id());
+          if ($util->state == false); {
+            $util->state = true;
+            $util->save();
+          }
+        }
+
+        // settings code for current users
+        $setting = Setting::where('user_id', Auth::id())->first();
+        // settings code for current users
+
+        $schools = School::find($id);
+        $schooluser = User::where('school_id', $school->id)->get();
+        $current = User::find(Auth::id());
+
+        if ($setting->language == 1)
+        {
+          if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en') ) {
+            $countries = DB::table('countries')->where(['code' => $current->country, 'language' => 1])->value('label');
+          }
+        }
+        else {
+            $countries = DB::table('countries')->where(['code' => $current->country, 'language' => 2])->value('label');
+        }
+
+
+        return view('main.schools.page-schools-view')->with([
+        'schools' => $schools,
+        'schooluser' => $schooluser,
+        'setting' => $setting,
+        'countries' => $countries]);
+
     }
 
     /**
@@ -194,9 +244,50 @@ class SchoolController extends Controller
      * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function edit(School $school)
+    public function edit($id, School $school)
     {
-        //
+        // auth connected state code sample
+        if (Auth::check()) {
+          $util = User::find(Auth::id());
+          if ($util->state == false); {
+            $util->state = true;
+            $util->save();
+          }
+        }
+
+
+         // settings code for current users
+      $setting = Setting::where('user_id', Auth::id())->first();
+      // settings code for current users
+
+      // users who's is currently connected
+      $current = User::find(Auth::id());
+      // users who's is currently connected
+
+      // All users
+      $school = School::find($id);
+      // All users
+
+
+
+
+      if($school != NULL)
+      {
+        return view('main.schools.page-schools-edit')->with([
+          'setting' => $setting,
+          'current' => $current,
+          'schools' => $school]);
+      }
+      else if(($school != NULL || $school == NULL) && $current->school == NULL)
+      {
+        return redirect()->route('home');
+      }
+      else
+      {
+        return view('errors.404');
+      }
+
+
     }
 
     /**
@@ -206,9 +297,90 @@ class SchoolController extends Controller
      * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update($id, Request $request, School $school)
     {
         //
+        //
+        $request->validate([
+          'schoolname' => 'required',
+          'phone' => 'required',
+          'dialcode' => 'required',
+          'type' => 'required',
+          'country' => 'required',
+          'area' => 'required',
+          'address' => 'required',
+          'nbroom' => 'required',
+          'building_date' => 'required',
+          'funder' => 'required',
+          'type_monthyear' => 'required'
+        ]);
+
+        if($request->hasFile('photo'))
+        {
+        //code to store an resize the image
+        $files = $request->file('photo');
+
+        $picture = Storage::putFile('public/schools/', $files);
+        $resize = Image::make($files)->resize(500, 500)->save('storage/schools/' . basename($picture), 80);
+        $path = Storage::url($picture);
+        }
+
+
+
+        $school = School::find($id);
+        $current = User::find(Auth::id());
+        $schooluser = User::where('school_id', $school->id)->get();
+        $school->name = $request->schoolname;
+        $school->phone = $request->phone;
+        $school->dialcode = $request->dialcode;
+        $school->type = $request->type;
+        $school->country = $request->country;
+        $school->area = $request->area;
+        $school->address = $request->address;
+        $school->nb_room = $request->nbroom;
+
+        if($request->hasFile('photo'))
+        {
+        $school->photo = $path;
+        }
+        $school->building_date = $request->building_date;
+        $school->funder = $request->funder;
+        $school->type_monthyear = $request->type_monthyear;
+        if(isset($request->status))
+        {
+        $school->status = $request->status;
+
+          foreach ($schooluser as $schoolusers) {
+
+             $schoolusers->status = $school->status;
+
+             $schoolusers->save();
+          }
+        }
+        else
+        {
+        $school->status = true;
+        }
+        $school->created_user = $current->id;
+        $school->updated_user = $current->id;
+
+        $school->save();
+
+        if($current->root == true)
+        {
+          $current->school_id = NULL;
+
+          $current->save();
+        }
+        else
+        {
+          $current->school_id = $school->id;
+
+          $current->save();
+        }
+
+        return redirect()->route('home');
+
     }
 
     /**

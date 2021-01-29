@@ -23,7 +23,7 @@ class CreateSchoolsTable extends Migration
       $table->string('type', 100)->nullable();
       $table->integer('nb_room')->nullable();
       $table->string('dialcode', 100)->nullable();
-      $table->string('photo', 256);
+      $table->string('photo', 256)->nullable();
       $table->date('building_date');
       $table->string('funder', 256);
       $table->boolean('type_monthyear')->default(0);

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -186,32 +186,50 @@ class UsersController extends Controller
     //
     $superuser = User::find(Auth::id());
     $user = User::find($id);
+    $setting = Setting::where('user_id', Auth::id())->first();
+
+
     // code to calculate age of hte users
-    $age = floor((time() - strtotime($user->birthdate)) / 31556926);
+    if($user != NULL)
+    {
+      $age = floor((time() - strtotime($user->birthdate)) / 31556926);
 
 
-    if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr') {
-      $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 1])->value('label');
-    } else {
-      $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 2])->value('label');
+      if ($setting->language == 1)
+      {
+        if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en') ) {
+          $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 1])->value('label');
+        }
+      }
+      else {
+        $countries = DB::table('countries')->where(['code' => $user->country, 'language' => 2])->value('label');
+      }
+
+
+
+
+      $write_user = User::find($user->created_user);
+      $edit_user = User::find($user->updated_user);
+
     }
 
-    $setting = Setting::where('user_id', Auth::id())->first();
-    $write_user = User::find($user->created_user);
-    $edit_user = User::find($user->updated_user);
 
-
-
-
-    return view('main.users.page-users-view')->with([
-      'user' => $user,
-      'country' => $countries,
-      'superuser' => $superuser,
-      'age' => $age,
-      'writeby' => $write_user,
-      'editby' => $edit_user,
-      'setting' => $setting
-    ]);
+    if($user != NULL)
+    {
+      return view('main.users.page-users-view')->with([
+        'user' => $user,
+        'country' => $countries,
+        'superuser' => $superuser,
+        'age' => $age,
+        'writeby' => $write_user,
+        'editby' => $edit_user,
+        'setting' => $setting
+      ]);
+    }
+    else
+    {
+      return view('errors.404');
+    }
   }
 
   /**
