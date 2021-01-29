@@ -104,7 +104,7 @@
                               <div class="form-group">
                                   <div class="controls">
                                       <label>E-mail</label>
-                                      <input type="email" class="form-control @if(session()->get('emailroredit')) is-invalid @endif" placeholder="Email"
+                                      <input type="email" readonly class="form-control @if(session()->get('emailroredit')) is-invalid @endif" placeholder="Email"
                                           value="{{$user->email}}" required maxlength="256"
                                           data-validation-required-message="cet email est obligatoire" name="email">
                                           @if(session()->get('emailroredit'))
@@ -412,7 +412,7 @@
                               <div class="form-group">
                                   <div class="controls">
                                       <label>E-mail</label>
-                                      <input type="email" class="form-control @if(session()->get('emailroredit')) is-invalid @endif" placeholder="E-mail"
+                                      <input type="email" readonly class="form-control @if(session()->get('emailroredit')) is-invalid @endif" placeholder="E-mail"
                                           value="@if(session()->get('emailroredit')) {{session()->get('emailroredit')}} @else {{$user->email}} @endif"  required maxlength="256"
                                           data-validation-required-message="This email field is required" name="email">
                                           @if(session()->get('emailroredit'))

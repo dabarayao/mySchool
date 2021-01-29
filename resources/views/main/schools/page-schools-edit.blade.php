@@ -74,7 +74,7 @@
                             Photo de l'école (optionel)
                           </label>
                           <input type="hidden" id="settin_lang" value="{{$setting->language}}">
-                          <input type="file" class="form-control required" id="schoolphoto" name="photo"
+                          <input type="file" class="form-control" id="schoolphoto" name="photo"
                             placeholder="Enter Event Name" @change="inputFileCheck">
                         </div>
                       </div>
@@ -291,7 +291,7 @@
                         School's Photo
                       </label>
                       <input type="hidden" id="settin_lang" value="{{$setting->language}}">
-                      <input type="file" class="form-control required" id="schoolphoto" name="photo"
+                      <input type="file" class="form-control" id="schoolphoto" name="photo"
                           placeholder="Enter Event Name" @change="inputFileCheck">
                     </div>
                   </div>

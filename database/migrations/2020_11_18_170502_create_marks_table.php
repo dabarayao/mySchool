@@ -18,6 +18,7 @@ class CreateMarksTable extends Migration
       $table->double('value');
       $table->integer('coef');
       $table->double('total');
+      $table->boolean('isbonus')->nullable();
       $table->integer('teacher_id');
       $table->integer('student_id');
       $table->integer('discipline_id');

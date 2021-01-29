@@ -63,12 +63,33 @@
                     <div class="dashboard-content-left">
                       <h1 class="text-primary font-large-2 text-bold-500">{{$school->nb_room}} room</h1>
                       <p>Build in {{$school->building_date}}</p>
-                      <a role="button" href="{{route('schools-add')}}" class="btn btn-primary glow">Edit school</a>
+                      <a role="button" href="{{route('schools-view', $school->id)}}" class="btn btn-primary glow">Edit school</a>
                     </div>
                     <div class="dashboard-content-right">
                       <img src="{{asset('images/icon/cup.png')}}" height="220" width="220" class="img-fluid"
                         alt="Dashboard Ecommerce" />
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Schoolyear launch card -->
+          <div class="col-xl-3 col-md-6 col-sm-12">
+            <div class="card">
+              <div class="card-content">
+                <img class="card-img img-fluid" src="@if($school->photo != NULL) {{$school->photo}} @else {{asset('images/schools/schoolphoto.jpg')}} @endif" alt="Card image">
+                <div class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
+                  <div class="overlay-content">
+                    <h4 class="card-title mb-50">Années scolaire</h4>
+                    <p class="card-text text-ellipsis">
+                      vous devez créer une nouvelle année scolaire pour commencer
+                    </p>
+                  </div>
+                  <div class="overlay-status">
+                    <p class="mb-25"><small>créé le {{$school->created_at}}</small></p>
+                    <a href="#" class="btn btn-light-primary">Démarrer </a>
                   </div>
                 </div>
               </div>
@@ -1080,6 +1101,18 @@
       <div class="row">
         <!-- Greetings Content Starts -->
         <div class="col-xl-4 col-md-6 col-12 dashboard-greetings">
+
+          @if(session()->get('userNotSchool'))
+
+             <div class="alert alert-danger alert-dismissible fade show" role="alert">
+               Pour avoir accès à cette partie de l'application, ajouter votre école.
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+
+          @endif
+
           <div class="card">
             <div class="card-header">
               <h3 class="greeting-text">Bienvenue sur mySchool !</h3>
