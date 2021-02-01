@@ -61,9 +61,9 @@
                 <div class="card-body">
                   <div class="d-flex justify-content-between align-items-end">
                     <div class="dashboard-content-left">
-                      <h1 class="text-primary font-large-2 text-bold-500">{{$school->nb_room}} room</h1>
-                      <p>Build in {{$school->building_date}}</p>
-                      <a role="button" href="{{route('schools-view', $school->id)}}" class="btn btn-primary glow">Edit school</a>
+                      <h1 class="text-primary font-large-2 text-bold-500">{{$school->nb_room}} salle de classe</h1>
+                      <p>Crée le {{date('d-m-Y', strtotime($school->building_date))}}</p>
+                      <a role="button" href="{{route('schools-view', $school->id)}}" class="btn btn-primary glow">Afficher l'école</a>
                     </div>
                     <div class="dashboard-content-right">
                       <img src="{{asset('images/icon/cup.png')}}" height="220" width="220" class="img-fluid"
@@ -89,7 +89,7 @@
                   </div>
                   <div class="overlay-status">
                     <p class="mb-25"><small>créé le {{$school->created_at}}</small></p>
-                    <a href="#" class="btn btn-light-primary">Démarrer </a>
+                    <a href="{{route('schoolsyear-view', $school->id)}}" class="btn btn-light-primary">Démarrer </a>
                   </div>
                 </div>
               </div>

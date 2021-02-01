@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -171,4 +172,5 @@ Route::get('/schools/edit/{id}', 'main\SchoolController@edit')->name('schools-ed
 Route::put('/schools/edit/{id}', 'main\SchoolController@update')->name('schools-update')->where('id', '[0-9]+');
 Route::get('/schools/view/{id}', 'main\SchoolController@show')->name('schools-view')->where('id', '[0-9]+');
 
-
+// mySchoolschoolyear routes
+Route::get('/schoolsyear/{id}', 'main\SchoolyearController@index')->name('schoolsyear-view');

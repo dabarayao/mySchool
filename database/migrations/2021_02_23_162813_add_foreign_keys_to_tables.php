@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Ramsey\Uuid\v1;
+
 class AddForeignKeysToTables extends Migration
 {
   /**
@@ -46,7 +48,7 @@ class AddForeignKeysToTables extends Migration
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
-        $table->foreign('deleted_user')
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
@@ -86,7 +88,7 @@ class AddForeignKeysToTables extends Migration
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
-        $table->foreign('deleted_user')
+      $table->foreign('deleted_user')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
@@ -885,6 +887,133 @@ class AddForeignKeysToTables extends Migration
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('student_kins', function (Blueprint $table) {
+
+      $table->foreign('kins_id')
+        ->references('id')
+        ->on('kins')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('student_id')
+        ->references('id')
+        ->on('students')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('pay_schoolfees', function (Blueprint $table) {
+
+      $table->foreign('schoolfees_id')
+        ->references('id')
+        ->on('schoolfees')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('student_id')
+        ->references('id')
+        ->on('students')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('schoolfees', function (Blueprint $table) {
+
+      $table->foreign('classroom_id')
+        ->references('id')
+        ->on('classrooms')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('schoolyear_id')
+        ->references('id')
+        ->on('schoolyears')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('notifications', function (Blueprint $table) {
+
+
+      $table->foreign('kins_id')
+        ->references('id')
+        ->on('kins')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
 
       $table->foreign('created_user')
         ->references('id')

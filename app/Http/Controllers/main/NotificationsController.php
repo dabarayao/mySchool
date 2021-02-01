@@ -3,34 +3,20 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
-use App\School;
-use App\Schoolyear;
-use App\User;
+use App\notifications;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class SchoolyearController extends Controller
+class NotificationsController extends Controller
 {
   /**
    * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
    */
-
-  public function __construct()
-  {
-    // the authenitfication middleware for the app
-    $this->middleware(['verified', 'auth', 'checkUserStatus', 'checkUserSchools']);
-  }
-
-
-  public function index($id)
+  public function index()
   {
     //
-    $school = School::find($id);
-    $schoolyear = Schoolyear::where('school_id', $school->id);
-
-    return view('main.schoolsyear.page-schoolyears')->with('schoolyear', $schoolyear);
+  }
 
   /**
    * Show the form for creating a new resource.
@@ -56,10 +42,10 @@ class SchoolyearController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  \App\Schoolyear  $schoolyear
+   * @param  \App\notifications  $notifications
    * @return \Illuminate\Http\Response
    */
-  public function show(Schoolyear $schoolyear)
+  public function show(notifications $notifications)
   {
     //
   }
@@ -67,10 +53,10 @@ class SchoolyearController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  \App\Schoolyear  $schoolyear
+   * @param  \App\notifications  $notifications
    * @return \Illuminate\Http\Response
    */
-  public function edit(Schoolyear $schoolyear)
+  public function edit(notifications $notifications)
   {
     //
   }
@@ -79,10 +65,10 @@ class SchoolyearController extends Controller
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Schoolyear  $schoolyear
+   * @param  \App\notifications  $notifications
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Schoolyear $schoolyear)
+  public function update(Request $request, notifications $notifications)
   {
     //
   }
@@ -90,10 +76,10 @@ class SchoolyearController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param  \App\Schoolyear  $schoolyear
+   * @param  \App\notifications  $notifications
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Schoolyear $schoolyear)
+  public function destroy(notifications $notifications)
   {
     //
   }
