@@ -16,7 +16,7 @@
 
 {{-- vendor styles --}}
 @section('vendor-styles')
-<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/tables/datatable/datatables.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/tables/datatable/datatables.min.css')}}">s
 @endsection
 {{-- page styles --}}
 @section('page-styles')
@@ -496,8 +496,6 @@
 @section('page-scripts')
 <script src="{{asset('js/scripts/pages/page-users.js')}}"></script>
 <script src="{{asset('js/scripts/datatables/datatable.js')}}"></script>
-
-
 
 
 {{-- supermask.js cdn--}}

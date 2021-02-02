@@ -28,9 +28,23 @@ class SchoolyearController extends Controller
   {
     //
     $school = School::find($id);
-    $schoolyear = Schoolyear::where('school_id', $school->id);
+    $current = User::find(Auth::id());
 
-    return view('main.schoolsyear.page-schoolyears')->with('schoolyear', $schoolyear);
+    if ($school != NULL) {
+      $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', null]])->first();
+      $checker = 1;
+    } else {
+      $checker = NULL;
+    }
+
+    if ($checker == NULL) {
+      return view('errors.404');
+    } else if ($schoolyear != NULL && $schoolyear->created_user != $current->id) {
+      return view('errors.not-authorized');
+    } else {
+      return view('main.schoolsyear.page-schoolyears')->with(['schoolyear' => $schoolyear, 'school' => $school]);
+    }
+  }
 
   /**
    * Show the form for creating a new resource.
@@ -82,9 +96,28 @@ class SchoolyearController extends Controller
    * @param  \App\Schoolyear  $schoolyear
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Schoolyear $schoolyear)
+  public function update($id, Request $request, Schoolyear $schoolyear)
   {
     //
+    $schoolyear = Schoolyear::find($id);
+
+    if (strtotime($request->start_date) > strtotime($request->end_date)) {
+
+      session()->flash('scolar1', 'the start date is bigger than the end date');
+    } else {
+      $current = User::find(Auth::id());
+
+
+      $schoolyear->year = date("Y-m-d");
+      $schoolyear->start_date = $request->start_date;
+      $schoolyear->end_date = $request->end_date;
+      $schoolyear->school_id = $request->school;
+      $schoolyear->created_user = $current->id;
+      $schoolyear->updated_user = $current->id;
+      $schoolyear->save();
+    }
+
+    return redirect()->route('schoolsyear-view', $request->school);
   }
 
   /**

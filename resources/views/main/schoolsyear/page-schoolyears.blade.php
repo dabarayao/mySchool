@@ -45,23 +45,40 @@
                     <h3>Année scolaire</h3>
                 </div>
             </div>
-            <form class="new-added-form">
+            <form class="new-added-form" action="{{route('schoolsyear-update', $schoolyear->id)}}" method="POST">
+
+              @csrf
+              {{method_field('PUT')}}
+
+                <input type="hidden" class="form-control" value="{{$school->id}}" name="school" >
+
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Periode actuel</label>
 
-                        <input type="hidden" class="form-control" value="{{date('Y')}}" aria-describedby="exampleAddon">
+                        <input type="hidden" class="form-control" value="{{$schoolyear->year}}" name="year" aria-describedby="exampleAddon">
 
-                        <input type="text" class="form-control" value="{{date('Y')}} / {{date('Y', strtotime(date('Y') . ' + 1 years'))}}" aria-describedby="exampleAddon">
+                        <input type="text" class="form-control" readonly value="{{date('Y', strtotime($schoolyear->year))}} / {{date('Y', strtotime(date('Y', strtotime($schoolyear->year)) . ' + 1 years'))}}" aria-describedby="exampleAddon">
 
-                      </div>
+                    </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Date de début </label>
-                          <input type="date" class="form-control" id="exampleInput" placeholder="Example input placeholder">
+                          <input type="date" class="form-control" id="exampleInput" value="{{$schoolyear->start_date}}" name="start_date" min="{{$schoolyear->year}}" placeholder="Example input placeholder">
+
+                          @if(session()->get('scolar1'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              La date de début saisie est plus grande que la date de fin.
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                          @endif
+
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Date de fin </label>
-                          <input type="date" class="form-control" id="exampleInput" placeholder="Example input placeholder">
+                          <input type="date" class="form-control" id="exampleInput" value="{{$schoolyear->end_date}}" name="end_date" min="{{$schoolyear->end_date}}"  placeholder="Example input placeholder">
+
 
                     </div>
                     <div class="col-12 form-group mg-t-8">

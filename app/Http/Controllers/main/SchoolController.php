@@ -158,7 +158,7 @@ class SchoolController extends Controller
     if (Schoolyear::where('school_id', '=', $school->id)->count() == 0) {
 
       $schoolyear = new Schoolyear;
-      $schoolyear->year = date("Y/m/d");
+      $schoolyear->year = date("Y-m-d");
       $schoolyear->school_id = $school->id;
       $schoolyear->created_user = $current->id;
       $schoolyear->updated_user = $current->id;

@@ -15,10 +15,10 @@ class CreateSchoolyearsTable extends Migration
   {
     Schema::create('schoolyears', function (Blueprint $table) {
       $table->id();
-      $table->string('year', 100);
+      $table->date('year');
       $table->date('start_date')->nullable();
       $table->date('end_date')->nullable();
-      $table->boolean('is_over')->nullable();;
+      $table->boolean('is_over')->default(0);
       $table->integer('school_id');
       $table->integer('created_user');
       $table->integer('updated_user');

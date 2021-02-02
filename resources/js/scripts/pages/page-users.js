@@ -7,7 +7,8 @@
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
-$(document).ready(function () {
+
+$(function () {
 
     // variable declaration
     var usersTable;
@@ -108,6 +109,11 @@ $(document).ready(function () {
 
     // all tooltips
   $('#not-verified').tooltip();
+
+   $('.selectpicker').selectpicker({
+        style: 'btn-info',
+        size: 4
+    });
 
 
 

@@ -120,14 +120,10 @@
                       <div class="col-md-6 col-12">
                         <div class="form-group">
 
-                          <label for="country-icon">Pays</label>
-                          <div class="position-relative has-icon-left">
 
                             @include('main.tools.countries')
 
-                            <div class="form-control-position">
-                                  <i class="fa fa-globe" aria-hidden="true"></i>
-                            </div>
+
                           </div>
                         </div>
                       </div>

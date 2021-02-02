@@ -75,26 +75,53 @@
             </div>
           </div>
 
-          <!-- Schoolyear launch card -->
-          <div class="col-xl-3 col-md-6 col-sm-12">
-            <div class="card">
-              <div class="card-content">
-                <img class="card-img img-fluid" src="@if($school->photo != NULL) {{$school->photo}} @else {{asset('images/schools/schoolphoto.jpg')}} @endif" alt="Card image">
-                <div class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
-                  <div class="overlay-content">
-                    <h4 class="card-title mb-50">Années scolaire</h4>
-                    <p class="card-text text-ellipsis">
-                      vous devez créer une nouvelle année scolaire pour commencer
-                    </p>
-                  </div>
-                  <div class="overlay-status">
-                    <p class="mb-25"><small>créé le {{$school->created_at}}</small></p>
-                    <a href="{{route('schoolsyear-view', $school->id)}}" class="btn btn-light-primary">Démarrer </a>
+          @if($schoolyear->start_date == NULL && $schoolyear->end_date == NULL)
+
+            <!-- Schoolyear launch card -->
+            <div class="col-xl-3 col-md-6 col-sm-12">
+              <div class="card">
+                <div class="card-content">
+                  <img class="card-img img-fluid" src="@if($school->photo != NULL) {{$school->photo}} @else {{asset('images/schools/schoolphoto.jpg')}} @endif" alt="Card image">
+                  <div class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
+                    <div class="overlay-content">
+                      <h4 class="card-title mb-50">Années scolaire</h4>
+                      <p class="card-text text-ellipsis">
+                        vous devez créer une nouvelle année scolaire pour commencer
+                      </p>
+                    </div>
+                    <div class="overlay-status">
+                      <p class="mb-25"><small>créé le {{$school->created_at}}</small></p>
+                      <a href="{{route('schoolsyear-view', $school->id)}}" class="btn btn-light-primary">Démarrer </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+
+          @else
+
+            <!-- Schoolyear launch card -->
+            <div class="col-xl-3 col-md-6 col-sm-12">
+              <div class="card">
+                <div class="card-content">
+                  <img class="card-img img-fluid" src="@if($school->photo != NULL) {{$school->photo}} @else {{asset('images/schools/schoolphoto.jpg')}} @endif" alt="Card image">
+                  <div class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
+                    <div class="overlay-content">
+                      <h4 class="card-title mb-50">Années scolaire</h4>
+                      <p class="card-text text-ellipsis">
+                        365 jours restants avant la fin de l'année scolaire
+                      </p>
+                    </div>
+                    <div class="overlay-status">
+                      <p class="mb-25"><small>0 trimestre sur 3</small></p>
+                      <a href="#" class="btn btn-light-primary">Ajouter un trimestre</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          @endif
 
           {{--
           <!-- Multi Radial Chart Starts -->

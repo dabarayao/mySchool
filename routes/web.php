@@ -174,3 +174,4 @@ Route::get('/schools/view/{id}', 'main\SchoolController@show')->name('schools-vi
 
 // mySchoolschoolyear routes
 Route::get('/schoolsyear/{id}', 'main\SchoolyearController@index')->name('schoolsyear-view');
+Route::put('/schoolsyear/{id}', 'main\SchoolyearController@update')->name('schoolsyear-update');
