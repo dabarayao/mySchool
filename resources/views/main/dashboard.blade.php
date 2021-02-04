@@ -111,15 +111,28 @@
                       <p class="card-text text-ellipsis">
                         @if($schoolyear->start_date > date('Y-m-d'))
 
-                         {{date_diff(date_create(date('Y-m-d')), date_create($schoolyear->start_date))->format("%R%a")}} restants avant le début de l'année scolaire
+                         {{date_diff(date_create(date('Y-m-d')), date_create($schoolyear->start_date))->format("%R%a")}} jours restants avant le début de l'année scolaire
 
                         @elseif($schoolyear->end_date > date('Y-m-d'))
-                         {{date_diff(date_create(date('Y-m-d')), date_create($schoolyear->end_date))->format("%R%a")}} restants avant le fin de l'année scolaire
+                         {{date_diff(date_create(date('Y-m-d')), date_create($schoolyear->end_date))->format("%R%a")}} jours restants avant le fin de l'année scolaire
                         @endif
                       </p>
+                      @if($monthyear!= null)
+                        <p class="card-text text-ellipsis">
+                          
+                            @if($monthyear->start_date > date('Y-m-d'))
+
+                            {{date_diff(date_create(date('Y-m-d')), date_create($monthyear->start_date))->format("%R%a")}} jours restants avant le début du @if($school->type_monthyear == false) trimestre @else semestre @endif
+
+                            @elseif($monthyear->end_date > date('Y-m-d'))
+                            {{date_diff(date_create(date('Y-m-d')), date_create($monthyear->end_date))->format("%R%a")}} jours restants avant la fin du @if($school->type_monthyear == false) trimestre @else semestre @endif
+                            @endif
+                          
+                        </p>
+                      @endif
                     </div>
                     <div class="overlay-status">
-                      <p class="mb-25"><small>0 trimestre sur 3</small></p>
+                      <p class="mb-25"><strong>@if($school->type_monthyear == false) trimestre {{ $monthyearCount }} / 3 @else semestre {{ $monthyearCount }} / 2 @endif </strong></p>
                       <a href="#" class="btn btn-light-primary">Ajouter un trimestre</a>
                     </div>
                   </div>

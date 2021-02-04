@@ -17,8 +17,9 @@ class CreateMonthyearsTable extends Migration
       $table->id();
       $table->date('start_date');
       $table->date('end_date');
-      $table->boolean('is_over');
+      $table->boolean('is_over')->default(0);
       $table->integer('coef');
+      $table->integer('rank')->nullable();
       $table->integer('schoolyear_id');
       $table->integer('created_user');
       $table->integer('updated_user');

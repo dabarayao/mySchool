@@ -172,6 +172,10 @@ Route::get('/schools/edit/{id}', 'main\SchoolController@edit')->name('schools-ed
 Route::put('/schools/edit/{id}', 'main\SchoolController@update')->name('schools-update')->where('id', '[0-9]+');
 Route::get('/schools/view/{id}', 'main\SchoolController@show')->name('schools-view')->where('id', '[0-9]+');
 
-// mySchoolschoolyear routes
-Route::get('/schoolsyear/{id}', 'main\SchoolyearController@index')->name('schoolsyear-view');
-Route::put('/schoolsyear/{id}', 'main\SchoolyearController@update')->name('schoolsyear-update');
+// mySchool schoolyear routes
+Route::get('/schoolsyear/{id}', 'main\SchoolyearController@index')->name('schoolsyear-view')->where('id', '[0-9]+');
+Route::put('/schoolsyear/{id}', 'main\SchoolyearController@update')->name('schoolsyear-update')->where('id', '[0-9]+');
+
+// mySchool monthyear routes
+Route::get('/monthyear/{id}', 'main\MonthyearController@index')->name('monthyear-view')->where('id', '[0-9]+');
+Route::post('/monthyear/{id}', 'main\MonthyearController@store')->name('monthyear-add')->where('id', '[0-9]+');

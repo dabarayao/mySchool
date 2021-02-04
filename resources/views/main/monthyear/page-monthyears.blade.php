@@ -5,13 +5,23 @@
 
   @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en'))
 
-    @section('title','Année scolaire')
+
+
+    @if($school->type_monthyear == false)
+      @section('title','Ajouter un Trimestre')
+    @else
+      @section('title','Ajouter un Semestre')
+    @endif
 
   @endif
 
 @else
 
-  @section('title','School year')
+  @if($school->type_monthyear == false)
+      @section('title','Add a Trimester')
+    @else
+      @section('title','Add a Semester')
+  @endif
 
 @endif
 
@@ -40,7 +50,11 @@
                                       <a href="#"><i class="bx bx-home-alt"></i></a>
                                       </li>
                                     <li class="breadcrumb-item active">
-                                    Année scolaire
+                                    @if($school->type_monthyear == false)
+                                      Ajouter un Trimestre
+                                    @else
+                                      Ajouter un Semestre
+                                    @endif
                                       </li>
                   </div>
                 </div>
@@ -56,18 +70,22 @@
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>Année scolaire</h3>
+                    <h3>
+                      @if($school->type_monthyear == false)
+                        Ajouter un Trimestre
+                      @else
+                        Ajouter un Semestre
+                      @endif
+                    </h3>
                 </div>
             </div>
-            <form class="new-added-form" action="{{route('schoolsyear-update', $schoolyear->id)}}" method="POST">
+            <form class="new-added-form" action="{{route('monthyear-add', $schoolyear->id)}}" method="POST">
 
               @csrf
-              {{method_field('PUT')}}
 
-                <input type="hidden" class="form-control" value="{{$school->id}}" name="school" required>
 
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                    <div class="col-xl-3 col-lg-3 col-12 form-group">
                         <label>Periode actuel</label>
 
                         <input type="hidden" class="form-control" value="{{$schoolyear->year}}" name="year" aria-describedby="exampleAddon" required>
@@ -75,9 +93,9 @@
                         <input type="text" class="form-control" readonly value="{{date('Y', strtotime($schoolyear->year))}} / {{date('Y', strtotime(date('Y', strtotime($schoolyear->year)) . ' + 1 years'))}}" aria-describedby="exampleAddon">
 
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                    <div class="col-xl-3 col-lg-3 col-12 form-group">
                         <label>Date de début </label>
-                          <input type="date" class="form-control" id="exampleInput" value="{{$schoolyear->start_date}}" name="start_date" min="{{$schoolyear->year}}" placeholder="Example input placeholder" required>
+                          <input type="date" class="form-control" id="exampleInput" name="start_date" min="{{$schoolyear->start_date}}" max="{{$schoolyear->end_date}}" placeholder="Example input placeholder" required>
 
                           @if(session()->get('scolar1'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -89,9 +107,15 @@
                           @endif
 
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                    <div class="col-xl-3 col-lg-3 col-12 form-group">
                         <label>Date de fin </label>
-                          <input type="date" class="form-control" id="exampleInput" value="{{$schoolyear->end_date}}" name="end_date" min="{{$schoolyear->year}}"  placeholder="Example input placeholder" required>
+                          <input type="date" class="form-control" id="exampleInput" name="end_date" min="{{$schoolyear->start_date}}" max="{{$schoolyear->end_date}}"   placeholder="Example input placeholder" required>
+
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-12 form-group">
+                        <label>Coefficient </label>
+                          <input type="number" class="form-control" id="exampleInput" name="coef" max="10" placeholder="Entrez le coefficient" required>
 
 
                     </div>
@@ -123,7 +147,11 @@
                                       <a href="#"><i class="bx bx-home-alt"></i></a>
                                       </li>
                                     <li class="breadcrumb-item active">
-                                    School year
+                                    @if($school->type_monthyear == false)
+                                      Add a Trimester
+                                    @else
+                                      Add a Semester
+                                    @endif
                                       </li>
                   </div>
                 </div>
@@ -139,15 +167,18 @@
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>School year</h3>
+                    <h3>
+                      @if($school->type_monthyear == false)
+                        Add a Trimester
+                      @else
+                        Add a Semester
+                      @endif
+                    </h3>
                 </div>
             </div>
-            <form class="new-added-form" action="{{route('schoolsyear-update', $schoolyear->id)}}" method="POST">
+            <form class="new-added-form" action="{{route('monthyear-add', $schoolyear->id)}}" method="POST">
 
               @csrf
-              {{method_field('PUT')}}
-
-                <input type="hidden" class="form-control" value="{{$school->id}}" name="school" required>
 
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
@@ -160,7 +191,7 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Start date </label>
-                          <input type="date" class="form-control" id="exampleInput" value="{{$schoolyear->start_date}}" name="start_date" min="{{$schoolyear->year}}" placeholder="Example input placeholder" required>
+                          <input type="date" class="form-control" id="exampleInput" name="start_date" min="{{$schoolyear->start_date}}" max="{{$schoolyear->end_date}}" placeholder="Example input placeholder" required>
 
                           @if(session()->get('scolar1'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -174,7 +205,13 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>End date </label>
-                          <input type="date" class="form-control" id="exampleInput" value="{{$schoolyear->end_date}}" name="end_date" min="{{$schoolyear->year}}"  placeholder="Example input placeholder" required>
+                          <input type="date" class="form-control" id="exampleInput" name="end_date" min="{{$schoolyear->start_date}}" max="{{$schoolyear->end_date}}"   placeholder="Example input placeholder" required>
+
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-12 form-group">
+                        <label>Coefficient </label>
+                          <input type="number" class="form-control" id="exampleInput" name="coef" max="10" placeholder="Entrez le coefficient" required>
 
 
                     </div>

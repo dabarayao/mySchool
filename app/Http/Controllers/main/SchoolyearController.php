@@ -5,6 +5,7 @@ namespace App\Http\Controllers\main;
 use App\Http\Controllers\Controller;
 use App\School;
 use App\Schoolyear;
+use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,7 @@ class SchoolyearController extends Controller
     //
     $school = School::find($id);
     $current = User::find(Auth::id());
+    $setting = Setting::where('user_id', Auth::id())->first();
 
     if ($school != NULL) {
       $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', false]])->first();
@@ -42,7 +44,7 @@ class SchoolyearController extends Controller
     } else if ($schoolyear != NULL && $schoolyear->id != $current->school_id) {
       return view('errors.not-authorized');
     } else {
-      return view('main.schoolsyear.page-schoolyears')->with(['schoolyear' => $schoolyear, 'school' => $school]);
+      return view('main.schoolsyear.page-schoolyears')->with(['schoolyear' => $schoolyear, 'school' => $school, 'setting' => $setting]);
     }
   }
 
@@ -99,6 +101,13 @@ class SchoolyearController extends Controller
   public function update($id, Request $request, Schoolyear $schoolyear)
   {
     //
+    $request->validate([
+      'year' => 'required',
+      'start_date' => 'required',
+      'end_date' => 'required',
+      'school' => 'required'
+    ]);
+
     $schoolyear = Schoolyear::find($id);
 
     if (strtotime($request->start_date) > strtotime($request->end_date)) {

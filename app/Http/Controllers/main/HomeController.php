@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\School;
 use App\Schoolyear;
+use App\Monthyear;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,16 +44,24 @@ class HomeController extends Controller
 
     if ($school != NULL) {
       $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', false]])->first();
+      $monthyearCount = Monthyear::where('schoolyear_id', $schoolyear->id)->count();
+      $monthyear = Monthyear::where('schoolyear_id', $schoolyear->id)->first();
     }
 
     if (School::all()->count() == 0) {
-      return view('main.homepage', ['current' => $current, 'school' => $school, 'empty' => 1]);
+      return view('main.dashboard', ['current' => $current, 'school' => $school, 'empty' => 1]);
     } else {
 
       if ($school != NULL) {
-        return view('main.homepage', ['current' => $current, 'school' => $school, 'schoolyear' => $schoolyear]);
+        return view('main.dashboard', [
+          'current' => $current,
+          'school' => $school,
+          'schoolyear' => $schoolyear,
+          'monthyearCount' => $monthyearCount,
+          'monthyear' => $monthyear
+        ]);
       } else {
-        return view('main.homepage', ['current' => $current, 'school' => $school]);
+        return view('main.dashboard', ['current' => $current, 'school' => $school]);
       }
     }
   }
