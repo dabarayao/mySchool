@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
     'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
     'checkUserStatus' => \App\Http\Middleware\checkUserStatus::class,
     'checkUserSchools' => \App\Http\Middleware\checkUserSchools::class,
+    'ScolarSystem' => \App\Http\Middleware\ScolarSystem::class,
   ];
 
   /**

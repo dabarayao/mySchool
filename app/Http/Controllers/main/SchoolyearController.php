@@ -21,7 +21,7 @@ class SchoolyearController extends Controller
   public function __construct()
   {
     // the authenitfication middleware for the app
-    $this->middleware(['verified', 'auth', 'checkUserStatus', 'checkUserSchools']);
+    $this->middleware(['verified', 'auth', 'checkUserStatus', 'checkUserSchools', 'ScolarSystem']);
   }
 
 
@@ -41,7 +41,7 @@ class SchoolyearController extends Controller
 
     if ($checker == NULL) {
       return view('errors.404');
-    } else if ($schoolyear != NULL && $schoolyear->id != $current->school_id) {
+    } else if ($schoolyear != NULL && $school->id != $current->school_id) {
       return view('errors.not-authorized');
     } else {
       return view('main.schoolsyear.page-schoolyears')->with(['schoolyear' => $schoolyear, 'school' => $school, 'setting' => $setting]);

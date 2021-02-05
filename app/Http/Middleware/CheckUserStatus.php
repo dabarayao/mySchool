@@ -37,24 +37,6 @@ class CheckUserStatus
           $utilConnect->state = true;
           $utilConnect->save();
         }
-
-        if ($utilConnect->root == false) {
-          $school = School::where('id', $utilConnect->school_id)->first();
-          $schoolyear = Schoolyear::where('school_id', $school->id)->first();
-
-
-          if ($schoolyear->end_date < date('Y-m-d')) {
-            $schoolyear->is_over = true;
-            $schoolyear->save();
-
-            $schoolyear2 = new Schoolyear;
-            $schoolyear2->year = date("Y-m-d");
-            $schoolyear2->school_id = $school->id;
-            $schoolyear2->created_user = $utilConnect->id;
-            $schoolyear2->updated_user = $utilConnect->id;
-            $schoolyear2->save();
-          }
-        }
       }
     }
     return $next($request);

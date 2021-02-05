@@ -113,27 +113,77 @@
 
                          {{date_diff(date_create(date('Y-m-d')), date_create($schoolyear->start_date))->format("%R%a")}} jours restants avant le début de l'année scolaire
 
+                        @elseif($schoolyear->start_date == date('Y-m-d'))
+                          <h2 style="color: white;">
+                            Premier jour de l'année scolaire <i class="fa fa-smile-o" aria-hidden="true"></i> !!!!!
+                          </h2>
                         @elseif($schoolyear->end_date > date('Y-m-d'))
                          {{date_diff(date_create(date('Y-m-d')), date_create($schoolyear->end_date))->format("%R%a")}} jours restants avant le fin de l'année scolaire
+
+                        @elseif($schoolyear->end_date == date('Y-m-d'))
+
+                          <h2 style="color: white;">
+                            Dernier jour de l'année scolaire <i class="fa fa-frown-o" aria-hidden="true"></i> ....
+                          </h2>
+
                         @endif
                       </p>
                       @if($monthyear!= null)
                         <p class="card-text text-ellipsis">
-                          
+
                             @if($monthyear->start_date > date('Y-m-d'))
 
-                            {{date_diff(date_create(date('Y-m-d')), date_create($monthyear->start_date))->format("%R%a")}} jours restants avant le début du @if($school->type_monthyear == false) trimestre @else semestre @endif
+                            {{date_diff(date_create(date('Y-m-d')), date_create($monthyear->start_date))->format("%R%a")}} jours restants avant le début du @if($school->type_monthyear == false) trimestre @else semestre @endif n° {{ $monthyearCount }}
+
+                            @elseif($schoolyear->start_date == date('Y-m-d'))
+
+                              <h2 style="color: white;">
+                                Premier jour du @if($school->type_monthyear == false) trimestre @else semestre @endif n° {{ $monthyearCount }} <i class="fa fa-smile-o" aria-hidden="true"></i> !!!!!
+                              </h2>
 
                             @elseif($monthyear->end_date > date('Y-m-d'))
-                            {{date_diff(date_create(date('Y-m-d')), date_create($monthyear->end_date))->format("%R%a")}} jours restants avant la fin du @if($school->type_monthyear == false) trimestre @else semestre @endif
+                            {{date_diff(date_create(date('Y-m-d')), date_create($monthyear->end_date))->format("%R%a")}} jours restants avant la fin du @if($school->type_monthyear == false) trimestre @else semestre @endif n° {{ $monthyearCount }}
+
+                            @elseif($schoolyear->end_date == date('Y-m-d'))
+
+                            <h2 style="color: white;">
+                              Dernier jour du @if($school->type_monthyear == false) trimestre @else semestre @endif n° {{ $monthyearCount }} <i class="fa fa-frown-o" aria-hidden="true"></i> ....
+                            </h2>
+
                             @endif
-                          
+
                         </p>
                       @endif
                     </div>
                     <div class="overlay-status">
                       <p class="mb-25"><strong>@if($school->type_monthyear == false) trimestre {{ $monthyearCount }} / 3 @else semestre {{ $monthyearCount }} / 2 @endif </strong></p>
-                      <a href="#" class="btn btn-light-primary">Ajouter un trimestre</a>
+
+                      @if($monthyear != NULL)
+
+                        @if($monthyear->end_date < date('Y-m-d'))
+
+                          @if($school->type_monthyear == false && $monthyearCount < 3)
+                          <a href="{{route('monthyear-add', $schoolyear->id)}}" class="btn btn-light-primary">Ajouter un trimestre</a>
+                          @endif
+
+                          @if($school->type_monthyear == true && $monthyearCount < 2)
+                          <a href="{{route('monthyear-add', $schoolyear->id)}}" class="btn btn-light-primary">Ajouter un semestre</a>
+                          @endif
+
+                        @endif
+
+                      @else
+
+                        @if($school->type_monthyear == true && $monthyearCount < 2)
+                          <a href="{{route('monthyear-add', $schoolyear->id)}}" class="btn btn-light-primary">Ajouter un semestre</a>
+                        @endif
+
+                        @if($school->type_monthyear == false && $monthyearCount < 3)
+                          <a href="{{route('monthyear-add', $schoolyear->id)}}" class="btn btn-light-primary">Ajouter un trimestre</a>
+                        @endif
+
+                      @endif
+
                     </div>
                   </div>
                 </div>

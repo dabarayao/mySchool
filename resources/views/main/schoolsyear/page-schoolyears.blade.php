@@ -72,7 +72,7 @@
 
                         <input type="hidden" class="form-control" value="{{$schoolyear->year}}" name="year" aria-describedby="exampleAddon" required>
 
-                        <input type="text" class="form-control" readonly value="{{date('Y', strtotime($schoolyear->year))}} / {{date('Y', strtotime(date('Y', strtotime($schoolyear->year)) . ' + 1 years'))}}" aria-describedby="exampleAddon">
+                        <input type="text" class="form-control" readonly value="{{date('Y', strtotime($schoolyear->year))}} / {{date('Y', strtotime($schoolyear->year . ' + 1 years'))}}" aria-describedby="exampleAddon">
 
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">

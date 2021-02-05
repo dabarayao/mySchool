@@ -134,7 +134,10 @@
                                   </span>
                               </li>
                                 <br>
-                                <a href="{{route('schools-edit', $schools->id)}}" role="button" class="btn btn-primary">Modifier</a>
+                                <a href="{{route('schools-edit', $schools->id)}}" role="button" class="btn btn-primary">Modifier Ecole</a>
+
+                                <br>
+                                <a href="{{route('schoolsyear-view', $schools->id)}}" role="button" class="btn btn-primary">Modifier Année scolaire</a>
 
 
                             </ul>
@@ -463,7 +466,11 @@
                                   </span>
                               </li>
                               <br>
-                              <a href="{{route('schools-edit', $schools->id)}}" role="button" class="btn btn-primary">Edit</a>
+                              <a href="{{route('schools-edit', $schools->id)}}" role="button" class="btn btn-primary">Edit school</a>
+
+                              <br>
+                                <a href="{{route('schoolsyear-view', $schools->id)}}" role="button" class="btn btn-primary">Edit schoolyear</a>
+
                             </ul>
                           </div>
                         </div>

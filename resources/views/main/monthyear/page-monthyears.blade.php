@@ -90,14 +90,14 @@
 
                         <input type="hidden" class="form-control" value="{{$schoolyear->year}}" name="year" aria-describedby="exampleAddon" required>
 
-                        <input type="text" class="form-control" readonly value="{{date('Y', strtotime($schoolyear->year))}} / {{date('Y', strtotime(date('Y', strtotime($schoolyear->year)) . ' + 1 years'))}}" aria-describedby="exampleAddon">
+                        <input type="text" class="form-control" readonly value="{{date('Y', strtotime($schoolyear->year))}} / {{date('Y', strtotime($schoolyear->year . ' + 1 years'))}}" aria-describedby="exampleAddon">
 
                     </div>
                     <div class="col-xl-3 col-lg-3 col-12 form-group">
                         <label>Date de début </label>
-                          <input type="date" class="form-control" id="exampleInput" name="start_date" min="{{$schoolyear->start_date}}" max="{{$schoolyear->end_date}}" placeholder="Example input placeholder" required>
+                          <input type="date" class="form-control" id="exampleInput" name="start_date" min="@if($monthyear == NULL){{$schoolyear->start_date}}@else{{$monthyear->end_date}}@endif" max="{{$schoolyear->end_date}}" placeholder="Example input placeholder" required>
 
-                          @if(session()->get('scolar1'))
+                          @if(session()->get('monthar1'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                               La date de début saisie est plus grande que la date de fin.
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-xl-3 col-lg-3 col-12 form-group">
                         <label>Date de fin </label>
-                          <input type="date" class="form-control" id="exampleInput" name="end_date" min="{{$schoolyear->start_date}}" max="{{$schoolyear->end_date}}"   placeholder="Example input placeholder" required>
+                          <input type="date" class="form-control" id="exampleInput" name="end_date" min="@if($monthyear == NULL){{$schoolyear->start_date}}@else{{$monthyear->end_date}}@endif" max="{{$schoolyear->end_date}}"   placeholder="Example input placeholder" required>
 
 
                     </div>
@@ -191,9 +191,9 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Start date </label>
-                          <input type="date" class="form-control" id="exampleInput" name="start_date" min="{{$schoolyear->start_date}}" max="{{$schoolyear->end_date}}" placeholder="Example input placeholder" required>
+                          <input type="date" class="form-control" id="exampleInput" name="start_date" min="@if($monthyear == NULL){{$schoolyear->start_date}}@else{{$monthyear->end_date}}@endif" max="{{$schoolyear->end_date}}" placeholder="Example input placeholder" required>
 
-                          @if(session()->get('scolar1'))
+                          @if(session()->get('monthar1'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                               The written start date is higher than the end date
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -205,7 +205,7 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>End date </label>
-                          <input type="date" class="form-control" id="exampleInput" name="end_date" min="{{$schoolyear->start_date}}" max="{{$schoolyear->end_date}}"   placeholder="Example input placeholder" required>
+                          <input type="date" class="form-control" id="exampleInput" name="end_date" min="@if($monthyear == NULL){{$schoolyear->start_date}}@else{{$monthyear->end_date}}@endif" max="{{$schoolyear->end_date}}"   placeholder="Example input placeholder" required>
 
 
                     </div>
