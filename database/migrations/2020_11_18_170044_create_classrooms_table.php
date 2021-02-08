@@ -15,12 +15,14 @@ class CreateClassroomsTable extends Migration
   {
     Schema::create('classrooms', function (Blueprint $table) {
       $table->id();
-      $table->string('label');
+      $table->string('label', 100);
+      $table->string('code', 100);
+      $table->string('description', 100);
       $table->integer('nb_student');
       $table->integer('nb_teacher');
       $table->boolean('isexam')->default(0);
       $table->integer('school_id');
-      $table->integer('exam_id');
+      $table->integer('exam_id')->nullable();
       $table->integer('created_user');
       $table->integer('updated_user');
       $table->integer('deleted_user')->nullable();

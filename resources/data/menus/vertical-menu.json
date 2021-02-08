@@ -20,7 +20,7 @@
       "icon": "building",
       "submenu": [
         {
-          "url": "icons-livicons",
+          "url": "classrooms",
           "name": "ClassroomList",
           "i18n": "LivIcons",
           "icon": "bx bx-right-arrow-alt"
