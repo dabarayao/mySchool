@@ -25,28 +25,32 @@ class ScolarSystem
 
     if ($utilConnect->root == false) {
       $school = School::where('id', $utilConnect->school_id)->first();
-      $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', false]])->first();
-      $monthyear = Monthyear::where([['schoolyear_id', $schoolyear->id], ['is_over', false]])->first();
+      $schoolyear = Schoolyear::where('school_id', $school->id)->latest('created_at')->first();
 
 
-      // schoolyear autoloader
-      if ($schoolyear->end_date < date('Y-m-d') && $schoolyear->end_date != NULL) {
-        $schoolyear->is_over = true;
-        $schoolyear->save();
+      if ($schoolyear != NULL) {
 
-        $schoolyear2 = new Schoolyear;
-        $schoolyear2->year = date("Y-m-d");
-        $schoolyear2->school_id = $school->id;
-        $schoolyear2->created_user = $utilConnect->id;
-        $schoolyear2->updated_user = $utilConnect->id;
-        $schoolyear2->save();
-      }
+        $monthyear = Monthyear::where([['schoolyear_id', $schoolyear->id], ['is_over', false]])->first();
 
-      // monthyear autoloader
-      if ($monthyear != NULL) {
-        if ($monthyear->end_date < date('Y-m-d') && $monthyear->end_date != NULL) {
-          $monthyear->is_over = true;
-          $monthyear->save();
+        // schoolyear autoloader
+        if ($schoolyear->end_date < date('Y-m-d') && $schoolyear->end_date != NULL) {
+          $schoolyear->is_over = true;
+          $schoolyear->save();
+
+          $schoolyear2 = new Schoolyear;
+          $schoolyear2->year = date("Y-m-d");
+          $schoolyear2->school_id = $school->id;
+          $schoolyear2->created_user = $utilConnect->id;
+          $schoolyear2->updated_user = $utilConnect->id;
+          $schoolyear2->save();
+        }
+
+        // monthyear autoloader
+        if ($monthyear != NULL) {
+          if ($monthyear->end_date < date('Y-m-d') && $monthyear->end_date != NULL) {
+            $monthyear->is_over = true;
+            $monthyear->save();
+          }
         }
       }
     }

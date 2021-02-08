@@ -4,7 +4,7 @@
       "url": "/",
       "name": "Dashboard",
       "i18n": "Dashboard",
-      "icon": "desktop",
+      "icon": "dashboard",
       "tagcustom": "badge badge-light-danger badge-pill badge-round float-right mr-2"
     },
     {
@@ -12,6 +12,58 @@
       "name": "User",
       "i18n": "User",
       "icon": "users"
+    },
+    {
+      "url": "#",
+      "name": "Classroom",
+      "i18n": "Icons",
+      "icon": "building",
+      "submenu": [
+        {
+          "url": "icons-livicons",
+          "name": "ClassroomList",
+          "i18n": "LivIcons",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "icons-boxicons",
+          "name": "ClassSchedule",
+          "i18n": "BoxIcons",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "icons-boxicons",
+          "name": "Textbook",
+          "i18n": "BoxIcons",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "name": "Student",
+      "i18n": "Icons",
+      "icon": "pen",
+      "submenu": [
+        {
+          "url": "icons-livicons",
+          "name": "StudentList",
+          "i18n": "LivIcons",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "icons-boxicons",
+          "name": "Admission",
+          "i18n": "BoxIcons",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "icons-boxicons",
+          "name": "Promotion",
+          "i18n": "BoxIcons",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
     },
     {
       "url": "settings",

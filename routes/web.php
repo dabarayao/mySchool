@@ -178,4 +178,6 @@ Route::put('/schoolsyear/{id}', 'main\SchoolyearController@update')->name('schoo
 
 // mySchool monthyear routes
 Route::get('/monthyear/{id}', 'main\MonthyearController@index')->name('monthyear-view')->where('id', '[0-9]+');
+Route::get('/monthyear/edit/{id}', 'main\MonthyearController@edit')->name('monthyear-edit')->where('id', '[0-9]+');
+Route::put('/monthyear/update/{id}', 'main\MonthyearController@update')->name('monthyear-update')->where('id', '[0-9]+');
 Route::post('/monthyear/{id}', 'main\MonthyearController@store')->name('monthyear-add')->where('id', '[0-9]+');

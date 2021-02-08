@@ -44,8 +44,11 @@ class HomeController extends Controller
 
     if ($school != NULL) {
       $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', false]])->first();
-      $monthyearCount = Monthyear::where('schoolyear_id', $schoolyear->id)->count();
-      $monthyear = Monthyear::where([['schoolyear_id', $schoolyear->id], ['is_over', false]])->first();
+
+      if ($schoolyear != NULL) {
+        $monthyearCount = Monthyear::where('schoolyear_id', $schoolyear->id)->count();
+        $monthyear = Monthyear::where([['schoolyear_id', $schoolyear->id], ['is_over', false]])->first();
+      }
     }
 
     if (School::all()->count() == 0) {

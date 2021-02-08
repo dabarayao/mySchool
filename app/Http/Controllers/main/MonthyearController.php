@@ -142,9 +142,38 @@ class MonthyearController extends Controller
    * @param  \App\Monthyear  $monthyear
    * @return \Illuminate\Http\Response
    */
-  public function edit(Monthyear $monthyear)
+  public function edit($id, Monthyear $monthyear)
   {
-    //
+
+
+    $school = School::find($id);
+    $current = User::find(Auth::id());
+
+    if ($school != NULL) {
+      $setting = Setting::where('user_id', Auth::id())->first();
+
+      $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', false]])->first();
+
+      if ($schoolyear != NULL) {
+        $monthyearChecker = Monthyear::where([['schoolyear_id', $schoolyear->id], ['is_over', true]])->latest('updated_at')->first();
+        $monthyear = Monthyear::where([['schoolyear_id', $schoolyear->id], ['is_over', false]])->first();
+      }
+    }
+
+
+    if ($school == NULL) {
+      return view('errors.404');
+    } else if ($school != NULL && $current->school_id != $school->id) {
+      return view('errors.not-authorized');
+    } else {
+      return view('main.monthyear.page-monthyearsUpdate')->with([
+        'monthyear' => $monthyear,
+        'monthyearChecker' => $monthyearChecker,
+        'schoolyear' => $schoolyear,
+        'setting' => $setting,
+        'school' => $school
+      ]);
+    }
   }
 
   /**
@@ -154,9 +183,33 @@ class MonthyearController extends Controller
    * @param  \App\Monthyear  $monthyear
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Monthyear $monthyear)
+  public function update($id, Request $request, Monthyear $monthyear)
   {
     //
+    $request->validate([
+      'year' => 'required',
+      'end_date' => 'required',
+      'coef' => 'required'
+    ]);
+
+    $current = User::find(Auth::id());
+    $school = School::where('id', $current->school_id)->first();
+
+    $monthyear = Monthyear::find($id);
+
+    if (isset($request->start_date)) {
+      $monthyear->start_date = $request->start_date;
+    }
+    $monthyear->end_date = $request->end_date;
+    $monthyear->coef = $request->coef;
+
+    if (isset($request->start_date) && $request->start_date > $request->end_date) {
+
+      session()->flash('monthar1', 'alert error');
+    } else {
+      $monthyear->save();
+    }
+    return redirect()->route('monthyear-edit', $school->id);
   }
 
   /**

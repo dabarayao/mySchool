@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\School;
 use App\Schoolyear;
+use App\Monthyear;
 use App\Setting;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -203,6 +204,8 @@ class SchoolController extends Controller
     // all schools users
     if ($schools != NULL) {
       $schooluser = User::where('school_id', $schools->id)->get();
+      $schoolyear = Schoolyear::where([['school_id', $schools->id], ['is_over', false]])->first();
+      $monthyear = Monthyear::where([['schoolyear_id', $schoolyear->id], ['is_over', false]])->first();
     }
     $current = User::find(Auth::id());
 
@@ -219,7 +222,8 @@ class SchoolController extends Controller
         'schools' => $schools,
         'schooluser' => $schooluser,
         'setting' => $setting,
-        'countries' => $countries
+        'countries' => $countries,
+        'monthyear' => $monthyear
       ]);
     } else if ($schools != NULL && ($current->school_id != $schools->id || $current->root == false)) {
       return view('errors.not-authorized');
