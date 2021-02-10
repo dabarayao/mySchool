@@ -174,7 +174,7 @@
                                                     @if($users->root == false)
                                                     <a href="{{route('users-delete', $users->id)}}" role="button" class="text-danger" id="del_user_but" onclick="return confirm('Etes-vous sûre de vouloir supprimer cet utilisateur?');"><i data-toggle="tooltip" data-placement="right" class="bx bx-trash" title="supprimer"></i></a>
                                                     @endif
-                                                  </div>
+                                                </div>
                                             </td>
                                           </tr>
                                         @endforeach

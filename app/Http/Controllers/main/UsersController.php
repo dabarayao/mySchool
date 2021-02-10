@@ -331,13 +331,20 @@ class UsersController extends Controller
     // code to archive deleted users
     $userCopy = $user;
     $current = User::find(Auth::id());
-    $userCopy->deleted_user = $current->id;
-    $userCopy->save();
 
 
-    $user->delete();
 
 
-    return redirect()->route('users-list');
+    if ($user != NULL && ($user->school_id == $current->school_id || $current->root == true)) {
+      $userCopy->deleted_user = $current->id;
+      $userCopy->save();
+      $user->delete();
+
+      return redirect()->route('users-list');
+    } else if ($user != NULL && ($user->school_id != $current->school_id || $current->root == true)) {
+      return view('errors.not-authorized');
+    } else {
+      return view('errors.404');
+    }
   }
 }

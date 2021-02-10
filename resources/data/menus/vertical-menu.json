@@ -36,6 +36,12 @@
           "name": "Textbook",
           "i18n": "BoxIcons",
           "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "icons-boxicons",
+          "name": "Exam",
+          "i18n": "BoxIcons",
+          "icon": "bx bx-right-arrow-alt"
         }
       ]
     },

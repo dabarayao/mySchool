@@ -20,11 +20,12 @@ if ($setting->language == 1) {
       "Classroom" => "Classes",
       "ClassroomList" => "Liste",
       "ClassSchedule" => "Emploi du temps",
-      "Textbook" => "Cahier de texte",
+      "Textbook" => "Cahiers de texte",
       "Student" => "Elèves ou Etudiants",
       "StudentList" => "Liste",
       "Admission" => "Inscription",
       "Promotion" => "Promotion",
+      "Exam" => "Examens",
 
 
 
@@ -174,6 +175,7 @@ if ($setting->language == 1) {
     "StudentList" => "List",
     "Admission" => "Admission",
     "Promotion" => "Promotion",
+    "Exam" => "Exams",
 
 
 
