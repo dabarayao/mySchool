@@ -82,7 +82,6 @@ class UsersController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'photo' => 'required',
       'familyname' => 'required',
       'givenname' => 'required',
       'familyname' => 'required',
@@ -97,18 +96,24 @@ class UsersController extends Controller
     ]);
 
     if (User::where('email', $request->email)->count() == 0) {
-      //code to store an resize the image
-      $files = $request->file('photo');
 
-      $picture = Storage::putFile('public/users/', $files);
-      $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
-      $path = Storage::url($picture);
+
+      if ($request->hasFile('photo')) {
+        //code to store an resize the image
+        $files = $request->file('photo');
+
+        $picture = Storage::putFile('public/users/', $files);
+        $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
+        $path = Storage::url($picture);
+      }
 
 
 
       $user = new User;
       $current = User::find(Auth::id());
-      $user->photo = $path;
+      if ($request->hasFile('photo')) {
+        $user->photo = $path;
+      }
       $user->familyname = $request->familyname;
       $user->givenname = $request->givenname;
       $user->email = $request->email;
@@ -190,7 +195,7 @@ class UsersController extends Controller
     }
 
 
-    if ($user != NULL && ($user->id == $superuser->id || $superuser->root == true)) {
+    if ($user != NULL && ($user->school_id == $superuser->school_id || $superuser->root == true)) {
 
       return view('main.users.page-users-view')->with([
         'user' => $user,
@@ -201,7 +206,7 @@ class UsersController extends Controller
         'editby' => $edit_user,
         'setting' => $setting
       ]);
-    } else if ($user != NULL && ($user->id != $superuser->id || $superuser->root == true)) {
+    } else if ($user != NULL && ($user->school_id != $superuser->school_id && $superuser->root == false)) {
       return view('errors.not-authorized');
     } else {
       return view('errors.404');
@@ -223,14 +228,14 @@ class UsersController extends Controller
     $user = User::find($id);
     $setting = Setting::where('user_id', Auth::id())->first();
 
-    if ($user != NULL && ($user->id == $superuser->id || $superuser->root == true)) {
+    if ($user != NULL && ($user->school_id == $superuser->school_id || $superuser->root == true)) {
 
       return view('main.users.page-users-edit')->with([
         'user' => $user,
         'superuser' => $superuser,
         'setting' => $setting
       ]);
-    } else if ($user != NULL && ($user->id != $superuser->id || $superuser->root == true)) {
+    } else if ($user != NULL && ($user->school_id != $superuser->school_id && $superuser->root == false)) {
       return view('errors.not-authorized');
     } else {
       return view('errors.404');
@@ -341,7 +346,7 @@ class UsersController extends Controller
       $user->delete();
 
       return redirect()->route('users-list');
-    } else if ($user != NULL && ($user->school_id != $current->school_id || $current->root == true)) {
+    } else if ($user != NULL && ($user->school_id != $current->school_id && $current->root == false)) {
       return view('errors.not-authorized');
     } else {
       return view('errors.404');

@@ -186,5 +186,9 @@ Route::post('/monthyear/{id}', 'main\MonthyearController@store')->name('monthyea
 Route::get('/classrooms', 'main\ClassroomController@index')->name('classroom-list');
 Route::post('/classrooms', 'main\ClassroomController@store')->name('classroom-add');
 Route::get('/classrooms/{id}', 'main\ClassroomController@edit')->name('classroom-edit')->where('id', '[0-9]+');
+Route::get('/classrooms/view/{id}', 'main\ClassroomController@show')->name('classroom-view')->where('id', '[0-9]+');
 Route::put('/classrooms/{id}', 'main\ClassroomController@update')->name('classroom-update')->where('id', '[0-9]+');
 Route::get('/classrooms/delete/{id}', 'main\ClassroomController@destroy')->name('classroom-delete')->where('id', '[0-9]+');
+
+// mySchool exam routes
+Route::get('/exams', 'main\ExamController@index')->name('exam-list');

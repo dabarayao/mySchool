@@ -20,7 +20,7 @@
                           <label for="photo-icon">Photo</label>
                           <div class="position-relative has-icon-left">
                             <input type="file" id="photo-icon" class="form-control" accept="image/*" name="photo"
-                              placeholder="Familyname" @change="inputFileCheck" required>
+                              placeholder="Familyname" @change="inputFileCheck">
                             <div class="form-control-position">
                               <i class='bx bx-image-add'></i>
                             </div>
@@ -252,7 +252,7 @@
                         <label for="photo-icon">Photo</label>
                         <div class="position-relative has-icon-left">
                           <input type="file" id="photo-icon" class="form-control" accept="image/*" name="photo"
-                            placeholder="Familyname" @change="inputFileCheck"  required>
+                            placeholder="Familyname" @change="inputFileCheck" >
                           <div class="form-control-position">
                             <i class='bx bx-image-add'></i>
                           </div>

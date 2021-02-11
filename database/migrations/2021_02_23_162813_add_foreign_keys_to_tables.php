@@ -660,6 +660,12 @@ class AddForeignKeysToTables extends Migration
 
     Schema::table('kins', function (Blueprint $table) {
 
+      $table->foreign('school_id')
+        ->references('id')
+        ->on('schools')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
       $table->foreign('created_user')
         ->references('id')
         ->on('users')
@@ -1006,6 +1012,33 @@ class AddForeignKeysToTables extends Migration
       $table->foreign('kins_id')
         ->references('id')
         ->on('kins')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('created_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('updated_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+
+      $table->foreign('deleted_user')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+
+    Schema::table('exams', function (Blueprint $table) {
+
+      $table->foreign('school_id')
+        ->references('id')
+        ->on('schools')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 

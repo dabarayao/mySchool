@@ -17,14 +17,22 @@ class ClassroomController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+
+  public function __construct()
+  {
+    // the authenitfication middleware for the app
+    $this->middleware(['verified', 'auth', 'checkUserStatus', 'ScolarSystem']);
+  }
+
+
   public function index()
   {
     //
     $current = User::find(Auth::id());
 
     $school = School::all();
-    $classroom = Classroom::where('school_id', $current->school_id)->get();
-    $classroomAll = Classroom::all();
+    $classroom = Classroom::where('school_id', $current->school_id)->orderBy('created_at', 'DESC')->get();
+    $classroomAll = Classroom::all()->sortByDesc('created_at');
     $setting = Setting::where('user_id', Auth::id())->first();
 
     return view('main.classrooms.page-classrooms-list')->with([
@@ -55,6 +63,13 @@ class ClassroomController extends Controller
   public function store(Request $request)
   {
     //
+
+    $request->validate([
+      'label' => 'required',
+      'code' => 'required',
+      'description' => 'required',
+      'isexam' => 'required'
+    ]);
 
     $current = User::find(Auth::id());
 
@@ -87,16 +102,26 @@ class ClassroomController extends Controller
     //
     $current = User::find(Auth::id());
     $school = School::all();
+    $schoolCur = School::where('id', $current->school_id)->first();
     $setting = Setting::where('user_id', Auth::id())->first();
 
     $classroom = Classroom::find($id);
 
-    return view('main.classrooms.page-classrooms-view')->with([
-      'current' => $current,
-      'school' => $school,
-      'classroom' => $classroom,
-      'setting' => $setting
-    ]);
+
+
+    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $current->school_id)) {
+
+      return view('main.classrooms.page-classrooms-view')->with([
+        'current' => $current,
+        'school' => $school,
+        'classroom' => $classroom,
+        'setting' => $setting
+      ]);
+    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $current->school_id)) {
+      return view('errors.not-authorized');
+    } else {
+      return view('errors.404');
+    }
   }
 
   /**
@@ -110,16 +135,25 @@ class ClassroomController extends Controller
     //
     $current = User::find(Auth::id());
     $school = School::all();
+    $schoolCur = School::where('id', $current->school_id)->first();
     $setting = Setting::where('user_id', Auth::id())->first();
 
     $classroom = Classroom::find($id);
 
-    return view('main.classrooms.page-classrooms-edit')->with([
-      'current' => $current,
-      'school' => $school,
-      'classroom' => $classroom,
-      'setting' => $setting
-    ]);
+
+    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $current->school_id)) {
+
+      return view('main.classrooms.page-classrooms-edit')->with([
+        'current' => $current,
+        'school' => $school,
+        'classroom' => $classroom,
+        'setting' => $setting
+      ]);
+    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $current->school_id)) {
+      return view('errors.not-authorized');
+    } else {
+      return view('errors.404');
+    }
   }
 
   /**
@@ -132,11 +166,19 @@ class ClassroomController extends Controller
   public function update($id, Request $request, Classroom $classroom)
   {
     //
+    $request->validate([
+      'label' => 'required',
+      'code' => 'required',
+      'description' => 'required',
+      'isexam' => 'required'
+    ]);
+
     $current = User::find(Auth::id());
 
     $classroom = Classroom::find($id);
     $classroom->label = $request->label;
     $classroom->code = $request->code;
+    $classroom->description = $request->description;
     $classroom->isexam = $request->isexam;
     $classroom->updated_user = $current->id;
 
@@ -156,15 +198,27 @@ class ClassroomController extends Controller
     //
     $current = User::find(Auth::id());
 
+
+    $schoolCur = School::where('id', $current->school_id)->first();
+
     $classroom = Classroom::find($id);
-    $classroomCopy = $classroom;
-
-    $classroomCopy->deleted_user = $current->id;
-    $classroomCopy->save();
 
 
-    $classroom->delete();
+    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $current->school_id)) {
 
-    return redirect()->route('classroom-list');
+      $classroomCopy = $classroom;
+
+      $classroomCopy->deleted_user = $current->id;
+      $classroomCopy->save();
+
+
+      $classroom->delete();
+
+      return redirect()->route('classroom-list');
+    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $current->school_id)) {
+      return view('errors.not-authorized');
+    } else {
+      return view('errors.404');
+    }
   }
 }
