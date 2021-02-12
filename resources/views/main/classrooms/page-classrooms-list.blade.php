@@ -14,7 +14,7 @@
 
 
 
-  @section('title','Classroom\'s list')
+  @section('title','List of classrooms')
 
 
 
@@ -292,11 +292,11 @@
         <div class="modal-footer">
           <button type="reset" class="btn btn-light-secondary">
             <i class="bx bx-x d-block d-sm-none"></i>
-            <span class="d-none d-sm-block">Effacer</span>
+            <span class="d-none d-sm-block"><i class="bx bx-eraser"></i> Effacer</span>
           </button>
           <button type="submit" class="btn btn-primary ml-1">
             <i class="bx bx-check d-block d-sm-none"></i>
-            <span class="d-none d-sm-block">Ajouter</span>
+            <span class="d-none d-sm-block"><i class="bx bx-add-to-queue"></i> Ajouter</span>
           </button>
         </div>
       </form>
@@ -318,7 +318,7 @@
                                       <a href="#"><i class="bx bx-home-alt"></i></a>
                                       </li>
                                     <li class="breadcrumb-item active">
-                                    Classroom's list
+                                    List of classrooms
                                       </li>
                   </ol></div>
                 </div>
@@ -339,7 +339,7 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header">
-                          <h4 class="card-title">Classroom's list</h4>
+                          <h4 class="card-title">List of classrooms</h4>
                       </div>
                       <div class="card-content">
                           <div class="card-body card-dashboard">
@@ -465,115 +465,115 @@
     @endif
 
 
-    <!--primary theme Modal -->
-<div class="modal fade text-left" id="primaryClasses" tabindex="-1" role="dialog"
-  aria-labelledby="myModalLabel160" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h5 class="modal-title white" id="myModalLabel160"><i class="bx bx-add-to-queue"></i>  Add a classroom</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="bx bx-x"></i>
-        </button>
-      </div>
-      <form method="POST" action="{{route('classroom-add')}}" class="form form-horizontal">
-        @csrf
+        <!--primary theme Modal -->
+    <div class="modal fade text-left" id="primaryClasses" tabindex="-1" role="dialog"
+      aria-labelledby="myModalLabel160" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary">
+            <h5 class="modal-title white" id="myModalLabel160"><i class="bx bx-add-to-queue"></i>  Add a classroom</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="bx bx-x"></i>
+            </button>
+          </div>
+          <form method="POST" action="{{route('classroom-add')}}" class="form form-horizontal">
+            @csrf
 
-        <div class="modal-body">
+            <div class="modal-body">
 
 
-            <!-- Basic Horizontal form layout section start -->
-            <section id="basic-horizontal-layouts">
+                <!-- Basic Horizontal form layout section start -->
+                <section id="basic-horizontal-layouts">
 
-              <div class="form-body">
-                <div class="row">
-                  <div class="col-md-4">
-                    <label>Label</label>
-                  </div>
-                  <div class="col-md-8 form-group ">
-                    <div class="position-relative has-icon-left">
-                      <input type="text" id="fname-icon" class="form-control" name="label"
-                        placeholder="Libellé" maxlength="100">
-                      <div class="form-control-position">
-                        <i class="bx bx-label"></i>
+                  <div class="form-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label>Label</label>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <label>Code</label>
-                  </div>
-                  <div class="col-md-8 form-group">
-                    <div class="position-relative has-icon-left">
-                      <input type="text" id="sigle-icon" class="form-control" name="code" placeholder="Sigle" maxlength="100">
-                      <div class="form-control-position">
-                        <i class="bx bx-barcode"></i>
+                      <div class="col-md-8 form-group ">
+                        <div class="position-relative has-icon-left">
+                          <input type="text" id="fname-icon" class="form-control" name="label"
+                            placeholder="Libellé" maxlength="100">
+                          <div class="form-control-position">
+                            <i class="bx bx-label"></i>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <label>Description</label>
-                  </div>
-                  <div class="col-md-8 form-group">
-                    <div class="position-relative has-icon-left">
-                        <textarea class="form-control" name="description" id="exampleInput" placeholder="Description de la classe" rows="3"></textarea>
-
-                      <div class="form-control-position">
-                        <i class="bx bx-book-content"></i>
+                      <div class="col-md-4">
+                        <label>Code</label>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4">
-                    <label>Exam class</label>
-                  </div>
-                  <div class="col-md-8 form-group">
-                    <div class="position-relative has-icon-left">
-
-                        <select class="custom-select" id="exampleSelect" name="isexam">
-                          <option value="1">Yes</option>
-                          <option value="0">No</option>
-                        </select>
-                    </div>
-                  </div>
-
-                  @if($current->root == true)
-                    <div class="col-md-4">
-                      <label>School</label>
-                    </div>
-                    <div class="col-md-8 form-group">
-                      <div class="position-relative has-icon-left">
-
-                          <select class="custom-select" id="exampleSelect" name="school">
-                            @foreach ($school as $schools)
-                              <optgroup label="{{$schools->area}} - {{$schools->address}}">
-                              <option value="{{$schools->id}}">{{$schools->name}}</option>
-                              </optgroup>
-
-                            @endforeach
-                          </select>
+                      <div class="col-md-8 form-group">
+                        <div class="position-relative has-icon-left">
+                          <input type="text" id="sigle-icon" class="form-control" name="code" placeholder="Sigle" maxlength="100">
+                          <div class="form-control-position">
+                            <i class="bx bx-barcode"></i>
+                          </div>
+                        </div>
                       </div>
+                      <div class="col-md-4">
+                        <label>Description</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <div class="position-relative has-icon-left">
+                            <textarea class="form-control" name="description" id="exampleInput" placeholder="Description de la classe" rows="3"></textarea>
+
+                          <div class="form-control-position">
+                            <i class="bx bx-book-content"></i>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <label>Exam class</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <div class="position-relative has-icon-left">
+
+                            <select class="custom-select" id="exampleSelect" name="isexam">
+                              <option value="1">Yes</option>
+                              <option value="0">No</option>
+                            </select>
+                        </div>
+                      </div>
+
+                      @if($current->root == true)
+                        <div class="col-md-4">
+                          <label>School</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <div class="position-relative has-icon-left">
+
+                              <select class="custom-select" id="exampleSelect" name="school">
+                                @foreach ($school as $schools)
+                                  <optgroup label="{{$schools->area}} - {{$schools->address}}">
+                                  <option value="{{$schools->id}}">{{$schools->name}}</option>
+                                  </optgroup>
+
+                                @endforeach
+                              </select>
+                          </div>
+                        </div>
+                      @endif
                     </div>
-                  @endif
-                </div>
-              </div>
+                  </div>
 
-               </section>
-            <!-- // Basic Horizontal form layout section end -->
+                  </section>
+                <!-- // Basic Horizontal form layout section end -->
 
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-light-secondary">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block"><i class="bx bx-eraser"></i>reset</span>
+              </button>
+              <button type="submit" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block"><i class="bx bx-add-to-queue"></i> Add</span>
+              </button>
+            </div>
+          </form>
         </div>
-        <div class="modal-footer">
-          <button type="reset" class="btn btn-light-secondary">
-            <i class="bx bx-x d-block d-sm-none"></i>
-            <span class="d-none d-sm-block">reset</span>
-          </button>
-          <button type="submit" class="btn btn-primary ml-1">
-            <i class="bx bx-check d-block d-sm-none"></i>
-            <span class="d-none d-sm-block">Add</span>
-          </button>
-        </div>
-      </form>
     </div>
-  </div>
 
 
 

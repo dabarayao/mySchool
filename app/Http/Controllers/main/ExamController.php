@@ -23,7 +23,7 @@ class ExamController extends Controller
     $current = User::find(Auth::id());
 
     $school = School::all();
-
+    $examAll = Exam::all();
     $exam = Exam::where('school_id', $current->school_id)->get();
     $setting = Setting::where('user_id', Auth::id())->first();
 
@@ -32,6 +32,7 @@ class ExamController extends Controller
         'current' => $current,
         'school' => $school,
         'exam' => $exam,
+        'examAll' => $examAll,
         'setting' => $setting
       ]
     );
@@ -69,8 +70,8 @@ class ExamController extends Controller
     $exam->label = $request->label;
     $exam->type = $request->type;
     $exam->date = $request->date;
-    if (isset($request->school_id)) {
-      $exam->school_id = $request->school_id;
+    if (isset($request->school)) {
+      $exam->school_id = $request->school;
     } else {
       $exam->school_id = $current->school_id;
     }
@@ -105,19 +106,26 @@ class ExamController extends Controller
     //
     $current = User::find(Auth::id());
 
+    $schoolCur = School::where('id', $current->school_id)->first();
     $school = School::all();
 
     $exam = Exam::find($id);
     $setting = Setting::where('user_id', Auth::id())->first();
 
-    return view('main.classrooms.page-exams-edit')->with(
-      [
-        'current' => $current,
-        'school' => $school,
-        'exam' => $exam,
-        'setting' => $setting
-      ]
-    );
+    if ($exam != NULL && ($current->root == true || $exam->school_id == $schoolCur->id)) {
+      return view('main.classrooms.page-exams-edit')->with(
+        [
+          'current' => $current,
+          'school' => $school,
+          'exam' => $exam,
+          'setting' => $setting
+        ]
+      );
+    } else  if ($exam != NULL && ($exam->school_id != $schoolCur->id && $current->root == false)) {
+      return view('errors.not-authorized');
+    } else {
+      return view('errors.404');
+    }
   }
 
   /**
@@ -144,12 +152,6 @@ class ExamController extends Controller
     $exam->type = $request->type;
     $exam->date = $request->date;
 
-    if (isset($request->school_id)) {
-      $exam->school_id = $request->school_id;
-    } else {
-      $exam->school_id = $current->school_id;
-    }
-
     $exam->updated_user = $current->id;
 
     $exam->save();
@@ -169,16 +171,26 @@ class ExamController extends Controller
     $current = User::find(Auth::id());
 
 
-    $schoolCur = School::where('id', $current->school_id)->first();
+
 
     $exam = Exam::find($id);
-
-    $examCopy = $exam;
-
-    $examCopy->deleted_user = $current->id;
-    $examCopy->save();
+    $schoolCur = School::where('id', $current->school_id)->first();
 
 
-    $exam->delete();
+    if ($exam != NULL && ($current->root == true || $exam->school_id == $schoolCur->id)) {
+      $examCopy = $exam;
+
+      $examCopy->deleted_user = $current->id;
+      $examCopy->save();
+
+
+      $exam->delete();
+
+      return redirect()->route('exam-list');
+    } else  if ($exam != NULL && ($exam->school_id != $schoolCur->id && $current->root == false)) {
+      return view('errors.not-authorized');
+    } else {
+      return view('errors.404');
+    }
   }
 }

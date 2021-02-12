@@ -137,12 +137,74 @@
                         </div>
                       </div>
 
+                      @if($classroom->isexam == true)
+
+                        @if(isset($exam))
+                          <div class="col-md-4">
+                            <label>Examen</label>
+                          </div>
+                          <div class="col-md-8 form-group">
+                            <div class="position-relative has-icon-left">
+
+                                <select class="custom-select" id="exampleSelect" name="exam_id">
+                                  @php $i = 0; @endphp
+                                  @foreach ($exam as $exams)
+                                    @if($exams->id == $classroom->exam_id)
+                                      @php  $i++; @endphp
+                                    @endif
+
+                                      <option value="{{$exams->id}}" @if($exams->id == $classroom->exam_id) selected @endif>{{$exams->label}}</option>
+                                  @endforeach
+
+                                  @if($i == 0)
+                                      <option selected> selectionnez un examen </option>
+                                  @endif
+
+
+                                </select>
+                            </div>
+                          </div>
+                        @endif
+
+                      @elseif($classroom->isexam == false)
+
+                       @if(isset($exam))
+                       <div class="col-md-4">
+                          <label>Examen</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <div class="position-relative has-icon-left">
+
+                              <select class="custom-select" id="exampleSelect" name="examname">
+
+                                 @php $i = 0; @endphp
+                                @foreach ($exam as $exams)
+
+                                   @if($exams->id == $classroom->exam_id)
+                                     @php  $i++; @endphp
+                                   @endif
+                                    <option value="{{$exams->id}}" @if($exams->id == $classroom->exam_id) selected @endif>{{$exams->label}}</option>
+                                @endforeach
+
+                                @if($i == 0)
+                                    <option selected> selectionnez un examen </option>
+                                @endif
+
+
+
+                              </select>
+                          </div>
+                        </div>
+                       @endif
+
+                      @endif
+
                     </div>
                     <div class="col-12 d-flex justify-content-end ">
-                          <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
-                          <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
+                          <button type="submit" class="btn btn-primary mr-1 mb-1"><i class="bx bx-edit"></i> Modifier</button>
+                          <button type="reset" class="btn btn-light-secondary mr-1 mb-1"><i class="bx bx-eraser"></i> Effacer</button>
                     </div>
-                </div>
+                  </div>
                 </form>
               </div>
             </div>
@@ -261,8 +323,8 @@
 
                     </div>
                     <div class="col-12 d-flex justify-content-end ">
-                          <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
-                          <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
+                          <button type="submit" class="btn btn-primary mr-1 mb-1"><i class="bx bx-add-to-queue"></i> Edit</button>
+                          <button type="reset" class="btn btn-light-secondary mr-1 mb-1"><i class="bx bx-eraser"></i> Reset</button>
                     </div>
                 </div>
                 </form>

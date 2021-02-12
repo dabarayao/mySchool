@@ -15,7 +15,7 @@ class CreateExamsTable extends Migration
   {
     Schema::create('exams', function (Blueprint $table) {
       $table->id();
-      $table->string('label');
+      $table->string('label', 100);
       $table->boolean('type');
       $table->date('date');
       $table->integer('school_id');

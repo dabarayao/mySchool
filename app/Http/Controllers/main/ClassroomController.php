@@ -7,6 +7,7 @@ use App\Classroom;
 use App\School;
 use App\User;
 use App\Setting;
+use App\Exam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,7 @@ class ClassroomController extends Controller
     $classroom = Classroom::where('school_id', $current->school_id)->orderBy('created_at', 'DESC')->get();
     $classroomAll = Classroom::all()->sortByDesc('created_at');
     $setting = Setting::where('user_id', Auth::id())->first();
+
 
     return view('main.classrooms.page-classrooms-list')->with([
       'current' => $current,
@@ -109,7 +111,7 @@ class ClassroomController extends Controller
 
 
 
-    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $current->school_id)) {
+    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $classroom->school_id)) {
 
       return view('main.classrooms.page-classrooms-view')->with([
         'current' => $current,
@@ -117,7 +119,7 @@ class ClassroomController extends Controller
         'classroom' => $classroom,
         'setting' => $setting
       ]);
-    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $current->school_id)) {
+    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $classroom->school_id)) {
       return view('errors.not-authorized');
     } else {
       return view('errors.404');
@@ -140,16 +142,30 @@ class ClassroomController extends Controller
 
     $classroom = Classroom::find($id);
 
+    if ($classroom->isexam == true) {
+      $exam = Exam::where('school_id', $classroom->school_id)->orderBy('created_at', 'DESC')->get();
+    }
 
-    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $current->school_id)) {
 
-      return view('main.classrooms.page-classrooms-edit')->with([
-        'current' => $current,
-        'school' => $school,
-        'classroom' => $classroom,
-        'setting' => $setting
-      ]);
-    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $current->school_id)) {
+    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $classroom->school_id)) {
+
+      if ($classroom->isexam == true) {
+        return view('main.classrooms.page-classrooms-edit')->with([
+          'current' => $current,
+          'school' => $school,
+          'classroom' => $classroom,
+          'exam' => $exam,
+          'setting' => $setting
+        ]);
+      } else {
+        return view('main.classrooms.page-classrooms-edit')->with([
+          'current' => $current,
+          'school' => $school,
+          'classroom' => $classroom,
+          'setting' => $setting
+        ]);
+      }
+    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $classroom->school_id)) {
       return view('errors.not-authorized');
     } else {
       return view('errors.404');
@@ -174,17 +190,31 @@ class ClassroomController extends Controller
     ]);
 
     $current = User::find(Auth::id());
+    $schoolCur = School::where('id', $current->school_id)->first();
 
-    $classroom = Classroom::find($id);
-    $classroom->label = $request->label;
-    $classroom->code = $request->code;
-    $classroom->description = $request->description;
-    $classroom->isexam = $request->isexam;
-    $classroom->updated_user = $current->id;
 
-    $classroom->save();
 
-    return redirect()->route('classroom-list');
+
+    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $classroom->school_id)) {
+
+      $classroom = Classroom::find($id);
+      $classroom->label = $request->label;
+      $classroom->code = $request->code;
+      $classroom->description = $request->description;
+      $classroom->isexam = $request->isexam;
+      if (isset($request->examname)) {
+        dd($classroom->exam_id = $request->examname);
+      }
+      $classroom->updated_user = $current->id;
+
+      $classroom->save();
+
+      return redirect()->route('classroom-list');
+    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $classroom->school_id)) {
+      return view('errors.not-authorized');
+    } else {
+      return view('errors.404');
+    }
   }
 
   /**
@@ -204,7 +234,7 @@ class ClassroomController extends Controller
     $classroom = Classroom::find($id);
 
 
-    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $current->school_id)) {
+    if ($classroom != NULL && ($current->root == true || $schoolCur->id == $classroom->school_id)) {
 
       $classroomCopy = $classroom;
 
@@ -215,7 +245,7 @@ class ClassroomController extends Controller
       $classroom->delete();
 
       return redirect()->route('classroom-list');
-    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $current->school_id)) {
+    } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $classroom->school_id)) {
       return view('errors.not-authorized');
     } else {
       return view('errors.404');

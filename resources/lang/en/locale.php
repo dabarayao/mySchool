@@ -168,7 +168,7 @@ if ($setting->language == 1) {
   /* ENGLISH VERSION */
   return [
     "Classroom" => "Classrooms",
-    "ClassroomList" => "Classroom's list",
+    "ClassroomList" => "List of classrooms",
     "ClassSchedule" => "Class program",
     "Textbook" => "Textbooks",
     "Student" => "Pupils or Students",

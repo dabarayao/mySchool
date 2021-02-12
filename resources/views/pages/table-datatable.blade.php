@@ -14,6 +14,7 @@
         <p>Read full documnetation <a href="https://datatables.net/" target="_blank">here</a></p>
     </div>
 </div>
+
 <!-- Zero configuration table -->
 <section id="basic-datatable">
     <div class="row">
@@ -1266,9 +1267,6 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
-                        <p class="card-text">In this example you can see DataTables doing both horizontal and vertical
-                            scrolling at the same time. Note also that pagination is enabled in this example, and the
-                            scrolling accounts for this.</p>
                         <div class="table-responsive">
                             <table class="table nowrap scroll-horizontal-vertical">
                                 <thead>

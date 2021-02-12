@@ -192,3 +192,7 @@ Route::get('/classrooms/delete/{id}', 'main\ClassroomController@destroy')->name(
 
 // mySchool exam routes
 Route::get('/exams', 'main\ExamController@index')->name('exam-list');
+Route::post('/exams', 'main\ExamController@store')->name('exam-add');
+Route::get('/exams/edit/{id}', 'main\ExamController@edit')->name('exam-edit')->where('id', '[0-9]+');
+Route::put('/exams/update/{id}', 'main\ExamController@update')->name('exam-update')->where('id', '[0-9]+');
+Route::get('/exams/delete/{id}', 'main\ExamController@destroy')->name('exam-delete')->where('id', '[0-9]+');
