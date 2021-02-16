@@ -21,11 +21,11 @@ class CreateClassroomsTable extends Migration
       $table->integer('nb_student')->nullable();
       $table->integer('nb_teacher')->nullable();
       $table->boolean('isexam')->default(0);
-      $table->integer('school_id');
-      $table->integer('exam_id')->nullable();
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('school_id');
+      $table->bigInteger('exam_id')->nullable();
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

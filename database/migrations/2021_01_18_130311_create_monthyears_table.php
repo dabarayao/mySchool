@@ -20,10 +20,10 @@ class CreateMonthyearsTable extends Migration
       $table->boolean('is_over')->default(0);
       $table->integer('coef');
       $table->integer('rank')->nullable();
-      $table->integer('schoolyear_id');
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('schoolyear_id');
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

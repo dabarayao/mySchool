@@ -28,10 +28,10 @@ class CreateKinsTable extends Migration
       $table->string('address', 256)->nullable();
       $table->string('job', 100)->nullable();
       $table->boolean('state')->default(0)->nullable();
-      $table->integer('school_id');
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('school_id');
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

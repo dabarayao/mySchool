@@ -14,153 +14,147 @@ use Intervention\Image\ImageManagerStatic as Image;
 class SettingController extends Controller
 {
 
-    public function __construct()
-    {
-      // the authenitfication middleware for the app
-      $this->middleware(['verified', 'auth', 'checkUserStatus']);
+  public function __construct()
+  {
+    // the authenitfication middleware for the app
+    $this->middleware(['verified', 'auth', 'checkUserStatus', 'checkUserSchools', 'scolarSystem']);
+  }
+
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    // auth connected state code sample
+    if (Auth::check()) {
+      $util = User::find(Auth::id());
+      if ($util->state == false); {
+        $util->state = true;
+        $util->save();
+      }
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-            // auth connected state code sample
-        if (Auth::check()) {
-          $util = User::find(Auth::id());
-          if ($util->state == false); {
-            $util->state = true;
-            $util->save();
-          }
-        }
-
-        $setting = Setting::where('user_id', Auth::id())->first();
+    $setting = Setting::where('user_id', Auth::id())->first();
 
 
-        //code for root user or superuser
-        $current = User::find(Auth::id());
-        //code for root user or superuser
+    //code for root user or superuser
+    $current = User::find(Auth::id());
+    //code for root user or superuser
 
-        return view('main.settings.page-account-settings')->with([
-          'setting' => $setting,
-          'current' => $current]);
-    }
+    return view('main.settings.page-account-settings')->with([
+      'setting' => $setting,
+      'current' => $current
+    ]);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+    //
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(Request $request)
+  {
+    //
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Setting $setting)
-    {
-        //
-    }
+  /**
+   * Display the specified resource.
+   *
+   * @param  \App\Setting  $setting
+   * @return \Illuminate\Http\Response
+   */
+  public function show(Setting $setting)
+  {
+    //
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Setting $setting)
-    {
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  \App\Setting  $setting
+   * @return \Illuminate\Http\Response
+   */
+  public function edit(Setting $setting)
+  {
+  }
 
-    }
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Setting  $setting
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request)
+  {
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
+    $request->validate([
+      'theme' => 'required',
+      'language' => 'required'
+    ]);
 
-      $request->validate([
-        'theme' => 'required',
-        'language' => 'required'
-      ]);
+    if ($request->hasFile('photo')) {
+      //code to store an resize the image
+      $files = $request->file('photo');
 
-        if($request->hasFile('photo'))
-        {
-        //code to store an resize the image
-        $files = $request->file('photo');
-
-        $picture = Storage::putFile('public/users/', $files);
-        $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
-        $path = Storage::url($picture);
-
-        $user = User::find(Auth::id());
-        $user->photo = $path;
-        $user->save();
-
-        }
-
-        $setting = Setting::where('user_id', Auth::id())->first();
-        $setting->theme = $request->theme;
-        $setting->language = $request->language;
-        $setting->updated_user = Auth::id();
-        $setting->save();
-
-        return redirect()->route('settings-display');
-    }
-
-    public function updatePass(Request $request){
-
-      $request->validate([
-        'password' => 'required'
-      ]);
+      $picture = Storage::putFile('public/users/', $files);
+      $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
+      $path = Storage::url($picture);
 
       $user = User::find(Auth::id());
-      if(Hash::check($request->old_password, $user->password ))
-      {
-        $user->password = bcrypt($request->password);
-        session()->forget('error');
-
-        return redirect()->route('settings-display');
-      }
-      else
-      {
-        session()->flash('error', 1);
-        return redirect()->route('settings-display');
-      }
-
-
+      $user->photo = $path;
+      $user->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Setting $setting)
-    {
-        //
+    $setting = Setting::where('user_id', Auth::id())->first();
+    $setting->theme = $request->theme;
+    $setting->language = $request->language;
+    $setting->updated_user = Auth::id();
+    $setting->save();
+
+    return redirect()->route('settings-display');
+  }
+
+  public function updatePass(Request $request)
+  {
+
+    $request->validate([
+      'password' => 'required'
+    ]);
+
+    $user = User::find(Auth::id());
+    if (Hash::check($request->old_password, $user->password)) {
+      $user->password = bcrypt($request->password);
+      session()->forget('error');
+
+      return redirect()->route('settings-display');
+    } else {
+      session()->flash('error', 1);
+      return redirect()->route('settings-display');
     }
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  \App\Setting  $setting
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy(Setting $setting)
+  {
+    //
+  }
 }

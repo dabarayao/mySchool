@@ -110,12 +110,6 @@ $(function () {
     // all tooltips
   $('#not-verified').tooltip();
 
-   $('.selectpicker').selectpicker({
-        style: 'btn-info',
-        size: 4
-    });
-
-
 
 
 

@@ -18,10 +18,10 @@ class CreateExamsTable extends Migration
       $table->string('label', 100);
       $table->boolean('type');
       $table->date('date');
-      $table->integer('school_id');
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('school_id');
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

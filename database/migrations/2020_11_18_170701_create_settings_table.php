@@ -17,10 +17,10 @@ class CreateSettingsTable extends Migration
       $table->id();
       $table->string('theme', 100);
       $table->string('language', 100);
-      $table->integer('user_id');
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('user_id');
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

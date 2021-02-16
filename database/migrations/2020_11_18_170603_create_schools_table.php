@@ -29,9 +29,9 @@ class CreateSchoolsTable extends Migration
       $table->integer('quotient')->default(20);;
       $table->boolean('type_monthyear')->default(0);
       $table->boolean('status')->default(1);
-      $table->integer('created_user')->nullable();
-      $table->integer('updated_user')->nullable();
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('created_user')->nullable();
+      $table->bigInteger('updated_user')->nullable();
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

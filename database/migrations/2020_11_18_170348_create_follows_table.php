@@ -14,13 +14,13 @@ class CreateFollowsTable extends Migration
   public function up()
   {
     Schema::create('follows', function (Blueprint $table) {
-      $table->integer('teacher_id');
-      $table->integer('classroom_id');
+      $table->bigInteger('teacher_id');
+      $table->bigInteger('classroom_id');
       $table->integer('hours')->nullable();
       $table->string('day', 100)->nullable();
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

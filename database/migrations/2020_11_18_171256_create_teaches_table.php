@@ -14,12 +14,12 @@ class CreateTeachesTable extends Migration
   public function up()
   {
     Schema::create('teaches', function (Blueprint $table) {
-      $table->integer('teacher_id');
-      $table->integer('discipline_id');
+      $table->bigInteger('teacher_id');
+      $table->bigInteger('discipline_id');
       $table->integer('nb_classroom')->nullable();
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

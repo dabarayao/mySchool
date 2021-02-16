@@ -146,7 +146,7 @@
                           <div class="col-md-8 form-group">
                             <div class="position-relative has-icon-left">
 
-                                <select class="custom-select" id="exampleSelect" name="exam_id">
+                                <select class="custom-select" id="exampleSelect" name="exam_id" required>
                                   @php $i = 0; @endphp
                                   @foreach ($exam as $exams)
                                     @if($exams->id == $classroom->exam_id)
@@ -175,7 +175,7 @@
                         <div class="col-md-8 form-group">
                           <div class="position-relative has-icon-left">
 
-                              <select class="custom-select" id="exampleSelect" name="examname">
+                              <select class="custom-select" id="exampleSelect" name="examname" required>
 
                                  @php $i = 0; @endphp
                                 @foreach ($exam as $exams)
@@ -320,6 +320,71 @@
                             </select>
                         </div>
                       </div>
+
+
+                      @if($classroom->isexam == true)
+
+                        @if(isset($exam))
+                          <div class="col-md-4">
+                            <label>Examen</label>
+                          </div>
+                          <div class="col-md-8 form-group">
+                            <div class="position-relative has-icon-left">
+
+                                <select class="custom-select" id="exampleSelect" name="exam_id" required>
+                                  @php $i = 0; @endphp
+                                  @foreach ($exam as $exams)
+                                    @if($exams->id == $classroom->exam_id)
+                                      @php  $i++; @endphp
+                                    @endif
+
+                                      <option value="{{$exams->id}}" @if($exams->id == $classroom->exam_id) selected @endif>{{$exams->label}}</option>
+                                  @endforeach
+
+                                  @if($i == 0)
+                                      <option selected> choose an exam </option>
+                                  @endif
+
+
+                                </select>
+                            </div>
+                          </div>
+                        @endif
+
+                      @elseif($classroom->isexam == false)
+
+                       @if(isset($exam))
+                       <div class="col-md-4">
+                          <label>Examen</label>
+                       </div>
+                        <div class="col-md-8 form-group">
+                          <div class="position-relative has-icon-left">
+
+                              <select class="custom-select" id="exampleSelect" name="examname" required>
+
+                                 @php $i = 0; @endphp
+                                @foreach ($exam as $exams)
+
+                                   @if($exams->id == $classroom->exam_id)
+                                     @php  $i++; @endphp
+                                   @endif
+                                    <option value="{{$exams->id}}" @if($exams->id == $classroom->exam_id) selected @endif>{{$exams->label}}</option>
+                                @endforeach
+
+                                @if($i == 0)
+                                    <option selected> choose an exam  </option>
+                                @endif
+
+
+
+                              </select>
+                          </div>
+                        </div>
+                       @endif
+
+
+
+                      @endif
 
                     </div>
                     <div class="col-12 d-flex justify-content-end ">

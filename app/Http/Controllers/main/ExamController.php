@@ -17,6 +17,14 @@ class ExamController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+
+  public function __construct()
+  {
+    // the authenitfication middleware for the app
+    $this->middleware(['verified', 'auth', 'checkUserStatus', 'checkUserSchools', 'scolarSystem']);
+  }
+
+
   public function index()
   {
     //

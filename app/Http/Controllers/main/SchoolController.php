@@ -21,8 +21,9 @@ class SchoolController extends Controller
   public function __construct()
   {
     // the authenitfication middleware for the app
-    $this->middleware(['verified', 'auth', 'checkUserStatus']);
+    $this->middleware(['verified', 'auth', 'checkUserStatus', 'scolarSystem']);
   }
+
 
 
   /**

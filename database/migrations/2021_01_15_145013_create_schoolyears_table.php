@@ -19,10 +19,10 @@ class CreateSchoolyearsTable extends Migration
       $table->date('start_date')->nullable();
       $table->date('end_date')->nullable();
       $table->boolean('is_over')->default(0);
-      $table->integer('school_id');
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('school_id');
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

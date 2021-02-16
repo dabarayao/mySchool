@@ -15,12 +15,12 @@ class CreateStudentKinsTable extends Migration
   {
     Schema::create('student_kins', function (Blueprint $table) {
       $table->id();
-      $table->integer('student_id');
+      $table->bigInteger('student_id');
       $table->integer('kins_id');
       $table->integer('relationship')->nullable();
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

@@ -17,12 +17,12 @@ class CreateMonthveragesTable extends Migration
       $table->id();
       $table->double('value');
       $table->double('congrat');
-      $table->integer('monthyear_id');
-      $table->integer('schoolyear_id');
-      $table->integer('yearverage_id');
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('monthyear_id');
+      $table->bigInteger('schoolyear_id');
+      $table->bigInteger('yearverage_id');
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

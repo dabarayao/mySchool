@@ -15,15 +15,15 @@ class CreateChatsTable extends Migration
   {
     Schema::create('chats', function (Blueprint $table) {
       $table->id();
-      $table->integer('school_id');
-      $table->integer('kins_id');
+      $table->bigInteger('school_id');
+      $table->bigInteger('kins_id');
       $table->text('message');
       $table->boolean('read_status')->default(0);
       $table->integer('datatype')->default(1);
-      $table->integer('chats_id')->nullable();
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('chats_id')->nullable();
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

@@ -23,9 +23,9 @@ class CreateTeachersTable extends Migration
       $table->integer('phone');
       $table->string('country', 100)->nullable();
       $table->string('address', 256);
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

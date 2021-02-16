@@ -69,6 +69,16 @@
                       </div>
                       <div class="card-content">
                           <div class="card-body card-dashboard">
+                            <p>
+                              @if(session()->get('userNotClass'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                  Pour avoir accès à cette partie de l'application, ajouter au moins une classe.
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                              @endif
+                            </p>
                               <div class="table-responsive">
                                   <table class="table row-grouping">
                                       <thead>
@@ -139,6 +149,16 @@
                       </div>
                       <div class="card-content">
                           <div class="card-body card-dashboard">
+                              <p>
+                                @if(session()->get('userNotClass'))
+                                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Pour avoir accès à cette partie de l'application, ajouter au moins une classe.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                @endif
+                              </p>
                               <div class="table-responsive">
                                   <table class="table table-striped dataex-html5-selectors">
                                       <thead>
@@ -301,7 +321,7 @@
         </div>
       </form>
     </div>
-  </div>
+</div>
 
 
 @else
@@ -343,6 +363,15 @@
                       </div>
                       <div class="card-content">
                           <div class="card-body card-dashboard">
+                              <p>
+                                @if(session()->get('userNotClass'))
+                                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    To access this part of the software, add at least one classroom.                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                @endif
+                              </p>
                               <div class="table-responsive">
                                   <table class="table row-grouping">
                                       <thead>
@@ -413,6 +442,15 @@
                       </div>
                       <div class="card-content">
                           <div class="card-body card-dashboard">
+                              <p>
+                                @if(session()->get('userNotClass'))
+                                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    To access this part of the software, add at least one classroom.                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                @endif
+                              </p>
                               <div class="table-responsive">
                                   <table class="table table-striped dataex-html5-selectors">
                                       <thead>

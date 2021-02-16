@@ -14,15 +14,15 @@ class CreateFillsTable extends Migration
   public function up()
   {
     Schema::create('fills', function (Blueprint $table) {
-      $table->integer('teacher_id');
+      $table->bigInteger('teacher_id');
       $table->date('current_course_day');
       $table->date('next_course_day');
       $table->text('notification');
-      $table->integer('textbook_id');
-      $table->integer('discipline_id');
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('textbook_id');
+      $table->bigInteger('discipline_id');
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

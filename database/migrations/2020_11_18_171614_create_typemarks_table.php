@@ -16,9 +16,10 @@ class CreateTypemarksTable extends Migration
     Schema::create('typemarks', function (Blueprint $table) {
       $table->id();
       $table->string('label', 100);
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('school_id');
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });

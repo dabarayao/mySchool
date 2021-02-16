@@ -18,12 +18,12 @@ class CreateAveragesTable extends Migration
       $table->double('value');
       $table->string('congrat', 100);
       $table->integer('coef');
-      $table->integer('monthyear_id');
-      $table->integer('schoolyear_id');
-      $table->integer('monthverage_id');
-      $table->integer('created_user');
-      $table->integer('updated_user');
-      $table->integer('deleted_user')->nullable();
+      $table->bigInteger('monthyear_id');
+      $table->bigInteger('schoolyear_id');
+      $table->bigInteger('monthverage_id');
+      $table->bigInteger('created_user');
+      $table->bigInteger('updated_user');
+      $table->bigInteger('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();
     });
