@@ -23,6 +23,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
 import settings from './components/SettingsGeneral.vue'
 
 
@@ -377,5 +378,67 @@ var school_edit = new Vue({
     }
 
 
+  }
+});
+
+
+/* pager-student-list  add form validation */
+var student_add = new Vue({
+  el: '#student_add_modal',
+  data: {
+    oriented: true,
+    handicap: true
+  },
+  methods: {
+    selectHand: function (e) {
+
+      if (this.handicap == true || document.getElementById("lib_hand").style.display == "block" )
+      {
+        document.getElementById("lib_hand").style.display = "none";
+        document.getElementById("desc_hand").style.display = "none";
+        this.handicap = !this.handicap;
+      }
+      else
+      {
+        document.getElementById("lib_hand").style.display = "block";
+        document.getElementById("desc_hand").style.display = "block";
+
+        this.handicap = !this.handicap;
+      }
+
+
+    },
+    selectOrien: function (e) {
+
+      if (this.oriented == true || document.getElementById("rang_orien").style.display == "block")
+      {
+        document.getElementById("rang_orien").style.display = "none";
+        this.oriented = !this.oriented;
+      }
+      else
+      {
+        document.getElementById("rang_orien").style.display = "block";
+
+        this.oriented = !this.oriented;
+      }
+
+
+    }
+
+  },
+  mounted() {
+
+    if (this.handicap == true)
+    {
+      document.getElementById("lib_hand").style.display = "none";
+      document.getElementById("desc_hand").style.display = "none";
+      this.handicap = !this.handicap;
+    }
+
+    if (this.oriented == true)
+    {
+      document.getElementById("rang_orien").style.display = "none";
+      this.oriented = !this.oriented;
+    }
   }
 });

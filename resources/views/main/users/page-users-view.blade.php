@@ -37,7 +37,7 @@
       <div class="col-12 col-sm-7">
         <div class="media mb-2">
           <a class="mr-1" href="#">
-            <img src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$user->photo}} @endif" alt="users view avatar"
+            <img src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else{{asset($user->photo)}} @endif" alt="users view avatar"
               class="users-avatar-shadow rounded-circle" height="64" width="64">
           </a>
           <div class="media-body pt-25">
@@ -256,8 +256,8 @@
       <div class="col-12 col-sm-7">
         <div class="media mb-2">
           <a class="mr-1" href="#">
-            <img src="{{$user->photo}}" alt="users view avatar"
-              class="users-avatar-shadow rounded-circle" height="64" width="64">
+           <img src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else{{asset($user->photo)}} @endif" alt="users view avatar"
+
           </a>
           <div class="media-body pt-25">
             <h4 class="media-heading"><span>{{$user->familyname}} </span><span

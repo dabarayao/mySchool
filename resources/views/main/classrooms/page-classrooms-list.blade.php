@@ -99,7 +99,7 @@
                                               <td>
                                                 @foreach ($school as $schools)
                                                   @if($schools->id == $classrooms->school_id)
-                                                  <span class="font-weight-bold"> {{$schools->name}} </span>
+                                                  <h5> {{$schools->name}} </h5>
                                                   @endif
                                                 @endforeach
                                               </td>

@@ -46,7 +46,7 @@
                 <img src="{{asset('images/profile/post-media/profile-banner.jpg')}}"
                   class="img-fluid rounded-top user-timeline-image" alt="user timeline image">
                 <!-- user profile image -->
-                <img src="@if($schools->photo != NULL) {{$schools->photo}} @else {{asset('images/schools/schoolphoto.jpg')}} @endif" class="user-profile-image rounded"
+                <img src="@if($schools->photo != NULL) {{asset($schools->photo)}} @else {{asset('images/schools/schoolphoto.jpg')}} @endif" class="user-profile-image rounded"
                   alt="user profile image" height="140" width="140">
               </div>
               <div class="user-profile-text" style="padding: 5px;">
@@ -381,7 +381,7 @@
                 <img src="{{asset('images/profile/post-media/profile-banner.jpg')}}"
                   class="img-fluid rounded-top user-timeline-image" alt="user timeline image">
                 <!-- user profile image -->
-                <img src="{{$schools->photo}}" class="user-profile-image rounded"
+                <img src="@if($schools->photo != NULL) {{asset($schools->photo)}} @else {{asset('images/schools/schoolphoto.jpg')}} @endif" class="user-profile-image rounded"
                   alt="user profile image" height="140" width="140">
               </div>
               <div class="user-profile-text" style="padding: 5px;">

@@ -20,10 +20,13 @@ class CreateStudentsTable extends Migration
       $table->string('givenname', 256);
       $table->string('photo', 100)->nullable();
       $table->date('birthdate');
+      $table->boolean('gender');
       $table->string('dialcode', 100)->nullable();
-      $table->integer('phone');
+      $table->string('phone', 100);
       $table->string('country', 100)->nullable();
       $table->string('address', 256);
+      $table->boolean('is_fired')->default(0);
+      $table->boolean('is_redoubling')->default(0);
       $table->boolean('is_oriented')->default(0);
       $table->boolean('is_handicap')->default(0);
       $table->integer('oriented_percent')->nullable();

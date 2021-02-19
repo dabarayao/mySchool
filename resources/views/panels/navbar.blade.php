@@ -181,7 +181,7 @@ data-bgcolor="@if(isset($configData['navbarBgColor'])){{$configData['navbarBgCol
               </div>
               <span><img class="round" src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$user->photo}} @endif" alt="avatar" height="40" width="40"></span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right pb-0">
+            <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item" href="{{asset('page-user-profile')}}">
                 <i class="bx bx-user mr-50"></i> Modifier profile
               </a>

@@ -115,8 +115,8 @@ class SchoolController extends Controller
       //code to store an resize the image
       $files = $request->file('photo');
 
-      $picture = Storage::putFile('public/schools/', $files);
-      $resize = Image::make($files)->resize(500, 500)->save('storage/schools/' . basename($picture), 80);
+      $picture = Storage::putFile('public/schools', $files);
+      $resize = Image::make($files)->resize(500, 500)->save('storage/schools' . basename($picture), 80);
       $path = Storage::url($picture);
     }
 
@@ -300,8 +300,8 @@ class SchoolController extends Controller
       //code to store an resize the image
       $files = $request->file('photo');
 
-      $picture = Storage::putFile('public/schools/', $files);
-      $resize = Image::make($files)->resize(500, 500)->save('storage/schools/' . basename($picture), 80);
+      $picture = Storage::putFile('public/schools', $files);
+      $resize = Image::make($files)->resize(500, 500)->save('storage/schools' . basename($picture), 80);
       $path = Storage::url($picture);
     }
 

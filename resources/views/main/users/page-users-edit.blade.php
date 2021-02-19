@@ -66,7 +66,7 @@
                   <!-- users edit media object start -->
                   <div class="media mb-2">
                       <a class="mr-2" href="#">
-                          <img src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$user->photo}} @endif" id="edit_img" alt="users avatar" class="users-avatar-shadow rounded-circle" height="64" width="64">
+                          <img src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else{{asset($user->photo)}} @endif" id="edit_img" alt="users avatar" class="users-avatar-shadow rounded-circle" height="64" width="64">
                       </a>
                       <div class="media-body">
                           <h4 class="media-heading">{{$user->familyname}} {{$user->givenname}}</h4>
@@ -375,7 +375,7 @@
                   <!-- users edit media object start -->
                   <div class="media mb-2">
                       <a class="mr-2" href="#">
-                          <img src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$user->photo}} @endif" id="edit_img" alt="users avatar" class="users-avatar-shadow rounded-circle" height="64" width="64">
+                          <img src="@if($user->photo == NULL && $user->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($user->photo == NULL && $user->gender == true) {{asset('images/mockup/woman.jpg')}} @else{{asset($user->photo)}} @endif" id="edit_img" alt="users avatar" class="users-avatar-shadow rounded-circle" height="64" width="64">
                       </a>
                       <div class="media-body">
                           <h4 class="media-heading">{{$user->familyname}} {{$user->givenname}}</h4>

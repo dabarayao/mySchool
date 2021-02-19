@@ -133,7 +133,7 @@
                                                   @elseif($users->photo == NULL && $users->gender == true)
                                                     <img src="{{asset('images/mockup/woman.jpg')}}" alt="avtar img holder">
                                                   @else
-                                                    <img src="{{$users->photo}}" alt="avtar img holder">
+                                                    <img src="{{asset($users->photo)}}" alt="avtar img holder">
 
                                                   @endif
                                                 </div>
@@ -353,7 +353,7 @@
                                                   @elseif($users->photo == NULL && $users->gender == true)
                                                     <img src="{{asset('images/mockup/woman.jpg')}}" alt="avtar img holder">
                                                   @else
-                                                    <img src="{{$users->photo}}" alt="avtar img holder">
+                                                    <img src="{{asset($users->photo)}}" alt="avtar img holder">
 
                                                   @endif
 

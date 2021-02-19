@@ -199,3 +199,4 @@ Route::get('/exams/delete/{id}', 'main\ExamController@destroy')->name('exam-dele
 
 // mySchool student routes
 Route::get('/students', 'main\StudentController@index')->name('student-list');
+Route::post('/students', 'main\StudentController@store')->name('student-add');

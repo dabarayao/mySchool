@@ -102,8 +102,8 @@ class UsersController extends Controller
         //code to store an resize the image
         $files = $request->file('photo');
 
-        $picture = Storage::putFile('public/users/', $files);
-        $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
+        $picture = Storage::putFile('public/users', $files);
+        $resize = Image::make($files)->resize(200, 200)->save('storage/users' . basename($picture), 80);
         $path = Storage::url($picture);
       }
 
@@ -273,8 +273,8 @@ class UsersController extends Controller
       //code to store an resize the image
       $files = $request->file('photo');
 
-      $picture = Storage::putFile('public/users/', $files);
-      $resize = Image::make($files)->resize(200, 200)->save('storage/users/' . basename($picture), 80);
+      $picture = Storage::putFile('public/users', $files);
+      $resize = Image::make($files)->resize(200, 200)->save('storage/userss' . basename($picture), 80);
       $path = Storage::url($picture);
     }
 

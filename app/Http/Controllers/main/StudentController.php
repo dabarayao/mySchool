@@ -35,26 +35,41 @@ class StudentController extends Controller
     $current = User::find(Auth::id());
 
     $school = School::all();
-    $classroomAll = Classroom::all();
-    $classroom = Classroom::where('school_id', $current->school_id)->get();
 
-    $studentAll =  DB::table('students')
-      ->join('classrooms', 'classrooms.id', '=', 'students.classroom_id')
-      ->join('schools', 'schools.id', '=', 'classrooms.school_id')
-      ->select('students.*', 'classrooms.*', 'schools.*')
-      ->get();
 
-    $student =  DB::table('students')
-      ->join('classrooms', 'classrooms.id', '=', 'students.classroom_id')
-      ->join('schools', 'schools.id', '=', 'classrooms.school_id')
-      ->join('schools', 'schools.id', '=', $current->school_id)
-      ->select('students.*', 'classrooms.*', 'schools.*')
-      ->where([
-        ['students.deleted_at', '<>', NULL],
-        ['schools.deleted_at', '<>', NULL],
-        ['classrooms.deleted_at', '<>', NULL],
-      ])
-      ->get();
+    if ($current->root == false) {
+      $classroom = Classroom::where('school_id', $current->school_id)->get();
+    } else {
+      $classroom = Classroom::all();
+    }
+
+
+    if ($current->root == false) {
+
+      $student =  DB::table('students')
+        ->join('classrooms', 'classrooms.id', '=', 'students.classroom_id')
+        ->join('schools', 'schools.id', '=', 'classrooms.school_id')
+        ->select('students.*', 'classrooms.*', 'schools.name', 'schools.id')
+        ->where([
+          ['students.deleted_at', '=', NULL],
+          ['schools.deleted_at', '=', NULL],
+          ['classrooms.deleted_at', '=', NULL],
+          ['schools.id', '=', $current->school_id]
+        ])
+        ->get();
+    } else {
+
+      $student =  DB::table('students')
+        ->join('classrooms', 'classrooms.id', '=', 'students.classroom_id')
+        ->join('schools', 'schools.id', '=', 'classrooms.school_id')
+        ->select('students.*', 'classrooms.*', 'schools.name', 'schools.id')
+        ->where([
+          ['students.deleted_at', '=', NULL],
+          ['schools.deleted_at', '=', NULL],
+          ['classrooms.deleted_at', '=', NULL],
+        ])
+        ->get();
+    }
 
     $setting = Setting::where('user_id', Auth::id())->first();
 
@@ -63,9 +78,7 @@ class StudentController extends Controller
       'school' => $school,
       'setting' => $setting,
       'student' => $student,
-      'studentAll' => $studentAll,
-      'classroom' => $classroom,
-      'classromAll' => $classroomAll
+      'classroom' => $classroom
     ]);
   }
 
@@ -89,11 +102,10 @@ class StudentController extends Controller
   {
     //
     $request->validate([
+      'reg_number' => 'required',
       'familyname' => 'required',
       'givenname' => 'required',
       'familyname' => 'required',
-      'email' => 'required',
-      'password' => 'required',
       'gender' => 'required',
       'country' => 'required',
       'dialcode' => 'required',
@@ -109,8 +121,8 @@ class StudentController extends Controller
       //code to store an resize the image
       $files = $request->file('photo');
 
-      $picture = Storage::putFile('public/students/', $files);
-      $resize = Image::make($files)->resize(300, 300)->save('storage/students/' . basename($picture), 80);
+      $picture = Storage::putFile('public/students', $files);
+      $resize = Image::make($files)->resize(300, 300)->save('storage/students' . basename($picture), 80);
       $path = Storage::url($picture);
     }
 
@@ -123,6 +135,8 @@ class StudentController extends Controller
     if ($request->hasFile('photo')) {
       $student->photo = $path;
     }
+
+    $student->reg_number = $request->reg_number;
     $student->familyname = $request->familyname;
     $student->givenname = $request->givenname;
     $student->gender = $request->gender;
@@ -134,8 +148,11 @@ class StudentController extends Controller
     $student->is_oriented = $request->is_oriented;
     $student->is_handicap = $request->is_handicap;
 
-    if ($request->oriented_percent && $request->label_handicap) {
+    if ($request->is_oriented == 1) {
       $student->oriented_percent = $request->oriented_percent;
+    }
+
+    if ($request->is_handicap == 1) {
       $student->label_handicap = $request->label_handicap;
       $student->desc_handicap = $request->desc_handicap;
     }
@@ -222,8 +239,8 @@ class StudentController extends Controller
       //code to store an resize the image
       $files = $request->file('photo');
 
-      $picture = Storage::putFile('public/students/', $files);
-      $resize = Image::make($files)->resize(300, 300)->save('storage/students/' . basename($picture), 80);
+      $picture = Storage::putFile('public/students', $files);
+      $resize = Image::make($files)->resize(300, 300)->save('storage/students' . basename($picture), 80);
       $path = Storage::url($picture);
     }
 
