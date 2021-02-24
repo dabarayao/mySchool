@@ -200,3 +200,7 @@ Route::get('/exams/delete/{id}', 'main\ExamController@destroy')->name('exam-dele
 // mySchool student routes
 Route::get('/students', 'main\StudentController@index')->name('student-list');
 Route::post('/students', 'main\StudentController@store')->name('student-add');
+Route::get('/students/edit/{id}', 'main\StudentController@edit')->name('student-edit')->where('id', '[0-9]+');
+Route::get('/students/view/{id}', 'main\StudentController@show')->name('student-view')->where('id', '[0-9]+');
+Route::put('/students/update/{id}', 'main\StudentController@update')->name('student-update')->where('id', '[0-9]+');
+Route::get('/students/delete/{id}', 'main\StudentController@destroy')->name('student-delete')->where('id', '[0-9]+');

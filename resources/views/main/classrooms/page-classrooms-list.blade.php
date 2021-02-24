@@ -262,7 +262,7 @@
                   </div>
                   <div class="col-md-8 form-group">
                     <div class="position-relative has-icon-left">
-                        <textarea class="form-control" name="description" id="exampleInput" placeholder="Description de la classe" rows="3"></textarea>
+                        <textarea class="form-control" name="description" id="exampleInput" placeholder="Description de la classe" maxlength="256" rows="3"></textarea>
 
                       <div class="form-control-position">
                         <i class="bx bx-book-content"></i>
@@ -553,7 +553,7 @@
                       </div>
                       <div class="col-md-8 form-group">
                         <div class="position-relative has-icon-left">
-                            <textarea class="form-control" name="description" id="exampleInput" placeholder="Description de la classe" rows="3"></textarea>
+                            <textarea class="form-control" name="description" id="exampleInput" placeholder="Description de la classe" maxlength="256" rows="3"></textarea>
 
                           <div class="form-control-position">
                             <i class="bx bx-book-content"></i>

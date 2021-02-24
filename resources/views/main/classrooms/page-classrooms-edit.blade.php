@@ -147,18 +147,16 @@
                             <div class="position-relative has-icon-left">
 
                                 <select class="custom-select" id="exampleSelect" name="exam_id" required>
-                                  @php $i = 0; @endphp
+
                                   @foreach ($exam as $exams)
-                                    @if($exams->id == $classroom->exam_id)
-                                      @php  $i++; @endphp
-                                    @endif
+
 
                                       <option value="{{$exams->id}}" @if($exams->id == $classroom->exam_id) selected @endif>{{$exams->label}}</option>
                                   @endforeach
 
-                                  @if($i == 0)
-                                      <option selected> selectionnez un examen </option>
-                                  @endif
+
+                                      <option> selectionnez un examen </option>
+
 
 
                                 </select>
@@ -332,18 +330,15 @@
                             <div class="position-relative has-icon-left">
 
                                 <select class="custom-select" id="exampleSelect" name="exam_id" required>
-                                  @php $i = 0; @endphp
+
                                   @foreach ($exam as $exams)
-                                    @if($exams->id == $classroom->exam_id)
-                                      @php  $i++; @endphp
-                                    @endif
+
 
                                       <option value="{{$exams->id}}" @if($exams->id == $classroom->exam_id) selected @endif>{{$exams->label}}</option>
                                   @endforeach
 
-                                  @if($i == 0)
-                                      <option selected> choose an exam </option>
-                                  @endif
+                                      <option> choose an exam </option>
+
 
 
                                 </select>

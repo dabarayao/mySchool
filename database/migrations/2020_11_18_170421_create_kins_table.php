@@ -24,6 +24,7 @@ class CreateKinsTable extends Migration
       $table->string('dialcode', 100)->nullable();
       $table->integer('phone');
       $table->date('birthdate');
+      $table->string('birthcity', 100);
       $table->string('country', 100)->nullable();
       $table->string('address', 256)->nullable();
       $table->string('job', 100)->nullable();

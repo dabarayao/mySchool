@@ -74,7 +74,7 @@
 
 
                                                     <a href="javascript: void(0);">
-                                                        <img src="@if($current->photo == NULL && $current->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($current->photo == NULL && $current->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$current->photo}} @endif"
+                                                        <img src="@if($current->photo == NULL && $current->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($current->photo == NULL && $current->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{asset($current->photo)}} @endif"
                                                             class="rounded mr-75" alt="profile image" height="64" width="64">
                                                     </a>
                                                   <div class="row">
@@ -242,7 +242,7 @@
                                                 {{method_field('put')}}
 
                                                   <a href="javascript: void(0);">
-                                                      <img src="@if($current->photo == NULL && $current->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($current->photo == NULL && $current->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$current->photo}} @endif"
+                                                      <img src="@if($current->photo == NULL && $current->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($current->photo == NULL && $current->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{asset($current->photo)}} @endif"
                                                           class="rounded mr-75" alt="profile image" height="64" width="64">
                                                   </a>
                                                   <div class="row">

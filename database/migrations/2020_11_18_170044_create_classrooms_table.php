@@ -17,7 +17,7 @@ class CreateClassroomsTable extends Migration
       $table->id();
       $table->string('label', 100);
       $table->string('code', 100);
-      $table->string('description', 100);
+      $table->string('description', 256);
       $table->integer('nb_student')->nullable();
       $table->integer('nb_teacher')->nullable();
       $table->boolean('isexam')->default(0);

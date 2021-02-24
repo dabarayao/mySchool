@@ -52,7 +52,7 @@
       "icon": "pen",
       "submenu": [
         {
-          "url": "icons-livicons",
+          "url": "students",
           "name": "StudentList",
           "i18n": "LivIcons",
           "icon": "bx bx-right-arrow-alt"

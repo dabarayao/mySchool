@@ -20,6 +20,7 @@ class CreateStudentsTable extends Migration
       $table->string('givenname', 256);
       $table->string('photo', 100)->nullable();
       $table->date('birthdate');
+      $table->string('birthcity', 100);
       $table->boolean('gender');
       $table->string('dialcode', 100)->nullable();
       $table->string('phone', 100);

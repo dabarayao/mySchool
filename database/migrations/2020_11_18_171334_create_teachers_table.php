@@ -19,6 +19,7 @@ class CreateTeachersTable extends Migration
       $table->string('givename', 256);
       $table->string('photo', 100)->nullable();
       $table->date('birthdate');
+      $table->string('birthcity', 100);
       $table->boolean('gender');
       $table->string('dialcode', 100)->nullable();
       $table->integer('phone');

@@ -423,22 +423,147 @@ var student_add = new Vue({
       }
 
 
+    },
+    inputFileCheck: function (e) {
+
+        var uploadField = document.getElementById("schoolphoto");
+        var setLang = document.getElementById("settin_lang");
+        var userLang = navigator.language || navigator.userLanguage;
+
+        if(setLang.value == 1)
+        {
+          if (userLang === ('fr' || 'en'))
+          {
+            if (uploadField.files[0].size > 2097152) {
+
+
+
+              alert("Le fichier est trop lourd 2 mo maximum");
+              uploadField.value = "";
+            }
+          }
+
+        }
+        else
+        {
+            if (uploadField.files[0].size > 2097152) {
+
+              alert("File is too big! 2 mo maximum");
+              uploadField.value = "";
+            }
+        }
+
+
+
     }
+
+
 
   },
   mounted() {
 
-    if (this.handicap == true)
-    {
-      document.getElementById("lib_hand").style.display = "none";
-      document.getElementById("desc_hand").style.display = "none";
-      this.handicap = !this.handicap;
+
+
+  }
+});
+
+/* pager-edit-student  edit student validation */
+var student_edit = new Vue({
+  el: '#student_edit_form',
+  data: {
+    oriented: false,
+    handicap: false
+  },
+  methods: {
+    selectHand: function (e) {
+
+      if (this.handicap == true || document.getElementById("lib_hand").style.display == "block" )
+      {
+        document.getElementById("lib_hand").style.display = "none";
+        document.getElementById("desc_hand").style.display = "none";
+        this.handicap = !this.handicap;
+      }
+      else
+      {
+        document.getElementById("lib_hand").style.display = "block";
+        document.getElementById("desc_hand").style.display = "block";
+
+        this.handicap = !this.handicap;
+      }
+
+
+    },
+    selectOrien: function (e) {
+
+      if (this.oriented == true || document.getElementById("rang_orien").style.display == "block")
+      {
+        document.getElementById("rang_orien").style.display = "none";
+        this.oriented = !this.oriented;
+      }
+      else
+      {
+        document.getElementById("rang_orien").style.display = "block";
+
+        this.oriented = !this.oriented;
+      }
+
+
+    },
+    inputFileCheck: function (e) {
+
+        var uploadField = document.getElementById("schoolphoto");
+        var setLang = document.getElementById("settin_lang");
+        var userLang = navigator.language || navigator.userLanguage;
+
+        if(setLang.value == 1)
+        {
+          if (userLang === ('fr' || 'en'))
+          {
+            if (uploadField.files[0].size > 2097152) {
+
+
+
+              alert("Le fichier est trop lourd 2 mo maximum");
+              uploadField.value = "";
+            }
+          }
+
+        }
+        else
+        {
+            if (uploadField.files[0].size > 2097152) {
+
+              alert("File is too big! 2 mo maximum");
+              uploadField.value = "";
+            }
+        }
+
+
+
     }
 
-    if (this.oriented == true)
+
+
+  },
+  mounted() {
+
+    // school edit from country's select
+    var c = document.getElementById("country-icon");
+    var cstu = document.getElementById("country_stud");
+
+    if (c.value != "")
     {
-      document.getElementById("rang_orien").style.display = "none";
-      this.oriented = !this.oriented;
+    c.value = cstu.value;
     }
+
+    // school edit from dialcode's select
+    var d = document.getElementById("dialcode-icon");
+    var dstu = document.getElementById("dial_stud");
+
+    if (d.value != "")
+    {
+    d.value = dstu.value;
+    }
+
   }
 });

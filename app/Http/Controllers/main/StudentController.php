@@ -62,7 +62,7 @@ class StudentController extends Controller
       $student =  DB::table('students')
         ->join('classrooms', 'classrooms.id', '=', 'students.classroom_id')
         ->join('schools', 'schools.id', '=', 'classrooms.school_id')
-        ->select('students.*', 'classrooms.*', 'schools.name', 'schools.id')
+        ->select('classrooms.*', 'schools.name', 'schools.id', 'students.*')
         ->where([
           ['students.deleted_at', '=', NULL],
           ['schools.deleted_at', '=', NULL],
@@ -105,10 +105,11 @@ class StudentController extends Controller
       'reg_number' => 'required',
       'familyname' => 'required',
       'givenname' => 'required',
-      'familyname' => 'required',
       'gender' => 'required',
       'country' => 'required',
       'dialcode' => 'required',
+      'birthdate' => 'required',
+      'birthcity' => 'required',
       'phone' => 'required',
       'address' => 'required',
       'is_oriented' => 'required',
@@ -141,6 +142,7 @@ class StudentController extends Controller
     $student->givenname = $request->givenname;
     $student->gender = $request->gender;
     $student->birthdate = $request->birthdate;
+    $student->birthcity = $request->birthcity;
     $student->country = $request->country;
     $student->dialcode = $request->dialcode;
     $student->phone = $request->phone;
@@ -177,14 +179,27 @@ class StudentController extends Controller
   public function show($id, Student $student)
   {
     //
+    $current = User::find(Auth::id());
     $student = Student::find($id);
-    $school = School::all();
     $setting = Setting::where('user_id', Auth::id())->first();
+    $classroom = Classroom::find($student->classroom_id);
+    $school = School::find($classroom->school_id);
+
+    if ($setting->language == 1) {
+      if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == ('fr' || 'en')) {
+        $countries = DB::table('countries')->where(['code' => $student->country, 'language' => 1])->value('label');
+      }
+    } else {
+      $countries = DB::table('countries')->where(['code' => $student->country, 'language' => 2])->value('label');
+    }
 
     return view('main.students.page-students-view')->with([
+      'current' => $current,
       'student' => $student,
       'school' => $school,
-      'setting' => $setting
+      'classroom' => $classroom,
+      'setting' => $setting,
+      'countries' => $countries
     ]);
   }
 
@@ -197,13 +212,17 @@ class StudentController extends Controller
   public function edit($id, Student $student)
   {
     //
+    $current = User::find(Auth::id());
     $student = Student::find($id);
-    $school = School::all();
+    $classroom = Classroom::find($student->classroom_id);
+    $school = School::find($classroom->school_id);
     $setting = Setting::where('user_id', Auth::id())->first();
 
     return view('main.students.page-students-edit')->with([
+      'current' => $current,
       'student' => $student,
       'school' => $school,
+      'classroom' => $classroom,
       'setting' => $setting
     ]);
   }
@@ -219,14 +238,14 @@ class StudentController extends Controller
   {
     //
     $request->validate([
+      'reg_number' => 'required',
       'familyname' => 'required',
       'givenname' => 'required',
-      'familyname' => 'required',
-      'email' => 'required',
-      'password' => 'required',
       'gender' => 'required',
       'country' => 'required',
       'dialcode' => 'required',
+      'birthdate' => 'required',
+      'birthcity' => 'required',
       'phone' => 'required',
       'address' => 'required',
       'is_oriented' => 'required',
@@ -257,6 +276,7 @@ class StudentController extends Controller
     $student->givenname = $request->givenname;
     $student->gender = $request->gender;
     $student->birthdate = $request->birthdate;
+    $student->birthcity = $request->birthcity;
     $student->country = $request->country;
     $student->dialcode = $request->dialcode;
     $student->phone = $request->phone;
@@ -270,7 +290,7 @@ class StudentController extends Controller
       $student->desc_handicap = $request->desc_handicap;
     }
 
-    $student->classroom_id = $request->classroom_id;
+
     $student->updated_user = $current->id;
 
 
@@ -299,6 +319,6 @@ class StudentController extends Controller
     $studentCopy->save();
     $student->delete();
 
-    return redirect()->route('users-list');
+    return redirect()->route('student-list');
   }
 }
