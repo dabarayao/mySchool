@@ -7,6 +7,7 @@ use App\Classroom;
 use App\School;
 use App\User;
 use App\Setting;
+use App\Student;
 use App\Exam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -89,6 +90,8 @@ class ClassroomController extends Controller
     $classroom->updated_user = $current->id;
 
     $classroom->save();
+
+    session()->flash('class_add', 'classroom added successfully');
 
     return redirect()->route('classroom-list');
   }
@@ -209,6 +212,8 @@ class ClassroomController extends Controller
 
       $classroom->save();
 
+      session()->flash('class_edit', 'classroom changed successfully');
+
       return redirect()->route('classroom-list');
     } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $classroom->school_id)) {
       return view('errors.not-authorized');
@@ -242,9 +247,17 @@ class ClassroomController extends Controller
       $classroomCopy->save();
 
 
-      $classroom->delete();
+      $student = Student::where('classroom_id', $classroom->id)->count();
 
-      return redirect()->route('classroom-list');
+      if ($student == 0) {
+        $classroom->delete();
+        session()->flash('class_delete', 'we cannot delete this classroom');
+        return redirect()->route('classroom-list');
+      } else {
+        session()->flash('class_forbid', 'we cannot delete this classroom');
+        session()->flash('studentCount', $student);
+        return redirect()->route('classroom-list');
+      }
     } else if ($classroom != NULL && ($current->root == false && $schoolCur->id != $classroom->school_id)) {
       return view('errors.not-authorized');
     } else {

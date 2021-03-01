@@ -167,6 +167,8 @@ class StudentController extends Controller
 
     $student->save();
 
+    session()->flash('student_add', 'student added successfully');
+
     return redirect()->route('student-list');
   }
 
@@ -284,8 +286,11 @@ class StudentController extends Controller
     $student->is_oriented = $request->is_oriented;
     $student->is_handicap = $request->is_handicap;
 
-    if ($request->oriented_percent && $request->label_handicap) {
+    if (isset($request->oriented_percent)) {
       $student->oriented_percent = $request->oriented_percent;
+    }
+
+    if (isset($request->label_handicap)) {
       $student->label_handicap = $request->label_handicap;
       $student->desc_handicap = $request->desc_handicap;
     }
@@ -296,6 +301,9 @@ class StudentController extends Controller
 
 
     $student->save();
+
+    session()->flash('student_edit', 'student changed successfully');
+
 
     return redirect()->route('student-list');
   }
@@ -318,6 +326,9 @@ class StudentController extends Controller
     $studentCopy->deleted_user = $current->id;
     $studentCopy->save();
     $student->delete();
+
+    session()->flash('student_delete', 'student deleted successfully');
+
 
     return redirect()->route('student-list');
   }

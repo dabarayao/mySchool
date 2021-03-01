@@ -151,6 +151,9 @@ class UsersController extends Controller
       $setting->save();
 
 
+      session()->flash('user_add', 'user have been added successfully');
+
+
       return redirect()->route('users-list');
     } else {
       session()->flash('emailroradd', 1);
@@ -306,6 +309,8 @@ class UsersController extends Controller
 
     $user->save();
 
+    session()->flash('user_edit', 'user have been edited successfully');
+
     $user_set = User::where('email', '=', $request->email)->value('id');
     if (Setting::where('user_id', '=', $user_set)->count() == 0) {
 
@@ -344,6 +349,8 @@ class UsersController extends Controller
       $userCopy->deleted_user = $current->id;
       $userCopy->save();
       $user->delete();
+
+      session()->flash('user_delete', 'user have been deleted successfully');
 
       return redirect()->route('users-list');
     } else if ($user != NULL && ($user->school_id != $current->school_id && $current->root == false)) {
