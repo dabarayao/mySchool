@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\main;
 
-use App\Classroom;
+
 use App\Http\Controllers\Controller;
+use App\Classroom;
 use App\Student;
 use Illuminate\Support\Facades\DB;
 use App\School;
@@ -14,8 +15,13 @@ use App\Kins;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
-class KinsContoller extends Controller
+
+
+
+class KinsController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -26,7 +32,7 @@ class KinsContoller extends Controller
   public function __construct()
   {
     // the authenitfication middleware for the app
-    $this->middleware(['verified', 'auth', 'checkUserStatus', 'checkUserSchools', 'checkUserClassrooms', 'scolarSystem']);
+    $this->middleware(['verified', 'auth', 'checkUserStatus', 'checkUserSchools', 'scolarSystem']);
   }
 
 
@@ -52,11 +58,11 @@ class KinsContoller extends Controller
 
     $setting = Setting::where('user_id', Auth::id())->first();
 
-    return view('main.students.page-kins-list')->with([
+    return view('main.kins.page-kins-list')->with([
       'current' => $current,
       'school' => $school,
       'setting' => $setting,
-      'student' => $kins
+      'kins' => $kins
     ]);
   }
 
@@ -78,7 +84,7 @@ class KinsContoller extends Controller
    */
   public function store(Request $request)
   {
-    //
+
     $request->validate([
       'familyname' => 'required',
       'givenname' => 'required',
@@ -90,7 +96,6 @@ class KinsContoller extends Controller
       'phone' => 'required',
       'address' => 'required',
       'job' => 'required',
-      'password' => 'required',
       'email' => 'required'
     ]);
 
@@ -108,12 +113,28 @@ class KinsContoller extends Controller
 
     $current = User::find(Auth::id());
 
-    $kins = new Student;
+    $kins = new Kins;
 
 
     if ($request->hasFile('photo')) {
       $kins->photo = $path;
     }
+
+    session()->flash('kins_mail', $request->email);
+
+    $data = Str::random(8);
+
+    Mail::send('main.mail.kin_pass',['pass' => $data], function ($message) {
+      $message->from('rooter@saf-aviation.com', 'Myschool');
+      $message->sender('rooter@saf-aviation.com', 'Myschool');
+      $message->to(session()->get('kins_mail'), 'Compte parent');
+
+      $message->subject('Inscription de compte parent');
+    });
+
+
+
+
 
     $kins->familyname = $request->familyname;
     $kins->givenname = $request->givenname;
@@ -124,12 +145,15 @@ class KinsContoller extends Controller
     $kins->dialcode = $request->dialcode;
     $kins->phone = $request->phone;
     $kins->address = $request->address;
-    $kins->email = $request->is_oriented;
-    $kins->job = $request->is_handicap;
-    $kins->password = $request->password;
+    $kins->email = $request->email;
+    $kins->job = $request->job;
+    $kins->password = bcrypt($data);
 
-
-    $kins->classroom_id = $request->classroom_id;
+    if ($current->root == true) {
+      $kins->school_id = $request->school_id;
+    } else {
+      $kins->school_id = $current->school_id;
+    }
     $kins->created_user = $current->id;
     $kins->updated_user = $current->id;
 
@@ -137,7 +161,7 @@ class KinsContoller extends Controller
 
     $kins->save();
 
-    return redirect()->route('student-list');
+    return redirect()->route('kins-list');
   }
 
   /**
@@ -236,7 +260,7 @@ class KinsContoller extends Controller
 
     $current = User::find(Auth::id());
 
-    $kins = Student::find($id);
+    $kins = Kins::find($id);
 
 
     if ($request->hasFile('photo')) {
@@ -251,9 +275,8 @@ class KinsContoller extends Controller
     $kins->dialcode = $request->dialcode;
     $kins->phone = $request->phone;
     $kins->address = $request->address;
-    $kins->email = $request->is_oriented;
-    $kins->job = $request->is_handicap;
-    $kins->password = $request->password;
+    $kins->email = $request->email;
+    $kins->job = $request->job;
 
 
     $kins->updated_user = $current->id;
@@ -277,11 +300,11 @@ class KinsContoller extends Controller
     $kins = Kins::find($id);
 
     // code to archive deleted users
-    $studentCopy = $kins;
+    $kinsCopy = $kins;
     $current = User::find(Auth::id());
 
-    $studentCopy->deleted_user = $current->id;
-    $studentCopy->save();
+    $kinsCopy->deleted_user = $current->id;
+    $kinsCopy->save();
     $kins->delete();
 
     return redirect()->route('kins-list');

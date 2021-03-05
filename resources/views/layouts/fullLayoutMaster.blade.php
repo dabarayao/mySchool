@@ -3,11 +3,8 @@ use App\Setting;
 use Illuminate\Support\Facades\Auth;
 
 if (Auth::check()) {
-
-  $setting = Setting::where('user_id', Auth::id())->first();
-
+$setting = Setting::where('user_id', Auth::id())->first();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -22,18 +19,19 @@ Purchase: https://1.envato.market/pixinvent_portfolio
 Renew Support: https://1.envato.market/pixinvent_portfolio
 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 -->
-{{-- pageConfigs variable pass to Helper's updatePageConfig function to update page configuration  --}}
+{{-- pageConfigs variable pass to Helper's updatePageConfig function to update page configuration --}}
 @isset($pageConfigs)
-  {!! Helper::updatePageConfig($pageConfigs) !!}
+    {!! Helper::updatePageConfig($pageConfigs) !!}
 @endisset
 @php
 // confiData variable layoutClasses array in Helper.php file.
-  $configData = Helper::applClasses();
+$configData = Helper::applClasses();
 @endphp
 
 <html class="loading" lang="en" data-textdirection="ltr">
-  <!-- BEGIN: Head-->
-  <head>
+<!-- BEGIN: Head-->
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -41,57 +39,71 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <title>@yield('title')
 
-    @if(Auth::check())
+        @if (Auth::check())
 
-      @if($setting->language == 1)
+            @if (isset($setting) && $setting->language == 1)
 
 
-        - MySchool application de gestion d'école
+                - MySchool application de gestion d'école
 
-      @else
+            @elseif(isset($setting) && $setting->language == 2)
 
-        - MySchool education's manager app
+                - MySchool education's manager app
 
-      @endif
+            @else
 
-    @else
+                @if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+                    - MySchool application de gestion d'école
+                @else
+                    - MySchool education's manager app
+                @endif
 
-      @if(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
-        - MySchool application de gestion d'école
-      @else
-        - MySchool education's manager app
-      @endif
 
-    @endif
+            @endif
+
+        @else
+
+            @if (substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) == 'fr')
+                - MySchool application de gestion d'école
+            @else
+                - MySchool education's manager app
+            @endif
+
+        @endif
 
     </title>
-    <link rel="apple-touch-icon" href="{{asset('images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/ico/favicon.ico')}}">
+    <link rel="apple-touch-icon" href="{{ asset('images/ico/apple-icon-120.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/ico/favicon.ico') }}">
 
     {{-- Include core + vendor Styles --}}
     @include('panels.styles')
-  </head>
-  <!-- END: Head-->
+</head>
+<!-- END: Head-->
 
-  <!-- BEGIN: Body-->
-  <body class="vertical-layout 1-column navbar-sticky {{$configData['bodyCustomClass']}} footer-static blank-page
-  @if(isset($setting)) @if($setting->theme === 'dark'){{'dark-layout'}} @elseif($setting->theme === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif @endif" data-open="click" data-menu="vertical-menu-modern" data-col="1-column" style="background: url({{asset('images/authent/backcover.jpg')}}) center no-repeat; background-size: cover;">
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout 1-column navbar-sticky {{ $configData['bodyCustomClass'] }} footer-static blank-page
+  @if (isset($setting))  @if ($setting->theme==='dark'){{ 'dark-layout' }} @elseif($setting->theme ===
+    'semi-dark'){{ 'semi-dark-layout' }} @else {{ 'light-layout' }} @endif @endif"
+    data-open="click" data-menu="vertical-menu-modern" data-col="1-column" style="background:
+    url({{ asset('images/authent/backcover.jpg') }}) center no-repeat; background-size: cover;">
     <!-- BEGIN: Content-->
     <div class="app-content content">
-      <div class="content-overlay"></div>
-      <div class="content-wrapper">
-        <div class="content-header row">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                @yield('content')
+            </div>
         </div>
-        <div class="content-body" >
-         @yield('content')
-        </div>
-      </div>
     </div>
     <!-- END: Content-->
 
     {{-- scripts --}}
     @include('panels.scripts')
 
-  </body>
-  <!-- END: Body-->
+</body>
+<!-- END: Body-->
+
 </html>

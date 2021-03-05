@@ -204,3 +204,11 @@ Route::get('/students/edit/{id}', 'main\StudentController@edit')->name('student-
 Route::get('/students/view/{id}', 'main\StudentController@show')->name('student-view')->where('id', '[0-9]+');
 Route::put('/students/update/{id}', 'main\StudentController@update')->name('student-update')->where('id', '[0-9]+');
 Route::get('/students/delete/{id}', 'main\StudentController@destroy')->name('student-delete')->where('id', '[0-9]+');
+
+// mySchool kins routes
+Route::get('/kins', 'main\KinsController@index')->name('kins-list');
+Route::post('/kins', 'main\KinsController@store')->name('kins-add');
+Route::get('/kins/edit/{id}', 'main\KinstController@edit')->name('kins-edit')->where('id', '[0-9]+');
+Route::get('/kins/view/{id}', 'main\KinsController@show')->name('kins-view')->where('id', '[0-9]+');
+Route::put('/kins/update/{id}', 'main\KinsController@update')->name('kins-update')->where('id', '[0-9]+');
+Route::get('/kins/delete/{id}', 'main\KinsController@destroy')->name('kins-delete')->where('id', '[0-9]+');
