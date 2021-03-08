@@ -66,18 +66,6 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
-                                    <label for="email-icon">Mot de passe</label>
-                                    <div class="position-relative has-icon-left">
-                                        <input type="password" id="email-icon" class="form-control" name="password"
-                                            placeholder="Mot de passe" maxlength="100" required>
-                                        <div class="form-control-position">
-                                            <i class="bx bx-mail-send"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <div class="form-group">
                                     <label for="gender-icon">Sexe</label>
                                     <div class="position-relative has-icon-left">
                                         <select id="gender-icon" class="form-control" name="gender">
@@ -287,18 +275,6 @@
                                         placeholder="Email" maxlength="100" required>
                                     <div class="form-control-position">
                                         <i class="bx bx-mail-send"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
-                                <label for="password-icon">Password</label>
-                                <div class="position-relative has-icon-left">
-                                    <input type="password" id="password-icon" class="form-control" name="password"
-                                        placeholder="Password" maxlength="100" required>
-                                    <div class="form-control-position">
-                                        <i class="bx bx-lock-alt"></i>
                                     </div>
                                 </div>
                             </div>

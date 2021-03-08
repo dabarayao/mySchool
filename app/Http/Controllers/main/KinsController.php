@@ -124,7 +124,7 @@ class KinsController extends Controller
 
     $data = Str::random(8);
 
-    Mail::send('main.mail.kin_pass',['pass' => $data], function ($message) {
+    Mail::send('main.mail.kins.kin_pass',['pass' => $data], function ($message) {
       $message->from('rooter@saf-aviation.com', 'Myschool');
       $message->sender('rooter@saf-aviation.com', 'Myschool');
       $message->to(session()->get('kins_mail'), 'Compte parent');
