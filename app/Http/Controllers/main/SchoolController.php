@@ -31,14 +31,6 @@ class SchoolController extends Controller
    */
   public function index()
   {
-    // auth connected state code sample
-    if (Auth::check()) {
-      $util = User::find(Auth::id());
-      if ($util->state == false); {
-        $util->state = true;
-        $util->save();
-      }
-    }
 
     // settings code for current users
     $setting = Setting::where('user_id', Auth::id())->first();
@@ -150,19 +142,28 @@ class SchoolController extends Controller
     } else {
       $school->status = true;
     }
+
     $school->created_user = $current->id;
     $school->updated_user = $current->id;
 
     $school->save();
 
     if (Schoolyear::where('school_id', '=', $school->id)->count() == 0) {
-
-      $schoolyear = new Schoolyear;
-      $schoolyear->year = date("Y-m-d");
-      $schoolyear->school_id = $school->id;
-      $schoolyear->created_user = $current->id;
-      $schoolyear->updated_user = $current->id;
-      $schoolyear->save();
+      if (isset($request->user)) {
+        $schoolyear = new Schoolyear;
+        $schoolyear->year = date("Y-m-d");
+        $schoolyear->school_id = $school->id;
+        $schoolyear->created_user = $request->user;
+        $schoolyear->updated_user = $request->user;
+        $schoolyear->save();
+      } else {
+        $schoolyear = new Schoolyear;
+        $schoolyear->year = date("Y-m-d");
+        $schoolyear->school_id = $school->id;
+        $schoolyear->created_user = $current->id;
+        $schoolyear->updated_user = $current->id;
+        $schoolyear->save();
+      }
     }
 
 
@@ -192,16 +193,6 @@ class SchoolController extends Controller
    */
   public function show($id, School $school)
   {
-    //
-
-    // auth connected state code sample
-    if (Auth::check()) {
-      $util = User::find(Auth::id());
-      if ($util->state == false); {
-        $util->state = true;
-        $util->save();
-      }
-    }
 
     // settings code for current users
     $setting = Setting::where('user_id', Auth::id())->first();
@@ -245,15 +236,6 @@ class SchoolController extends Controller
    */
   public function edit($id, School $school)
   {
-    // auth connected state code sample
-    if (Auth::check()) {
-      $util = User::find(Auth::id());
-      if ($util->state == false); {
-        $util->state = true;
-        $util->save();
-      }
-    }
-
 
     // settings code for current users
     $setting = Setting::where('user_id', Auth::id())->first();
@@ -305,7 +287,8 @@ class SchoolController extends Controller
       'nbroom' => 'required',
       'building_date' => 'required',
       'funder' => 'required',
-      'type_monthyear' => 'required'
+      'type_monthyear' => 'required',
+      'quotient' => 'required'
     ]);
 
     if ($request->hasFile('photo')) {
@@ -334,9 +317,12 @@ class SchoolController extends Controller
     if ($request->hasFile('photo')) {
       $school->photo = $path;
     }
+
     $school->building_date = $request->building_date;
     $school->funder = $request->funder;
+    $school->quotient = $request->quotient;
     $school->type_monthyear = $request->type_monthyear;
+
     if (isset($request->status)) {
       $school->status = $request->status;
 

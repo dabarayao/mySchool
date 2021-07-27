@@ -31,7 +31,7 @@ class SchoolyearController extends Controller
     $current = User::find(Auth::id());
 
     if ($school != NULL) {
-      $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', null]])->first();
+      $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', false]])->first();
       $checker = 1;
     } else {
       $checker = NULL;
@@ -39,7 +39,7 @@ class SchoolyearController extends Controller
 
     if ($checker == NULL) {
       return view('errors.404');
-    } else if ($schoolyear != NULL && $schoolyear->created_user != $current->id) {
+    } else if ($schoolyear != NULL && $schoolyear->id != $current->school_id) {
       return view('errors.not-authorized');
     } else {
       return view('main.schoolsyear.page-schoolyears')->with(['schoolyear' => $schoolyear, 'school' => $school]);

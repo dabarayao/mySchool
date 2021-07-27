@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\School;
+use App\Schoolyear;
 use Illuminate\Support\Facades\Auth;
 use Closure;
 use App\User;
@@ -27,6 +29,32 @@ class CheckUserStatus
         $request->session()->put('checkpoint', 'billing is on going');
 
         return redirect()->route('checkpoint');
+      } else {
+        session()->forget('checkpoint');
+
+        $utilConnect = User::find(Auth::id());
+        if ($utilConnect->state == false); {
+          $utilConnect->state = true;
+          $utilConnect->save();
+        }
+
+        if ($utilConnect->root == false) {
+          $school = School::where('id', $utilConnect->school_id)->first();
+          $schoolyear = Schoolyear::where('school_id', $school->id)->first();
+
+
+          if ($schoolyear->end_date < date('Y-m-d')) {
+            $schoolyear->is_over = true;
+            $schoolyear->save();
+
+            $schoolyear2 = new Schoolyear;
+            $schoolyear2->year = date("Y-m-d");
+            $schoolyear2->school_id = $school->id;
+            $schoolyear2->created_user = $utilConnect->id;
+            $schoolyear2->updated_user = $utilConnect->id;
+            $schoolyear2->save();
+          }
+        }
       }
     }
     return $next($request);

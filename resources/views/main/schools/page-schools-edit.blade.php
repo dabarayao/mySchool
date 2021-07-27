@@ -196,6 +196,17 @@
 
                       @endif
 
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="schooltype">Quotient de notes et moyennes</label>
+                          <input type="number" class="form-control required maskField" id="schoolphone" value="{{$schools->quotient}}"   maxlength="3" name="quotient"
+                            placeholder="Quotient de note et moyenne" required>
+                            <small> ex: 18/20, 18/30 ......</small>
+                        </div>
+                      </div>
+
+
+
                       @if($current->root == true)
                         @if($schools->status == true)
 
@@ -391,7 +402,7 @@
 
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="schoolmonthyear">Système annuel</label>
+                            <label for="schoolmonthyear">Annual system</label>
                             <select class="custom-select form-control"  required id="schoolmonthyear" name="type_monthyear">
                               <option value="0">TRIMESTER</option>
                               <option value="1">SEMESTER</option>
@@ -403,7 +414,7 @@
 
                       <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="schoolmonthyear">Système annuel</label>
+                            <label for="schoolmonthyear">Annual system</label>
                             <select class="custom-select form-control"  required id="schoolmonthyear" name="type_monthyear">
                               <option value="1">SEMESTER</option>
                               <option value="0">TRIMESTER</option>
@@ -412,6 +423,15 @@
                       </div>
 
                       @endif
+
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="schooltype">Quotient of mark and average</label>
+                          <input type="number" class="form-control required maskField" id="schoolphone" value="{{$schools->quotient}}"   maxlength="3" name="quotient"
+                            placeholder="Quotient de note et moyenne" required>
+                            <small> ex: 18/20, 18/30 ......</small>
+                        </div>
+                      </div>
 
                   @if($current->root == true)
 

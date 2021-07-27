@@ -1,5 +1,6 @@
 <?php
 
+use App\Schoolyear;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,11 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
-    $this->call([UserSeeder::class, SettingSeeder::class]);
+    $this->call([
+      SchoolSeeder::class,
+      UserSeeder::class,
+      SchoolyearSeeder::class,
+      SettingSeeder::class
+    ]);
   }
 }

@@ -109,6 +109,30 @@
                                     @if($schools->type_monthyear == 0) Trimestre @else Semestre @endif
                                   </span>
                               </li>
+                              <li class="d-flex align-items-center">
+                                <i class="bx bxs-school mr-50 cursor-pointer"></i> <span><a
+                                    href="JavaScript:void(0);">Type d'école:&nbsp;</a>
+                                      {{$schools->type}}
+                                  </span>
+                              </li>
+                              <li class="d-flex align-items-center">
+                                <i class="bx bxs-city mr-50 cursor-pointer"></i> <span><a
+                                    href="JavaScript:void(0);">Ville:&nbsp;</a>
+                                      {{$schools->area}}
+                                  </span>
+                              </li>
+                              <li class="d-flex align-items-center">
+                                <i class="bx bx-area mr-50 cursor-pointer"></i> <span><a
+                                    href="JavaScript:void(0);">Adresse:&nbsp;</a>
+                                      {{$schools->address}}
+                                  </span>
+                              </li>
+                              <li class="d-flex align-items-center">
+                                <i class="bx bxs-calculator mr-50 cursor-pointer"></i> <span><a
+                                    href="JavaScript:void(0);">Quotient de calcul:&nbsp;</a>
+                                      {{$schools->quotient}}
+                                  </span>
+                              </li>
                                 <br>
                                 <a href="{{route('schools-edit', $schools->id)}}" role="button" class="btn btn-primary">Modifier</a>
 
@@ -196,7 +220,7 @@
                   <div class="card">
                     <div class="card-content">
                       <div class="card-body">
-                        <h5>List of all school's users</h5>
+                        <h5>Liste des utilisateurs de l'école</h5>
                         <div class="row">
                           <div class="col-6">
                             <ul class="list-unstyled mb-0">
@@ -210,7 +234,7 @@
                                   <li class="media my-50">
                                     <a href="JavaScript:void(0);">
                                       <div class="avatar mr-1">
-                                        <img src="{{asset('images/portrait/small/avatar-s-2.jpg')}}" alt="avtar images"
+                                        <img src="@if($schoolusers->photo == NULL && $schoolusers->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($schoolusers->photo == NULL && $schoolusers->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$schoolusers->photo}} @endif" alt="avtar images"
                                           width="32" height="32">
                                           @if($schoolusers->state == true)
                                             <span class="avatar-status-online"></span>
@@ -245,7 +269,7 @@
                                   <li class="media my-50">
                                     <a href="JavaScript:void(0);">
                                       <div class="avatar mr-1">
-                                        <img src="{{asset('images/portrait/small/avatar-s-2.jpg')}}" alt="avtar images"
+                                        <img src="@if($schoolusers->photo == NULL && $schoolusers->gender == false) {{asset('images/mockup/man.jpg')}} @elseif($schoolusers->photo == NULL && $schoolusers->gender == true) {{asset('images/mockup/woman.jpg')}} @else {{$schoolusers->photo}} @endif" alt="avtar images"
                                           width="32" height="32">
                                           @if($schoolusers->state == true)
                                             <span class="avatar-status-online"></span>
@@ -413,8 +437,33 @@
                                     @if($schools->type_monthyear == 0) Trimestre @else Semestre @endif
                                   </span>
                               </li>
+                              <li class="d-flex align-items-center">
+                                <i class="bx bxs-school mr-50 cursor-pointer"></i> <span><a
+                                    href="JavaScript:void(0);">School's type:&nbsp;</a>
+                                      {{$schools->type}}
+                                  </span>
+                              </li>
+                              <li class="d-flex align-items-center">
+                                <i class="bx bxs-city mr-50 cursor-pointer"></i> <span><a
+                                    href="JavaScript:void(0);">Town:&nbsp;</a>
+                                      {{$schools->area}}
+                                  </span>
+                              </li>
+                              <li class="d-flex align-items-center">
+                                <i class="bx bx-area mr-50 cursor-pointer"></i> <span><a
+                                    href="JavaScript:void(0);">Address:&nbsp;</a>
+                                      {{$schools->address}}
+                                  </span>
+                              </li>
+
+                              <li class="d-flex align-items-center">
+                                <i class="bx bxs-calculator mr-50 cursor-pointer"></i> <span><a
+                                    href="JavaScript:void(0);">Math quotient:&nbsp;</a>
+                                      {{$schools->quotient}}
+                                  </span>
+                              </li>
                               <br>
-                              <a href="{{route('schools-edit', $schools->id)}}" role="button" class="btn btn-primary">Modifier</a>
+                              <a href="{{route('schools-edit', $schools->id)}}" role="button" class="btn btn-primary">Edit</a>
                             </ul>
                           </div>
                         </div>

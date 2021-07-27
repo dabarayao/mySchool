@@ -31,14 +31,8 @@ class HomeController extends Controller
    */
   public function index()
   {
-    // auth connected state code sample
-    if (Auth::check()) {
-      $util = User::find(Auth::id());
-      if ($util->state == false); {
-        $util->state = true;
-        $util->save();
-      }
-    }
+
+
 
     // users who's is currently connected
     $current = User::find(Auth::id());
@@ -46,12 +40,20 @@ class HomeController extends Controller
 
 
     $school = School::where('id', $current->school_id)->first();
-    $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', null]])->first();
+
+    if ($school != NULL) {
+      $schoolyear = Schoolyear::where([['school_id', $school->id], ['is_over', false]])->first();
+    }
 
     if (School::all()->count() == 0) {
       return view('main.homepage', ['current' => $current, 'school' => $school, 'empty' => 1]);
     } else {
-      return view('main.homepage', ['current' => $current, 'school' => $school, 'schoolyear' => $schoolyear]);
+
+      if ($school != NULL) {
+        return view('main.homepage', ['current' => $current, 'school' => $school, 'schoolyear' => $schoolyear]);
+      } else {
+        return view('main.homepage', ['current' => $current, 'school' => $school]);
+      }
     }
   }
 }

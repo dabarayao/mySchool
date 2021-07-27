@@ -26,10 +26,11 @@ class CreateSchoolsTable extends Migration
       $table->string('photo', 256)->nullable();
       $table->date('building_date');
       $table->string('funder', 256);
+      $table->integer('quotient')->default(20);;
       $table->boolean('type_monthyear')->default(0);
-      $table->boolean('status')->default(1)->nullable();
-      $table->integer('created_user');
-      $table->integer('updated_user');
+      $table->boolean('status')->default(1);
+      $table->integer('created_user')->nullable();
+      $table->integer('updated_user')->nullable();
       $table->integer('deleted_user')->nullable();
       $table->softDeletes();
       $table->timestamps();

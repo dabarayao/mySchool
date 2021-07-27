@@ -109,7 +109,13 @@
                     <div class="overlay-content">
                       <h4 class="card-title mb-50">Années scolaire</h4>
                       <p class="card-text text-ellipsis">
-                        365 jours restants avant la fin de l'année scolaire
+                        @if($schoolyear->start_date > date('Y-m-d'))
+
+                         {{date_diff(date_create(date('Y-m-d')), date_create($schoolyear->start_date))->format("%R%a")}} restants avant le début de l'année scolaire
+
+                        @elseif($schoolyear->end_date > date('Y-m-d'))
+                         {{date_diff(date_create(date('Y-m-d')), date_create($schoolyear->end_date))->format("%R%a")}} restants avant le fin de l'année scolaire
+                        @endif
                       </p>
                     </div>
                     <div class="overlay-status">

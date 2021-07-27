@@ -15,10 +15,12 @@ class LogoutController extends Controller
   {
 
     $util = User::find(Auth::id());
-    Auth::logout();
-
     $util->state = false;
     $util->save();
+
+    Auth::logout();
+
+
 
     $request->session()->invalidate();
 

@@ -27,15 +27,6 @@ class UsersController extends Controller
    */
   public function index()
   {
-    // auth connected state code sample
-    if (Auth::check()) {
-      $util = User::find(Auth::id());
-      if ($util->state == false); {
-        $util->state = true;
-        $util->save();
-      }
-    }
-
 
     //code for root user or superuser
     $superuser = User::find(Auth::id());
@@ -171,14 +162,6 @@ class UsersController extends Controller
   public function show($id)
   {
 
-    // auth connected state code sample
-    if (Auth::check()) {
-      $util = User::find(Auth::id());
-      if ($util->state == false); {
-        $util->state = true;
-        $util->save();
-      }
-    }
 
     //
     $superuser = User::find(Auth::id());
@@ -234,14 +217,6 @@ class UsersController extends Controller
   public function edit($id, Request $request)
   {
 
-    // auth connected state code sample
-    if (Auth::check()) {
-      $util = User::find(Auth::id());
-      if ($util->state == false); {
-        $util->state = true;
-        $util->save();
-      }
-    }
 
     //
     $superuser = User::find(Auth::id());
